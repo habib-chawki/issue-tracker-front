@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issues.component.scss']
 })
 export class IssuesComponent implements OnInit {
+  issues: object[] = [{},{},{}];
 
   constructor() { }
 
