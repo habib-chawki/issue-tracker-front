@@ -26,6 +26,6 @@ describe('IssueComponent', () => {
   });
 
   it('should create native element', () => {
-    expect(nativeElement.innerText).toEqual('issue');
+    expect(nativeElement.querySelector('p').textContent).toEqual('issue');
   })
 });
