@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class IssuesComponent implements OnInit {
+
   issues: object[] = [{},{},{}];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onAddIssue() {
+    this.issues.push({}); 
   }
 
 }
