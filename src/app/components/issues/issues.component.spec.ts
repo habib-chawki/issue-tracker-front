@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IssueComponent } from '../issue/issue.component';
 
+import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from './issues.component';
 
 describe('IssuesComponent', () => {
@@ -33,5 +33,28 @@ describe('IssuesComponent', () => {
 
   it('should render a list of issue components', () => {
     expect(nativeElement.querySelectorAll('app-issue').length).toEqual(component.issues.length);
+  });
+
+  fit('should add a new issue when button is clicked', () => {
+    spyOn(component, "onAddIssue").and.callThrough();
+    
+    // given the issues list
+    const numberOfIssues = component.issues.length;
+    const button = nativeElement.querySelector('button');
+
+    // when the button is clicked
+    button.click();
+
+    // then the new issue should be added 
+    expect(component.onAddIssue).toHaveBeenCalled();
+    expect(component.issues.length).toEqual(numberOfIssues + 1);
+
+    
+    // when the button is clicked one more time
+    button.click();
+
+    // then another issue should be added successfully 
+    expect(component.onAddIssue).toHaveBeenCalled();
+    expect(component.issues.length).toEqual(numberOfIssues + 2);
   });
 });
