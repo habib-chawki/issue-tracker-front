@@ -51,4 +51,8 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
+  fit('should add a "description" form control to the form group', () => {
+    expect(component.issueForm.controls['description']).toBeDefined();
+  });
+
 });
