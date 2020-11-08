@@ -26,9 +26,12 @@ describe('IssueFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render a form with a text input and a submit button', () => {
+  it('should render a form with a text input and a submit button', () => {
     expect(nativeElement.querySelector('form input#description')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#submit')).toBeTruthy();
+    expect(nativeElement.querySelector('form button[type="submit"]').innerHTML).toContain('Add issue');
+  });
+
+  it('should invoke onSubmit when submit button is clicked', () => {
   });
 
 });
