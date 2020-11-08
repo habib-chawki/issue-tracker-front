@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-form.component.scss']
 })
 export class IssueFormComponent implements OnInit {
-
+ 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
   }
 
 }
