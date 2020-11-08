@@ -10,7 +10,7 @@ export class IssueFormComponent implements OnInit {
   @Output() created = new EventEmitter();
 
   issueForm = new FormGroup({
-    description: new FormControl(),
+    description: new FormControl(''),
   });
 
   constructor() {}
@@ -18,6 +18,6 @@ export class IssueFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.created.emit();
+    this.created.emit(this.issueForm.value);
   }
 }
