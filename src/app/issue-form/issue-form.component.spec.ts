@@ -10,10 +10,9 @@ describe('IssueFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IssueFormComponent ], 
-      imports: [ ReactiveFormsModule ]
-    })
-    .compileComponents();
+      declarations: [IssueFormComponent],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -35,24 +34,28 @@ describe('IssueFormComponent', () => {
     // the description input field shoud be rendered
     expect(nativeElement.querySelector('form input#description')).toBeTruthy();
 
-    // the submit button should be rendered with an add issue label
-    expect(nativeElement.querySelector('form button[type="submit"]').innerHTML).toContain('Add issue');
+    // the submit button should be rendered with an "Add issue" label
+    expect(
+      nativeElement.querySelector('form button[type="submit"]').innerHTML
+    ).toContain('Add issue');
+  });
+
+  fit('should define form group and form controls', () => {
+    expect(component.issueForm).toBeDefined();
+    expect(component.issueForm.controls['description']).toBeDefined();
   });
 
   it('should invoke onSubmit when form is submitted', () => {
     // given the onSubmit method
-    spyOn(component, "onSubmit").and.callThrough();
+    spyOn(component, 'onSubmit').and.callThrough();
 
     // when the submit button is clicked
-    const submitButton: HTMLElement = nativeElement.querySelector('form button[type="submit"]');
+    const submitButton: HTMLElement = nativeElement.querySelector(
+      'form button[type="submit"]'
+    );
     submitButton.click();
 
     // the method should be invoked
     expect(component.onSubmit).toHaveBeenCalled();
   });
-
-  fit('should add a "description" form control to the form group', () => {
-    expect(component.issueForm.controls['description']).toBeDefined();
-  });
-
 });
