@@ -60,7 +60,7 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  fit('should emit an event with form values when onSubmit is called', () => {
+  it('should emit an event with form values when onSubmit is called', () => {
     spyOn(component.created, 'emit').and.callThrough();
 
     // given the form values

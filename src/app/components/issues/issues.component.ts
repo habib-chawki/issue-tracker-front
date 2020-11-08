@@ -3,20 +3,20 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-issues',
   templateUrl: './issues.component.html',
-  styleUrls: ['./issues.component.scss']
+  styleUrls: ['./issues.component.scss'],
 })
-
 export class IssuesComponent implements OnInit {
+  issues: object[] = [{}, {}, {}];
 
-  issues: object[] = [{},{},{}];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onAddIssue() {
-    this.issues.push({}); 
+    this.issues.push({});
   }
 
+  onCreated(form) {
+    //TODO: handle new issue creation
+  }
 }
