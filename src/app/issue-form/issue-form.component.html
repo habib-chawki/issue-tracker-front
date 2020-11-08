@@ -1,6 +1,4 @@
-<form>
+<form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
   <input type="text" name="description" id="description" />
-  <button (click)="onSubmit()" type="submit" name="submit" id="submit">
-    Add issue
-  </button>
+  <button type="submit" name="submit" id="submit">Add issue</button>
 </form>
