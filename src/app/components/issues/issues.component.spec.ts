@@ -10,16 +10,15 @@ describe('IssuesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IssuesComponent, IssueComponent ]
-    })
-    .compileComponents();
+      declarations: [IssuesComponent, IssueComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(IssuesComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
-    
+
     fixture.detectChanges();
   });
 
@@ -27,17 +26,19 @@ describe('IssuesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a button to add new issues', () => {
-    expect(nativeElement.querySelector('button').textContent).toEqual('Add new issue');
+  it('should render an issue form component', () => {
+    expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
   });
 
   it('should render a list of issue components', () => {
-    expect(nativeElement.querySelectorAll('app-issue').length).toEqual(component.issues.length);
+    expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
+      component.issues.length
+    );
   });
 
   it('should add a new issue when button is clicked', () => {
-    spyOn(component, "onAddIssue").and.callThrough();
-    
+    spyOn(component, 'onAddIssue').and.callThrough();
+
     // given the issues list
     const numberOfIssues = component.issues.length;
     const button = nativeElement.querySelector('button');
@@ -45,15 +46,14 @@ describe('IssuesComponent', () => {
     // when the button is clicked
     button.click();
 
-    // then the new issue should be added 
+    // then the new issue should be added
     expect(component.onAddIssue).toHaveBeenCalled();
     expect(component.issues.length).toEqual(numberOfIssues + 1);
 
-    
     // when the button is clicked one more time
     button.click();
 
-    // then another issue should be added successfully 
+    // then another issue should be added successfully
     expect(component.onAddIssue).toHaveBeenCalled();
     expect(component.issues.length).toEqual(numberOfIssues + 2);
   });

@@ -25,6 +25,7 @@ describe('IssueFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(nativeElement).toBeTruthy();
   });
 
   it('should render a form with a text input and a submit button', () => {
@@ -40,9 +41,9 @@ describe('IssueFormComponent', () => {
     ).toContain('Add issue');
   });
 
-  fit('should define form group and form controls', () => {
-    expect(component.issueForm).toBeDefined();
-    expect(component.issueForm.controls['description']).toBeDefined();
+  it('should define form group and form controls', () => {
+    expect(component.issueForm).toBeTruthy();
+    expect(component.issueForm.controls['description']).toBeTruthy();
   });
 
   it('should invoke onSubmit when form is submitted', () => {

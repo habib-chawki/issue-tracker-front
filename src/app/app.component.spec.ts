@@ -6,13 +6,8 @@ import { IssuesComponent } from './components/issues/issues.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-      ],
-      declarations: [
-        AppComponent,
-        IssuesComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent, IssuesComponent],
     }).compileComponents();
   });
 
@@ -32,12 +27,14 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('App is running');
+    expect(compiled.querySelector('h1').textContent).toContain(
+      'App is running'
+    );
   });
 
-  it('should render issues component', () =>{
+  it('should render issues component', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const nativeElement = fixture.nativeElement;
-    expect(nativeElement.querySelector('app-issues')).not.toBeNull();
+    expect(nativeElement.querySelector('app-issues')).toBeTruthy();
   });
 });
