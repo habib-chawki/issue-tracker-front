@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { IssueFormComponent } from './issue-form.component';
 
@@ -9,7 +10,8 @@ describe('IssueFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IssueFormComponent ]
+      declarations: [ IssueFormComponent ], 
+      imports: [ ReactiveFormsModule ]
     })
     .compileComponents();
   });
@@ -31,7 +33,13 @@ describe('IssueFormComponent', () => {
     expect(nativeElement.querySelector('form button[type="submit"]').innerHTML).toContain('Add issue');
   });
 
-  it('should invoke onSubmit when submit button is clicked', () => {
+  fit('should invoke onSubmit when form is submitted', () => {
+    spyOn(component, "onSubmit").and.callThrough();
+
+    const submitButton: HTMLElement = nativeElement.querySelector('form button[type="submit"]');
+    submitButton.click();
+
+    expect(component.onSubmit).toHaveBeenCalled();
   });
 
 });
