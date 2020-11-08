@@ -46,7 +46,7 @@ describe('IssueFormComponent', () => {
     expect(component.issueForm.controls['description']).toBeTruthy();
   });
 
-  it('should invoke onSubmit when form is submitted', () => {
+  it('should invoke onSubmit when submit button is clicked', () => {
     // given the onSubmit method
     spyOn(component, 'onSubmit').and.callThrough();
 
@@ -58,5 +58,15 @@ describe('IssueFormComponent', () => {
 
     // the method should be invoked
     expect(component.onSubmit).toHaveBeenCalled();
+  });
+
+  fit('should emit an event when onSubmit is called', () => {
+    spyOn(component.created, 'emit').and.callThrough();
+
+    // given a call to onSubmit
+    component.onSubmit();
+
+    // expect an event to have been emitted
+    expect(component.created.emit).toHaveBeenCalled();
   });
 });

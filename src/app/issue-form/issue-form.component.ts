@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
+  @Output() created = new EventEmitter();
+
   issueForm = new FormGroup({
     description: new FormControl(),
   });
@@ -16,6 +18,6 @@ export class IssueFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('called');
+    this.created.emit();
   }
 }
