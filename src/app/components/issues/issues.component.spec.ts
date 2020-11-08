@@ -1,4 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EventEmitter } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from './issues.component';
@@ -34,6 +41,20 @@ describe('IssuesComponent', () => {
     expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
       component.issues.length
     );
+  });
+
+  fit('should handle "created" event by invoking "onCreated" method', () => {
+    spyOn(component, 'onCreated').and.callThrough();
+
+    // given the form values
+    const formValues = { description: 'The issue description' };
+
+    // when a "created" event is emitted
+    const issueForm = fixture.debugElement.query(By.css('app-issue-form'));
+    issueForm.triggerEventHandler('created', formValues);
+
+    // then expect the "onCreated" event handler to have been called
+    expect(component.onCreated).toHaveBeenCalledWith(formValues);
   });
 
   it('should add a new issue when button is clicked', () => {
