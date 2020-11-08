@@ -35,7 +35,7 @@ describe('IssuesComponent', () => {
     expect(nativeElement.querySelectorAll('app-issue').length).toEqual(component.issues.length);
   });
 
-  fit('should add a new issue when button is clicked', () => {
+  it('should add a new issue when button is clicked', () => {
     spyOn(component, "onAddIssue").and.callThrough();
     
     // given the issues list
