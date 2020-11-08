@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { IssueComponent } from './components/issue/issue.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { IssueFormComponent } from './issue-form/issue-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { IssueFormComponent } from './issue-form/issue-form.component';
     IssueFormComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],
