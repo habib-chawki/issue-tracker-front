@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-issue-form',
@@ -8,7 +8,9 @@ import { FormGroup } from '@angular/forms';
 })
 export class IssueFormComponent implements OnInit {
  
-  issueForm = new FormGroup({});
+  issueForm = new FormGroup({
+    description: new FormControl()
+  });
 
   constructor() { }
 
