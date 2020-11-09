@@ -2,8 +2,8 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { IssueFormComponent } from 'src/app/issue-form/issue-form.component';
 
+import { IssueFormComponent } from 'src/app/issue-form/issue-form.component';
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from './issues.component';
 
@@ -41,8 +41,8 @@ describe('IssuesComponent', () => {
     );
   });
 
-  it('should handle "created" event by invoking "onCreated" method', () => {
-    spyOn(component, 'onCreated').and.callThrough();
+  it('should handle "created" event by invoking "onCreate" method', () => {
+    spyOn(component, 'onCreate').and.callThrough();
 
     // given the form values
     const formValues = { description: 'The issue description' };
@@ -51,18 +51,18 @@ describe('IssuesComponent', () => {
     const issueForm: DebugElement = fixture.debugElement.query(
       By.css('app-issue-form')
     );
-    issueForm.triggerEventHandler('created', formValues);
+    issueForm.triggerEventHandler('issueCreated', formValues);
 
-    // then expect the "onCreated" event handler to have been called
-    expect(component.onCreated).toHaveBeenCalledWith(formValues);
+    // then expect the "onCreate" event handler to have been called
+    expect(component.onCreate).toHaveBeenCalledWith(formValues);
   });
 
-  it('should add the new issue details to "issues" array when "onCreated" method is invoked', () => {
+  it('should add the new issue details to "issues" array when "onCreate" method is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
-    // when 'onCreated' is called
-    component.onCreated(issue);
+    // when 'onCreate' is called
+    component.onCreate(issue);
 
     // then the new issue should be added to the issues array
     expect(component.issues).toContain(issue);
