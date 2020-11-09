@@ -71,22 +71,26 @@ describe('IssuesComponent', () => {
   it('should add a new issue with proper details extracted from form inputs when "Add issue" button is clicked', () => {
     spyOn(component, 'onCreateIssue').and.callThrough();
 
-    // given the issues list
+    // given the issues array length
     const numberOfIssues = component.issues.length;
-    const button = nativeElement.querySelector('button');
 
-    // when the button is clicked
-    button.click();
+    // given the form submit button
+    const submitButton: HTMLButtonElement = nativeElement.querySelector(
+      'app-issue-form button[type="submit"]'
+    );
+
+    // when the submit button is clicked
+    submitButton.click();
 
     // then the new issue should be added
-    expect(component.onAddIssue).toHaveBeenCalled();
+    expect(component.onCreateIssue).toHaveBeenCalled();
     expect(component.issues.length).toEqual(numberOfIssues + 1);
 
     // when the button is clicked one more time
-    button.click();
+    submitButton.click();
 
     // then another issue should be added successfully
-    expect(component.onAddIssue).toHaveBeenCalled();
+    expect(component.onCreateIssue).toHaveBeenCalled();
     expect(component.issues.length).toEqual(numberOfIssues + 2);
   });
 });
