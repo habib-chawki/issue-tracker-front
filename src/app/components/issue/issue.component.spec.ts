@@ -24,18 +24,14 @@ describe('IssueComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create native element', () => {
-    expect(nativeElement.querySelector('p').textContent).toEqual('issue');
-  });
-
   it('should render issue details', () => {
     // expect details to be empty at first
     expect(component.details).toEqual({ description: '' });
 
     // given the new details
     let details = { description: 'This is the issue description' };
-    component.details = details;
 
+    component.details = details;
     fixture.detectChanges();
 
     // expect details to be rendered
@@ -48,7 +44,6 @@ describe('IssueComponent', () => {
 
     // when issue details are updated
     component.details = details;
-
     fixture.detectChanges();
 
     // then expect updated details to be rendered
