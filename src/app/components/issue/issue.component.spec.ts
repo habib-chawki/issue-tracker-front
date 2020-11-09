@@ -9,9 +9,8 @@ describe('IssueComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IssueComponent ]
-    })
-    .compileComponents();
+      declarations: [IssueComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -27,5 +26,9 @@ describe('IssueComponent', () => {
 
   it('should create native element', () => {
     expect(nativeElement.querySelector('p').textContent).toEqual('issue');
-  })
+  });
+
+  fit('should have a details property', () => {
+    expect(component.details).toEqual({ description: '' });
+  });
 });
