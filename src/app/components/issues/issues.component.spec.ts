@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { IssueFormComponent } from 'src/app/issue-form/issue-form.component';
+import { IssueFormComponent } from 'src/app/components/issue-form/issue-form.component';
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from './issues.component';
 
