@@ -16,7 +16,7 @@ export class IssuesComponent implements OnInit {
     this.issues.push({});
   }
 
-  onCreated(form) {
-    //TODO: handle new issue creation
+  onCreated(issue) {
+    this.issues.push(issue);
   }
 }

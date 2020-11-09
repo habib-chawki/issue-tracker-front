@@ -17,3 +17,4 @@
 [1108/163946.961:ERROR:process_info.cc(556)] ReadMemoryInfo failed
 [1108/163946.961:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentative d’accès à un processus en cours d’arrêt. (0xc000010a)
 [1108/173801.980:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[1109/111720.593:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
