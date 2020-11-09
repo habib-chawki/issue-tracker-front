@@ -28,7 +28,7 @@ describe('IssueComponent', () => {
     expect(nativeElement.querySelector('p').textContent).toEqual('issue');
   });
 
-  fit('should render issue details', () => {
+  it('should render issue details', () => {
     // expect details to be empty at first
     expect(component.details).toEqual({ description: '' });
 
