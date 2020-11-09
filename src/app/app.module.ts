@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { IssueComponent } from './components/issue/issue.component';
 import { IssuesComponent } from './components/issues/issues.component';
-import { IssueFormComponent } from './issue-form/issue-form.component';
+import { IssueFormComponent } from './components/issue-form/issue-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -14,14 +14,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     IssueComponent,
     IssuesComponent,
-    IssueFormComponent
+    IssueFormComponent,
   ],
-  imports: [
-    ReactiveFormsModule,
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
