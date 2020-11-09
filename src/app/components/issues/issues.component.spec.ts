@@ -1,11 +1,8 @@
-import { DebugElement, EventEmitter } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { IssueFormComponent } from 'src/app/issue-form/issue-form.component';
 
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from './issues.component';
@@ -17,7 +14,8 @@ describe('IssuesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IssuesComponent, IssueComponent],
+      declarations: [IssuesComponent, IssueComponent, IssueFormComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   });
 
@@ -59,7 +57,7 @@ describe('IssuesComponent', () => {
     expect(component.onCreated).toHaveBeenCalledWith(formValues);
   });
 
-  fit('should add the new issue details to "issues" array when "onCreated" method is invoked', () => {
+  it('should add the new issue details to "issues" array when "onCreated" method is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
