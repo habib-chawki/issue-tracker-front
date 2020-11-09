@@ -61,7 +61,7 @@ describe('IssueFormComponent', () => {
   });
 
   it('should emit an event with form values when onSubmit is called', () => {
-    spyOn(component.created, 'emit').and.callThrough();
+    spyOn(component.issueCreated, 'emit').and.callThrough();
 
     // given the form values
     component.issueForm.controls['description'].setValue(
@@ -72,7 +72,7 @@ describe('IssueFormComponent', () => {
     component.onSubmit();
 
     // then expect an event to have been emitted with the form values
-    expect(component.created.emit).toHaveBeenCalledWith({
+    expect(component.issueCreated.emit).toHaveBeenCalledWith({
       description: 'The issue description',
     });
   });

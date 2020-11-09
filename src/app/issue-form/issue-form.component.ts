@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
-  @Output() created = new EventEmitter();
+  @Output() issueCreated = new EventEmitter();
 
   issueForm = new FormGroup({
     description: new FormControl(''),
@@ -18,6 +18,6 @@ export class IssueFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.created.emit(this.issueForm.value);
+    this.issueCreated.emit(this.issueForm.value);
   }
 }
