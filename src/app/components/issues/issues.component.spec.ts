@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { DebugElement, EventEmitter } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -43,21 +43,34 @@ describe('IssuesComponent', () => {
     );
   });
 
-  fit('should handle "created" event by invoking "onCreated" method', () => {
+  it('should handle "created" event by invoking "onCreated" method', () => {
     spyOn(component, 'onCreated').and.callThrough();
 
     // given the form values
     const formValues = { description: 'The issue description' };
 
     // when a "created" event is emitted
-    const issueForm = fixture.debugElement.query(By.css('app-issue-form'));
+    const issueForm: DebugElement = fixture.debugElement.query(
+      By.css('app-issue-form')
+    );
     issueForm.triggerEventHandler('created', formValues);
 
     // then expect the "onCreated" event handler to have been called
     expect(component.onCreated).toHaveBeenCalledWith(formValues);
   });
 
-  it('should add a new issue when button is clicked', () => {
+  fit('should add the new issue details to "issues" array when "onCreated" method is invoked', () => {
+    // given a new issue
+    const issue = { description: 'This is a new issue' };
+
+    // when 'onCreated' is called
+    component.onCreated(issue);
+
+    // then the new issue should be added to the issues array
+    expect(component.issues).toContain(issue);
+  });
+
+  it('should add a new issue with proper details extracted from form inputs when "Add issue" button is clicked', () => {
     spyOn(component, 'onAddIssue').and.callThrough();
 
     // given the issues list
