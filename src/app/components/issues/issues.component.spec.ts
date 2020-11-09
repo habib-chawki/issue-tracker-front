@@ -68,6 +68,21 @@ describe('IssuesComponent', () => {
     expect(component.issues).toContain(issue);
   });
 
+  fit('should render the new issue details when "onCreateIssue" is invoked', () => {
+    // given a new issue
+    const issue = { description: 'This is a new issue' };
+
+    // when "onCreateIssue" is called
+    component.onCreateIssue(issue);
+
+    fixture.detectChanges();
+
+    // then the new issue should be rendered
+    expect(nativeElement.querySelector('app-issue').textContent).toEqual(
+      issue.description
+    );
+  });
+
   it('should add a new issue with proper details extracted from form inputs when "Add issue" button is clicked', () => {
     spyOn(component, 'onCreateIssue').and.callThrough();
 
