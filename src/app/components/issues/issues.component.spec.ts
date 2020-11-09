@@ -36,6 +36,11 @@ describe('IssuesComponent', () => {
   });
 
   it('should render a list of issue components', () => {
+    // given the issues array
+    component.issues = [{}, {}, {}];
+
+    fixture.detectChanges();
+
     expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
       component.issues.length
     );
@@ -68,7 +73,7 @@ describe('IssuesComponent', () => {
     expect(component.issues).toContain(issue);
   });
 
-  fit('should render the new issue details when "onCreateIssue" is invoked', () => {
+  it('should render issue details when "onCreateIssue" is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
@@ -81,31 +86,5 @@ describe('IssuesComponent', () => {
     expect(nativeElement.querySelector('app-issue').textContent).toEqual(
       issue.description
     );
-  });
-
-  it('should add a new issue with proper details extracted from form inputs when "Add issue" button is clicked', () => {
-    spyOn(component, 'onCreateIssue').and.callThrough();
-
-    // given the issues array length
-    const numberOfIssues = component.issues.length;
-
-    // given the form submit button
-    const submitButton: HTMLButtonElement = nativeElement.querySelector(
-      'app-issue-form button[type="submit"]'
-    );
-
-    // when the submit button is clicked
-    submitButton.click();
-
-    // then the new issue should be added
-    expect(component.onCreateIssue).toHaveBeenCalled();
-    expect(component.issues.length).toEqual(numberOfIssues + 1);
-
-    // when the button is clicked one more time
-    submitButton.click();
-
-    // then another issue should be added successfully
-    expect(component.onCreateIssue).toHaveBeenCalled();
-    expect(component.issues.length).toEqual(numberOfIssues + 2);
   });
 });
