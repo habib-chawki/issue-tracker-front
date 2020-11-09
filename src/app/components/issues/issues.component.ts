@@ -16,7 +16,7 @@ export class IssuesComponent implements OnInit {
     this.issues.push({});
   }
 
-  onCreate(issue) {
+  onCreateIssue(issue) {
     this.issues.push(issue);
   }
 }

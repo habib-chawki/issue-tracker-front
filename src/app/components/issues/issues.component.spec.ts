@@ -41,8 +41,8 @@ describe('IssuesComponent', () => {
     );
   });
 
-  it('should handle "created" event by invoking "onCreate" method', () => {
-    spyOn(component, 'onCreate').and.callThrough();
+  it('should handle "created" event by invoking "onCreateIssue" method', () => {
+    spyOn(component, 'onCreateIssue').and.callThrough();
 
     // given the form values
     const formValues = { description: 'The issue description' };
@@ -53,23 +53,23 @@ describe('IssuesComponent', () => {
     );
     issueForm.triggerEventHandler('issueCreated', formValues);
 
-    // then expect the "onCreate" event handler to have been called
-    expect(component.onCreate).toHaveBeenCalledWith(formValues);
+    // then expect the "onCreateIssue" event handler to have been called
+    expect(component.onCreateIssue).toHaveBeenCalledWith(formValues);
   });
 
-  it('should add the new issue details to "issues" array when "onCreate" method is invoked', () => {
+  it('should add the new issue details to "issues" array when "onCreateIssue" method is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
-    // when 'onCreate' is called
-    component.onCreate(issue);
+    // when 'onCreateIssue' is called
+    component.onCreateIssue(issue);
 
     // then the new issue should be added to the issues array
     expect(component.issues).toContain(issue);
   });
 
   it('should add a new issue with proper details extracted from form inputs when "Add issue" button is clicked', () => {
-    spyOn(component, 'onAddIssue').and.callThrough();
+    spyOn(component, 'onCreateIssue').and.callThrough();
 
     // given the issues list
     const numberOfIssues = component.issues.length;
