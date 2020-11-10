@@ -47,11 +47,11 @@ describe('IssuesComponent', () => {
     );
   });
 
-  fit('should render an issue details component', () => {
+  it('should render an issue details component', () => {
     expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
   });
 
-  it('should handle "created" event by invoking "onCreateIssue" method', () => {
+  it('should handle "created" event by invoking "onCreateIssue()" method', () => {
     spyOn(component, 'onCreateIssue').and.callThrough();
 
     // given the form values
@@ -67,7 +67,7 @@ describe('IssuesComponent', () => {
     expect(component.onCreateIssue).toHaveBeenCalledWith(formValues);
   });
 
-  it('should add the new issue details to "issues" array when "onCreateIssue" method is invoked', () => {
+  it('should add the new issue details to "issues" array when "onCreateIssue()" is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
@@ -78,7 +78,7 @@ describe('IssuesComponent', () => {
     expect(component.issues).toContain(issue);
   });
 
-  it('should render issue details when "onCreateIssue" is invoked', () => {
+  it('should render the issue element when "onCreateIssue" is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
@@ -91,5 +91,40 @@ describe('IssuesComponent', () => {
     expect(nativeElement.querySelector('app-issue').textContent).toEqual(
       issue.description
     );
+  });
+
+  it('should invoke "onDisplayIssueDetails()" when an "onClicked" event is emitted', () => {
+    spyOn(component, 'onDisplayIssueDetails');
+
+    // given a new issue
+    const issue = { description: 'Issue description' };
+    component.issues.push(issue);
+
+    fixture.detectChanges();
+
+    // when an "issueClicked" event is triggered
+    const issueElement: DebugElement = fixture.debugElement.query(
+      By.css('app-issue')
+    );
+    issueElement.triggerEventHandler('issueClicked', issue);
+
+    // the "onDisplayIssueDetails" handler method should be called
+    expect(component.onDisplayIssueDetails).toHaveBeenCalled();
+  });
+
+  fit('should invoke "onDisplayIssueDetails()" when an issue is clicked', () => {
+    spyOn(component, 'onDisplayIssueDetails');
+
+    const issue = { description: 'Issue description' };
+    component.issues.push(issue);
+
+    fixture.detectChanges();
+
+    const issueElement: HTMLElement = nativeElement.querySelector(
+      'app-issue div'
+    );
+    issueElement.click();
+
+    expect(component.onDisplayIssueDetails).toHaveBeenCalled();
   });
 });
