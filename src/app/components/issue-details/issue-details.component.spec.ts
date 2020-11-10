@@ -27,8 +27,18 @@ describe('IssueDetailsComponent', () => {
   });
 
   fit('should render issue details', () => {
+    // expect the rendered details to be bound to the model property
     expect(nativeElement.querySelector('div').textContent).toEqual(
       component.details
     );
+
+    // when details are updated
+    const details = 'Issue details';
+    component.details = details;
+
+    fixture.detectChanges();
+
+    // then the updated details should be rendered
+    expect(nativeElement.querySelector('div').textContent).toEqual(details);
   });
 });
