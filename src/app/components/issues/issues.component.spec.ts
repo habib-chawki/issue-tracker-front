@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
+import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 import { IssueFormComponent } from '../issue-form/issue-form.component';
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from './issues.component';
@@ -14,7 +15,12 @@ describe('IssuesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IssuesComponent, IssueComponent, IssueFormComponent],
+      declarations: [
+        IssuesComponent,
+        IssueComponent,
+        IssueFormComponent,
+        IssueDetailsComponent,
+      ],
       imports: [ReactiveFormsModule],
     }).compileComponents();
   });
@@ -45,10 +51,6 @@ describe('IssuesComponent', () => {
     expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
       component.issues.length
     );
-  });
-
-  it('should render an issue details component', () => {
-    expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
   });
 
   it('should handle "created" event by invoking "onCreateIssue()" method', () => {
@@ -129,5 +131,24 @@ describe('IssuesComponent', () => {
 
     // the issueClicked event handler should be invoked with the issue details
     expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+  });
+
+  it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
+    // no issue details should be present at first
+    expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
+
+    // given an issue details
+    const issue = { description: 'hi there' };
+
+    // when onDisplayIssueDetails is invoked with an issue details
+    component.onDisplayIssueDetails(issue);
+
+    fixture.detectChanges();
+
+    // then expect the issueDetails component to be rendered with the proper details
+    expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
+    expect(
+      nativeElement.querySelector('app-issue-details div').textContent
+    ).toEqual(issue.description);
   });
 });
