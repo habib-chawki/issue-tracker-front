@@ -1,7 +1,10 @@
 <app-issue-form (issueCreated)="onCreateIssue($event)"></app-issue-form>
 
 <div *ngFor="let issueDetails of issues">
-  <app-issue [details]="issueDetails"></app-issue>
+  <app-issue
+    [details]="issueDetails"
+    (issueClicked)="onDisplayIssueDetails()"
+  ></app-issue>
 </div>
 
 <app-issue-details></app-issue-details>
