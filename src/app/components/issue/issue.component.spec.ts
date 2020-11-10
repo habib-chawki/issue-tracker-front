@@ -35,7 +35,7 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     // expect details to be rendered
-    expect(nativeElement.querySelector('p').textContent).toEqual(
+    expect(nativeElement.querySelector('div').textContent).toEqual(
       details.description
     );
 
@@ -47,7 +47,7 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     // then expect updated details to be rendered
-    expect(nativeElement.querySelector('p').textContent).toEqual(
+    expect(nativeElement.querySelector('div').textContent).toEqual(
       details.description
     );
   });
