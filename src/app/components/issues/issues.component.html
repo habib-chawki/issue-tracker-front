@@ -3,7 +3,7 @@
 <div *ngFor="let issueDetails of issues">
   <app-issue
     [details]="issueDetails"
-    (issueClicked)="onDisplayIssueDetails()"
+    (issueClicked)="onDisplayIssueDetails($event)"
   ></app-issue>
 </div>
 

@@ -112,7 +112,7 @@ describe('IssuesComponent', () => {
     expect(component.onDisplayIssueDetails).toHaveBeenCalled();
   });
 
-  it('should invoke "onDisplayIssueDetails()" when an issue is clicked', () => {
+  fit('should invoke "onDisplayIssueDetails()" when an issue is clicked', () => {
     spyOn(component, 'onDisplayIssueDetails');
 
     // give an issue
@@ -127,7 +127,7 @@ describe('IssuesComponent', () => {
     );
     issueElement.click();
 
-    // the issueClicked event handler should be invoked
-    expect(component.onDisplayIssueDetails).toHaveBeenCalled();
+    // the issueClicked event handler should be invoked with the issue details
+    expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
   });
 });

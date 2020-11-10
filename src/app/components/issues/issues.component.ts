@@ -16,5 +16,5 @@ export class IssuesComponent implements OnInit {
     this.issues.push(issue);
   }
 
-  onDisplayIssueDetails() {}
+  onDisplayIssueDetails(issueDetails) {}
 }
