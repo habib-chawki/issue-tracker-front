@@ -36,14 +36,19 @@ describe('IssuesComponent', () => {
   });
 
   it('should render a list of issue components', () => {
-    // given the issues array
+    // given an issues array
     component.issues = [{}, {}, {}];
 
     fixture.detectChanges();
 
+    // expect the number of rendered issue elements to be the size of the issues array
     expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
       component.issues.length
     );
+  });
+
+  fit('should render an issue details component', () => {
+    expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
   });
 
   it('should handle "created" event by invoking "onCreateIssue" method', () => {
