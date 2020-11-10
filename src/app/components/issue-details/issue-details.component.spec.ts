@@ -26,7 +26,7 @@ describe('IssueDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render issue details', () => {
+  it('should render issue details', () => {
     // expect the rendered details to be bound to the model property
     expect(nativeElement.querySelector('div').textContent).toEqual(
       component.details
