@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssuesComponent implements OnInit {
   issues: object[] = [];
+  issueDetails = '';
 
   constructor() {}
 
@@ -16,5 +17,7 @@ export class IssuesComponent implements OnInit {
     this.issues.push(issue);
   }
 
-  onDisplayIssueDetails(issueDetails) {}
+  onDisplayIssueDetails(issue) {
+    this.issueDetails = issue.description;
+  }
 }
