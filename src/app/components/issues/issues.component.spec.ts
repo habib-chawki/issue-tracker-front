@@ -78,7 +78,7 @@ describe('IssuesComponent', () => {
     expect(component.issues).toContain(issue);
   });
 
-  it('should render the issue element when "onCreateIssue" is invoked', () => {
+  it('should render the issue element when "onCreateIssue()" is invoked', () => {
     // given a new issue
     const issue = { description: 'This is a new issue' };
 
@@ -93,7 +93,7 @@ describe('IssuesComponent', () => {
     );
   });
 
-  it('should invoke "onDisplayIssueDetails()" when an "onClicked" event is emitted', () => {
+  it('should invoke "onDisplayIssueDetails()" when an "issueClicked" event is emitted', () => {
     spyOn(component, 'onDisplayIssueDetails');
 
     // given a new issue
