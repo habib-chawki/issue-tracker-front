@@ -52,7 +52,7 @@ describe('IssueComponent', () => {
     );
   });
 
-  it('should invoke onClick handler when issue element is clicked', () => {
+  it('should invoke "onClick()" handler when issue element is clicked', () => {
     spyOn(component, 'onClick');
 
     // given the issue template element
@@ -65,7 +65,7 @@ describe('IssueComponent', () => {
     expect(component.onClick).toHaveBeenCalled();
   });
 
-  it('should emit an "issueClicked" event with issue details when issue element is clicked', () => {
+  it('should emit an "issueClicked" event with issue details when "onClick()" is invoked', () => {
     spyOn(component.issueClicked, 'emit');
 
     // when onClick event handler is invoked
