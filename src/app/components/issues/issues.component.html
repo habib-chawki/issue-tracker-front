@@ -7,4 +7,7 @@
   ></app-issue>
 </div>
 
-<app-issue-details></app-issue-details>
+<app-issue-details
+  [details]="issueDetails"
+  *ngIf="issueDetails"
+></app-issue-details>
