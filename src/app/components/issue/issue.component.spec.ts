@@ -52,8 +52,8 @@ describe('IssueComponent', () => {
     );
   });
 
-  fit('should emit an event with issue details when clicked', () => {
-    spyOn(component, 'onClick').and.callThrough();
+  it('should invoke onClick handler when issue element is clicked', () => {
+    spyOn(component, 'onClick');
 
     // given the issue template element
     const issue = nativeElement.querySelector('div');
@@ -63,5 +63,15 @@ describe('IssueComponent', () => {
 
     // then expect the onClick handler to be invoked
     expect(component.onClick).toHaveBeenCalled();
+  });
+
+  it('should emit an "issueClicked" event with issue details when issue element is clicked', () => {
+    spyOn(component.issueClicked, 'emit');
+
+    // when onClick event handler is invoked
+    component.onClick();
+
+    // then expect an event to be emitted with issue details
+    expect(component.issueClicked.emit).toHaveBeenCalledWith(component.details);
   });
 });
