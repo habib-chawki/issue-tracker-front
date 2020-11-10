@@ -15,4 +15,6 @@ export class IssuesComponent implements OnInit {
   onCreateIssue(issue) {
     this.issues.push(issue);
   }
+
+  onDisplayIssueDetails() {}
 }
