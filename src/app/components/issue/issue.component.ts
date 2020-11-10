@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-issue',
@@ -7,10 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class IssueComponent implements OnInit {
   @Input() details: object = { description: '' };
+  @Output() issueClicked = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onClick() {}
+  onClick() {
+    this.issueClicked.emit(this.details);
+  }
 }
