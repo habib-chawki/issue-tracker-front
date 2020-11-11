@@ -174,7 +174,7 @@ describe('IssuesComponent', () => {
     expect(component.onDisplayIssueForm).toHaveBeenCalled();
   });
 
-  it('should render add issue form when add issue button is clicked', () => {
+  it('should render the add issue form when the add button is clicked', () => {
     // add issue form should be hidden at first
     expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
 
