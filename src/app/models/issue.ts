@@ -11,7 +11,7 @@ export interface Issue {
   assignee: string;
   reporter: string;
 
-  commnets: string[];
+  comments: string[];
   votes: number;
   watchers: string[];
 

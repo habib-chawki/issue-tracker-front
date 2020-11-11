@@ -33,7 +33,7 @@ describe('IssueComponent', () => {
       resolution: 'Done',
       assignee: 'Me',
       reporter: 'Someone',
-      commnets: ['comment1', 'comment2'],
+      comments: ['comment1', 'comment2'],
       votes: 8,
       watchers: ['jon', 'jane'],
       created: new Date(),
