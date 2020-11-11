@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./issue.component.scss'],
 })
 export class IssueComponent implements OnInit {
-  @Input() details: object = { description: '' };
+  @Input() details = { description: '' };
   @Output() issueClicked = new EventEmitter();
 
   constructor() {}
