@@ -50,10 +50,14 @@ describe('IssuesComponent', () => {
   });
 
   it('should handle "created" event by invoking "onCreateIssue()" method', () => {
-    spyOn(component, 'onCreateIssue').and.callThrough();
+    spyOn(component, 'onCreateIssue');
 
     // given the form values
     const formValues = { description: 'The issue description' };
+
+    // given the issue form component displayed
+    component.displayForm = true;
+    fixture.detectChanges();
 
     // when a "created" event is emitted
     const issueForm: DebugElement = fixture.debugElement.query(
