@@ -28,6 +28,10 @@ describe('IssueFormComponent', () => {
     expect(nativeElement).toBeTruthy();
   });
 
+  it('should render a form with all issue details', () => {
+    fail();
+  });
+
   it('should render a form with a text input and a submit button', () => {
     // the form should be rendered
     expect(nativeElement.querySelector('form')).toBeTruthy();
