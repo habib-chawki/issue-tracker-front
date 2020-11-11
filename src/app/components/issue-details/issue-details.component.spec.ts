@@ -47,13 +47,13 @@ describe('IssueDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render issue details', () => {
+  it('should render issue details', () => {
     // given issue details
     component.details = issueDetails;
 
     fixture.detectChanges();
 
-    // expect the rendered details to be empty at first
+    // expect all the details to be rendered
     expect(nativeElement.querySelector('div#description').textContent).toEqual(
       issueDetails.description
     );
