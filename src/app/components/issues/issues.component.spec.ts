@@ -151,4 +151,11 @@ describe('IssuesComponent', () => {
       nativeElement.querySelector('app-issue-details div').textContent
     ).toEqual(issue.description);
   });
+
+  fit('should render an "Add issue" button', () => {
+    const addIssueButton = nativeElement.querySelector('button.addIssue');
+
+    expect(addIssueButton).toBeTruthy();
+    expect(addIssueButton.textContent).toEqual('Add issue');
+  });
 });
