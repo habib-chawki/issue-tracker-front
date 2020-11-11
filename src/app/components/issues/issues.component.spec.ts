@@ -152,10 +152,43 @@ describe('IssuesComponent', () => {
     ).toEqual(issue.description);
   });
 
-  fit('should render an "Add issue" button', () => {
+  it('should render an "Add issue" button', () => {
     const addIssueButton = nativeElement.querySelector('button.addIssue');
 
+    // expect an add issue button to be rendered
     expect(addIssueButton).toBeTruthy();
     expect(addIssueButton.textContent).toEqual('Add issue');
+  });
+
+  it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
+    spyOn(component, 'onDisplayIssueForm');
+    // given the add issue button
+    const addIssueButton: HTMLButtonElement = nativeElement.querySelector(
+      'button.addIssue'
+    );
+
+    // when the button is clicked
+    addIssueButton.click();
+
+    // then the 'onDisplayIssueForm()' handler should be invoked
+    expect(component.onDisplayIssueForm).toHaveBeenCalled();
+  });
+
+  it('should render add issue form when add issue button is clicked', () => {
+    // add issue form should be hidden at first
+    expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
+
+    // given the add issue button
+    const addIssueButton: HTMLButtonElement = nativeElement.querySelector(
+      'button.addIssue'
+    );
+
+    // when the button is clicked
+    addIssueButton.click();
+
+    fixture.detectChanges();
+
+    // then expect the issue form to be rendered
+    expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
   });
 });
