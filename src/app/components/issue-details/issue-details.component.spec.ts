@@ -1,5 +1,6 @@
 import { asNativeElements } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Issue } from 'src/app/models/issue';
 
 import { IssueDetailsComponent } from './issue-details.component';
 
@@ -7,6 +8,8 @@ describe('IssueDetailsComponent', () => {
   let component: IssueDetailsComponent;
   let fixture: ComponentFixture<IssueDetailsComponent>;
   let nativeElement: HTMLElement;
+
+  let issueDetails: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,25 +23,43 @@ describe('IssueDetailsComponent', () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
+
+    // set up issue details
+    issueDetails = {
+      key: 'Dh85m',
+      description: 'Issue description',
+      summary: 'Issue summary',
+      type: 'Story',
+      status: 'Todo',
+      resolution: 'Done',
+      assignee: 'Me',
+      reporter: 'Someone',
+      commnets: ['comment1', 'comment2'],
+      votes: 8,
+      watchers: ['jon', 'jane'],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render issue details', () => {
+  fit('should render issue details', () => {
     // expect the rendered details to be bound to the model property
-    expect(nativeElement.querySelector('div').textContent).toEqual(
-      component.details
+    expect(nativeElement.querySelector('div#description').textContent).toEqual(
+      ''
     );
 
-    // when details are updated
-    const details = 'Issue details';
-    component.details = details;
+    // // when details are updated
+    // const details = 'Issue details';
+    // component.details = details;
 
-    fixture.detectChanges();
+    // fixture.detectChanges();
 
-    // then the updated details should be rendered
-    expect(nativeElement.querySelector('div').textContent).toEqual(details);
+    // // then the updated details should be rendered
+    // expect(nativeElement.querySelector('div').textContent).toEqual(details);
   });
 });
