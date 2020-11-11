@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issues.component.scss'],
 })
 export class IssuesComponent implements OnInit {
-  issues: object[] = [];
+  issues = [];
   issueDetails = '';
+  displayForm: boolean = false;
 
   constructor() {}
 
@@ -15,6 +16,10 @@ export class IssuesComponent implements OnInit {
 
   onCreateIssue(issue) {
     this.issues.push(issue);
+  }
+
+  onDisplayIssueForm() {
+    this.displayForm = !this.displayForm;
   }
 
   onDisplayIssueDetails(issue) {
