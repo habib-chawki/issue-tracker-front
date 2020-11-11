@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Issue } from 'src/app/models/issue';
 
 @Component({
   selector: 'app-issue',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./issue.component.scss'],
 })
 export class IssueComponent implements OnInit {
-  @Input() details = { description: '' };
+  @Input() details: Issue = {} as Issue;
   @Output() issueClicked = new EventEmitter();
 
   constructor() {}
