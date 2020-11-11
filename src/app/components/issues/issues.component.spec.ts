@@ -37,10 +37,6 @@ describe('IssuesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render an issue form component', () => {
-    expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
-  });
-
   it('should render a list of issue components', () => {
     // given an issues array
     component.issues = [{}, {}, {}];
