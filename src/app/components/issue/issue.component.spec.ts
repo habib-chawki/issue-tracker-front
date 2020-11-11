@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Issue } from 'src/app/models/issue';
 
 import { IssueComponent } from './issue.component';
 
@@ -6,6 +7,8 @@ describe('IssueComponent', () => {
   let component: IssueComponent;
   let fixture: ComponentFixture<IssueComponent>;
   let nativeElement: HTMLElement;
+
+  let issueDetails: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,38 +21,44 @@ describe('IssueComponent', () => {
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
     fixture.detectChanges();
+
+    // set up an issue
+    issueDetails = {
+      key: 'Dh85m',
+      description: 'Issue description',
+      summary: 'Issue summary',
+      type: 'Story',
+      status: 'Todo',
+      resolution: 'Done',
+      assignee: 'Me',
+      reporter: 'Someone',
+      commnets: ['comment1', 'comment2'],
+      votes: 8,
+      watchers: ['jon', 'jane'],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
   });
 
   it('should create component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render issue details', () => {
-    // expect details to be empty at first
-    expect(component.details).toEqual({ description: '' });
-
-    // given the new details
-    let details = { description: 'This is the issue description' };
-
-    component.details = details;
+  fit('should render issue details', () => {
+    // given issue details
+    component.details = issueDetails;
     fixture.detectChanges();
 
-    // expect details to be rendered
-    expect(nativeElement.querySelector('div').textContent).toEqual(
-      details.description
+    // expect issue type to be rendered
+    expect(nativeElement.querySelector('div div#type').textContent).toEqual(
+      issueDetails.type
     );
 
-    // given updated details
-    details = { description: 'This is an updated description' };
-
-    // when issue details are updated
-    component.details = details;
-    fixture.detectChanges();
-
-    // then expect updated details to be rendered
-    expect(nativeElement.querySelector('div').textContent).toEqual(
-      details.description
-    );
+    // expect issue description to be rendered
+    expect(
+      nativeElement.querySelector('div div#description').textContent
+    ).toEqual(issueDetails.description);
   });
 
   it('should invoke "onClick()" handler when issue element is clicked', () => {
