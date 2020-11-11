@@ -20,6 +20,7 @@ describe('IssueComponent', () => {
     fixture = TestBed.createComponent(IssueComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
+
     fixture.detectChanges();
 
     // set up an issue
@@ -46,6 +47,12 @@ describe('IssueComponent', () => {
   });
 
   fit('should render issue details', () => {
+    // issue details should be empty at first
+    expect(nativeElement.querySelector('div div#type').textContent).toBe('');
+    expect(nativeElement.querySelector('div div#description').textContent).toBe(
+      ''
+    );
+
     // given issue details
     component.details = issueDetails;
     fixture.detectChanges();
