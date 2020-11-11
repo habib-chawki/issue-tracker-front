@@ -63,7 +63,7 @@ describe('IssueDetailsComponent', () => {
     expect(nativeElement.querySelector('div#comments').textContent).toEqual('');
     expect(nativeElement.querySelector('div#votes').textContent).toEqual('');
     expect(nativeElement.querySelector('div#watchers').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#create').textContent).toEqual('');
+    expect(nativeElement.querySelector('div#created').textContent).toEqual('');
     expect(nativeElement.querySelector('div#updated').textContent).toEqual('');
     expect(nativeElement.querySelector('div#estimate').textContent).toEqual('');
 
