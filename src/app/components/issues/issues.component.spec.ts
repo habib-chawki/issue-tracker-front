@@ -145,9 +145,7 @@ describe('IssuesComponent', () => {
 
   it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
     // no issue details should be present at first
-    expect(
-      nativeElement.querySelector('app-issue-details').textContent
-    ).toBeFalsy();
+    expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
 
     // when onDisplayIssueDetails is invoked with an issue details
     component.onDisplayIssueDetails(issue);
