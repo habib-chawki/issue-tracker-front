@@ -2,6 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { Issue } from 'src/app/models/issue';
 
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 import { IssueFormComponent } from '../issue-form/issue-form.component';
@@ -12,6 +13,8 @@ describe('IssuesComponent', () => {
   let component: IssuesComponent;
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
+
+  let issue: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,6 +34,24 @@ describe('IssuesComponent', () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
+
+    // set up an issue with details
+    issue = {
+      key: 'Dh85m',
+      description: 'Issue description',
+      summary: 'Issue summary',
+      type: 'Story',
+      status: 'Todo',
+      resolution: 'Done',
+      assignee: 'Me',
+      reporter: 'Someone',
+      comments: ['comment1', 'comment2'],
+      votes: 8,
+      watchers: ['jon', 'jane'],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
   });
 
   it('should create', () => {
@@ -39,7 +60,7 @@ describe('IssuesComponent', () => {
 
   it('should render a list of issue components', () => {
     // given an issues array
-    component.issues = [{}, {}, {}];
+    component.issues = [{} as Issue, {} as Issue, {} as Issue];
 
     fixture.detectChanges();
 
@@ -52,9 +73,6 @@ describe('IssuesComponent', () => {
   it('should handle "created" event by invoking "onCreateIssue()" method', () => {
     spyOn(component, 'onCreateIssue');
 
-    // given the form values
-    const formValues = { description: 'The issue description' };
-
     // given the issue form component displayed
     component.displayForm = true;
     fixture.detectChanges();
@@ -63,16 +81,13 @@ describe('IssuesComponent', () => {
     const issueForm: DebugElement = fixture.debugElement.query(
       By.css('app-issue-form')
     );
-    issueForm.triggerEventHandler('issueCreated', formValues);
+    issueForm.triggerEventHandler('issueCreated', issue);
 
     // then expect the "onCreateIssue" event handler to have been called
-    expect(component.onCreateIssue).toHaveBeenCalledWith(formValues);
+    expect(component.onCreateIssue).toHaveBeenCalledWith(issue);
   });
 
   it('should add the new issue details to "issues" array when "onCreateIssue()" is invoked', () => {
-    // given a new issue
-    const issue = { description: 'This is a new issue' };
-
     // when 'onCreateIssue' is called
     component.onCreateIssue(issue);
 
@@ -81,16 +96,13 @@ describe('IssuesComponent', () => {
   });
 
   it('should render the issue element when "onCreateIssue()" is invoked', () => {
-    // given a new issue
-    const issue = { description: 'This is a new issue' };
-
     // when "onCreateIssue" is called
     component.onCreateIssue(issue);
 
     fixture.detectChanges();
 
     // then the new issue should be rendered
-    expect(nativeElement.querySelector('app-issue').textContent).toEqual(
+    expect(nativeElement.querySelector('app-issue').textContent).toContain(
       issue.description
     );
   });
@@ -99,7 +111,6 @@ describe('IssuesComponent', () => {
     spyOn(component, 'onDisplayIssueDetails');
 
     // given a new issue
-    const issue = { description: 'Issue description' };
     component.issues.push(issue);
 
     fixture.detectChanges();
@@ -118,7 +129,6 @@ describe('IssuesComponent', () => {
     spyOn(component, 'onDisplayIssueDetails');
 
     // give an issue
-    const issue = { description: 'Issue description' };
     component.issues.push(issue);
 
     fixture.detectChanges();
@@ -135,10 +145,9 @@ describe('IssuesComponent', () => {
 
   it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
     // no issue details should be present at first
-    expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
-
-    // given an issue details
-    const issue = { description: 'hi there' };
+    expect(
+      nativeElement.querySelector('app-issue-details').textContent
+    ).toBeFalsy();
 
     // when onDisplayIssueDetails is invoked with an issue details
     component.onDisplayIssueDetails(issue);
@@ -149,7 +158,7 @@ describe('IssuesComponent', () => {
     expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
     expect(
       nativeElement.querySelector('app-issue-details div').textContent
-    ).toEqual(issue.description);
+    ).toContain(issue.description);
   });
 
   it('should render an "Add issue" button', () => {
