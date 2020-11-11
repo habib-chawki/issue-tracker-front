@@ -34,7 +34,7 @@ describe('IssueDetailsComponent', () => {
       resolution: 'Done',
       assignee: 'Me',
       reporter: 'Someone',
-      commnets: ['comment1', 'comment2'],
+      comments: ['comment1', 'comment2'],
       votes: 8,
       watchers: ['jon', 'jane'],
       created: new Date(),
@@ -48,32 +48,50 @@ describe('IssueDetailsComponent', () => {
   });
 
   fit('should render issue details', () => {
+    // given issue details
+    component.details = issueDetails;
+
+    fixture.detectChanges();
+
     // expect the rendered details to be empty at first
     expect(nativeElement.querySelector('div#description').textContent).toEqual(
-      ''
+      issueDetails.description
     );
-    expect(nativeElement.querySelector('div#summary').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#type').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#status').textContent).toEqual('');
+    expect(nativeElement.querySelector('div#summary').textContent).toEqual(
+      issueDetails.summary
+    );
+    expect(nativeElement.querySelector('div#type').textContent).toEqual(
+      issueDetails.type
+    );
+    expect(nativeElement.querySelector('div#status').textContent).toEqual(
+      issueDetails.status
+    );
     expect(nativeElement.querySelector('div#resolution').textContent).toEqual(
-      ''
+      issueDetails.resolution
     );
-    expect(nativeElement.querySelector('div#assignee').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#reporter').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#comments').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#votes').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#watchers').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#created').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#updated').textContent).toEqual('');
-    expect(nativeElement.querySelector('div#estimate').textContent).toEqual('');
-
-    // // when details are updated
-    // const details = 'Issue details';
-    // component.details = details;
-
-    // fixture.detectChanges();
-
-    // // then the updated details should be rendered
-    // expect(nativeElement.querySelector('div').textContent).toEqual(details);
+    expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
+      issueDetails.assignee
+    );
+    expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
+      issueDetails.reporter
+    );
+    expect(nativeElement.querySelector('div#comments').textContent).toEqual(
+      issueDetails.comments.toString()
+    );
+    expect(nativeElement.querySelector('div#votes').textContent).toEqual(
+      issueDetails.votes.toString()
+    );
+    expect(nativeElement.querySelector('div#watchers').textContent).toEqual(
+      issueDetails.watchers.toString()
+    );
+    expect(nativeElement.querySelector('div#created').textContent).toContain(
+      issueDetails.created.toDateString()
+    );
+    expect(nativeElement.querySelector('div#updated').textContent).toContain(
+      issueDetails.updated.toDateString()
+    );
+    expect(nativeElement.querySelector('div#estimate').textContent).toContain(
+      issueDetails.estimate.toDateString()
+    );
   });
 });
