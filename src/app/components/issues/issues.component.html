@@ -1,6 +1,9 @@
-<button class="addIssue">Add issue</button>
+<button class="addIssue" (click)="onDisplayIssueForm()">Add issue</button>
 
-<app-issue-form (issueCreated)="onCreateIssue($event)"></app-issue-form>
+<app-issue-form
+  *ngIf="displayForm"
+  (issueCreated)="onCreateIssue($event)"
+></app-issue-form>
 
 <div *ngFor="let issueDetails of issues">
   <app-issue
