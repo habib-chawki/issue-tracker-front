@@ -1,7 +1,7 @@
 enum IssueType {
-  Story = 'STORY',
-  Bug = 'BUG',
-  Task = 'TASK',
+  Story = 'Story',
+  Bug = 'Bug',
+  Task = 'Task',
 }
 
 export default IssueType;
