@@ -1,4 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import IssueResolution from 'src/app/models/enums/issue-resolution';
+import IssueStatus from 'src/app/models/enums/issue-status';
+import IssueType from 'src/app/models/enums/issue-type';
+
 import { Issue } from 'src/app/models/issue';
 
 import { IssueComponent } from './issue.component';
@@ -28,9 +33,9 @@ describe('IssueComponent', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
-      type: 'Story',
-      status: 'Todo',
-      resolution: 'Done',
+      type: IssueType.Story,
+      status: IssueStatus.Todo,
+      resolution: IssueResolution.Done,
       assignee: 'Me',
       reporter: 'Someone',
       comments: ['comment1', 'comment2'],
