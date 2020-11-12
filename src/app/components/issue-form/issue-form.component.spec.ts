@@ -33,19 +33,65 @@ describe('IssueFormComponent', () => {
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
     // every issue detail input field shoud be rendered
-    expect(nativeElement.querySelector('form input#description')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#summary')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#type')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#status')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#resolution')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#assignee')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#reporter')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#comments')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#votes')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#watchers')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#created')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#updated')).toBeTruthy();
-    expect(nativeElement.querySelector('form input#estimate')).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#description[formControlName="description"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#summary[formControlName="summary"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector('form input#type[formControlName="type"]')
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector('form input#status[formControlName="status"]')
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#resolution[formControlName="resolution"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#assignee[formControlName="assignee"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#reporter[formControlName="reporter"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#comments[formControlName="comments"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector('form input#votes[formControlName="votes"]')
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#watchers[formControlName="watchers"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#created[formControlName="created"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#updated[formControlName="updated"]'
+      )
+    ).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'form input#estimate[formControlName="estimate"]'
+      )
+    ).toBeTruthy();
 
     // the submit button should be rendered with an "Add issue" label
     expect(
