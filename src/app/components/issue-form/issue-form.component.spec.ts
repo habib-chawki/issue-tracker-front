@@ -28,16 +28,24 @@ describe('IssueFormComponent', () => {
     expect(nativeElement).toBeTruthy();
   });
 
-  it('should render a form with all issue details', () => {
-    fail();
-  });
-
-  it('should render a form with a text input and a submit button', () => {
+  fit('should render a form to input every issue detail', () => {
     // the form should be rendered
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
-    // the description input field shoud be rendered
+    // every issue detail input field shoud be rendered
     expect(nativeElement.querySelector('form input#description')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#summary')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#type')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#status')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#resolution')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#assignee')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#reporter')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#comments')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#votes')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#watchers')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#created')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#updated')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#estimate')).toBeTruthy();
 
     // the submit button should be rendered with an "Add issue" label
     expect(
