@@ -164,7 +164,7 @@ describe('IssueFormComponent', () => {
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
   });
 
-  fit('should render issue types based on the values of the "IssueType" enum', () => {
+  it('should render issue types based on the values of the "IssueType" enum', () => {
     // given the list of the type select options
     const options = [];
 
