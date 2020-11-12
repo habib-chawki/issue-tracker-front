@@ -31,7 +31,7 @@ describe('IssueFormComponent', () => {
     expect(nativeElement).toBeTruthy();
   });
 
-  fit('should render a form to input every issue detail', () => {
+  it('should render a form to input every issue detail', () => {
     // the form should be rendered
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
@@ -109,30 +109,27 @@ describe('IssueFormComponent', () => {
     ).toContain('Add issue');
   });
 
-  it('should define form group and form controls', () => {
+  it('should define a form group and form controls', () => {
     expect(component.issueForm).toBeTruthy();
 
-    expect(component.issueForm.controls['description']).toBeTruthy();
     expect(component.issueForm.controls['summary']).toBeTruthy();
+    expect(component.issueForm.controls['description']).toBeTruthy();
     expect(component.issueForm.controls['type']).toBeTruthy();
     expect(component.issueForm.controls['status']).toBeTruthy();
     expect(component.issueForm.controls['resolution']).toBeTruthy();
     expect(component.issueForm.controls['assignee']).toBeTruthy();
     expect(component.issueForm.controls['reporter']).toBeTruthy();
-    expect(component.issueForm.controls['comments']).toBeTruthy();
-    expect(component.issueForm.controls['votes']).toBeTruthy();
-    expect(component.issueForm.controls['watchers']).toBeTruthy();
     expect(component.issueForm.controls['created']).toBeTruthy();
     expect(component.issueForm.controls['updated']).toBeTruthy();
     expect(component.issueForm.controls['estimate']).toBeTruthy();
   });
 
-  it('should invoke onSubmit when submit button is clicked', () => {
+  it('should invoke "onSubmit()" when submit button is clicked', () => {
     // given the onSubmit method
-    spyOn(component, 'onSubmit').and.callThrough();
+    spyOn(component, 'onSubmit');
 
     // when the submit button is clicked
-    const submitButton: HTMLElement = nativeElement.querySelector(
+    const submitButton: HTMLButtonElement = nativeElement.querySelector(
       'form button[type="submit"]'
     );
     submitButton.click();
@@ -152,9 +149,6 @@ describe('IssueFormComponent', () => {
       resolution: IssueResolution.Duplicate,
       assignee: 'Me',
       reporter: 'Someone',
-      comments: ['comment1', 'comment2'],
-      votes: 8,
-      watchers: ['jon', 'jane'],
       created: new Date(),
       updated: new Date(),
       estimate: new Date(),
