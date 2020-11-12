@@ -163,4 +163,16 @@ describe('IssueFormComponent', () => {
     // then an event should be emitted with the form values
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
   });
+
+  fit('should render issue types based on the values of the "IssueType" enum', () => {
+    // given the list of select options
+    const options = [];
+
+    nativeElement
+      .querySelectorAll('select#type option')
+      .forEach((option) => options.push(option.innerHTML));
+
+    // the options should be the values of the IssueType enum
+    expect(options).toEqual(Object.values(IssueType));
+  });
 });
