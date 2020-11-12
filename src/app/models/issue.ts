@@ -1,12 +1,16 @@
+import IssueType from './enums/issue-type';
+import IssueStatus from './enums/issue-status';
+import IssueResolution from './enums/issue-resolution';
+
 export interface Issue {
   key: string;
 
   description: string;
   summary: string;
 
-  type: string;
-  status: string;
-  resolution: string;
+  type: IssueType;
+  status: IssueStatus;
+  resolution: IssueResolution;
 
   assignee: string;
   reporter: string;
