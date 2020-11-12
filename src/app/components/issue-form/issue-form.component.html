@@ -7,9 +7,7 @@
 
   <label for="type">Type: </label>
   <select id="type" formControlName="type">
-    <option value="Story">Story</option>
-    <option value="Bug">Bug</option>
-    <option value="Task">Task</option>
+    <option *ngFor="let type of issueTypes" value="type">{{ type }}</option>
   </select>
 
   <label for="status">Status: </label>
