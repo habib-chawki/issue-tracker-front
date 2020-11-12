@@ -1,5 +1,8 @@
 import { asNativeElements } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import IssueResolution from 'src/app/models/enums/issue-resolution';
+import IssueStatus from 'src/app/models/enums/issue-status';
+import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue';
 
 import { IssueDetailsComponent } from './issue-details.component';
@@ -29,9 +32,9 @@ describe('IssueDetailsComponent', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
-      type: 'Story',
-      status: 'Todo',
-      resolution: 'Done',
+      type: IssueType.Task,
+      status: IssueStatus.Todo,
+      resolution: IssueResolution.Unresolved,
       assignee: 'Me',
       reporter: 'Someone',
       comments: ['comment1', 'comment2'],
