@@ -77,6 +77,7 @@ describe('IssueFormComponent', () => {
       )
     ).toBeTruthy();
 
+    // TODO: use a dropdown list instead when users are implements
     // reporter text input
     expect(
       nativeElement.querySelector(
@@ -84,11 +85,6 @@ describe('IssueFormComponent', () => {
       )
     ).toBeTruthy();
 
-    expect(
-      nativeElement.querySelector(
-        'form input#watchers[formControlName="watchers"]'
-      )
-    ).toBeTruthy();
     expect(
       nativeElement.querySelector(
         'form input#created[formControlName="created"]'
