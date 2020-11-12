@@ -11,6 +11,22 @@ export class IssueFormComponent implements OnInit {
 
   issueForm = new FormGroup({
     description: new FormControl(''),
+    summary: new FormControl(''),
+
+    type: new FormControl(''),
+    status: new FormControl(''),
+    resolution: new FormControl(''),
+
+    assignee: new FormControl(''),
+    reporter: new FormControl(''),
+
+    comments: new FormControl(''),
+    votes: new FormControl(''),
+    watchers: new FormControl(''),
+
+    created: new FormControl(''),
+    updated: new FormControl(''),
+    estimate: new FormControl(''),
   });
 
   constructor() {}
