@@ -164,13 +164,13 @@ describe('IssueFormComponent', () => {
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
   });
 
-  it('should render issue types based on the values of the "IssueType" enum', () => {
+  fit('should render issue types based on the values of the "IssueType" enum', () => {
     // given the list of the type select options
     const options = [];
 
     nativeElement
       .querySelectorAll('select#type option')
-      .forEach((option) => options.push(option.innerHTML));
+      .forEach((option) => options.push(option.innerHTML.trim()));
 
     // the options should be the values of the IssueType enum
     expect(options).toEqual(Object.values(IssueType));
@@ -182,19 +182,19 @@ describe('IssueFormComponent', () => {
 
     nativeElement
       .querySelectorAll('select#status option')
-      .forEach((option) => options.push(option.innerHTML));
+      .forEach((option) => options.push(option.innerHTML.trim()));
 
     // the options should be the values of the IssueType enum
     expect(options).toEqual(Object.values(IssueStatus));
   });
 
-  fit('should render issue resolution based on the values of the "IssueResolution" enum', () => {
+  it('should render issue resolution based on the values of the "IssueResolution" enum', () => {
     // given the list of the status select options
     const options = [];
 
     nativeElement
       .querySelectorAll('select#resolution option')
-      .forEach((option) => options.push(option.innerHTML));
+      .forEach((option) => options.push(option.innerHTML.trim()));
 
     // the options should be the values of the IssueType enum
     expect(options).toEqual(Object.values(IssueResolution));

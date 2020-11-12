@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import IssueResolution from 'src/app/models/enums/issue-resolution';
+import IssueStatus from 'src/app/models/enums/issue-status';
+import IssueType from 'src/app/models/enums/issue-type';
 
 @Component({
   selector: 'app-issue-form',
@@ -8,6 +11,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class IssueFormComponent implements OnInit {
   @Output() issueCreated = new EventEmitter();
+
+  issueTypes = Object.values(IssueType);
+  issueStatuses = Object.values(IssueStatus);
+  issueResolutions = Object.values(IssueResolution);
 
   issueForm = new FormGroup({
     description: new FormControl(''),
