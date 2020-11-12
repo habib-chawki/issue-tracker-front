@@ -2,6 +2,11 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+
+import IssueResolution from 'src/app/models/enums/issue-resolution';
+import IssueStatus from 'src/app/models/enums/issue-status';
+import IssueType from 'src/app/models/enums/issue-type';
+
 import { Issue } from 'src/app/models/issue';
 
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
@@ -40,9 +45,9 @@ describe('IssuesComponent', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
-      type: 'Story',
-      status: 'Todo',
-      resolution: 'Done',
+      type: IssueType.Bug,
+      status: IssueStatus.InProgress,
+      resolution: IssueResolution.Duplicate,
       assignee: 'Me',
       reporter: 'Someone',
       comments: ['comment1', 'comment2'],
