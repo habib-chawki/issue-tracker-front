@@ -12,17 +12,16 @@
 
   <label for="status">Status: </label>
   <select id="status" formControlName="status">
-    <option value="Todo">Todo</option>
-    <option value="InProgress">In Progress</option>
-    <option value="Done">Done</option>
+    <option *ngFor="let status of issueStatuses" value="status">
+      {{ status }}
+    </option>
   </select>
 
   <label for="resolution">Resolution: </label>
   <select type="text" id="resolution" formControlName="resolution">
-    <option value="Unresolved">Unresolved</option>
-    <option value="Done">Done</option>
-    <option value="Duplicate">Duplicate</option>
-    <option value="Wont Do">Wont Do</option>
+    <option *ngFor="let resolution of issueResolutions" value="resolution">
+      {{ resolution }}
+    </option>
   </select>
 
   <label for="assignee">Assignee: </label>
