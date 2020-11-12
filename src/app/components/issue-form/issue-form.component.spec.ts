@@ -85,11 +85,13 @@ describe('IssueFormComponent', () => {
       )
     ).toBeTruthy();
 
+    // created date
     expect(
       nativeElement.querySelector(
         'form input#created[formControlName="created"]'
       )
     ).toBeTruthy();
+
     expect(
       nativeElement.querySelector(
         'form input#updated[formControlName="updated"]'
