@@ -164,8 +164,8 @@ describe('IssueFormComponent', () => {
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
   });
 
-  fit('should render issue types based on the values of the "IssueType" enum', () => {
-    // given the list of select options
+  it('should render issue types based on the values of the "IssueType" enum', () => {
+    // given the list of the type select options
     const options = [];
 
     nativeElement
@@ -174,5 +174,17 @@ describe('IssueFormComponent', () => {
 
     // the options should be the values of the IssueType enum
     expect(options).toEqual(Object.values(IssueType));
+  });
+
+  fit('should render issue status based on the values of the "IssueStatus" enum', () => {
+    // given the list of the status select options
+    const options = [];
+
+    nativeElement
+      .querySelectorAll('select#status option')
+      .forEach((option) => options.push(option.innerHTML));
+
+    // the options should be the values of the IssueType enum
+    expect(options).toEqual(Object.values(IssueStatus));
   });
 });
