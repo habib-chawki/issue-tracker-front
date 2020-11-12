@@ -1,16 +1,41 @@
 <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+  <label for="description">Description: </label>
   <input type="text" id="description" formControlName="description" />
+
+  <label for="summary">Summary: </label>
   <input type="text" id="summary" formControlName="summary" />
+
+  <label for="type">Type: </label>
   <input type="text" id="type" formControlName="type" />
+
+  <label for="status">Status: </label>
   <input type="text" id="status" formControlName="status" />
+
+  <label for="resolution">Resolution: </label>
   <input type="text" id="resolution" formControlName="resolution" />
+
+  <label for="assignee">Assignee: </label>
   <input type="text" id="assignee" formControlName="assignee" />
+
+  <label for="reporter">Reporter: </label>
   <input type="text" id="reporter" formControlName="reporter" />
+
+  <label for="comments">Comments: </label>
   <input type="text" id="comments" formControlName="comments" />
+
+  <label for="votes">Votes: </label>
   <input type="text" id="votes" formControlName="votes" />
+
+  <label for="watchers">Watchers: </label>
   <input type="text" id="watchers" formControlName="watchers" />
+
+  <label for="created">Date created: </label>
   <input type="text" id="created" formControlName="created" />
+
+  <label for="updated">Date updated: </label>
   <input type="text" id="updated" formControlName="updated" />
+
+  <label for="estimate">Estimated time: </label>
   <input type="text" id="estimate" formControlName="estimate" />
 
   <button type="submit" id="submit">Add issue</button>
