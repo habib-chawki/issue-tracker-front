@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import IssueResolution from 'src/app/models/enums/issue-resolution';
+import IssueStatus from 'src/app/models/enums/issue-status';
+import IssueType from 'src/app/models/enums/issue-type';
 
 import { IssueFormComponent } from './issue-form.component';
 
@@ -28,7 +31,7 @@ describe('IssueFormComponent', () => {
     expect(nativeElement).toBeTruthy();
   });
 
-  fit('should render a form to input every issue detail', () => {
+  it('should render a form to input every issue detail', () => {
     // the form should be rendered
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
@@ -101,7 +104,20 @@ describe('IssueFormComponent', () => {
 
   it('should define form group and form controls', () => {
     expect(component.issueForm).toBeTruthy();
+
     expect(component.issueForm.controls['description']).toBeTruthy();
+    expect(component.issueForm.controls['summary']).toBeTruthy();
+    expect(component.issueForm.controls['type']).toBeTruthy();
+    expect(component.issueForm.controls['status']).toBeTruthy();
+    expect(component.issueForm.controls['resolution']).toBeTruthy();
+    expect(component.issueForm.controls['assignee']).toBeTruthy();
+    expect(component.issueForm.controls['reporter']).toBeTruthy();
+    expect(component.issueForm.controls['comments']).toBeTruthy();
+    expect(component.issueForm.controls['votes']).toBeTruthy();
+    expect(component.issueForm.controls['watchers']).toBeTruthy();
+    expect(component.issueForm.controls['created']).toBeTruthy();
+    expect(component.issueForm.controls['updated']).toBeTruthy();
+    expect(component.issueForm.controls['estimate']).toBeTruthy();
   });
 
   it('should invoke onSubmit when submit button is clicked', () => {
@@ -119,19 +135,31 @@ describe('IssueFormComponent', () => {
   });
 
   it('should emit an event with form values when onSubmit is called', () => {
-    spyOn(component.issueCreated, 'emit').and.callThrough();
+    spyOn(component.issueCreated, 'emit');
+
+    const issue = {
+      description: 'Issue description',
+      summary: 'Issue summary',
+      type: IssueType.Bug,
+      status: IssueStatus.InProgress,
+      resolution: IssueResolution.Duplicate,
+      assignee: 'Me',
+      reporter: 'Someone',
+      comments: ['comment1', 'comment2'],
+      votes: 8,
+      watchers: ['jon', 'jane'],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
 
     // given the form values
-    component.issueForm.controls['description'].setValue(
-      'The issue description'
-    );
+    component.issueForm.setValue(issue);
 
     // when the onSubmit is called (submit button is clicked)
     component.onSubmit();
 
     // then expect an event to have been emitted with the form values
-    expect(component.issueCreated.emit).toHaveBeenCalledWith({
-      description: 'The issue description',
-    });
+    expect(component.issueCreated.emit).toHaveBeenCalledWith(issue);
   });
 });
