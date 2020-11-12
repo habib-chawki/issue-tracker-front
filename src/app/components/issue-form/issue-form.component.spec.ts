@@ -176,7 +176,7 @@ describe('IssueFormComponent', () => {
     expect(options).toEqual(Object.values(IssueType));
   });
 
-  fit('should render issue status based on the values of the "IssueStatus" enum', () => {
+  it('should render issue status based on the values of the "IssueStatus" enum', () => {
     // given the list of the status select options
     const options = [];
 
@@ -186,5 +186,17 @@ describe('IssueFormComponent', () => {
 
     // the options should be the values of the IssueType enum
     expect(options).toEqual(Object.values(IssueStatus));
+  });
+
+  fit('should render issue resolution based on the values of the "IssueResolution" enum', () => {
+    // given the list of the status select options
+    const options = [];
+
+    nativeElement
+      .querySelectorAll('select#resolution option')
+      .forEach((option) => options.push(option.innerHTML));
+
+    // the options should be the values of the IssueType enum
+    expect(options).toEqual(Object.values(IssueResolution));
   });
 });
