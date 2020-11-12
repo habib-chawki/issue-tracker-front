@@ -138,10 +138,11 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  it('should emit an event with form values when onSubmit is called', () => {
+  it('should emit an event with form values when "onSubmit()" is called', () => {
     spyOn(component.issueCreated, 'emit');
 
-    const issue = {
+    // given the form values
+    const formValues = {
       description: 'Issue description',
       summary: 'Issue summary',
       type: IssueType.Bug,
@@ -154,13 +155,12 @@ describe('IssueFormComponent', () => {
       estimate: new Date(),
     };
 
-    // given the form values
-    component.issueForm.setValue(issue);
+    component.issueForm.setValue(formValues);
 
-    // when the onSubmit is called (submit button is clicked)
+    // when "onSubmit()" is called
     component.onSubmit();
 
-    // then expect an event to have been emitted with the form values
-    expect(component.issueCreated.emit).toHaveBeenCalledWith(issue);
+    // then an event should be emitted with the form values
+    expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
   });
 });
