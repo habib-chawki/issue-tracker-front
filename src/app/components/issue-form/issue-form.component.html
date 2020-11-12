@@ -1,18 +1,31 @@
 <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
-  <label for="description">Description: </label>
-  <input type="text" id="description" formControlName="description" />
-
   <label for="summary">Summary: </label>
   <input type="text" id="summary" formControlName="summary" />
 
+  <label for="description">Description: </label>
+  <textarea id="description" formControlName="description"> </textarea>
+
   <label for="type">Type: </label>
-  <input type="text" id="type" formControlName="type" />
+  <select id="type" formControlName="type">
+    <option value="Story">Story</option>
+    <option value="Bug">Bug</option>
+    <option value="Task">Task</option>
+  </select>
 
   <label for="status">Status: </label>
-  <input type="text" id="status" formControlName="status" />
+  <select id="status" formControlName="status">
+    <option value="Todo">Todo</option>
+    <option value="InProgress">In progress</option>
+    <option value="Done">Done</option>
+  </select>
 
   <label for="resolution">Resolution: </label>
-  <input type="text" id="resolution" formControlName="resolution" />
+  <select type="text" id="resolution" formControlName="resolution">
+    <option value="Unresolved">Unresolved</option>
+    <option value="Done">Done</option>
+    <option value="Wont Do">Wont Do</option>
+    <option value="Duplicate">Duplicate</option>
+  </select>
 
   <label for="assignee">Assignee: </label>
   <input type="text" id="assignee" formControlName="assignee" />
@@ -24,7 +37,7 @@
   <input type="text" id="comments" formControlName="comments" />
 
   <label for="votes">Votes: </label>
-  <input type="text" id="votes" formControlName="votes" />
+  <input type="checkbox" id="votes" formControlName="votes" />
 
   <label for="watchers">Watchers: </label>
   <input type="text" id="watchers" formControlName="watchers" />

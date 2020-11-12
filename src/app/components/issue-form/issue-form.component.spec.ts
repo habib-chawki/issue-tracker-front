@@ -31,50 +31,59 @@ describe('IssueFormComponent', () => {
     expect(nativeElement).toBeTruthy();
   });
 
-  it('should render a form to input every issue detail', () => {
+  fit('should render a form to input every issue detail', () => {
     // the form should be rendered
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
     // every issue detail input field shoud be rendered
-    expect(
-      nativeElement.querySelector(
-        'form input#description[formControlName="description"]'
-      )
-    ).toBeTruthy();
+
+    // summary input text
     expect(
       nativeElement.querySelector(
         'form input#summary[formControlName="summary"]'
       )
     ).toBeTruthy();
-    expect(
-      nativeElement.querySelector('form input#type[formControlName="type"]')
-    ).toBeTruthy();
-    expect(
-      nativeElement.querySelector('form input#status[formControlName="status"]')
-    ).toBeTruthy();
+
+    // description text area
     expect(
       nativeElement.querySelector(
-        'form input#resolution[formControlName="resolution"]'
+        'form textarea#description[formControlName="description"]'
       )
     ).toBeTruthy();
+
+    // type select
+    expect(
+      nativeElement.querySelector('form select#type[formControlName="type"]')
+    ).toBeTruthy();
+
+    // status select
+    expect(
+      nativeElement.querySelector(
+        'form select#status[formControlName="status"]'
+      )
+    ).toBeTruthy();
+
+    // resolution select
+    expect(
+      nativeElement.querySelector(
+        'form select#resolution[formControlName="resolution"]'
+      )
+    ).toBeTruthy();
+
+    // assignee text input
     expect(
       nativeElement.querySelector(
         'form input#assignee[formControlName="assignee"]'
       )
     ).toBeTruthy();
+
+    // reporter text input
     expect(
       nativeElement.querySelector(
         'form input#reporter[formControlName="reporter"]'
       )
     ).toBeTruthy();
-    expect(
-      nativeElement.querySelector(
-        'form input#comments[formControlName="comments"]'
-      )
-    ).toBeTruthy();
-    expect(
-      nativeElement.querySelector('form input#votes[formControlName="votes"]')
-    ).toBeTruthy();
+
     expect(
       nativeElement.querySelector(
         'form input#watchers[formControlName="watchers"]'
