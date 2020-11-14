@@ -7,7 +7,7 @@ import { Issue } from 'src/app/models/issue';
   styleUrls: ['./issue-details.component.scss'],
 })
 export class IssueDetailsComponent implements OnInit {
-  @Input() details: Issue = {} as Issue;
+  @Input() issue: Issue = {} as Issue;
 
   constructor() {}
 
