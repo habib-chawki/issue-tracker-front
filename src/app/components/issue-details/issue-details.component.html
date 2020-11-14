@@ -12,7 +12,12 @@
     </ul>
   </div>
   <div id="votes">{{ issue.votes }}</div>
-  <div id="watchers">{{ issue.watchers }}</div>
+
+  <div id="watchers">
+    <ul>
+      <li *ngFor="let watcher of issue.watchers">{{ watcher }}</li>
+    </ul>
+  </div>
   <div id="created">{{ issue.created }}</div>
   <div id="updated">{{ issue.updated }}</div>
   <div id="estimate">{{ issue.estimate }}</div>
