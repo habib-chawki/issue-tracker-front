@@ -6,7 +6,11 @@
   <div id="resolution">{{ issue.resolution }}</div>
   <div id="assignee">{{ issue.assignee }}</div>
   <div id="reporter">{{ issue.reporter }}</div>
-  <div id="comments">{{ issue.comments }}</div>
+  <div id="comments">
+    <ul>
+      <li *ngFor="let comment of issue.comments">{{ comment }}</li>
+    </ul>
+  </div>
   <div id="votes">{{ issue.votes }}</div>
   <div id="watchers">{{ issue.watchers }}</div>
   <div id="created">{{ issue.created }}</div>
