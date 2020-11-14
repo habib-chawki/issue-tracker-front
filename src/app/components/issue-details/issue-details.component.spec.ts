@@ -7,12 +7,12 @@ import { Issue } from 'src/app/models/issue';
 
 import { IssueDetailsComponent } from './issue-details.component';
 
-describe('IssueDetailsComponent', () => {
+fdescribe('IssueDetailsComponent', () => {
   let component: IssueDetailsComponent;
   let fixture: ComponentFixture<IssueDetailsComponent>;
   let nativeElement: HTMLElement;
 
-  let issueDetails: Issue;
+  let issue: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,7 +28,7 @@ describe('IssueDetailsComponent', () => {
     fixture.detectChanges();
 
     // set up issue details
-    issueDetails = {
+    issue = {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
@@ -52,49 +52,49 @@ describe('IssueDetailsComponent', () => {
 
   it('should render issue details', () => {
     // given issue details
-    component.details = issueDetails;
+    component.issue = issue;
 
     fixture.detectChanges();
 
     // expect all the details to be rendered
     expect(nativeElement.querySelector('div#description').textContent).toEqual(
-      issueDetails.description
+      issue.description
     );
     expect(nativeElement.querySelector('div#summary').textContent).toEqual(
-      issueDetails.summary
+      issue.summary
     );
     expect(nativeElement.querySelector('div#type').textContent).toEqual(
-      issueDetails.type
+      issue.type
     );
     expect(nativeElement.querySelector('div#status').textContent).toEqual(
-      issueDetails.status
+      issue.status
     );
     expect(nativeElement.querySelector('div#resolution').textContent).toEqual(
-      issueDetails.resolution
+      issue.resolution
     );
     expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
-      issueDetails.assignee
+      issue.assignee
     );
     expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
-      issueDetails.reporter
+      issue.reporter
     );
     expect(nativeElement.querySelector('div#comments').textContent).toEqual(
-      issueDetails.comments.toString()
+      issue.comments.toString()
     );
     expect(nativeElement.querySelector('div#votes').textContent).toEqual(
-      issueDetails.votes.toString()
+      issue.votes.toString()
     );
     expect(nativeElement.querySelector('div#watchers').textContent).toEqual(
-      issueDetails.watchers.toString()
+      issue.watchers.toString()
     );
     expect(nativeElement.querySelector('div#created').textContent).toContain(
-      issueDetails.created.toDateString()
+      issue.created.toDateString()
     );
     expect(nativeElement.querySelector('div#updated').textContent).toContain(
-      issueDetails.updated.toDateString()
+      issue.updated.toDateString()
     );
     expect(nativeElement.querySelector('div#estimate').textContent).toContain(
-      issueDetails.estimate.toDateString()
+      issue.estimate.toDateString()
     );
   });
 });
