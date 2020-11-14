@@ -7,7 +7,7 @@ import { Issue } from 'src/app/models/issue';
 
 import { IssueDetailsComponent } from './issue-details.component';
 
-fdescribe('IssueDetailsComponent', () => {
+describe('IssueDetailsComponent', () => {
   let component: IssueDetailsComponent;
   let fixture: ComponentFixture<IssueDetailsComponent>;
   let nativeElement: HTMLElement;
@@ -50,13 +50,14 @@ fdescribe('IssueDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render issue details', () => {
+  fit('should render issue details', () => {
     // given issue details
     component.issue = issue;
 
+    // when changes are detected
     fixture.detectChanges();
 
-    // expect all the details to be rendered
+    // then all the issue details should be rendered
     expect(nativeElement.querySelector('div#description').textContent).toEqual(
       issue.description
     );
@@ -78,9 +79,12 @@ fdescribe('IssueDetailsComponent', () => {
     expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
       issue.reporter
     );
-    expect(nativeElement.querySelector('div#comments').textContent).toEqual(
-      issue.comments.toString()
-    );
+
+    // the list of comments should be rendered
+    nativeElement.querySelectorAll('div#comments ul li').forEach((comment) => {
+      expect(issue.comments).toContain(comment.textContent);
+    });
+
     expect(nativeElement.querySelector('div#votes').textContent).toEqual(
       issue.votes.toString()
     );
