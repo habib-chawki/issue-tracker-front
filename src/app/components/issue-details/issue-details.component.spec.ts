@@ -88,9 +88,15 @@ describe('IssueDetailsComponent', () => {
     expect(nativeElement.querySelector('div#votes').textContent).toEqual(
       issue.votes.toString()
     );
-    expect(nativeElement.querySelector('div#watchers').textContent).toEqual(
-      issue.watchers.toString()
-    );
+
+    // the list of watchers should be rendered
+    const watchersList = [];
+    nativeElement
+      .querySelectorAll('div#watchers ul li')
+      .forEach((watcher) => watchersList.push(watcher.textContent));
+
+    expect(watchersList).toEqual(issue.watchers);
+
     expect(nativeElement.querySelector('div#created').textContent).toContain(
       issue.created.toDateString()
     );
