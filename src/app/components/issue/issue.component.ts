@@ -7,7 +7,7 @@ import { Issue } from 'src/app/models/issue';
   styleUrls: ['./issue.component.scss'],
 })
 export class IssueComponent implements OnInit {
-  @Input() details: Issue = {} as Issue;
+  @Input() issue: Issue = {} as Issue;
   @Output() issueClicked = new EventEmitter();
 
   constructor() {}
@@ -15,6 +15,6 @@ export class IssueComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
-    this.issueClicked.emit(this.details);
+    this.issueClicked.emit(this.issue);
   }
 }
