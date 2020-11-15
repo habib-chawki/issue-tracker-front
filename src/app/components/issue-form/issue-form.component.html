@@ -7,20 +7,25 @@
 
   <label for="type">Type: </label>
   <select id="type" formControlName="type">
-    <option *ngFor="let type of issueTypes" value="type">{{ type }}</option>
+    <option *ngFor="let issueType of issueTypes" value="{{ issueType }}">
+      {{ issueType }}
+    </option>
   </select>
 
   <label for="status">Status: </label>
   <select id="status" formControlName="status">
-    <option *ngFor="let status of issueStatuses" value="status">
-      {{ status }}
+    <option *ngFor="let issueStatus of issueStatuses" value="{{ issueStatus }}">
+      {{ issueStatus }}
     </option>
   </select>
 
   <label for="resolution">Resolution: </label>
   <select type="text" id="resolution" formControlName="resolution">
-    <option *ngFor="let resolution of issueResolutions" value="resolution">
-      {{ resolution }}
+    <option
+      *ngFor="let issueResolution of issueResolutions"
+      value="{{ issueResolution }}"
+    >
+      {{ issueResolution }}
     </option>
   </select>
 
