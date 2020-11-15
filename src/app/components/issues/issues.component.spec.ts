@@ -75,7 +75,7 @@ describe('IssuesComponent', () => {
     );
   });
 
-  it('should handle "created" event by invoking "onCreateIssue()" method', () => {
+  it('should handle "issueCreated" event by invoking "onCreateIssue()" method', () => {
     spyOn(component, 'onCreateIssue');
 
     // given the issue form component displayed
@@ -152,16 +152,13 @@ describe('IssuesComponent', () => {
     // no issue details should be present at first
     expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
 
-    // when onDisplayIssueDetails is invoked with an issue details
+    // when "onDisplayIssueDetails()" is invoked with an issue details
     component.onDisplayIssueDetails(issue);
 
     fixture.detectChanges();
 
-    // then expect the issueDetails component to be rendered with the proper details
+    // then expect the issueDetails component to be rendered
     expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
-    expect(
-      nativeElement.querySelector('app-issue-details div').textContent
-    ).toContain(issue.description);
   });
 
   it('should render an "Add issue" button', () => {
@@ -170,20 +167,6 @@ describe('IssuesComponent', () => {
     // expect an add issue button to be rendered
     expect(addIssueButton).toBeTruthy();
     expect(addIssueButton.textContent).toEqual('Add issue');
-  });
-
-  it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
-    spyOn(component, 'onDisplayIssueForm');
-    // given the add issue button
-    const addIssueButton: HTMLButtonElement = nativeElement.querySelector(
-      'button.addIssue'
-    );
-
-    // when the button is clicked
-    addIssueButton.click();
-
-    // then the 'onDisplayIssueForm()' handler should be invoked
-    expect(component.onDisplayIssueForm).toHaveBeenCalled();
   });
 
   it('should render the add issue form when the add button is clicked', () => {
@@ -202,5 +185,19 @@ describe('IssuesComponent', () => {
 
     // then expect the issue form to be rendered
     expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
+  });
+
+  it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
+    spyOn(component, 'onDisplayIssueForm');
+    // given the add issue button
+    const addIssueButton: HTMLButtonElement = nativeElement.querySelector(
+      'button.addIssue'
+    );
+
+    // when the button is clicked
+    addIssueButton.click();
+
+    // then the 'onDisplayIssueForm()' handler should be invoked
+    expect(component.onDisplayIssueForm).toHaveBeenCalled();
   });
 });
