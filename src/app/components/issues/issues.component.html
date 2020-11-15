@@ -7,7 +7,7 @@
 
 <div *ngFor="let issue of issues">
   <app-issue
-    [details]="issue"
+    [issue]="issue"
     (issueClicked)="onDisplayIssueDetails($event)"
   ></app-issue>
 </div>
