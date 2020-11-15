@@ -20,9 +20,9 @@ export class IssueFormComponent implements OnInit {
     description: new FormControl(''),
     summary: new FormControl(''),
 
-    type: new FormControl(''),
-    status: new FormControl(''),
-    resolution: new FormControl(''),
+    type: new FormControl(IssueType.Story),
+    status: new FormControl(IssueStatus.Todo),
+    resolution: new FormControl(IssueResolution.Unresolved),
 
     assignee: new FormControl(''),
     reporter: new FormControl(''),
