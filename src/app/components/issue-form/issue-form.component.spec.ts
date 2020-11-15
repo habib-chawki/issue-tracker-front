@@ -85,18 +85,6 @@ describe('IssueFormComponent', () => {
       )
     ).toBeTruthy();
 
-    // created date
-    expect(
-      nativeElement.querySelector(
-        'form input#created[formControlName="created"]'
-      )
-    ).toBeTruthy();
-
-    expect(
-      nativeElement.querySelector(
-        'form input#updated[formControlName="updated"]'
-      )
-    ).toBeTruthy();
     expect(
       nativeElement.querySelector(
         'form input#estimate[formControlName="estimate"]'
@@ -119,8 +107,6 @@ describe('IssueFormComponent', () => {
     expect(component.issueForm.controls['resolution']).toBeTruthy();
     expect(component.issueForm.controls['assignee']).toBeTruthy();
     expect(component.issueForm.controls['reporter']).toBeTruthy();
-    expect(component.issueForm.controls['created']).toBeTruthy();
-    expect(component.issueForm.controls['updated']).toBeTruthy();
     expect(component.issueForm.controls['estimate']).toBeTruthy();
   });
 
@@ -150,8 +136,6 @@ describe('IssueFormComponent', () => {
       resolution: IssueResolution.Duplicate,
       assignee: 'Me',
       reporter: 'Someone',
-      created: new Date(),
-      updated: new Date(),
       estimate: new Date(),
     };
 
@@ -164,7 +148,7 @@ describe('IssueFormComponent', () => {
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
   });
 
-  it('should render issue types based on the values of the "IssueType" enum', () => {
+  it('should render issue type options based on the values of the "IssueType" enum', () => {
     // given the list of the type select options
     const types = [];
 
@@ -176,7 +160,7 @@ describe('IssueFormComponent', () => {
     expect(types).toEqual(Object.values(IssueType));
   });
 
-  it('should render issue status based on the values of the "IssueStatus" enum', () => {
+  it('should render issue status options based on the values of the "IssueStatus" enum', () => {
     // given the list of the status select options
     const statuses = [];
 
@@ -188,7 +172,7 @@ describe('IssueFormComponent', () => {
     expect(statuses).toEqual(Object.values(IssueStatus));
   });
 
-  it('should render issue resolution based on the values of the "IssueResolution" enum', () => {
+  it('should render issue resolution options based on the values of the "IssueResolution" enum', () => {
     // given the list of the resolution select options
     const resolutions = [];
 
