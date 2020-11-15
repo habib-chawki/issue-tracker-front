@@ -13,7 +13,7 @@ describe('IssueComponent', () => {
   let fixture: ComponentFixture<IssueComponent>;
   let nativeElement: HTMLElement;
 
-  let issueDetails: Issue;
+  let issue: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     // set up an issue
-    issueDetails = {
+    issue = {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
@@ -59,18 +59,18 @@ describe('IssueComponent', () => {
     );
 
     // given issue details
-    component.details = issueDetails;
+    component.issue = issue;
     fixture.detectChanges();
 
     // expect issue type to be rendered
     expect(nativeElement.querySelector('div div#type').textContent).toEqual(
-      issueDetails.type
+      issue.type
     );
 
     // expect issue description to be rendered
     expect(
       nativeElement.querySelector('div div#description').textContent
-    ).toEqual(issueDetails.description);
+    ).toEqual(issue.description);
   });
 
   it('should invoke "onClick()" handler when issue element is clicked', () => {
@@ -93,6 +93,6 @@ describe('IssueComponent', () => {
     component.onClick();
 
     // then expect an event to be emitted with issue details
-    expect(component.issueClicked.emit).toHaveBeenCalledWith(component.details);
+    expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 });
