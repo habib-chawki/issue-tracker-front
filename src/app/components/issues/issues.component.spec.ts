@@ -88,7 +88,7 @@ describe('IssuesComponent', () => {
     );
     issueForm.triggerEventHandler('issueCreated', issue);
 
-    // then expect the "onCreateIssue" event handler to have been called
+    // then expect the "onCreateIssue()" event handler to have been called
     expect(component.onCreateIssue).toHaveBeenCalledWith(issue);
   });
 
@@ -100,13 +100,17 @@ describe('IssuesComponent', () => {
     expect(component.issues).toContain(issue);
   });
 
-  it('should render the issue element when "onCreateIssue()" is invoked', () => {
+  fit('should render the issue element when "onCreateIssue()" is invoked', () => {
     // when "onCreateIssue" is called
     component.onCreateIssue(issue);
 
     fixture.detectChanges();
 
     // then the new issue should be rendered
+    expect(nativeElement.querySelector('app-issue').textContent).toContain(
+      issue.type
+    );
+
     expect(nativeElement.querySelector('app-issue').textContent).toContain(
       issue.description
     );
