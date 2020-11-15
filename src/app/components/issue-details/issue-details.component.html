@@ -6,18 +6,20 @@
   <div id="resolution">{{ issue.resolution }}</div>
   <div id="assignee">{{ issue.assignee }}</div>
   <div id="reporter">{{ issue.reporter }}</div>
+  <div id="votes">{{ issue.votes }}</div>
+
   <div id="comments">
     <ul>
       <li *ngFor="let comment of issue.comments">{{ comment }}</li>
     </ul>
   </div>
-  <div id="votes">{{ issue.votes }}</div>
 
   <div id="watchers">
     <ul>
       <li *ngFor="let watcher of issue.watchers">{{ watcher }}</li>
     </ul>
   </div>
+
   <div id="created">{{ issue.created }}</div>
   <div id="updated">{{ issue.updated }}</div>
   <div id="estimate">{{ issue.estimate }}</div>

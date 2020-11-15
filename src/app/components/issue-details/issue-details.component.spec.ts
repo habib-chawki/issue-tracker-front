@@ -50,7 +50,7 @@ describe('IssueDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render issue details', () => {
+  it('should render issue details', () => {
     // given issue details
     component.issue = issue;
 
