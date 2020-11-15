@@ -77,7 +77,7 @@ describe('IssueFormComponent', () => {
       )
     ).toBeTruthy();
 
-    // TODO: use a dropdown list instead when users are implements
+    // TODO: use a dropdown list instead when users are implemented
     // reporter text input
     expect(
       nativeElement.querySelector(
@@ -166,37 +166,37 @@ describe('IssueFormComponent', () => {
 
   it('should render issue types based on the values of the "IssueType" enum', () => {
     // given the list of the type select options
-    const options = [];
+    const types = [];
 
     nativeElement
       .querySelectorAll('select#type option')
-      .forEach((option) => options.push(option.innerHTML.trim()));
+      .forEach((option) => types.push(option.innerHTML.trim()));
 
     // the options should be the values of the IssueType enum
-    expect(options).toEqual(Object.values(IssueType));
+    expect(types).toEqual(Object.values(IssueType));
   });
 
   it('should render issue status based on the values of the "IssueStatus" enum', () => {
     // given the list of the status select options
-    const options = [];
+    const statuses = [];
 
     nativeElement
       .querySelectorAll('select#status option')
-      .forEach((option) => options.push(option.innerHTML.trim()));
+      .forEach((option) => statuses.push(option.innerHTML.trim()));
 
     // the options should be the values of the IssueType enum
-    expect(options).toEqual(Object.values(IssueStatus));
+    expect(statuses).toEqual(Object.values(IssueStatus));
   });
 
   it('should render issue resolution based on the values of the "IssueResolution" enum', () => {
-    // given the list of the status select options
-    const options = [];
+    // given the list of the resolution select options
+    const resolutions = [];
 
     nativeElement
       .querySelectorAll('select#resolution option')
-      .forEach((option) => options.push(option.innerHTML.trim()));
+      .forEach((option) => resolutions.push(option.innerHTML.trim()));
 
-    // the options should be the values of the IssueType enum
-    expect(options).toEqual(Object.values(IssueResolution));
+    // the options should be the values of the IssueResolution enum
+    expect(resolutions).toEqual(Object.values(IssueResolution));
   });
 });

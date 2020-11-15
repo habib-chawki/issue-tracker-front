@@ -100,7 +100,7 @@ describe('IssuesComponent', () => {
     expect(component.issues).toContain(issue);
   });
 
-  fit('should render the issue element when "onCreateIssue()" is invoked', () => {
+  it('should render the issue element when "onCreateIssue()" is invoked', () => {
     // when "onCreateIssue" is called
     component.onCreateIssue(issue);
 
@@ -130,7 +130,7 @@ describe('IssuesComponent', () => {
     );
     issueElement.triggerEventHandler('issueClicked', issue);
 
-    // the "onDisplayIssueDetails" handler method should be called
+    // the "onDisplayIssueDetails()" handler method should be called
     expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
   });
 
