@@ -1,17 +1,27 @@
 <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="summary">Summary: </label>
-    <input type="text" id="summary" formControlName="summary" />
+    <label for="summary">Summary</label>
+    <input
+      type="text"
+      id="summary"
+      formControlName="summary"
+      class="form-control"
+    />
   </div>
 
   <div class="form-group">
-    <label for="description">Description: </label>
-    <textarea id="description" formControlName="description"> </textarea>
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      class="form-control"
+    >
+    </textarea>
   </div>
 
   <div class="form-group">
-    <label for="type">Type: </label>
-    <select id="type" formControlName="type">
+    <label for="type">Type</label>
+    <select id="type" formControlName="type" class="form-control">
       <option *ngFor="let issueType of issueTypes" value="{{ issueType }}">
         {{ issueType }}
       </option>
@@ -19,8 +29,8 @@
   </div>
 
   <div class="form-group">
-    <label for="status">Status: </label>
-    <select id="status" formControlName="status">
+    <label for="status">Status</label>
+    <select id="status" formControlName="status" class="form-control">
       <option
         *ngFor="let issueStatus of issueStatuses"
         value="{{ issueStatus }}"
@@ -31,8 +41,13 @@
   </div>
 
   <div class="form-group">
-    <label for="resolution">Resolution: </label>
-    <select type="text" id="resolution" formControlName="resolution">
+    <label for="resolution">Resolution</label>
+    <select
+      type="text"
+      id="resolution"
+      formControlName="resolution"
+      class="form-control"
+    >
       <option
         *ngFor="let issueResolution of issueResolutions"
         value="{{ issueResolution }}"
@@ -43,17 +58,27 @@
   </div>
 
   <div class="form-group">
-    <label for="assignee">Assignee: </label>
-    <input type="text" id="assignee" formControlName="assignee" />
+    <label for="assignee">Assignee</label>
+    <input
+      type="text"
+      id="assignee"
+      formControlName="assignee"
+      class="form-control"
+    />
   </div>
 
   <div class="form-group">
-    <label for="reporter">Reporter: </label>
-    <input type="text" id="reporter" formControlName="reporter" />
+    <label for="reporter">Reporter</label>
+    <input
+      type="text"
+      id="reporter"
+      formControlName="reporter"
+      class="form-control"
+    />
   </div>
 
   <div class="form-group">
-    <label for="estimate">Estimated time: </label>
+    <label for="estimate">Estimated time</label>
     <input type="date" id="estimate" formControlName="estimate" />
   </div>
 
