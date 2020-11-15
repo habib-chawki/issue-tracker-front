@@ -27,8 +27,6 @@ export class IssueFormComponent implements OnInit {
     assignee: new FormControl(''),
     reporter: new FormControl(''),
 
-    created: new FormControl(''),
-    updated: new FormControl(''),
     estimate: new FormControl(''),
   });
 
