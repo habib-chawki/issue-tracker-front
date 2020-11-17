@@ -29,16 +29,19 @@ describe('IssueService', () => {
   });
 
   fit('should get a list of issues', () => {
+    // given a list of mocked issues
     const mockIssues = [{} as Issue, {} as Issue];
 
+    // when the "getIssues()" method is invoked then the list of mocked issues should be returned
     service.getIssues().subscribe((issues) => {
       expect(issues).toEqual(mockIssues);
     });
 
-    // mock http controller
+    // mock http controller and expect a 'GET' request
     const req = httpTestingController.expectOne('http://localhost:80/issues');
     expect(req.request.method).toBe('GET');
 
+    // return the list of mocked issues
     req.flush(mockIssues);
   });
 });
