@@ -1,9 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IssueService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor() { }
+  getIssues() {
+    return this.httpClient.get('http://localhost:80/issues');
+  }
 }
