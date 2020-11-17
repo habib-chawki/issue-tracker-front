@@ -6,6 +6,9 @@ import {
 
 import { IssueService } from './issue.service';
 import { Issue } from '../models/issue';
+import IssueType from '../models/enums/issue-type';
+import IssueResolution from '../models/enums/issue-resolution';
+import IssueStatus from '../models/enums/issue-status';
 
 describe('IssueService', () => {
   let service: IssueService;
@@ -28,13 +31,13 @@ describe('IssueService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should get a list of issues', () => {
+  it('should get a list of issues', () => {
     // given a list of mocked issues
-    const mockIssues = [{} as Issue, {} as Issue];
+    const issues = [{} as Issue, {} as Issue];
 
-    // when the "getIssues()" method is invoked then the list of mocked issues should be returned
-    service.getIssues().subscribe((issues) => {
-      expect(issues).toEqual(mockIssues);
+    // when the "getIssues()" method is invoked, expect the response to be the list of issues
+    service.getIssues().subscribe((response) => {
+      expect(response).toEqual(issues);
     });
 
     // mock http controller and expect a 'GET' request
@@ -42,6 +45,39 @@ describe('IssueService', () => {
     expect(req.request.method).toBe('GET');
 
     // return the list of mocked issues
-    req.flush(mockIssues);
+    req.flush(issues);
+  });
+
+  it('should get a single issue by id', () => {
+    // given an issue
+    const issue: Issue = {
+      // id: '1',
+      key: 'Dh85m',
+      description: 'Issue description',
+      summary: 'Issue summary',
+      type: IssueType.Bug,
+      status: IssueStatus.InProgress,
+      resolution: IssueResolution.Duplicate,
+      assignee: 'Me',
+      reporter: 'Someone',
+      comments: ['comment1', 'comment2'],
+      votes: 8,
+      watchers: ['jon', 'jane'],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
+
+    // when the "getIssue()" service method is invoked, expect the response to be the issue
+    service.getIssue('1').subscribe((response) => {
+      expect(response).toEqual(issue);
+    });
+
+    // expect a 'GET' request with the issue id
+    const req = httpTestingController.expectOne('http://localhost:80/issues/1');
+    expect(req.request.method).toBe('GET');
+
+    // return the issue
+    req.flush(issue);
   });
 });
