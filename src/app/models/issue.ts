@@ -3,6 +3,8 @@ import IssueStatus from './enums/issue-status';
 import IssueResolution from './enums/issue-resolution';
 
 export interface Issue {
+  id: string;
+
   key: string;
 
   description: string;
