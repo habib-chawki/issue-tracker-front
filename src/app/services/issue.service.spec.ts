@@ -51,7 +51,7 @@ describe('IssueService', () => {
   it('should get a single issue by id', () => {
     // given an issue
     const issue: Issue = {
-      // id: '1',
+      id: '1',
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
