@@ -30,6 +30,7 @@ describe('IssueComponent', () => {
 
     // set up an issue
     issue = {
+      id: '1',
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
