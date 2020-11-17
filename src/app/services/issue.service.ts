@@ -10,4 +10,8 @@ export class IssueService {
   getIssues() {
     return this.httpClient.get('http://localhost:80/issues');
   }
+
+  getIssue(id: string) {
+    return this.httpClient.get(`http://localhost:80/issues/${id}`);
+  }
 }
