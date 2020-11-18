@@ -213,7 +213,7 @@ describe('IssuesComponent', () => {
     });
   });
 
-  fdescribe('IssueService', () => {
+  describe('IssueService', () => {
     let service: IssueService;
 
     beforeEach(() => {
