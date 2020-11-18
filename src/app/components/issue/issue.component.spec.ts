@@ -83,17 +83,17 @@ describe('IssueComponent', () => {
     // when it is clicked
     issue.click();
 
-    // then expect the onClick handler to be invoked
+    // then the "onClick()" handler should be invoked
     expect(component.onClick).toHaveBeenCalled();
   });
 
   it('should emit an "issueClicked" event with issue details when "onClick()" is invoked', () => {
     spyOn(component.issueClicked, 'emit');
 
-    // when onClick event handler is invoked
+    // when the "onClick()" event handler method is invoked
     component.onClick();
 
-    // then expect an event to be emitted with issue details
+    // then an event should be emitted with the issue details
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 });
