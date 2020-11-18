@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue';
+import { IssueService } from 'src/app/services/issue.service';
 
 @Component({
   selector: 'app-issues',
@@ -11,12 +12,13 @@ export class IssuesComponent implements OnInit {
   issueDetails: Issue = {} as Issue;
   displayForm: boolean = false;
 
-  constructor() {}
+  constructor(private issueService: IssueService) {}
 
   ngOnInit(): void {}
 
   // invoked when the form is submitted
   onCreateIssue(issue: Issue) {
+    this.issueService.createIssue(issue);
     this.issues.push(issue);
   }
 
