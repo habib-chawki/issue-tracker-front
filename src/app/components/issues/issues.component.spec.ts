@@ -8,6 +8,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 
 import { Issue } from 'src/app/models/issue';
+import { IssueService } from 'src/app/services/issue.service';
 
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 import { IssueFormComponent } from '../issue-form/issue-form.component';
@@ -18,6 +19,8 @@ describe('IssuesComponent', () => {
   let component: IssuesComponent;
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
+
+  let service: IssueService;
 
   let issue: Issue;
 
@@ -37,6 +40,8 @@ describe('IssuesComponent', () => {
     fixture = TestBed.createComponent(IssuesComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
+
+    service = TestBed.inject(IssueService);
 
     fixture.detectChanges();
 
@@ -209,4 +214,6 @@ describe('IssuesComponent', () => {
       expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
     });
   });
+
+  describe('IssueService', () => {});
 });
