@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Issue } from '../models/issue';
 
 @Injectable({
@@ -10,15 +11,15 @@ export class IssueService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createIssue(issue: Issue) {
-    return this.httpClient.post(this.baseUrl, issue);
+  createIssue(issue: Issue): Observable<Issue> {
+    return this.httpClient.post<Issue>(this.baseUrl, issue);
   }
 
-  getIssue(id: string) {
-    return this.httpClient.get(`${this.baseUrl}/${id}`);
+  getIssue(id: string): Observable<Issue> {
+    return this.httpClient.get<Issue>(`${this.baseUrl}/${id}`);
   }
 
-  getIssues() {
-    return this.httpClient.get(this.baseUrl);
+  getIssues(): Observable<Issue[]> {
+    return this.httpClient.get<Issue[]>(this.baseUrl);
   }
 }
