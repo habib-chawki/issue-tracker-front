@@ -1,7 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -20,8 +22,6 @@ describe('IssuesComponent', () => {
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
 
-  let service: IssueService;
-
   let issue: Issue;
 
   beforeEach(async () => {
@@ -32,7 +32,7 @@ describe('IssuesComponent', () => {
         IssueFormComponent,
         IssueDetailsComponent,
       ],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
     }).compileComponents();
   });
 
@@ -40,8 +40,6 @@ describe('IssuesComponent', () => {
     fixture = TestBed.createComponent(IssuesComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
-
-    service = TestBed.inject(IssueService);
 
     fixture.detectChanges();
 
@@ -215,5 +213,19 @@ describe('IssuesComponent', () => {
     });
   });
 
-  describe('IssueService', () => {});
+  fdescribe('IssueService', () => {
+    let service: IssueService;
+
+    beforeEach(() => {
+      service = TestBed.inject(IssueService);
+    });
+
+    it('should invoke "onCreateIssue()" service method, when "onCreateIssue()" is called', () => {
+      spyOn(service, 'createIssue').and.returnValue(of(issue));
+
+      component.onCreateIssue(issue);
+
+      expect(service.createIssue).toHaveBeenCalledWith(issue);
+    });
+  });
 });
