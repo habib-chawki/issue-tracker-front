@@ -14,7 +14,7 @@ describe('IssueService', () => {
   let service: IssueService;
   let httpTestingController: HttpTestingController;
 
-  let issue, issue2: Issue;
+  let issue: Issue, issue2: Issue;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

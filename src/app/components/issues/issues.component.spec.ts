@@ -122,7 +122,7 @@ describe('IssuesComponent', () => {
       );
     });
 
-    fit('should render the issue element when "onCreateIssue()" is invoked', () => {
+    it('should render the issue element when "onCreateIssue()" is invoked', () => {
       // set up a fake function to add a new issue to the issues array
       spyOn(component, 'onCreateIssue').and.callFake(() => {
         component.issues.push(issue);
@@ -245,7 +245,7 @@ describe('IssuesComponent', () => {
     });
 
     it('should invoke the service method "createIssue()" when "onCreateIssue()" is called', () => {
-      spyOn(service, 'createIssue');
+      spyOn(service, 'createIssue').and.returnValue(of(issue));
 
       // when the "onCreateIssue()" method is invoked
       component.onCreateIssue(issue);
@@ -255,7 +255,7 @@ describe('IssuesComponent', () => {
     });
 
     it('should invoke the service method "getIssues()" when "ngOnInit()" is first called', () => {
-      spyOn(service, 'getIssues');
+      spyOn(service, 'getIssues').and.returnValue(of([issue, issue2]));
 
       // when "ngOnInit()" is called
       component.ngOnInit();
