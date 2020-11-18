@@ -240,13 +240,23 @@ describe('IssuesComponent', () => {
     });
 
     it('should invoke the service method "createIssue()" when "onCreateIssue()" is called', () => {
-      spyOn(service, 'createIssue').and.returnValue(of(issue));
+      spyOn(service, 'createIssue');
 
       // when the "onCreateIssue()" method is invoked
       component.onCreateIssue(issue);
 
       // then the "createIssue()" service method should be called
       expect(service.createIssue).toHaveBeenCalledWith(issue);
+    });
+
+    it('should invoke the service method "getIssues()" when "ngOnInit()" is first called', () => {
+      spyOn(service, 'getIssues');
+
+      // when "ngOnInit()" is called
+      component.ngOnInit();
+
+      // then the "getIssues()" method should be called
+      expect(service.getIssues).toHaveBeenCalled();
     });
   });
 });
