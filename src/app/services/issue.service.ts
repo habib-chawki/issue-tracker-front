@@ -6,17 +6,19 @@ import { Issue } from '../models/issue';
   providedIn: 'root',
 })
 export class IssueService {
+  baseUrl = 'http://localhost:80/issues';
+
   constructor(private httpClient: HttpClient) {}
 
   getIssues() {
-    return this.httpClient.get('http://localhost:80/issues');
+    return this.httpClient.get(this.baseUrl);
   }
 
   getIssue(id: string) {
-    return this.httpClient.get(`http://localhost:80/issues/${id}`);
+    return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
 
   createIssue(issue: Issue) {
-    return this.httpClient.post('http://localhost:80/issues', issue);
+    return this.httpClient.post(this.baseUrl, issue);
   }
 }
