@@ -84,9 +84,16 @@ describe('IssueService', () => {
     req.flush(issue);
   });
 
-  it('should create a new issue', () => {
+  fit('should create a new issue', () => {
     service.createIssue(issue).subscribe((response) => {
       expect(response).toEqual(issue);
     });
+
+    // expect a 'POST' request with the issue
+    const req = httpTestingController.expectOne('http://localhost:80/issues');
+    expect(req.request.method).toBe('POST');
+
+    // return the issue back
+    req.flush(issue);
   });
 });
