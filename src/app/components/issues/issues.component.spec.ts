@@ -22,6 +22,8 @@ describe('IssuesComponent', () => {
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
 
+  let service: IssueService;
+
   let issue: Issue, issue2: Issue;
 
   beforeEach(async () => {
@@ -42,6 +44,8 @@ describe('IssuesComponent', () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
+
+    service = TestBed.inject(IssueService);
 
     // set up an issue with details
     issue = {
@@ -196,6 +200,8 @@ describe('IssuesComponent', () => {
     });
 
     it('should add the new issue to the "issues" array when "onCreateIssue()" is invoked', () => {
+      spyOn(service, 'createIssue').and.returnValue(of(issue));
+
       // when 'onCreateIssue()' is called
       component.onCreateIssue(issue);
 
@@ -238,12 +244,6 @@ describe('IssuesComponent', () => {
   });
 
   describe('IssueService', () => {
-    let service: IssueService;
-
-    beforeEach(() => {
-      service = TestBed.inject(IssueService);
-    });
-
     it('should invoke the service method "createIssue()" when "onCreateIssue()" is called', () => {
       spyOn(service, 'createIssue').and.returnValue(of(issue));
 
