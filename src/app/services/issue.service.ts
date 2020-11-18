@@ -10,15 +10,15 @@ export class IssueService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getIssues() {
-    return this.httpClient.get(this.baseUrl);
+  createIssue(issue: Issue) {
+    return this.httpClient.post(this.baseUrl, issue);
   }
 
   getIssue(id: string) {
     return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
 
-  createIssue(issue: Issue) {
-    return this.httpClient.post(this.baseUrl, issue);
+  getIssues() {
+    return this.httpClient.get(this.baseUrl);
   }
 }
