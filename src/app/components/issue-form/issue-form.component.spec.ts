@@ -32,45 +32,43 @@ describe('IssueFormComponent', () => {
   });
 
   it('should render a form to input every issue detail', () => {
-    // the form should be rendered
+    // the form should be rendered with every issue detail input field
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
-    // every issue detail input field shoud be rendered
-
-    // summary input text
+    // "summary" input text
     expect(
       nativeElement.querySelector(
         'form input#summary[formControlName="summary"]'
       )
     ).toBeTruthy();
 
-    // description text area
+    // "description" text area
     expect(
       nativeElement.querySelector(
         'form textarea#description[formControlName="description"]'
       )
     ).toBeTruthy();
 
-    // type select
+    // "type" select
     expect(
       nativeElement.querySelector('form select#type[formControlName="type"]')
     ).toBeTruthy();
 
-    // status select
+    // "status" select
     expect(
       nativeElement.querySelector(
         'form select#status[formControlName="status"]'
       )
     ).toBeTruthy();
 
-    // resolution select
+    // "resolution" select
     expect(
       nativeElement.querySelector(
         'form select#resolution[formControlName="resolution"]'
       )
     ).toBeTruthy();
 
-    // assignee text input
+    // "assignee" text input
     expect(
       nativeElement.querySelector(
         'form input#assignee[formControlName="assignee"]'
@@ -78,13 +76,14 @@ describe('IssueFormComponent', () => {
     ).toBeTruthy();
 
     // TODO: use a dropdown list instead when users are implemented
-    // reporter text input
+    // "reporter" text input
     expect(
       nativeElement.querySelector(
         'form input#reporter[formControlName="reporter"]'
       )
     ).toBeTruthy();
 
+    // "estimate" time
     expect(
       nativeElement.querySelector(
         'form input#estimate[formControlName="estimate"]'
@@ -95,6 +94,42 @@ describe('IssueFormComponent', () => {
     expect(
       nativeElement.querySelector('form button[type="submit"]').innerHTML
     ).toContain('Add issue');
+  });
+
+  it('should render issue "type" options based on the values of the "IssueType" enum', () => {
+    // given the list of the "type" select options
+    const types = [];
+
+    nativeElement
+      .querySelectorAll('select#type option')
+      .forEach((option) => types.push(option.innerHTML.trim()));
+
+    // the options should be the values of the "IssueType" enum
+    expect(types).toEqual(Object.values(IssueType));
+  });
+
+  it('should render issue "status" options based on the values of the "IssueStatus" enum', () => {
+    // given the list of the "status" select options
+    const statuses = [];
+
+    nativeElement
+      .querySelectorAll('select#status option')
+      .forEach((option) => statuses.push(option.innerHTML.trim()));
+
+    // the options should be the values of the "IssueStatus" enum
+    expect(statuses).toEqual(Object.values(IssueStatus));
+  });
+
+  it('should render issue "resolution" options based on the values of the "IssueResolution" enum', () => {
+    // given the list of the "resolution" select options
+    const resolutions = [];
+
+    nativeElement
+      .querySelectorAll('select#resolution option')
+      .forEach((option) => resolutions.push(option.innerHTML.trim()));
+
+    // the options should be the values of the "IssueResolution" enum
+    expect(resolutions).toEqual(Object.values(IssueResolution));
   });
 
   it('should define a form group and form controls', () => {
@@ -110,8 +145,8 @@ describe('IssueFormComponent', () => {
     expect(component.issueForm.controls['estimate']).toBeTruthy();
   });
 
-  it('should invoke "onSubmit()" when submit button is clicked', () => {
-    // given the onSubmit method
+  it('should invoke "onSubmit()" when the submit button is clicked', () => {
+    // given the "onSubmit()" method
     spyOn(component, 'onSubmit');
 
     // when the submit button is clicked
@@ -120,15 +155,15 @@ describe('IssueFormComponent', () => {
     );
     submitButton.click();
 
-    // the method should be invoked
+    // then the method should be invoked
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  it('should emit an event with form values when "onSubmit()" is called', () => {
+  it('should emit an event with the form value when "onSubmit()" is called', () => {
     spyOn(component.issueCreated, 'emit');
 
-    // given the form values
-    const formValues = {
+    // given the form value
+    const formValue = {
       description: 'Issue description',
       summary: 'Issue summary',
       type: IssueType.Bug,
@@ -139,48 +174,12 @@ describe('IssueFormComponent', () => {
       estimate: new Date(),
     };
 
-    component.issueForm.setValue(formValues);
+    component.issueForm.setValue(formValue);
 
     // when "onSubmit()" is called
     component.onSubmit();
 
-    // then an event should be emitted with the form values
-    expect(component.issueCreated.emit).toHaveBeenCalledWith(formValues);
-  });
-
-  it('should render issue type options based on the values of the "IssueType" enum', () => {
-    // given the list of the type select options
-    const types = [];
-
-    nativeElement
-      .querySelectorAll('select#type option')
-      .forEach((option) => types.push(option.innerHTML.trim()));
-
-    // the options should be the values of the IssueType enum
-    expect(types).toEqual(Object.values(IssueType));
-  });
-
-  it('should render issue status options based on the values of the "IssueStatus" enum', () => {
-    // given the list of the status select options
-    const statuses = [];
-
-    nativeElement
-      .querySelectorAll('select#status option')
-      .forEach((option) => statuses.push(option.innerHTML.trim()));
-
-    // the options should be the values of the IssueType enum
-    expect(statuses).toEqual(Object.values(IssueStatus));
-  });
-
-  it('should render issue resolution options based on the values of the "IssueResolution" enum', () => {
-    // given the list of the resolution select options
-    const resolutions = [];
-
-    nativeElement
-      .querySelectorAll('select#resolution option')
-      .forEach((option) => resolutions.push(option.innerHTML.trim()));
-
-    // the options should be the values of the IssueResolution enum
-    expect(resolutions).toEqual(Object.values(IssueResolution));
+    // then an event should be emitted with the form value
+    expect(component.issueCreated.emit).toHaveBeenCalledWith(formValue);
   });
 });
