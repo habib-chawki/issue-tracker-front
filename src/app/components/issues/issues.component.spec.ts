@@ -223,8 +223,10 @@ describe('IssuesComponent', () => {
     it('should invoke "onCreateIssue()" service method, when "onCreateIssue()" is called', () => {
       spyOn(service, 'createIssue').and.returnValue(of(issue));
 
+      // when the "onCreateIssue()" method is invoked
       component.onCreateIssue(issue);
 
+      // then the "createIssue()" service method should be called
       expect(service.createIssue).toHaveBeenCalledWith(issue);
     });
   });
