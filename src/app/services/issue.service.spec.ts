@@ -63,7 +63,7 @@ describe('IssueService', () => {
     });
 
     // mock http controller and expect a 'GET' request
-    const req = httpTestingController.expectOne('http://localhost:80/issues');
+    const req = httpTestingController.expectOne(service.baseUrl);
     expect(req.request.method).toBe('GET');
 
     // return the list of mocked issues
@@ -77,7 +77,7 @@ describe('IssueService', () => {
     });
 
     // expect a 'GET' request with the issue id
-    const req = httpTestingController.expectOne('http://localhost:80/issues/1');
+    const req = httpTestingController.expectOne(`${service.baseUrl}/1`);
     expect(req.request.method).toBe('GET');
 
     // return the issue
@@ -90,7 +90,7 @@ describe('IssueService', () => {
     });
 
     // expect a 'POST' request with the issue
-    const req = httpTestingController.expectOne('http://localhost:80/issues');
+    const req = httpTestingController.expectOne(service.baseUrl);
     expect(req.request.method).toBe('POST');
 
     // return the issue back
