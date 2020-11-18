@@ -52,7 +52,7 @@ describe('IssueDetailsComponent', () => {
   });
 
   it('should render issue details', () => {
-    // given issue details
+    // given the issue details
     component.issue = issue;
 
     // when changes are detected
