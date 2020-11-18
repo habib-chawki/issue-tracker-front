@@ -14,12 +14,17 @@ export class IssuesComponent implements OnInit {
 
   constructor(private issueService: IssueService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.issueService.getIssues().subscribe((response) => {
+      this.issues = response;
+    });
+  }
 
   // invoked when the form is submitted
   onCreateIssue(issue: Issue) {
-    this.issueService.createIssue(issue);
-    this.issues.push(issue);
+    this.issueService.createIssue(issue).subscribe((response) => {
+      this.issues.push(response);
+    });
   }
 
   // invoked when the add issue button is clicked
