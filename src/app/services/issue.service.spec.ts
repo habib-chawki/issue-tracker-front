@@ -14,6 +14,8 @@ describe('IssueService', () => {
   let service: IssueService;
   let httpTestingController: HttpTestingController;
 
+  let issue: Issue;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -21,6 +23,26 @@ describe('IssueService', () => {
 
     service = TestBed.inject(IssueService);
     httpTestingController = TestBed.inject(HttpTestingController);
+  });
+
+  beforeEach(() => {
+    issue = {
+      id: '1',
+      key: 'Dh85m',
+      description: 'Issue description',
+      summary: 'Issue summary',
+      type: IssueType.Bug,
+      status: IssueStatus.InProgress,
+      resolution: IssueResolution.Duplicate,
+      assignee: 'Me',
+      reporter: 'Someone',
+      comments: ['comment1', 'comment2'],
+      votes: 8,
+      watchers: ['jon', 'jane'],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
   });
 
   afterEach(() => {
@@ -49,25 +71,6 @@ describe('IssueService', () => {
   });
 
   it('should get a single issue by id', () => {
-    // given an issue
-    const issue: Issue = {
-      id: '1',
-      key: 'Dh85m',
-      description: 'Issue description',
-      summary: 'Issue summary',
-      type: IssueType.Bug,
-      status: IssueStatus.InProgress,
-      resolution: IssueResolution.Duplicate,
-      assignee: 'Me',
-      reporter: 'Someone',
-      comments: ['comment1', 'comment2'],
-      votes: 8,
-      watchers: ['jon', 'jane'],
-      created: new Date(),
-      updated: new Date(),
-      estimate: new Date(),
-    };
-
     // when the "getIssue()" service method is invoked, expect the response to be the issue
     service.getIssue('1').subscribe((response) => {
       expect(response).toEqual(issue);
