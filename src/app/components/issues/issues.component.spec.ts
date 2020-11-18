@@ -22,7 +22,7 @@ describe('IssuesComponent', () => {
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
 
-  let issue: Issue;
+  let issue: Issue, issue2: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -61,6 +61,25 @@ describe('IssuesComponent', () => {
       updated: new Date(),
       estimate: new Date(),
     };
+
+    // set up another issue
+    issue2 = {
+      id: '2',
+      key: 'Rt9xP',
+      description: 'Issue 2 description',
+      summary: 'Issue 2 summary',
+      type: IssueType.Story,
+      status: IssueStatus.Todo,
+      resolution: IssueResolution.Unresolved,
+      assignee: 'You',
+      reporter: 'Someone else',
+      comments: ['comment1', 'comment2', 'comment3'],
+      votes: 2,
+      watchers: [],
+      created: new Date(),
+      updated: new Date(),
+      estimate: new Date(),
+    };
   });
 
   it('should create', () => {
@@ -93,7 +112,7 @@ describe('IssuesComponent', () => {
   describe('IssueComponent', () => {
     it('should render a list of issue components', () => {
       // given an issues array
-      component.issues = [{} as Issue, {} as Issue, {} as Issue];
+      component.issues = [issue, issue2];
 
       fixture.detectChanges();
 
@@ -220,7 +239,7 @@ describe('IssuesComponent', () => {
       service = TestBed.inject(IssueService);
     });
 
-    it('should invoke "onCreateIssue()" service method, when "onCreateIssue()" is called', () => {
+    it('should invoke the service method "createIssue()" when "onCreateIssue()" is called', () => {
       spyOn(service, 'createIssue').and.returnValue(of(issue));
 
       // when the "onCreateIssue()" method is invoked
