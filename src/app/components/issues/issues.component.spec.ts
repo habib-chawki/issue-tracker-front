@@ -122,7 +122,12 @@ describe('IssuesComponent', () => {
       );
     });
 
-    it('should render the issue element when "onCreateIssue()" is invoked', () => {
+    fit('should render the issue element when "onCreateIssue()" is invoked', () => {
+      // set up a fake function to add a new issue to the issues array
+      spyOn(component, 'onCreateIssue').and.callFake(() => {
+        component.issues.push(issue);
+      });
+
       // when "onCreateIssue()" is called
       component.onCreateIssue(issue);
       fixture.detectChanges();
