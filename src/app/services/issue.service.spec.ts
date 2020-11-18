@@ -83,4 +83,10 @@ describe('IssueService', () => {
     // return the issue
     req.flush(issue);
   });
+
+  it('should create a new issue', () => {
+    service.createIssue(issue).subscribe((response) => {
+      expect(response).toEqual(issue);
+    });
+  });
 });
