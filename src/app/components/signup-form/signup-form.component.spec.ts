@@ -29,10 +29,26 @@ describe('SignupFormComponent', () => {
     // form should be renderd
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
-    expect(nativeElement.querySelector('input#first-name')).toBeTruthy();
-    expect(nativeElement.querySelector('input#last-name')).toBeTruthy();
-    expect(nativeElement.querySelector('input#username')).toBeTruthy();
-    expect(nativeElement.querySelector('input#email')).toBeTruthy();
-    expect(nativeElement.querySelector('input#password')).toBeTruthy();
+    expect(
+      nativeElement.querySelector(
+        'input#first-name[formControlName="firstName"]'
+      )
+    ).toBeTruthy();
+
+    expect(
+      nativeElement.querySelector('input#last-name[formControlName="lastName"]')
+    ).toBeTruthy();
+
+    expect(
+      nativeElement.querySelector('input#username[formControlName="userName"]')
+    ).toBeTruthy();
+
+    expect(
+      nativeElement.querySelector('input#email[formControlName="email"]')
+    ).toBeTruthy();
+
+    expect(
+      nativeElement.querySelector('input#password[formControlName="password"]')
+    ).toBeTruthy();
   });
 });
