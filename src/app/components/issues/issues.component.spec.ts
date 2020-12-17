@@ -22,7 +22,7 @@ describe('IssuesComponent', () => {
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
 
-  let service: IssueService;
+  let issueService: IssueService;
 
   let issue: Issue, issue2: Issue;
 
@@ -45,7 +45,7 @@ describe('IssuesComponent', () => {
 
     fixture.detectChanges();
 
-    service = TestBed.inject(IssueService);
+    issueService = TestBed.inject(IssueService);
 
     // set up an issue with details
     issue = {
@@ -200,7 +200,7 @@ describe('IssuesComponent', () => {
     });
 
     it('should add the new issue to the "issues" array when "onCreateIssue()" is invoked', () => {
-      spyOn(service, 'createIssue').and.returnValue(of(issue));
+      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
       // when 'onCreateIssue()' is called
       component.onCreateIssue(issue);
@@ -245,23 +245,23 @@ describe('IssuesComponent', () => {
 
   describe('IssueService', () => {
     it('should invoke the service method "createIssue()" when "onCreateIssue()" is called', () => {
-      spyOn(service, 'createIssue').and.returnValue(of(issue));
+      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
       // when the "onCreateIssue()" method is invoked
       component.onCreateIssue(issue);
 
       // then the "createIssue()" service method should be called
-      expect(service.createIssue).toHaveBeenCalledWith(issue);
+      expect(issueService.createIssue).toHaveBeenCalledWith(issue);
     });
 
     it('should invoke the service method "getIssues()" when "ngOnInit()" is first called', () => {
-      spyOn(service, 'getIssues').and.returnValue(of([issue, issue2]));
+      spyOn(issueService, 'getIssues').and.returnValue(of([issue, issue2]));
 
       // when "ngOnInit()" is called
       component.ngOnInit();
 
       // then the "getIssues()" method should be called
-      expect(service.getIssues).toHaveBeenCalled();
+      expect(issueService.getIssues).toHaveBeenCalled();
     });
   });
 });
