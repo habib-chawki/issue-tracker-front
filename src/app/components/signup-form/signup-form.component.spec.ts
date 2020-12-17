@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SignupFormComponent } from './signup-form.component';
 
@@ -10,6 +11,7 @@ describe('SignupFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignupFormComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   });
 
@@ -25,7 +27,7 @@ describe('SignupFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render signup form', () => {
+  it('should render signup form', () => {
     // form should be renderd
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
@@ -81,5 +83,21 @@ describe('SignupFormComponent', () => {
     expect(component.signupForm.controls['userName']).toBeTruthy();
     expect(component.signupForm.controls['email']).toBeTruthy();
     expect(component.signupForm.controls['password']).toBeTruthy();
+  });
+
+  fit('should invoke "onSignUp()" method when form submit button is clicked', () => {
+    // given onSignUp component method
+    spyOn(component, 'onSignUp');
+
+    // given the sign up form submit button
+    const submitButton: HTMLButtonElement = nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+
+    // when the button is clicked
+    submitButton.click();
+
+    // then the onSignUp handler method should be invoked
+    expect(component.onSignUp).toHaveBeenCalled();
   });
 });
