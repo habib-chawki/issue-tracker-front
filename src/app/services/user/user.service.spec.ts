@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -35,18 +36,34 @@ describe('UserService', () => {
   });
 
   afterEach(() => {
+    // verify that no unmatched requests are outstanding
     httpTestingController.verify();
   });
 
   fit('should create the user', () => {
-    userService.signUp(userDetails).subscribe((response) => {
-      expect(response).toBe(userDetails);
+    // set the auth token
+    const token = 'Bearer ss54dffghj.F241GzqxdTJsdeSDF.xcvxqsdf5QSDHGsdf$';
+
+    // when a post request is made to sign up the user
+    // then the response header should contain the auth token
+    userService.signUp(userDetails).subscribe((response: HttpResponse<any>) => {
+      expect(response.body).toBe(userDetails);
+      expect(response.headers.get('Authorization')).toBe(token);
+      expect(response.status).toBe(200);
     });
 
+    // expect a post request with the user details to sign up the user
     const req = httpTestingController.expectOne(userService.baseUrl);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toBe(userDetails);
 
-    req.flush(userDetails);
+    // return the auth token with a 200 status code
+    req.flush(userDetails, {
+      headers: {
+        Authorization: token,
+      },
+      status: 200,
+      statusText: 'OK',
+    });
   });
 });
