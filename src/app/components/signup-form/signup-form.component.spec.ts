@@ -52,7 +52,25 @@ describe('SignupFormComponent', () => {
     ).toBeTruthy();
   });
 
-  fit('should define a form group and form controls', () => {
+  fit('should render labels', () => {
+    expect(
+      nativeElement.querySelector('label[for="first-name"]').textContent
+    ).toContain('First name');
+    expect(
+      nativeElement.querySelector('label[for="last-name"]').textContent
+    ).toContain('Last name');
+    expect(
+      nativeElement.querySelector('label[for="username"]').textContent
+    ).toContain('Username');
+    expect(
+      nativeElement.querySelector('label[for="email"]').textContent
+    ).toContain('Email');
+    expect(
+      nativeElement.querySelector('label[for="password"]').textContent
+    ).toContain('Password');
+  });
+
+  it('should define a form group and form controls', () => {
     expect(component.signupForm.controls['firstName']).toBeTruthy();
     expect(component.signupForm.controls['lastName']).toBeTruthy();
     expect(component.signupForm.controls['userName']).toBeTruthy();
