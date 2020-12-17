@@ -26,6 +26,9 @@ describe('SignupFormComponent', () => {
   });
 
   fit('should render signup form', () => {
+    // form should be renderd
+    expect(nativeElement.querySelector('form')).toBeTruthy();
+
     expect(nativeElement.querySelector('input#first-name')).toBeTruthy();
     expect(nativeElement.querySelector('input#last-name')).toBeTruthy();
     expect(nativeElement.querySelector('input#username')).toBeTruthy();
