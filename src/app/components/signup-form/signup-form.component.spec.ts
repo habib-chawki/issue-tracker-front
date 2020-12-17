@@ -25,7 +25,7 @@ describe('SignupFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render signup form', () => {
+  fit('should render signup form', () => {
     // form should be renderd
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
@@ -50,9 +50,14 @@ describe('SignupFormComponent', () => {
     expect(
       nativeElement.querySelector('input#password[formControlName="password"]')
     ).toBeTruthy();
+
+    // submit button
+    expect(
+      nativeElement.querySelector('button[type="submit"]').innerHTML
+    ).toContain('Sign up');
   });
 
-  fit('should render labels', () => {
+  it('should render labels for form inputs', () => {
     expect(
       nativeElement.querySelector('label[for="first-name"]').textContent
     ).toContain('First name');
@@ -70,7 +75,7 @@ describe('SignupFormComponent', () => {
     ).toContain('Password');
   });
 
-  it('should define a form group and form controls', () => {
+  it('should define a form group and form controls in the component', () => {
     expect(component.signupForm.controls['firstName']).toBeTruthy();
     expect(component.signupForm.controls['lastName']).toBeTruthy();
     expect(component.signupForm.controls['userName']).toBeTruthy();
