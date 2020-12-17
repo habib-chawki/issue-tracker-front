@@ -109,8 +109,10 @@ describe('SignupFormComponent', () => {
   fit('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
     spyOn(userService, 'signUp');
 
+    // when the "onSignUp()" component handler method is called
     component.onSignUp();
 
-    expect(userService.signUp).toHaveBeenCalled();
+    // then the user service "signUp" method should be called with the form values
+    expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 });
