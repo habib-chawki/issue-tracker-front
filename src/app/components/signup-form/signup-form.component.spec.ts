@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 import { SignupFormComponent } from './signup-form.component';
 
@@ -7,6 +8,8 @@ describe('SignupFormComponent', () => {
   let component: SignupFormComponent;
   let fixture: ComponentFixture<SignupFormComponent>;
   let nativeElement: HTMLElement;
+
+  let userService: UserService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,6 +22,8 @@ describe('SignupFormComponent', () => {
     fixture = TestBed.createComponent(SignupFormComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
+
+    userService = TestBed.inject(UserService);
 
     fixture.detectChanges();
   });
@@ -85,7 +90,7 @@ describe('SignupFormComponent', () => {
     expect(component.signupForm.controls['password']).toBeTruthy();
   });
 
-  it('should invoke "onSignUp()" method when form submit button is clicked', () => {
+  it('should invoke "onSignUp()" method handler when form submit button is clicked', () => {
     // given onSignUp component method
     spyOn(component, 'onSignUp');
 
@@ -99,5 +104,13 @@ describe('SignupFormComponent', () => {
 
     // then the onSignUp handler method should be invoked
     expect(component.onSignUp).toHaveBeenCalled();
+  });
+
+  fit('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
+    spyOn(userService, 'signUp');
+
+    component.onSignUp();
+
+    expect(userService.signUp).toHaveBeenCalled();
   });
 });
