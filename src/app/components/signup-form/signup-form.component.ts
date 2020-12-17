@@ -17,5 +17,9 @@ export class SignupFormComponent implements OnInit {
 
   constructor() {}
 
+  onSignUp() {
+    console.log('nothing happened');
+  }
+
   ngOnInit(): void {}
 }
