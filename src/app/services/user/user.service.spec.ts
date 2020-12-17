@@ -1,14 +1,16 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { TokenService } from '../token/token.service';
 
 import { UserService } from './user.service';
 
 describe('UserService', () => {
   let userService: UserService;
+  let tokenService: TokenService;
   let httpTestingController: HttpTestingController;
 
   let userDetails;
@@ -19,6 +21,7 @@ describe('UserService', () => {
     });
     userService = TestBed.inject(UserService);
     httpTestingController = TestBed.inject(HttpTestingController);
+    tokenService = TestBed.inject(TokenService);
   });
 
   beforeEach(() => {
@@ -40,7 +43,7 @@ describe('UserService', () => {
     httpTestingController.verify();
   });
 
-  fit('should create the user', () => {
+  it('should create the user', () => {
     // set the auth token
     const token = 'Bearer ss54dffghj.F241GzqxdTJsdeSDF.xcvxqsdf5QSDHGsdf$';
 
