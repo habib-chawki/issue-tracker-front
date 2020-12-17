@@ -19,7 +19,7 @@ export class SignupFormComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   onSignUp() {
-    this.userService.signUp();
+    this.userService.signUp(this.signupForm.value);
   }
 
   ngOnInit(): void {}
