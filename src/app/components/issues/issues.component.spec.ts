@@ -10,7 +10,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 
 import { Issue } from 'src/app/models/issue';
-import { IssueService } from 'src/app/services/issue.service';
+import { IssueService } from 'src/app/services/issue/issue.service';
 
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 import { IssueFormComponent } from '../issue-form/issue-form.component';

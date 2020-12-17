@@ -85,7 +85,7 @@ describe('SignupFormComponent', () => {
     expect(component.signupForm.controls['password']).toBeTruthy();
   });
 
-  fit('should invoke "onSignUp()" method when form submit button is clicked', () => {
+  it('should invoke "onSignUp()" method when form submit button is clicked', () => {
     // given onSignUp component method
     spyOn(component, 'onSignUp');
 

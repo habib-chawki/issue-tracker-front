@@ -5,10 +5,10 @@ import {
 } from '@angular/common/http/testing';
 
 import { IssueService } from './issue.service';
-import { Issue } from '../models/issue';
-import IssueType from '../models/enums/issue-type';
-import IssueResolution from '../models/enums/issue-resolution';
-import IssueStatus from '../models/enums/issue-status';
+import { Issue } from '../../models/issue';
+import IssueType from '../../models/enums/issue-type';
+import IssueResolution from '../../models/enums/issue-resolution';
+import IssueStatus from '../../models/enums/issue-status';
 
 describe('IssueService', () => {
   let service: IssueService;
