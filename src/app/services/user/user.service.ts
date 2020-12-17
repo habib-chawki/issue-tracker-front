@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,9 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
-  signUp(userDetails): Observable<any> {
-    return this.httpClient.post(this.baseUrl, userDetails);
+  signUp(userDetails): Observable<HttpResponse<any>> {
+    return this.httpClient.post(this.baseUrl, userDetails, {
+      observe: 'response',
+    });
   }
 }
