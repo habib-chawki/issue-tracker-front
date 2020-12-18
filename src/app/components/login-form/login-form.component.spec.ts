@@ -25,15 +25,17 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render login form with email and password input fields and a submit button', () => {
+  fit('should render login form with email and password input fields and a submit button', () => {
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
     expect(
-      nativeElement.querySelector('form input#email[type = "text"]')
+      nativeElement.querySelector('form input#email[formControlName = "email"]')
     ).toBeTruthy();
 
     expect(
-      nativeElement.querySelector('form input#password[type = "password"]')
+      nativeElement.querySelector(
+        'form input#password[formControlName = "password"]'
+      )
     ).toBeTruthy();
 
     expect(
@@ -41,8 +43,28 @@ describe('LoginFormComponent', () => {
     ).toContain('Login');
   });
 
-  fit('should define form group and form controls', () => {
+  it('should define form group and form controls', () => {
     expect(component.loginForm.controls['email']).toBeTruthy();
     expect(component.loginForm.controls['password']).toBeTruthy();
+  });
+
+  it('should call "onLogin()" handler method when submit button is clicked', () => {
+    // given the "onLogin()" handler method
+    spyOn(component, 'onLogin');
+
+    // given the login form submit button
+    const submitButton: HTMLButtonElement = nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+
+    // when the button is clicked
+    submitButton.click();
+
+    // then the "onLogin()" handler method should be called
+    expect(component.onLogin).toHaveBeenCalled();
+  });
+
+  it('should call userService#login() when "onLogin()" is called', () => {
+    fail();
   });
 });
