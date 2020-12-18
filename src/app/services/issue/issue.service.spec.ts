@@ -11,7 +11,7 @@ import IssueResolution from '../../models/enums/issue-resolution';
 import IssueStatus from '../../models/enums/issue-status';
 
 describe('IssueService', () => {
-  let service: IssueService;
+  let issueService: IssueService;
   let httpTestingController: HttpTestingController;
 
   let issue: Issue, issue2: Issue;
@@ -21,7 +21,7 @@ describe('IssueService', () => {
       imports: [HttpClientTestingModule],
     });
 
-    service = TestBed.inject(IssueService);
+    issueService = TestBed.inject(IssueService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
@@ -70,18 +70,18 @@ describe('IssueService', () => {
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(issueService).toBeTruthy();
   });
 
   it('should create a new issue', () => {
     // when the "createIssue()" method is invoked with an issue object
     // then the response should be the issue object itself
-    service.createIssue(issue).subscribe((response) => {
+    issueService.createIssue(issue).subscribe((response) => {
       expect(response).toEqual(issue);
     });
 
     // expect a 'POST' request with the issue object
-    const req = httpTestingController.expectOne(service.baseUrl);
+    const req = httpTestingController.expectOne(issueService.baseUrl);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toBe(issue);
 
@@ -92,12 +92,12 @@ describe('IssueService', () => {
   it('should get a single issue by id', () => {
     // when the "getIssue()" service method is invoked with the issue id
     // then the response should be the issue with the correct id
-    service.getIssue('1').subscribe((response) => {
+    issueService.getIssue('1').subscribe((response) => {
       expect(response).toEqual(issue);
     });
 
     // expect a 'GET' request with the issue id
-    const req = httpTestingController.expectOne(`${service.baseUrl}/1`);
+    const req = httpTestingController.expectOne(`${issueService.baseUrl}/1`);
     expect(req.request.method).toBe('GET');
 
     // return the issue
@@ -109,12 +109,12 @@ describe('IssueService', () => {
     const issues = [issue, issue2];
 
     // when the "getIssues()" method is invoked, expect the response to be the list of issues
-    service.getIssues().subscribe((response) => {
+    issueService.getIssues().subscribe((response) => {
       expect(response).toEqual(issues);
     });
 
     // expect a 'GET' request
-    const req = httpTestingController.expectOne(service.baseUrl);
+    const req = httpTestingController.expectOne(issueService.baseUrl);
     expect(req.request.method).toBe('GET');
 
     // return the list of mocked issues

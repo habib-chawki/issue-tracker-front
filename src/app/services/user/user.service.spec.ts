@@ -57,6 +57,7 @@ describe('UserService', () => {
 
     // expect a post request with the user details to sign up the user
     const req = httpTestingController.expectOne(userService.baseUrl);
+
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toBe(userDetails);
 
