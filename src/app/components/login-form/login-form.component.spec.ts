@@ -1,5 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
 
 import { LoginFormComponent } from './login-form.component';
 
@@ -8,10 +10,12 @@ describe('LoginFormComponent', () => {
   let fixture: ComponentFixture<LoginFormComponent>;
   let nativeElement: HTMLElement;
 
+  let userService: UserService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginFormComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
     }).compileComponents();
   });
 
@@ -19,6 +23,8 @@ describe('LoginFormComponent', () => {
     fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
+
+    userService = TestBed.inject(UserService);
 
     fixture.detectChanges();
   });
@@ -66,7 +72,12 @@ describe('LoginFormComponent', () => {
     expect(component.onLogin).toHaveBeenCalled();
   });
 
-  it('should call userService#login() when "onLogin()" is called', () => {
-    fail();
+  fit('should call userService#login() with form values when "onLogin()" is called', () => {
+    // given userService#login handler method
+    spyOn(userService, 'login');
+
+    component.onLogin();
+
+    expect(userService.login).toHaveBeenCalled();
   });
 });
