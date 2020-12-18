@@ -122,7 +122,7 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  fit('should invoke "tokenService#storeToken()" with the auth token when "onSignUp()" is called', () => {
+  it('should invoke "tokenService#storeToken()" with the auth token when "onSignUp()" is called', () => {
     // given the authorization token header
     const token = 'Bearer GSdf$54fgR.dfgOEIml99.@sdfjMPSxGf8';
     const headers = new HttpHeaders({ Authorization: token });
@@ -132,10 +132,10 @@ describe('SignupFormComponent', () => {
       of(new HttpResponse({ headers }))
     );
 
-    // given the storeToken service method
+    // given the "storeToken()" service method
     spyOn(tokenService, 'storeToken');
 
-    // when onSignUp is called
+    // when "onSignUp()" is called
     component.onSignUp();
 
     // then the "storeToken()" method should be called with the extracted authorization token
