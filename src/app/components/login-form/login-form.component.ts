@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TokenService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -13,11 +14,22 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {}
 
   onLogin() {
-    this.userService.login(this.loginForm.value);
+    let token = '';
+
+    // extract the auth token from the response header
+    this.userService.login(this.loginForm.value).subscribe((response) => {
+      token = response.headers.get('Authorization');
+    });
+
+    // store the token in localStorage
+    this.tokenService.storeToken(token);
   }
 }
