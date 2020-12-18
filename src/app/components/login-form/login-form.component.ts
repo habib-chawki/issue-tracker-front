@@ -18,6 +18,6 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onLogin() {
-    this.userService.login();
+    this.userService.login(this.loginForm.value);
   }
 }
