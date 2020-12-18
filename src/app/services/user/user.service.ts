@@ -15,4 +15,6 @@ export class UserService {
       observe: 'response',
     });
   }
+
+  login() {}
 }
