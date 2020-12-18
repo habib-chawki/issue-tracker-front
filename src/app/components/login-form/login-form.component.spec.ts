@@ -76,8 +76,10 @@ describe('LoginFormComponent', () => {
     // given userService#login handler method
     spyOn(userService, 'login');
 
+    // when "onLogin()" is called
     component.onLogin();
 
-    expect(userService.login).toHaveBeenCalled();
+    // then userService#login should be invoked with login form values
+    expect(userService.login).toHaveBeenCalledWith(component.loginForm.value);
   });
 });
