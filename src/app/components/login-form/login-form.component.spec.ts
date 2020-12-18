@@ -25,7 +25,7 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render login form with email and password input fields', () => {
+  fit('should render login form with email and password input fields and a submit button', () => {
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
     expect(
@@ -35,5 +35,9 @@ describe('LoginFormComponent', () => {
     expect(
       nativeElement.querySelector('form input#password[type = "password"]')
     ).toBeTruthy();
+
+    expect(
+      nativeElement.querySelector('form button[type = "submit"]').textContent
+    ).toContain('Login');
   });
 });
