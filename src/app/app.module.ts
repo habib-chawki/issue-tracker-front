@@ -10,6 +10,7 @@ import { IssuesComponent } from './components/issues/issues.component';
 import { IssueFormComponent } from './components/issue-form/issue-form.component';
 import { IssueDetailsComponent } from './components/issue-details/issue-details.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     IssueFormComponent,
     IssueDetailsComponent,
     SignupFormComponent,
+    LoginFormComponent,
   ],
   imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
