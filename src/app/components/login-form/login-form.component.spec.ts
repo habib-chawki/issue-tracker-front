@@ -88,7 +88,7 @@ describe('LoginFormComponent', () => {
     expect(userService.login).toHaveBeenCalledWith(component.loginForm.value);
   });
 
-  fit('should invoke tokenService#storeToken with the auth token when "onLogin()" is called', () => {
+  it('should invoke tokenService#storeToken with the auth token when "onLogin()" is called', () => {
     // given the authorization token header
     const token = 'Bearer TdExx8$*sd3.sdfJTfSe22Sw.$@4sLMzzSx34dS';
     const headers = new HttpHeaders({ Authorization: token });
