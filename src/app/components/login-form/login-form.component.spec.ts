@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginFormComponent } from './login-form.component';
 
@@ -10,6 +11,7 @@ describe('LoginFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginFormComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   });
 
@@ -25,7 +27,7 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render login form with email and password input fields and a submit button', () => {
+  it('should render login form with email and password input fields and a submit button', () => {
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
     expect(
