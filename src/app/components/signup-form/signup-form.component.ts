@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TokenService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -16,10 +17,21 @@ export class SignupFormComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private tokenService: TokenService
+  ) {}
 
   onSignUp() {
-    this.userService.signUp(this.signupForm.value);
+    let token = '';
+
+    // extract the token from the response's Authorization header
+    this.userService.signUp(this.signupForm.value).subscribe((response) => {
+      token = response.headers.get('Authorization');
+    });
+
+    // store the auth token
+    this.tokenService.storeToken(token);
   }
 
   ngOnInit(): void {}
