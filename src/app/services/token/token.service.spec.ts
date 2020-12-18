@@ -15,12 +15,14 @@ describe('TokenService', () => {
   });
 
   fit('should store the token in localStorage', () => {
-    const token = 'GdRhx85$.hTedRU9@.LeSXi8Y5G33';
+    const prefix = 'Bearer ';
+    const body = 'GdRhx85$.hTedRU9@.LeSXi8Y5G33';
+    const token = prefix + body;
 
     // when storeToken() is called
     tokenService.storeToken(token);
 
     // then the token should be stored in localStorage
-    expect(localStorage.getItem('token')).toBe(token);
+    expect(localStorage.getItem('token')).toBe(body);
   });
 });
