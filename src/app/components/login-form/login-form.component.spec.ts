@@ -79,7 +79,7 @@ describe('LoginFormComponent', () => {
 
   it('should call userService#login() with form values when "onLogin()" is called', () => {
     // given userService#login handler method
-    spyOn(userService, 'login');
+    spyOn(userService, 'login').and.returnValue(of());
 
     // when "onLogin()" is called (form is submitted)
     component.onLogin();
