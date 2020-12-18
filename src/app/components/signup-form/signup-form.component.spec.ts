@@ -1,3 +1,4 @@
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -121,14 +122,23 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  fit('should invoke "tokenService#storeToken()" when "onSignUp()" is called', () => {
+  fit('should invoke "tokenService#storeToken()" with the auth token when "onSignUp()" is called', () => {
+    // given the authorization token header
+    const token = 'Bearer GSdf$54fgR.dfgOEIml99.@sdfjMPSxGf8';
+    const headers = new HttpHeaders({ Authorization: token });
+
+    // given the signup response contains the auth token header
+    spyOn(userService, 'signUp').and.returnValue(
+      of(new HttpResponse({ headers }))
+    );
+
     // given the storeToken service method
     spyOn(tokenService, 'storeToken');
 
     // when onSignUp is called
     component.onSignUp();
 
-    // then the storeToken method should be called
-    expect(tokenService.storeToken).toHaveBeenCalled();
+    // then the "storeToken()" method should be called with the extracted authorization token
+    expect(tokenService.storeToken).toHaveBeenCalledWith(token);
   });
 });
