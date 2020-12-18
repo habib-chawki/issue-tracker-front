@@ -1,6 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
+import { TokenService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 import { SignupFormComponent } from './signup-form.component';
@@ -11,6 +13,7 @@ describe('SignupFormComponent', () => {
   let nativeElement: HTMLElement;
 
   let userService: UserService;
+  let tokenService: TokenService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +28,7 @@ describe('SignupFormComponent', () => {
     nativeElement = fixture.nativeElement;
 
     userService = TestBed.inject(UserService);
+    tokenService = TestBed.inject(TokenService);
 
     fixture.detectChanges();
   });
@@ -115,5 +119,16 @@ describe('SignupFormComponent', () => {
 
     // then the user service "signUp" method should be called with the form values
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
+  });
+
+  fit('should invoke "tokenService#storeToken()" when "onSignUp()" is called', () => {
+    // given the storeToken service method
+    spyOn(tokenService, 'storeToken');
+
+    // when onSignUp is called
+    component.onSignUp();
+
+    // then the storeToken method should be called
+    expect(tokenService.storeToken).toHaveBeenCalled();
   });
 });
