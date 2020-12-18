@@ -113,7 +113,7 @@ describe('SignupFormComponent', () => {
   });
 
   it('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
-    spyOn(userService, 'signUp');
+    spyOn(userService, 'signUp').and.returnValue(of());
 
     // when the "onSignUp()" component method is called
     component.onSignUp();

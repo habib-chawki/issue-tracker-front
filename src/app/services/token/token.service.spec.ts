@@ -14,7 +14,7 @@ describe('TokenService', () => {
     expect(tokenService).toBeTruthy();
   });
 
-  fit('should store the token in localStorage', () => {
+  it('should store the token in localStorage', () => {
     const prefix = 'Bearer ';
     const body = 'GdRhx85$.hTedRU9@.LeSXi8Y5G33';
     const token = prefix + body;
