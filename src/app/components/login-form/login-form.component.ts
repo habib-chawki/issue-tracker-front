@@ -15,4 +15,6 @@ export class LoginFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onLogin() {}
 }
