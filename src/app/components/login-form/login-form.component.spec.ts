@@ -62,7 +62,7 @@ describe('LoginFormComponent', () => {
 
     // given the login form submit button
     const submitButton: HTMLButtonElement = nativeElement.querySelector(
-      'button[type="submit"]'
+      'form button[type="submit"]'
     );
 
     // when the button is clicked
@@ -72,11 +72,11 @@ describe('LoginFormComponent', () => {
     expect(component.onLogin).toHaveBeenCalled();
   });
 
-  fit('should call userService#login() with form values when "onLogin()" is called', () => {
+  it('should call userService#login() with form values when "onLogin()" is called', () => {
     // given userService#login handler method
     spyOn(userService, 'login');
 
-    // when "onLogin()" is called
+    // when "onLogin()" is called (form is submitted)
     component.onLogin();
 
     // then userService#login should be invoked with login form values

@@ -102,7 +102,7 @@ describe('SignupFormComponent', () => {
 
     // given the sign up form submit button
     const submitButton: HTMLButtonElement = nativeElement.querySelector(
-      'button[type="submit"]'
+      'form button[type="submit"]'
     );
 
     // when the button is clicked
