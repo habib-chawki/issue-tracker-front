@@ -56,6 +56,16 @@ describe('LoginFormComponent', () => {
     ).toContain('Login');
   });
 
+  it('should render labels for form field inputs', () => {
+    expect(
+      nativeElement.querySelector('label[for="email"]').textContent
+    ).toContain('Email');
+
+    expect(
+      nativeElement.querySelector('label[for="password"]').textContent
+    ).toContain('Password');
+  });
+
   it('should define form group and form controls', () => {
     expect(component.loginForm.controls['email']).toBeTruthy();
     expect(component.loginForm.controls['password']).toBeTruthy();
