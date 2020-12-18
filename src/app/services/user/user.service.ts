@@ -6,15 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  baseUrl = '/users/signup';
+  signupUrl = '/users/signup';
+  loginUrl = '/login';
 
   constructor(private httpClient: HttpClient) {}
 
-  signUp(userDetails): Observable<HttpResponse<any>> {
-    return this.httpClient.post(this.baseUrl, userDetails, {
+  signUp(userCredentials): Observable<HttpResponse<any>> {
+    return this.httpClient.post(this.signupUrl, userCredentials, {
       observe: 'response',
     });
   }
 
-  login(userDetails) {}
+  login(userCredentials): Observable<HttpResponse<any>> {
+    return this.httpClient.post(this.loginUrl, userCredentials, {
+      observe: 'response',
+    });
+  }
 }
