@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class TokenService {
   constructor() {}
 
-  storeToken(token: string) {
+  storeToken(token: string): void {
     // remove the prefix and store the token in localStorage
     token = token.replace('Bearer ', '');
     localStorage.setItem('token', token);
@@ -14,5 +14,9 @@ export class TokenService {
 
   isUserLoggedIn(): boolean {
     return localStorage.getItem('token') ? true : false;
+  }
+
+  storeUserIdentifier(userIdentifier: string): void {
+    localStorage.setItem('identifier', userIdentifier);
   }
 }
