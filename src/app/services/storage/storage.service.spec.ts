@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StorageService } from './token.service';
+import { StorageService } from './storage.service';
 
-describe('TokenService', () => {
+describe('StorageService', () => {
   let storageService: StorageService;
 
   beforeEach(() => {
