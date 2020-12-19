@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TokenService } from 'src/app/services/token/token.service';
+import { StorageService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class SignupFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private tokenService: TokenService
+    private storageService: StorageService
   ) {}
 
   onSignUp() {
@@ -31,7 +31,7 @@ export class SignupFormComponent implements OnInit {
     });
 
     // store the auth token
-    this.tokenService.storeToken(token);
+    this.storageService.storeToken(token);
   }
 
   ngOnInit(): void {}

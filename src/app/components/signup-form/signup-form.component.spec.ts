@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
-import { TokenService } from 'src/app/services/token/token.service';
+import { StorageService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 import { SignupFormComponent } from './signup-form.component';
@@ -14,7 +14,7 @@ describe('SignupFormComponent', () => {
   let nativeElement: HTMLElement;
 
   let userService: UserService;
-  let tokenService: TokenService;
+  let storageService: StorageService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('SignupFormComponent', () => {
     nativeElement = fixture.nativeElement;
 
     userService = TestBed.inject(UserService);
-    tokenService = TestBed.inject(TokenService);
+    storageService = TestBed.inject(StorageService);
 
     fixture.detectChanges();
   });
@@ -133,12 +133,12 @@ describe('SignupFormComponent', () => {
     );
 
     // given the "storeToken()" service method
-    spyOn(tokenService, 'storeToken');
+    spyOn(storageService, 'storeToken');
 
     // when "onSignUp()" is called
     component.onSignUp();
 
     // then the "storeToken()" method should be called with the extracted authorization token
-    expect(tokenService.storeToken).toHaveBeenCalledWith(token);
+    expect(storageService.storeToken).toHaveBeenCalledWith(token);
   });
 });

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class TokenService {
+export class StorageService {
   constructor() {}
 
   storeToken(token: string): void {
@@ -12,11 +12,11 @@ export class TokenService {
     localStorage.setItem('token', token);
   }
 
-  isUserLoggedIn(): boolean {
-    return localStorage.getItem('token') ? true : false;
-  }
-
   storeUserIdentifier(userIdentifier: string): void {
     localStorage.setItem('identifier', userIdentifier);
+  }
+
+  isUserLoggedIn(): boolean {
+    return localStorage.getItem('token') ? true : false;
   }
 }

@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
-import { TokenService } from 'src/app/services/token/token.service';
+import { StorageService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 import { LoginFormComponent } from './login-form.component';
@@ -14,7 +14,7 @@ describe('LoginFormComponent', () => {
   let nativeElement: HTMLElement;
 
   let userService: UserService;
-  let tokenService: TokenService;
+  let storageService: StorageService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('LoginFormComponent', () => {
     nativeElement = fixture.nativeElement;
 
     userService = TestBed.inject(UserService);
-    tokenService = TestBed.inject(TokenService);
+    storageService = TestBed.inject(StorageService);
 
     fixture.detectChanges();
   });
@@ -104,7 +104,7 @@ describe('LoginFormComponent', () => {
     const headers = new HttpHeaders({ Authorization: token });
 
     // given the "storeToken" service method
-    spyOn(tokenService, 'storeToken');
+    spyOn(storageService, 'storeToken');
 
     // when the login service method returns a response with the auth token
     spyOn(userService, 'login').and.returnValue(
@@ -115,6 +115,6 @@ describe('LoginFormComponent', () => {
     component.onLogin();
 
     // then expect tokenService#storeToken to be called with the extracted auth token
-    expect(tokenService.storeToken).toHaveBeenCalledWith(token);
+    expect(storageService.storeToken).toHaveBeenCalledWith(token);
   });
 });

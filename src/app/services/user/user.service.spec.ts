@@ -4,13 +4,13 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { TokenService } from '../token/token.service';
+import { StorageService } from '../token/token.service';
 
 import { UserService } from './user.service';
 
 describe('UserService', () => {
   let userService: UserService;
-  let tokenService: TokenService;
+  let storageService: StorageService;
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('UserService', () => {
     });
     userService = TestBed.inject(UserService);
     httpTestingController = TestBed.inject(HttpTestingController);
-    tokenService = TestBed.inject(TokenService);
+    storageService = TestBed.inject(StorageService);
   });
 
   it('should be created', () => {
