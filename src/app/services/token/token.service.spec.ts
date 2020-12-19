@@ -19,7 +19,7 @@ describe('TokenService', () => {
     expect(storageService).toBeTruthy();
   });
 
-  it('should store the token in localStorage', () => {
+  it('should store the auth token in localStorage', () => {
     const prefix = 'Bearer ';
     const body =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im15X2VtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.cEHP5JqC-0APiSyCltuSAMmCjQqJFw9YfiHjOBjZPmI';
@@ -32,21 +32,7 @@ describe('TokenService', () => {
     expect(localStorage.getItem('token')).toBe(body);
   });
 
-  it('should determine whether the user is logged in or not', () => {
-    // when auth token is not present then the user is not logged in
-    expect(storageService.isUserLoggedIn()).toBeFalse();
-
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuX2VtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.gDUCVU7FRVzGRXU3VTK45Q5h7of7HNwLlYtrPz1MrJU';
-
-    // set the auth token
-    localStorage.setItem('token', token);
-
-    // when the auth token is present then the user is logged in
-    expect(storageService.isUserLoggedIn()).toBeTrue();
-  });
-
-  it('should store user identifier', () => {
+  it('should store the user identifier in localStorage', () => {
     const userIdentifier = 'harper.lee@email.com';
 
     // user identifier should not be present in localStorage at first
@@ -56,5 +42,21 @@ describe('TokenService', () => {
 
     // expect the user identifier to have been stored successfully
     expect(localStorage.getItem('identifier')).toBe(userIdentifier);
+  });
+
+  fit('should determine whether the user is logged in or not', () => {
+    // when auth token or user identifier are not present then the user is not logged in
+    expect(storageService.isUserLoggedIn()).toBeFalse();
+
+    const userIdentifier = 'oscar.wilde@email.com';
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuX2VtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.gDUCVU7FRVzGRXU3VTK45Q5h7of7HNwLlYtrPz1MrJU';
+
+    // set the auth token and user identifier
+    localStorage.setItem('token', token);
+    localStorage.setItem('identifier', userIdentifier);
+
+    // when the auth token is present then the user is logged in
+    expect(storageService.isUserLoggedIn()).toBeTrue();
   });
 });
