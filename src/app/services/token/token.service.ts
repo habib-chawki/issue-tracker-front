@@ -11,4 +11,8 @@ export class TokenService {
     token = token.replace('Bearer ', '');
     localStorage.setItem('token', token);
   }
+
+  isUserLoggedIn(): boolean {
+    return localStorage.getItem('token') ? true : false;
+  }
 }
