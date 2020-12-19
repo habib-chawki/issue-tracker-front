@@ -16,6 +16,11 @@ export class StorageService {
     localStorage.setItem('identifier', userIdentifier);
   }
 
+  storeUserDetails({ userIdentifier, token }) {
+    this.storeUserIdentifier(userIdentifier);
+    this.storeToken(token);
+  }
+
   isUserLoggedIn(): boolean {
     return localStorage.getItem('token') && localStorage.getItem('identifier')
       ? true
