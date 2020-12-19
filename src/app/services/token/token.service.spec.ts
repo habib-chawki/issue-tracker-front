@@ -71,4 +71,10 @@ describe('TokenService', () => {
     expect(localStorage.getItem('identifier')).toBe(userIdentifier);
     expect(localStorage.getItem('token')).toBe(token);
   });
+
+  fit('should get user identifier', () => {
+    const userId = 'id@email.com';
+    localStorage.setItem('identifier', userId);
+    expect(storageService.getUserIdentifier()).toBe(userId);
+  });
 });
