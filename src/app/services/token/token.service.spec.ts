@@ -20,10 +20,9 @@ describe('TokenService', () => {
   });
 
   it('should store the auth token in localStorage', () => {
-    const prefix = 'Bearer ';
     const body =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im15X2VtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.cEHP5JqC-0APiSyCltuSAMmCjQqJFw9YfiHjOBjZPmI';
-    const token = prefix + body;
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcnBlci5sZWVAZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.67U0lz822lIIsUNyotQgq1zkWNp-ci-8aMJN0rNTroI';
+    const token = storageService.TOKEN_PREFIX + body;
 
     // when storeToken() is called
     storageService.storeToken(token);

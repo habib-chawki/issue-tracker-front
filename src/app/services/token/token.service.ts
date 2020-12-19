@@ -4,11 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StorageService {
+  TOKEN_PREFIX = 'Bearer ';
+
   constructor() {}
 
   storeToken(token: string): void {
     // remove the prefix and store the token in localStorage
-    token = token.replace('Bearer ', '');
+    token = token.replace(this.TOKEN_PREFIX, '');
     localStorage.setItem('token', token);
   }
 
