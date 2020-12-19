@@ -17,6 +17,8 @@ export class StorageService {
   }
 
   isUserLoggedIn(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    return localStorage.getItem('token') && localStorage.getItem('identifier')
+      ? true
+      : false;
   }
 }
