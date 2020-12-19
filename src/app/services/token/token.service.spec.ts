@@ -44,13 +44,13 @@ describe('TokenService', () => {
     expect(localStorage.getItem('identifier')).toBe(userIdentifier);
   });
 
-  fit('should determine whether the user is logged in or not', () => {
+  it('should determine whether the user is logged in or not', () => {
     // when auth token or user identifier are not present then the user is not logged in
     expect(storageService.isUserLoggedIn()).toBeFalse();
 
     const userIdentifier = 'oscar.wilde@email.com';
     const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuX2VtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.gDUCVU7FRVzGRXU3VTK45Q5h7of7HNwLlYtrPz1MrJU';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9zY2FyLndpbGRlQGVtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.BzUcqIyceAhNxi1hHtwryF1pgL4iBM_Qc_bpVdZwlnI';
 
     // set the auth token and user identifier
     localStorage.setItem('token', token);
@@ -58,5 +58,18 @@ describe('TokenService', () => {
 
     // when the auth token is present then the user is logged in
     expect(storageService.isUserLoggedIn()).toBeTrue();
+  });
+
+  it('should store both the auth token and user identifier', () => {
+    // given the user identifier and auth token
+    const userIdentifier = 'george.orwell@email.com';
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdlb3JnZS5vcndlbGxAZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.Zslw5_Se0mFD2arV82AlQ8ZY0IZyB42G4fSyaiQZgEs';
+
+    storageService.storeUserDetails({ userIdentifier, token });
+
+    // expect both the auth token and user identifier to have been stored successfully
+    expect(localStorage.getItem('identifier')).toBe(userIdentifier);
+    expect(localStorage.getItem('token')).toBe(token);
   });
 });
