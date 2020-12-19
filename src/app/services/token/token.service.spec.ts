@@ -27,7 +27,7 @@ describe('TokenService', () => {
     expect(localStorage.getItem('token')).toBe(body);
   });
 
-  fit('should determine whether the user is logged in or not', () => {
+  it('should determine whether the user is logged in or not', () => {
     // when auth token is not present then the user is not logged in
     expect(tokenService.isUserLoggedIn()).toBeFalse();
 
@@ -39,5 +39,17 @@ describe('TokenService', () => {
 
     // when the auth token is present then the user is logged in
     expect(tokenService.isUserLoggedIn()).toBeTrue();
+  });
+
+  fit('should store user identifier', () => {
+    const userIdentifier = 'harper.lee@email.com';
+
+    // user identifier should not be present in localStorage at first
+    expect(localStorage.getItem('userIdentifier')).toBeNull();
+
+    tokenService.storeUserIdentifier(userIdentifier);
+
+    // expect the user identifier to have been stored successfully
+    expect(localStorage.getItem('identifier')).toBe(userIdentifier);
   });
 });
