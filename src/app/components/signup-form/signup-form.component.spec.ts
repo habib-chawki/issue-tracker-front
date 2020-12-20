@@ -122,23 +122,30 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  it('should invoke "tokenService#storeToken()" with the auth token when "onSignUp()" is called', () => {
-    // given the authorization token header
-    const token = 'Bearer GSdf$54fgR.dfgOEIml99.@sdfjMPSxGf8';
-    const headers = new HttpHeaders({ Authorization: token });
+  fit('should invoke "tokenService#storeUserDetails()" with the auth token and user identifier when "onSignUp()" is called', () => {
+    // given the authorization token header and user identifier (email)
+    const token =
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkouUi5SLlRvbGtpZW5AZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.IB_-OiA8UNtkZLL9UapBofUaJY8mRBH5SHv66HxbOmM';
+    const identifier = 'J.R.R.Tolkien@email.com';
 
-    // given the signup response contains the auth token header
+    // given the response headers and body
+    const headers = new HttpHeaders({ Authorization: token });
+    const body = { email: identifier };
+
+    // given the signup response
     spyOn(userService, 'signUp').and.returnValue(
-      of(new HttpResponse({ headers }))
+      of(new HttpResponse({ body, headers }))
     );
 
-    // given the "storeToken()" service method
-    spyOn(storageService, 'storeToken');
+    // given the "storeUserDetails()" service method
+    spyOn(storageService, 'storeUserDetails');
 
     // when "onSignUp()" is called
     component.onSignUp();
 
-    // then the "storeToken()" method should be called with the extracted authorization token
-    expect(storageService.storeToken).toHaveBeenCalledWith(token);
+    // then "storeUserDetails()" should be called with the extracted token and user identifier
+    expect(storageService.storeUserDetails).toHaveBeenCalledWith(
+      jasmine.objectContaining({ identifier, token })
+    );
   });
 });
