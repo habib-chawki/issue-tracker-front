@@ -32,12 +32,13 @@ describe('UserService', () => {
   });
 
   describe('POST', () => {
-    let userSignupCredentials, userLoginCredentials;
+    let signupCredentials, loginCredentials;
     let token, response;
 
     beforeEach(() => {
       // set the auth token
-      token = 'Bearer ss54dffghj.F241GzqxdTJsdeSDF.xcvxqsdf5QSDHGsdf$';
+      token =
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkouUi5SLlRvbGtpZW5AZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.IB_-OiA8UNtkZLL9UapBofUaJY8mRBH5SHv66HxbOmM';
 
       // set the response headers and status
       response = {
@@ -48,7 +49,7 @@ describe('UserService', () => {
         statusText: 'OK',
       };
 
-      userSignupCredentials = {
+      signupCredentials = {
         firstName: 'someone',
         lastName: 'something',
         username: 'one.thing',
@@ -56,9 +57,9 @@ describe('UserService', () => {
         password: 'Redman',
       };
 
-      userLoginCredentials = {
+      loginCredentials = {
         email: 'yuval.noah@email.com',
-        password: 'sapiens',
+        password: 'Sapiens',
       };
     });
 
@@ -66,9 +67,9 @@ describe('UserService', () => {
       // when a signup post request is made
       // then the response header should contain the auth token
       userService
-        .signUp(userSignupCredentials)
+        .signUp(signupCredentials)
         .subscribe((response: HttpResponse<any>) => {
-          expect(response.body).toBe(userSignupCredentials);
+          expect(response.body).toBe(signupCredentials);
           expect(response.headers.get('Authorization')).toBe(token);
           expect(response.status).toBe(200);
         });
@@ -77,19 +78,19 @@ describe('UserService', () => {
       const req = httpTestingController.expectOne(userService.signupUrl);
 
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toBe(userSignupCredentials);
+      expect(req.request.body).toBe(signupCredentials);
 
       // return the auth token with a 200 status code
-      req.flush(userSignupCredentials, response);
+      req.flush(signupCredentials, response);
     });
 
     it('should handle user login', () => {
       // when a login post request is made
       // then the 200 response header should contain the auth token
       userService
-        .login(userLoginCredentials)
+        .login(loginCredentials)
         .subscribe((response: HttpResponse<any>) => {
-          expect(response.body).toBe(userLoginCredentials);
+          expect(response.body).toBe(loginCredentials);
           expect(response.headers.get('Authorization')).toBe(token);
           expect(response.status).toBe(200);
         });
@@ -98,10 +99,10 @@ describe('UserService', () => {
       const req = httpTestingController.expectOne(userService.loginUrl);
 
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toBe(userLoginCredentials);
+      expect(req.request.body).toBe(loginCredentials);
 
       // return the user credentials and auth token with a 200 status code
-      req.flush(userLoginCredentials, response);
+      req.flush(loginCredentials, response);
     });
   });
 });
