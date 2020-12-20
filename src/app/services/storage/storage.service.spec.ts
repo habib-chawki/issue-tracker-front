@@ -61,7 +61,7 @@ describe('StorageService', () => {
     expect(storageService.isUserLoggedIn()).toBeTrue();
   });
 
-  it('should store both the auth token and user identifier', () => {
+  it('should store both the auth token and user identifier in localStorage', () => {
     // given the user identifier and auth token
     const userIdentifier = 'george.orwell@email.com';
     const token =
@@ -76,9 +76,16 @@ describe('StorageService', () => {
     expect(localStorage.getItem(storageService.TOKEN_KEY)).toBe(token);
   });
 
-  it('should get user identifier', () => {
-    const userId = 'id@email.com';
-    localStorage.setItem(storageService.IDENTIFIER_KEY, userId);
-    expect(storageService.getUserIdentifier()).toBe(userId);
+  it('should get user identifier from localStorage', () => {
+    const identifier = 'patrick.rothfuss@email.com';
+    localStorage.setItem(storageService.IDENTIFIER_KEY, identifier);
+    expect(storageService.getUserIdentifier()).toBe(identifier);
+  });
+
+  fit('should get the auth token from localStorage', () => {
+    const token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhdHJpY2sucm90aGZ1c3NAZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.YD58YTe6t1u4OtQ7KGliI-6hbtlBhVwg4RiZF3jnrWQ';
+    localStorage.setItem(storageService.TOKEN_KEY, token);
+    expect(storageService.getToken()).toBe(token);
   });
 });
