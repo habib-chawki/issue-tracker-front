@@ -122,7 +122,7 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  fit('should invoke "tokenService#storeUserDetails()" with the auth token and user identifier when "onSignUp()" is called', () => {
+  it('should invoke "tokenService#storeUserDetails()" with the auth token and user identifier when "onSignUp()" is called', () => {
     // given the authorization token header and user identifier (email)
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkouUi5SLlRvbGtpZW5AZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.IB_-OiA8UNtkZLL9UapBofUaJY8mRBH5SHv66HxbOmM';

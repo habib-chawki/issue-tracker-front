@@ -99,22 +99,29 @@ describe('LoginFormComponent', () => {
   });
 
   it('should invoke tokenService#storeToken with the auth token when "onLogin()" is called', () => {
-    // given the authorization token header
-    const token = 'Bearer TdExx8$*sd3.sdfJTfSe22Sw.$@4sLMzzSx34dS';
+    // given the user identifier and auth token
+    const identifier = 'George.R.R.Martin@email.com';
+    const token =
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikdlb3JnZS5SLlIuTWFydGluQGVtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.Qx4-yL0S1D95hekkN3tLgwiFQdytsE95gp9a3QNK2sA';
+
+    // given the response body and headers
     const headers = new HttpHeaders({ Authorization: token });
+    const body = { email: identifier };
 
-    // given the "storeToken" service method
-    spyOn(storageService, 'storeToken');
+    // given the "storeUserDetails" service method
+    spyOn(storageService, 'storeUserDetails');
 
-    // when the login service method returns a response with the auth token
+    // given the login response
     spyOn(userService, 'login').and.returnValue(
-      of(new HttpResponse({ headers }))
+      of(new HttpResponse({ body, headers }))
     );
 
     // when the "onLogin()" method is invoked
     component.onLogin();
 
-    // then expect tokenService#storeToken to be called with the extracted auth token
-    expect(storageService.storeToken).toHaveBeenCalledWith(token);
+    // then tokenService#storeUserDetails should be called with the auth token and user identifier
+    expect(storageService.storeUserDetails).toHaveBeenCalledWith(
+      jasmine.objectContaining({ identifier, token })
+    );
   });
 });
