@@ -22,14 +22,16 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onLogin() {
+    let identifier = '';
     let token = '';
 
-    // extract the auth token from the response header
+    // extract the auth token and user identifier
     this.userService.login(this.loginForm.value).subscribe((response) => {
       token = response.headers.get('Authorization');
+      identifier = response.body.email;
     });
 
-    // store the token in localStorage
-    this.storageService.storeToken(token);
+    // store the token and identifier in localStorage
+    this.storageService.storeUserDetails({ identifier, token });
   }
 }
