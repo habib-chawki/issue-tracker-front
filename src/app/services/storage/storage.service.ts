@@ -25,6 +25,10 @@ export class StorageService {
     this.storeToken(token);
   }
 
+  getToken() {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
   getUserIdentifier() {
     return localStorage.getItem(this.IDENTIFIER_KEY);
   }
