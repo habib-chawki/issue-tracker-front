@@ -20,8 +20,8 @@ export class StorageService {
     localStorage.setItem(this.IDENTIFIER_KEY, userIdentifier);
   }
 
-  storeUserDetails({ userIdentifier, token }) {
-    this.storeUserIdentifier(userIdentifier);
+  storeUserDetails({ identifier, token }) {
+    this.storeUserIdentifier(identifier);
     this.storeToken(token);
   }
 
