@@ -24,14 +24,16 @@ export class SignupFormComponent implements OnInit {
 
   onSignUp() {
     let token = '';
+    let identifier = '';
 
-    // extract the token from the response's Authorization header
+    // extract the token and user identifier
     this.userService.signUp(this.signupForm.value).subscribe((response) => {
       token = response.headers.get('Authorization');
+      identifier = response.body.email;
     });
 
-    // store the auth token
-    this.storageService.storeToken(token);
+    // store user details (identifier + token)
+    this.storageService.storeUserDetails({ identifier, token });
   }
 
   ngOnInit(): void {}
