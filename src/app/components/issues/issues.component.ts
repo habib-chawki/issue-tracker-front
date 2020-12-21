@@ -36,4 +36,7 @@ export class IssuesComponent implements OnInit {
   onDisplayIssueDetails(issue: Issue) {
     this.issueDetails = issue;
   }
+
+  // invoked when the issue remove button is clicked
+  onRemoveIssue() {}
 }
