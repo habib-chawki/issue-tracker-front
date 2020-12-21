@@ -38,5 +38,9 @@ export class IssuesComponent implements OnInit {
   }
 
   // invoked when the issue remove button is clicked
-  onRemoveIssue(issue: Issue) {}
+  onRemoveIssue(issue: Issue) {
+    // remove the issue
+    const index = this.issues.indexOf(issue);
+    this.issues.splice(index, 1);
+  }
 }
