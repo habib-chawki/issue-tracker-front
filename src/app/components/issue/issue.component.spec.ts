@@ -96,4 +96,10 @@ describe('IssueComponent', () => {
     // then an event should be emitted with the issue details
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
+
+  fit('should render a remove button', () => {
+    expect(nativeElement.querySelector('button#remove').textContent).toContain(
+      'Remove'
+    );
+  });
 });
