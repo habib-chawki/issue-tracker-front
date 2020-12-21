@@ -163,7 +163,7 @@ describe('IssuesComponent', () => {
       expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
     });
 
-    fit('should invoke "onRemoveIssue()" when an "issueRemoved" event is triggered', () => {
+    it('should invoke "onRemoveIssue()" when an "issueRemoved" event is triggered', () => {
       // given the onRemoveIssue handler method
       spyOn(component, 'onRemoveIssue');
 
@@ -177,7 +177,7 @@ describe('IssuesComponent', () => {
       );
       appIssue.triggerEventHandler('issueRemoved', issue);
 
-      expect(component.onRemoveIssue).toHaveBeenCalled();
+      expect(component.onRemoveIssue).toHaveBeenCalledWith(issue);
     });
   });
 
