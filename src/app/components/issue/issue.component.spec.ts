@@ -97,9 +97,25 @@ describe('IssueComponent', () => {
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 
-  fit('should render a remove button', () => {
+  it('should render a remove button', () => {
     expect(nativeElement.querySelector('button#remove').textContent).toContain(
       'Remove'
     );
+  });
+
+  fit('should invoke "onRemove()" handler when remove button is clicked', () => {
+    // given the remove issue handler method
+    spyOn(component, 'onRemove');
+
+    // given the remove issue button
+    const removeButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#remove'
+    );
+
+    // when the button is clicked
+    removeButton.click();
+
+    // then onRemove handler should be invoked
+    expect(component.onRemove).toHaveBeenCalled();
   });
 });
