@@ -162,6 +162,23 @@ describe('IssuesComponent', () => {
       // then the "onDisplayIssueDetails()" event handler should be invoked with the issue details
       expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
     });
+
+    fit('should invoke "onRemoveIssue()" when an "issueRemoved" event is triggered', () => {
+      // given the onRemoveIssue handler method
+      spyOn(component, 'onRemoveIssue');
+
+      // given an issue component
+      component.issues.push(issue);
+      fixture.detectChanges();
+
+      // when the app-issue component emits an "issueRemoved" event
+      const appIssue: DebugElement = fixture.debugElement.query(
+        By.css('app-issue')
+      );
+      appIssue.triggerEventHandler('issueRemoved', issue);
+
+      expect(component.onRemoveIssue).toHaveBeenCalled();
+    });
   });
 
   describe('IssueFormComponent', () => {
