@@ -38,5 +38,5 @@ export class IssuesComponent implements OnInit {
   }
 
   // invoked when the issue remove button is clicked
-  onRemoveIssue() {}
+  onRemoveIssue(issue: Issue) {}
 }
