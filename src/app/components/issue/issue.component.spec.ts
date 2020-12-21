@@ -103,7 +103,7 @@ describe('IssueComponent', () => {
     );
   });
 
-  fit('should invoke "onRemove()" handler when remove button is clicked', () => {
+  it('should invoke "onRemove()" handler when remove button is clicked', () => {
     // given the remove issue handler method
     spyOn(component, 'onRemove');
 
@@ -117,5 +117,14 @@ describe('IssueComponent', () => {
 
     // then onRemove handler should be invoked
     expect(component.onRemove).toHaveBeenCalled();
+  });
+
+  fit('should emit "issueRemoved" event when "onRemove()" is called', () => {
+    spyOn(component.issueRemoved, 'emit');
+    // when onRemove is invoked
+    component.onRemove();
+
+    // then an "issueRemoved" event should be emitted
+    expect(component.issueRemoved.emit).toHaveBeenCalled();
   });
 });
