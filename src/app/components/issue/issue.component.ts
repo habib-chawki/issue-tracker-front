@@ -8,6 +8,7 @@ import { Issue } from 'src/app/models/issue';
 })
 export class IssueComponent implements OnInit {
   @Input() issue: Issue = {} as Issue;
+
   @Output() issueClicked = new EventEmitter();
   @Output() issueRemoved = new EventEmitter();
 
@@ -20,6 +21,6 @@ export class IssueComponent implements OnInit {
   }
 
   onRemove() {
-    this.issueRemoved.emit();
+    this.issueRemoved.emit(this.issue);
   }
 }

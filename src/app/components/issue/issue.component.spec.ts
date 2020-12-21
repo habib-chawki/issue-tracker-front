@@ -119,12 +119,12 @@ describe('IssueComponent', () => {
     expect(component.onRemove).toHaveBeenCalled();
   });
 
-  fit('should emit "issueRemoved" event when "onRemove()" is called', () => {
+  it('should emit "issueRemoved" event when "onRemove()" is called', () => {
     spyOn(component.issueRemoved, 'emit');
     // when onRemove is invoked
     component.onRemove();
 
     // then an "issueRemoved" event should be emitted
-    expect(component.issueRemoved.emit).toHaveBeenCalled();
+    expect(component.issueRemoved.emit).toHaveBeenCalledWith(component.issue);
   });
 });
