@@ -179,6 +179,19 @@ describe('IssuesComponent', () => {
 
       expect(component.onRemoveIssue).toHaveBeenCalledWith(issue);
     });
+
+    it('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
+      // given an issue
+      component.issues.push(issue);
+
+      // when onRemoveIssue is called
+      component.onRemoveIssue(issue);
+
+      // then the issue should be removed from the list of issues
+      expect(
+        component.issues.find((element) => element === issue)
+      ).toBeUndefined();
+    });
   });
 
   describe('IssueFormComponent', () => {
