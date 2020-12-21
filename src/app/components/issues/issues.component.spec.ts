@@ -194,11 +194,20 @@ describe('IssuesComponent', () => {
     fit('should remove the issue component when "onRemoveIssue()" is invoked', () => {
       // given a list of issues
       component.issues = [issue, issue2];
+      const issuesListSize = component.issues.length;
+
       fixture.detectChanges();
 
       // expect the list of issues to have been rendered
       expect(nativeElement.querySelectorAll('app-issue').length).toBe(
-        component.issues.length
+        issuesListSize
+      );
+
+      component.onRemoveIssue(issue2);
+      fixture.detectChanges();
+
+      expect(nativeElement.querySelectorAll('app-issue').length).toBe(
+        issuesListSize - 1
       );
     });
   });
