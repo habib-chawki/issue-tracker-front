@@ -127,10 +127,8 @@ describe('IssuesComponent', () => {
     });
 
     it('should render the issue element when "onCreateIssue()" is invoked', () => {
-      // set up a fake function to add a new issue to the issues array
-      spyOn(component, 'onCreateIssue').and.callFake(() => {
-        component.issues.push(issue);
-      });
+      // given the createIssue service method returns an observable of issue
+      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
       // when "onCreateIssue()" is called
       component.onCreateIssue(issue);
@@ -191,6 +189,17 @@ describe('IssuesComponent', () => {
       expect(
         component.issues.find((element) => element === issue)
       ).toBeUndefined();
+    });
+
+    fit('should remove the issue component when "onRemoveIssue()" is invoked', () => {
+      // given a list of issues
+      component.issues = [issue, issue2];
+      fixture.detectChanges();
+
+      // expect the list of issues to have been rendered
+      expect(nativeElement.querySelectorAll('app-issue').length).toBe(
+        component.issues.length
+      );
     });
   });
 
