@@ -1,6 +1,6 @@
-import IssueType from './enums/issue-type';
-import IssueStatus from './enums/issue-status';
-import IssueResolution from './enums/issue-resolution';
+import IssueType from '../enums/issue-type';
+import IssueStatus from '../enums/issue-status';
+import IssueResolution from '../enums/issue-resolution';
 
 export interface Issue {
   id: string;

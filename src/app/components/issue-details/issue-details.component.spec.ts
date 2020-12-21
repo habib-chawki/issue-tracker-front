@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
-import { Issue } from 'src/app/models/issue';
+import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueDetailsComponent } from './issue-details.component';
 

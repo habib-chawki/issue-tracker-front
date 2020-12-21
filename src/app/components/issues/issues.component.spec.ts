@@ -9,7 +9,7 @@ import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 
-import { Issue } from 'src/app/models/issue';
+import { Issue } from 'src/app/models/issue/issue';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
@@ -191,7 +191,7 @@ describe('IssuesComponent', () => {
       ).toBeUndefined();
     });
 
-    fit('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
+    it('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
       // given the list of issues
       component.issues = [issue, issue2];
 
@@ -204,7 +204,7 @@ describe('IssuesComponent', () => {
       ).toBeUndefined();
     });
 
-    fit('should remove the issue component when "onRemoveIssue()" is invoked', () => {
+    it('should remove the issue component when "onRemoveIssue()" is invoked', () => {
       // given a list of issues
       component.issues = [issue, issue2];
       fixture.detectChanges();
