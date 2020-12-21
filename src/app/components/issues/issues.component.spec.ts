@@ -191,6 +191,19 @@ describe('IssuesComponent', () => {
       ).toBeUndefined();
     });
 
+    fit('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
+      // given the list of issues
+      component.issues = [issue, issue2];
+
+      // when onRemoveIssue is invoked
+      component.onRemoveIssue(issue2);
+
+      // then the issue should be removed from the list of issues
+      expect(
+        component.issues.find((element) => element === issue2)
+      ).toBeUndefined();
+    });
+
     fit('should remove the issue component when "onRemoveIssue()" is invoked', () => {
       // given a list of issues
       component.issues = [issue, issue2];
@@ -209,9 +222,6 @@ describe('IssuesComponent', () => {
       fixture.detectChanges();
 
       // then the issue component should also be removed
-      expect(
-        component.issues.find((element) => element === issue2)
-      ).toBeUndefined();
       expect(nativeElement.querySelectorAll('app-issue').length).toBe(
         issuesListSize - 1
       );
