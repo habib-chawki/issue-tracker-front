@@ -9,6 +9,7 @@ import { Issue } from 'src/app/models/issue';
 export class IssueComponent implements OnInit {
   @Input() issue: Issue = {} as Issue;
   @Output() issueClicked = new EventEmitter();
+  @Output() issueRemoved = new EventEmitter();
 
   constructor() {}
 
@@ -18,5 +19,7 @@ export class IssueComponent implements OnInit {
     this.issueClicked.emit(this.issue);
   }
 
-  onRemove() {}
+  onRemove() {
+    this.issueRemoved.emit();
+  }
 }
