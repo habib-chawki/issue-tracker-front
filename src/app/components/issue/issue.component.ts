@@ -17,4 +17,6 @@ export class IssueComponent implements OnInit {
   onClick() {
     this.issueClicked.emit(this.issue);
   }
+
+  onRemove() {}
 }
