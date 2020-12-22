@@ -57,9 +57,7 @@ describe('IssueComponent', () => {
   it('should render issue details', () => {
     // issue details should be empty at first
     expect(nativeElement.querySelector('div div#type').textContent).toBe('');
-    expect(nativeElement.querySelector('div div#description').textContent).toBe(
-      ''
-    );
+    expect(nativeElement.querySelector('div div#summary').textContent).toBe('');
 
     // given issue details
     component.issue = issue;
@@ -71,9 +69,9 @@ describe('IssueComponent', () => {
     );
 
     // expect issue description to be rendered
-    expect(
-      nativeElement.querySelector('div div#description').textContent
-    ).toEqual(issue.description);
+    expect(nativeElement.querySelector('div div#summary').textContent).toEqual(
+      issue.summary
+    );
   });
 
   it('should invoke "onClick()" handler when issue element is clicked', () => {
