@@ -5,6 +5,8 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 
 import { Issue } from 'src/app/models/issue/issue';
+import { User } from 'src/app/models/user/user';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { IssueComponent } from './issue.component';
 
@@ -14,6 +16,8 @@ describe('IssueComponent', () => {
   let nativeElement: HTMLElement;
 
   let issue: Issue;
+  let reporter: User;
+  let storageService: StorageService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,6 +32,8 @@ describe('IssueComponent', () => {
 
     fixture.detectChanges();
 
+    storageService = TestBed.inject(StorageService);
+
     // set up an issue
     issue = {
       id: '1',
@@ -38,7 +44,7 @@ describe('IssueComponent', () => {
       status: IssueStatus.Todo,
       resolution: IssueResolution.Done,
       assignee: 'Me',
-      reporter: 'Someone',
+      reporter: reporter,
       comments: ['comment1', 'comment2'],
       votes: 8,
       watchers: ['jon', 'jane'],
@@ -46,6 +52,9 @@ describe('IssueComponent', () => {
       updated: new Date(),
       estimate: new Date(),
     };
+
+    // set up the issue reporter
+    reporter = new User('issue.reporter@email.com');
   });
 
   it('should create component', () => {
@@ -97,9 +106,16 @@ describe('IssueComponent', () => {
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 
-  it('should render a remove button', () => {
+  it('should render a remove button if the logged-in user is the issue reporter', () => {
     expect(nativeElement.querySelector('button#remove').textContent).toContain(
       'Remove'
+    );
+  });
+
+  it('should not render the remove button if the logged-in user is not the issue reporter', () => {
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      'not.the.issue.reporter@email.com'
     );
   });
 
