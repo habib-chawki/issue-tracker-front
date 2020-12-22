@@ -127,8 +127,8 @@ describe('IssuesComponent', () => {
       );
     });
 
-    it('should render the issue element when "onCreateIssue()" is invoked', () => {
-      // given the createIssue service method returns an observable of issue
+    it('should render the issue component when "onCreateIssue()" is invoked', () => {
+      // when the "createIssue()" service method returns an observable of issue
       spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
       // when "onCreateIssue()" is called
@@ -141,7 +141,7 @@ describe('IssuesComponent', () => {
       );
 
       expect(nativeElement.querySelector('app-issue').textContent).toContain(
-        issue.description
+        issue.summary
       );
     });
 
