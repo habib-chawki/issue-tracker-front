@@ -4,8 +4,8 @@
   <div id="type">{{ issue.type }}</div>
   <div id="status">{{ issue.status }}</div>
   <div id="resolution">{{ issue.resolution }}</div>
-  <div id="assignee">{{ issue.assignee }}</div>
-  <div id="reporter">{{ issue.reporter }}</div>
+  <div id="assignee">{{ issue.assignee?.username }}</div>
+  <div id="reporter">{{ issue.reporter?.username }}</div>
   <div id="votes">{{ issue.votes }}</div>
 
   <div id="comments">
@@ -20,7 +20,7 @@
     </ul>
   </div>
 
-  <div id="created">{{ issue.created }}</div>
-  <div id="updated">{{ issue.updated }}</div>
+  <div id="created">{{ issue.creationTime }}</div>
+  <div id="updated">{{ issue.updateTime }}</div>
   <div id="estimate">{{ issue.estimate }}</div>
 </div>
