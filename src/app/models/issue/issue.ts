@@ -15,14 +15,14 @@ export interface Issue {
   status: IssueStatus;
   resolution: IssueResolution;
 
-  assignee: string;
+  assignee: User;
   reporter: User;
 
   comments: string[];
   votes: number;
   watchers: string[];
 
-  created: Date;
-  updated: Date;
+  creationTime: Date;
+  updateTime: Date;
   estimate: Date;
 }
