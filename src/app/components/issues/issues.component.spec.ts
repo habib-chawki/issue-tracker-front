@@ -10,6 +10,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 
 import { Issue } from 'src/app/models/issue/issue';
+import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
@@ -56,13 +57,13 @@ describe('IssuesComponent', () => {
       type: IssueType.Bug,
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Duplicate,
-      assignee: 'Me',
-      reporter: 'Someone',
+      assignee: new UserBuilder().username('Me').build(),
+      reporter: new UserBuilder().username('Someone').build(),
       comments: ['comment1', 'comment2'],
       votes: 8,
       watchers: ['jon', 'jane'],
-      created: new Date(),
-      updated: new Date(),
+      creationTime: new Date(),
+      updateTime: new Date(),
       estimate: new Date(),
     };
 
@@ -75,13 +76,13 @@ describe('IssuesComponent', () => {
       type: IssueType.Story,
       status: IssueStatus.Todo,
       resolution: IssueResolution.Unresolved,
-      assignee: 'You',
-      reporter: 'Someone else',
+      assignee: new UserBuilder().username('You').build(),
+      reporter: new UserBuilder().username('Someone else').build(),
       comments: ['comment1', 'comment2', 'comment3'],
       votes: 2,
       watchers: [],
-      created: new Date(),
-      updated: new Date(),
+      creationTime: new Date(),
+      updateTime: new Date(),
       estimate: new Date(),
     };
   });
