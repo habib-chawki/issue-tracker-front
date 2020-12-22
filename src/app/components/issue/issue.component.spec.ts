@@ -68,7 +68,7 @@ describe('IssueComponent', () => {
       issue.type
     );
 
-    // expect issue description to be rendered
+    // expect issue summary to be rendered
     expect(nativeElement.querySelector('div div#summary').textContent).toEqual(
       issue.summary
     );
