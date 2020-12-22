@@ -97,32 +97,48 @@ describe('IssueComponent', () => {
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 
-  it('should render a remove button if the logged-in user is the issue reporter', () => {
-    expect(nativeElement.querySelector('button#remove').textContent).toContain(
-      'Remove'
-    );
-  });
-
-  it('should not render the remove button if the logged-in user is not the issue reporter', () => {
-    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
-    spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
-
-    expect(nativeElement.querySelector('button#remove')).toBeFalsy();
-  });
-
-  fit('should return "true" when "renderRemove()" is invoked, given the logged-in user is the issue reporter', () => {
+  it('should render the remove button when the logged-in user is the issue reporter', () => {
+    // given an issue details
     component.issue = issue;
+
+    // when the user is logged-in and is the issue reporter
     spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
     spyOn(storageService, 'getUserIdentifier').and.returnValue(reporter.id);
 
+    // then "renderRemove()" should return true
     expect(component.renderRemove()).toBeTrue();
+
+    fixture.detectChanges();
+
+    // the remove button should be rendered
+    expect(nativeElement.querySelector('button#remove')).toBeTruthy();
   });
 
-  it('should return "false" when "renderRemove()" is invoked, given the logged-in user is not the issue reporter', () => {});
+  it('should not render the remove button when the logged-in user is not the issue reporter', () => {
+    // given an issue details
+    component.issue = issue;
+
+    // when the user is logged-in but not the issue reporter
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
+
+    // then "renderRemove()" should return false
+    expect(component.renderRemove()).toBeFalse();
+
+    fixture.detectChanges();
+
+    // the remove button should not be rendered
+    expect(nativeElement.querySelector('button#remove')).toBeFalsy();
+  });
 
   it('should invoke "onRemove()" handler when remove button is clicked', () => {
+    // given the logged-in user is the issue reporter
+    spyOn(component, 'renderRemove').and.returnValue(true);
+
     // given the remove issue handler method
     spyOn(component, 'onRemove');
+
+    fixture.detectChanges();
 
     // given the remove issue button
     const removeButton: HTMLButtonElement = nativeElement.querySelector(
