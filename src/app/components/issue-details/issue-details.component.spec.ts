@@ -1,9 +1,9 @@
-import { asNativeElements } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
+import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 
 import { IssueDetailsComponent } from './issue-details.component';
 
@@ -36,13 +36,13 @@ describe('IssueDetailsComponent', () => {
       type: IssueType.Task,
       status: IssueStatus.Todo,
       resolution: IssueResolution.Unresolved,
-      assignee: 'Me',
-      reporter: 'Someone',
+      assignee: new UserBuilder().username('assignee@issue').build(),
+      reporter: new UserBuilder().username('reporter@issue').build(),
       comments: ['comment1', 'comment2'],
       votes: 8,
       watchers: ['jon', 'jane'],
-      created: new Date(),
-      updated: new Date(),
+      creationTime: new Date(),
+      updateTime: new Date(),
       estimate: new Date(),
     };
   });
@@ -80,11 +80,11 @@ describe('IssueDetailsComponent', () => {
     );
 
     expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
-      issue.assignee
+      issue.assignee.username
     );
 
     expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
-      issue.reporter
+      issue.reporter.username
     );
 
     expect(nativeElement.querySelector('div#votes').textContent).toContain(
@@ -109,11 +109,11 @@ describe('IssueDetailsComponent', () => {
 
     // dates should be rendered
     expect(nativeElement.querySelector('div#created').textContent).toContain(
-      issue.created.toDateString()
+      issue.creationTime.toDateString()
     );
 
     expect(nativeElement.querySelector('div#updated').textContent).toContain(
-      issue.updated.toDateString()
+      issue.updateTime.toDateString()
     );
 
     expect(nativeElement.querySelector('div#estimate').textContent).toContain(
