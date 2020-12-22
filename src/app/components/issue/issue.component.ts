@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-issue',
@@ -12,7 +13,7 @@ export class IssueComponent implements OnInit {
   @Output() issueClicked = new EventEmitter();
   @Output() issueRemoved = new EventEmitter();
 
-  constructor() {}
+  constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {}
 
@@ -22,5 +23,13 @@ export class IssueComponent implements OnInit {
 
   onRemove() {
     this.issueRemoved.emit(this.issue);
+  }
+
+  renderRemove(): boolean {
+    // issue reporter should be the logged-in user to render the remove button
+    return (
+      this.storageService.isUserLoggedIn() &&
+      this.storageService.getUserIdentifier() === this.issue.reporter.id
+    );
   }
 }
