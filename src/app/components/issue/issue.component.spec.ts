@@ -105,12 +105,20 @@ describe('IssueComponent', () => {
 
   it('should not render the remove button if the logged-in user is not the issue reporter', () => {
     spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
-    spyOn(storageService, 'getUserIdentifier').and.returnValue(
-      'not.the.issue.reporter@email.com'
-    );
+    spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
 
     expect(nativeElement.querySelector('button#remove')).toBeFalsy();
   });
+
+  fit('should return "true" when "renderRemove()" is invoked, given the logged-in user is the issue reporter', () => {
+    component.issue = issue;
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(reporter.id);
+
+    expect(component.renderRemove()).toBeTrue();
+  });
+
+  it('should return "false" when "renderRemove()" is invoked, given the logged-in user is not the issue reporter', () => {});
 
   it('should invoke "onRemove()" handler when remove button is clicked', () => {
     // given the remove issue handler method
