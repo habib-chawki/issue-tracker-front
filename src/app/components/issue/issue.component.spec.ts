@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import IssueResolution from 'src/app/models/enums/issue-resolution';
-import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
+import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 
 import { Issue } from 'src/app/models/issue/issue';
+import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { User } from 'src/app/models/user/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -17,6 +17,7 @@ describe('IssueComponent', () => {
 
   let issue: Issue;
   let reporter: User;
+
   let storageService: StorageService;
 
   beforeEach(async () => {
@@ -34,27 +35,19 @@ describe('IssueComponent', () => {
 
     storageService = TestBed.inject(StorageService);
 
-    // set up an issue
-    issue = {
-      id: '1',
-      key: 'Dh85m',
-      description: 'Issue description',
-      summary: 'Issue summary',
-      type: IssueType.Story,
-      status: IssueStatus.Todo,
-      resolution: IssueResolution.Done,
-      assignee: 'Me',
-      reporter: reporter,
-      comments: ['comment1', 'comment2'],
-      votes: 8,
-      watchers: ['jon', 'jane'],
-      created: new Date(),
-      updated: new Date(),
-      estimate: new Date(),
-    };
-
     // set up the issue reporter
-    reporter = new User('issue.reporter@email.com');
+    reporter = new UserBuilder()
+      .id('100')
+      .email('issue.reporter@email.com')
+      .build();
+
+    // set up an issue
+    issue = new IssueBuilder()
+      .id('1')
+      .type(IssueType.Bug)
+      .summary('issue summary')
+      .reporter(reporter)
+      .build();
   });
 
   it('should create component', () => {
@@ -117,6 +110,8 @@ describe('IssueComponent', () => {
     spyOn(storageService, 'getUserIdentifier').and.returnValue(
       'not.the.issue.reporter@email.com'
     );
+
+    expect(nativeElement.querySelector('button#remove')).toBeFalsy();
   });
 
   it('should invoke "onRemove()" handler when remove button is clicked', () => {
