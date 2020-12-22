@@ -9,6 +9,7 @@ import { Issue } from '../../models/issue/issue';
 import IssueType from '../../models/enums/issue-type';
 import IssueResolution from '../../models/enums/issue-resolution';
 import IssueStatus from '../../models/enums/issue-status';
+import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 
 describe('IssueService', () => {
   let issueService: IssueService;
@@ -35,13 +36,13 @@ describe('IssueService', () => {
       type: IssueType.Bug,
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Duplicate,
-      assignee: 'Me',
-      reporter: 'Someone',
+      assignee: new UserBuilder().username('Me').build(),
+      reporter: new UserBuilder().username('Someone').build(),
       comments: ['comment1', 'comment2'],
       votes: 8,
       watchers: ['jon', 'jane'],
-      created: new Date(),
-      updated: new Date(),
+      creationTime: new Date(),
+      updateTime: new Date(),
       estimate: new Date(),
     };
 
@@ -54,13 +55,13 @@ describe('IssueService', () => {
       type: IssueType.Story,
       status: IssueStatus.Todo,
       resolution: IssueResolution.Unresolved,
-      assignee: 'You',
-      reporter: 'Someone else',
+      assignee: new UserBuilder().username('You').build(),
+      reporter: new UserBuilder().username('Someone else').build(),
       comments: ['comment1', 'comment2', 'comment3'],
       votes: 2,
       watchers: [],
-      created: new Date(),
-      updated: new Date(),
+      creationTime: new Date(),
+      updateTime: new Date(),
       estimate: new Date(),
     };
   });
