@@ -8,19 +8,19 @@ export interface Issue {
 
   key: string;
 
-  description: string;
+  description?: string;
   summary: string;
 
   type: IssueType;
   status: IssueStatus;
   resolution: IssueResolution;
 
-  assignee: User;
+  assignee?: User;
   reporter: User;
 
-  comments: string[];
-  votes: number;
-  watchers: string[];
+  comments?: string[];
+  votes?: number;
+  watchers?: string[];
 
   creationTime: Date;
   updateTime: Date;
