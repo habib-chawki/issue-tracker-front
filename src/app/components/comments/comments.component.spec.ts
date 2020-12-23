@@ -43,11 +43,12 @@ describe('CommentsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render a list of comments', () => {
+  it('should render a list of comments', () => {
     component.comments = [comment1, comment2];
     fixture.detectChanges();
 
-    expect(nativeElement.querySelectorAll('app-comment').length).toBe(
+    // all the comments in the list should be rendered
+    expect(nativeElement.querySelectorAll('ul app-comment').length).toBe(
       component.comments.length
     );
   });
