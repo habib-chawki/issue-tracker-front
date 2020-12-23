@@ -46,12 +46,12 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
 
     // the owner username should be rendered
-    expect(nativeElement.querySelector('div#owner').textContent).toBe(
+    expect(nativeElement.querySelector('li div#owner').textContent).toBe(
       comment.owner.username
     );
 
     // the comment content should be renderd
-    expect(nativeElement.querySelector('div#content').textContent).toBe(
+    expect(nativeElement.querySelector('li div#content').textContent).toBe(
       comment.content
     );
   });
