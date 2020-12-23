@@ -103,10 +103,12 @@ describe('IssueComponent', () => {
 
     // when the user is logged-in and is the issue reporter
     spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
-    spyOn(storageService, 'getUserIdentifier').and.returnValue(reporter.id);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      issue.reporter.id
+    );
 
     // then "renderRemove()" should return true
-    expect(component.renderRemove()).toBeTrue();
+    expect(component.canRemove()).toBeTrue();
 
     fixture.detectChanges();
 
@@ -123,7 +125,7 @@ describe('IssueComponent', () => {
     spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
 
     // then "renderRemove()" should return false
-    expect(component.renderRemove()).toBeFalse();
+    expect(component.canRemove()).toBeFalse();
 
     fixture.detectChanges();
 
@@ -133,7 +135,7 @@ describe('IssueComponent', () => {
 
   it('should invoke "onRemove()" handler when remove button is clicked', () => {
     // given the logged-in user is the issue reporter
-    spyOn(component, 'renderRemove').and.returnValue(true);
+    spyOn(component, 'canRemove').and.returnValue(true);
 
     // given the remove issue handler method
     spyOn(component, 'onRemove');
