@@ -25,7 +25,7 @@ export class IssueComponent implements OnInit {
     this.issueRemoved.emit(this.issue);
   }
 
-  renderRemove(): boolean {
+  canRemove(): boolean {
     // issue reporter should be the logged-in user to render the remove button
     return (
       this.storageService.isUserLoggedIn() &&
