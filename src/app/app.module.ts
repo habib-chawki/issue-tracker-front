@@ -12,6 +12,7 @@ import { IssueDetailsComponent } from './components/issue-details/issue-details.
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CommentComponent } from './components/comment/comment.component';
     SignupFormComponent,
     LoginFormComponent,
     CommentComponent,
+    CommentsComponent,
   ],
   imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
