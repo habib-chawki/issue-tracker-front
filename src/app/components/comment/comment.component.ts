@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Comment } from 'src/app/models/comment/comment';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -9,6 +9,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class CommentComponent implements OnInit {
   @Input() comment: Comment;
+
+  @Output() commentRemoved = new EventEmitter();
 
   constructor(private storageService: StorageService) {}
 
@@ -21,5 +23,7 @@ export class CommentComponent implements OnInit {
     );
   }
 
-  onRemove() {}
+  onRemove() {
+    this.commentRemoved.emit(this.comment);
+  }
 }
