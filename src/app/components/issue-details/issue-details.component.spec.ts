@@ -120,4 +120,58 @@ describe('IssueDetailsComponent', () => {
       issue.estimate.toDateString()
     );
   });
+
+  fit('should render labels for issue details', () => {
+    expect(
+      nativeElement.querySelector('label[for="description"]').textContent
+    ).toContain('Description');
+
+    expect(
+      nativeElement.querySelector('label[for="summary"]').textContent
+    ).toContain('Summary');
+
+    expect(
+      nativeElement.querySelector('label[for="type"]').textContent
+    ).toContain('Type');
+
+    expect(
+      nativeElement.querySelector('label[for="status"]').textContent
+    ).toContain('Status');
+
+    expect(
+      nativeElement.querySelector('label[for="resolution"]').textContent
+    ).toContain('Resolution');
+
+    expect(
+      nativeElement.querySelector('label[for="assignee"]').textContent
+    ).toContain('Assignee');
+
+    expect(
+      nativeElement.querySelector('label[for="reporter"]').textContent
+    ).toContain('Reporter');
+
+    expect(
+      nativeElement.querySelector('label[for="votes"]').textContent
+    ).toContain('Votes');
+
+    expect(
+      nativeElement.querySelector('label[for="comments"]').textContent
+    ).toContain('Comments');
+
+    expect(
+      nativeElement.querySelector('label[for="watchers"]').textContent
+    ).toContain('Watchers');
+
+    expect(
+      nativeElement.querySelector('label[for="created"]').textContent
+    ).toContain('Created');
+
+    expect(
+      nativeElement.querySelector('label[for="updated"]').textContent
+    ).toContain('Updated');
+
+    expect(
+      nativeElement.querySelector('label[for="estimate"]').textContent
+    ).toContain('Estimated time');
+  });
 });
