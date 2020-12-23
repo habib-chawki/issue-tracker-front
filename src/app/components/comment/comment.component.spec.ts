@@ -92,7 +92,7 @@ describe('CommentComponent', () => {
     expect(component.canRemove()).toBeFalse();
   });
 
-  fit('should invoke "onRemove()" when the remove button is clicked', () => {
+  it('should invoke "onRemove()" when the remove button is clicked', () => {
     // given the logged-in user is the comment owner
     spyOn(component, 'canRemove').and.returnValue(true);
 
@@ -111,5 +111,17 @@ describe('CommentComponent', () => {
 
     // then onRemove should be called
     expect(component.onRemove).toHaveBeenCalled();
+  });
+
+  it('should emit a "commentRemoved" event when "onRemove()" is called', () => {
+    spyOn(component.commentRemoved, 'emit');
+
+    // when onRemove is called
+    component.onRemove();
+
+    // then the 'commentRemoved' event should be fired
+    expect(component.commentRemoved.emit).toHaveBeenCalledWith(
+      component.comment
+    );
   });
 });
