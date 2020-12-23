@@ -1,7 +1,5 @@
 <div (click)="onClick()">
   <div id="type">{{ issue.type }}</div>
   <div id="summary">{{ issue.summary }}</div>
-  <button *ngIf="renderRemove()" id="remove" (click)="onRemove()">
-    Remove
-  </button>
+  <button *ngIf="canRemove()" id="remove" (click)="onRemove()">Remove</button>
 </div>
