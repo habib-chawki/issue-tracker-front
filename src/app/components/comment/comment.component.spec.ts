@@ -91,4 +91,25 @@ describe('CommentComponent', () => {
     expect(nativeElement.querySelector('button#remove')).toBeFalsy();
     expect(component.canRemove()).toBeFalse();
   });
+
+  fit('should invoke "onRemove()" when the remove button is clicked', () => {
+    // given the logged-in user is the comment owner
+    spyOn(component, 'canRemove').and.returnValue(true);
+
+    // given the onRemove handler method
+    spyOn(component, 'onRemove');
+
+    fixture.detectChanges();
+
+    // given the remove button
+    const removeButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#remove'
+    );
+
+    // when the button is clicked
+    removeButton.click();
+
+    // then onRemove should be called
+    expect(component.onRemove).toHaveBeenCalled();
+  });
 });
