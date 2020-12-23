@@ -1,26 +1,48 @@
 <div>
+  <label for="description">Description: </label>
   <div id="description">{{ issue.description }}</div>
+
+  <label for="summary">Summary: </label>
   <div id="summary">{{ issue.summary }}</div>
+
+  <label for="type">Type: </label>
   <div id="type">{{ issue.type }}</div>
+
+  <label for="status">Status: </label>
   <div id="status">{{ issue.status }}</div>
+
+  <label for="resolution">Resolution: </label>
   <div id="resolution">{{ issue.resolution }}</div>
+
+  <label for="assignee">Assignee: </label>
   <div id="assignee">{{ issue.assignee?.username }}</div>
+
+  <label for="reporter">Reporter: </label>
   <div id="reporter">{{ issue.reporter?.username }}</div>
+
+  <label for="votes">Votes: </label>
   <div id="votes">{{ issue.votes }}</div>
 
+  <label for="comments">Comments: </label>
   <div id="comments">
     <ul>
       <li *ngFor="let comment of issue.comments">{{ comment }}</li>
     </ul>
   </div>
 
+  <label for="watchers">Watchers: </label>
   <div id="watchers">
     <ul>
       <li *ngFor="let watcher of issue.watchers">{{ watcher }}</li>
     </ul>
   </div>
 
+  <label for="created">Created: </label>
   <div id="created">{{ issue.creationTime }}</div>
+
+  <label for="updated">Updated: </label>
   <div id="updated">{{ issue.updateTime }}</div>
+
+  <label for="estimate">Estimated time: </label>
   <div id="estimate">{{ issue.estimate }}</div>
 </div>
