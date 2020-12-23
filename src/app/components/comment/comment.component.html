@@ -1,5 +1,5 @@
 <li>
   <div id="owner">{{ comment?.owner.username }}</div>
   <div id="content">{{ comment?.content }}</div>
-  <button *ngIf="canRemove()" id="remove">Remove</button>
+  <button *ngIf="canRemove()" id="remove" (click)="onRemove()">Remove</button>
 </li>
