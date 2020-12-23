@@ -5,13 +5,12 @@
   (issueCreated)="onCreateIssue($event)"
 ></app-issue-form>
 
-<div *ngFor="let issue of issues">
-  <app-issue
-    [issue]="issue"
-    (issueClicked)="onDisplayIssueDetails($event)"
-    (issueRemoved)="onRemoveIssue($event)"
-  ></app-issue>
-</div>
+<app-issue
+  *ngFor="let issue of issues"
+  [issue]="issue"
+  (issueClicked)="onDisplayIssueDetails($event)"
+  (issueRemoved)="onRemoveIssue($event)"
+></app-issue>
 
 <app-issue-details
   [issue]="issueDetails"
