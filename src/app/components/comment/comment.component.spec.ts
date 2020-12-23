@@ -41,13 +41,18 @@ describe('CommentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render a comment with its owner and content', () => {
+  it('should render a comment with its owner and content', () => {
     component.comment = comment;
     fixture.detectChanges();
 
     // the owner username should be rendered
     expect(nativeElement.querySelector('div#owner').textContent).toBe(
       comment.owner.username
+    );
+
+    // the comment content should be renderd
+    expect(nativeElement.querySelector('div#content').textContent).toBe(
+      comment.content
     );
   });
 });
