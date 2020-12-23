@@ -79,13 +79,13 @@ describe('IssueDetailsComponent', () => {
       issue.resolution
     );
 
-    // expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
-    //   issue.assignee.username
-    // );
+    expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
+      issue.assignee.username
+    );
 
-    // expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
-    //   issue.reporter.username
-    // );
+    expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
+      issue.reporter.username
+    );
 
     expect(nativeElement.querySelector('div#votes').textContent).toContain(
       issue.votes.toString()
@@ -121,7 +121,7 @@ describe('IssueDetailsComponent', () => {
     );
   });
 
-  fit('should render labels for issue details', () => {
+  it('should render labels for issue details', () => {
     expect(
       nativeElement.querySelector('label[for="description"]').textContent
     ).toContain('Description');
