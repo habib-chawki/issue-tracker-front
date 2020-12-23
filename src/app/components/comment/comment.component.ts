@@ -20,4 +20,6 @@ export class CommentComponent implements OnInit {
       this.storageService.getUserIdentifier() === this.comment.owner.id
     );
   }
+
+  onRemove() {}
 }
