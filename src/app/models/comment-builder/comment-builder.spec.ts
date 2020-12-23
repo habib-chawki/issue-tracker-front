@@ -19,7 +19,7 @@ describe('CommentBuilder', () => {
     };
   });
 
-  fit('should create a comment', () => {
+  it('should create a comment', () => {
     const createdComment = new CommentBuilder()
       .owner(comment.owner)
       .content(comment.content)
