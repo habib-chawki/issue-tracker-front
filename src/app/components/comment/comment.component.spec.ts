@@ -3,6 +3,7 @@ import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { User } from 'src/app/models/user/user';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { CommentComponent } from './comment.component';
 
@@ -10,6 +11,8 @@ describe('CommentComponent', () => {
   let component: CommentComponent;
   let fixture: ComponentFixture<CommentComponent>;
   let nativeElement: HTMLElement;
+
+  let storageService: StorageService;
 
   let comment: Comment;
   let owner: User;
@@ -24,6 +27,8 @@ describe('CommentComponent', () => {
     fixture = TestBed.createComponent(CommentComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
+
+    storageService = TestBed.inject(StorageService);
 
     fixture.detectChanges();
 
@@ -45,14 +50,45 @@ describe('CommentComponent', () => {
     component.comment = comment;
     fixture.detectChanges();
 
-    // the owner username should be rendered
+    // the owner's username should be rendered
     expect(nativeElement.querySelector('li div#owner').textContent).toBe(
       comment.owner.username
     );
 
-    // the comment content should be renderd
+    // the comment's content should be renderd
     expect(nativeElement.querySelector('li div#content').textContent).toBe(
       comment.content
     );
+  });
+
+  it('should render a remove button if the logged-in user is the comment owner', () => {
+    component.comment = comment;
+
+    // when the logged-in user is the comment owner
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      comment.owner.id
+    );
+
+    // detect changes to render the remove button
+    fixture.detectChanges();
+
+    // then a remove button should be rendered
+    expect(nativeElement.querySelector('button#remove')).toBeTruthy();
+    expect(component.canRemove()).toBeTrue();
+  });
+
+  it('should not render a remove button if the logged-in user is not the comment owner', () => {
+    component.comment = comment;
+
+    // when the logged-in user is the comment owner
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
+
+    fixture.detectChanges();
+
+    // then a remove button should be rendered
+    expect(nativeElement.querySelector('button#remove')).toBeFalsy();
+    expect(component.canRemove()).toBeFalse();
   });
 });
