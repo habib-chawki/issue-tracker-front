@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
-import { IssueFormComponent } from './components/issue-form/issue-form.component';
+import { Backlog } from './components/backlog/backlog.component';
 import { IssuesComponent } from './components/issues/issues.component';
 
 describe('AppComponent', () => {
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
       ],
-      declarations: [AppComponent, IssuesComponent, IssueFormComponent],
+      declarations: [AppComponent, Backlog, IssuesComponent],
     }).compileComponents();
   });
 
@@ -40,9 +40,9 @@ describe('AppComponent', () => {
     );
   });
 
-  it('should render issues component', () => {
+  fit('should render issues component', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const nativeElement = fixture.nativeElement;
-    expect(nativeElement.querySelector('app-issues')).toBeTruthy();
+    expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
   });
 });
