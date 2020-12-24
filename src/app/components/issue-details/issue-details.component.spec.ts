@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { CommentComponent } from '../comment/comment.component';
+import { CommentsComponent } from '../comments/comments.component';
 
 import { IssueDetailsComponent } from './issue-details.component';
 
@@ -16,7 +19,11 @@ describe('IssueDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IssueDetailsComponent],
+      declarations: [
+        IssueDetailsComponent,
+        CommentsComponent,
+        CommentComponent,
+      ],
     }).compileComponents();
   });
 
@@ -38,7 +45,10 @@ describe('IssueDetailsComponent', () => {
       resolution: IssueResolution.Unresolved,
       assignee: new UserBuilder().username('assignee@issue').build(),
       reporter: new UserBuilder().username('reporter@issue').build(),
-      comments: ['comment1', 'comment2'],
+      comments: [
+        new CommentBuilder().content('comment1').owner('jon doe').build(),
+        new CommentBuilder().content('comment2').owner('jane doe').build(),
+      ],
       votes: 8,
       watchers: ['jon', 'jane'],
       creationTime: new Date(),
@@ -51,77 +61,7 @@ describe('IssueDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render issue details', () => {
-    // given the issue details
-    component.issue = issue;
-
-    // when changes are detected
-    fixture.detectChanges();
-
-    // then all the issue details should be rendered
-    expect(nativeElement.querySelector('div#description').textContent).toEqual(
-      issue.description
-    );
-
-    expect(nativeElement.querySelector('div#summary').textContent).toEqual(
-      issue.summary
-    );
-
-    expect(nativeElement.querySelector('div#type').textContent).toEqual(
-      issue.type
-    );
-
-    expect(nativeElement.querySelector('div#status').textContent).toEqual(
-      issue.status
-    );
-
-    expect(nativeElement.querySelector('div#resolution').textContent).toEqual(
-      issue.resolution
-    );
-
-    expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
-      issue.assignee.username
-    );
-
-    expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
-      issue.reporter.username
-    );
-
-    expect(nativeElement.querySelector('div#votes').textContent).toContain(
-      issue.votes.toString()
-    );
-
-    // the list of comments should be rendered
-    const commentsList = [];
-    nativeElement.querySelectorAll('div#comments ul li').forEach((comment) => {
-      commentsList.push(comment.textContent);
-    });
-
-    expect(commentsList).toEqual(issue.comments);
-
-    // the list of watchers should be rendered
-    const watchersList = [];
-    nativeElement
-      .querySelectorAll('div#watchers ul li')
-      .forEach((watcher) => watchersList.push(watcher.textContent));
-
-    expect(watchersList).toEqual(issue.watchers);
-
-    // dates should be rendered
-    expect(nativeElement.querySelector('div#created').textContent).toContain(
-      issue.creationTime.toDateString()
-    );
-
-    expect(nativeElement.querySelector('div#updated').textContent).toContain(
-      issue.updateTime.toDateString()
-    );
-
-    expect(nativeElement.querySelector('div#estimate').textContent).toContain(
-      issue.estimate.toDateString()
-    );
-  });
-
-  it('should render labels for issue details', () => {
+  it('should render a label for each issue detail', () => {
     expect(
       nativeElement.querySelector('label[for="description"]').textContent
     ).toContain('Description');
@@ -173,5 +113,76 @@ describe('IssueDetailsComponent', () => {
     expect(
       nativeElement.querySelector('label[for="estimate"]').textContent
     ).toContain('Estimated time');
+  });
+
+  it('should render each issue detail', () => {
+    // given the issue details
+    component.issue = issue;
+
+    // when changes are detected
+    fixture.detectChanges();
+
+    // then all the issue details should be rendered
+    expect(nativeElement.querySelector('div#description').textContent).toEqual(
+      issue.description
+    );
+
+    expect(nativeElement.querySelector('div#summary').textContent).toEqual(
+      issue.summary
+    );
+
+    expect(nativeElement.querySelector('div#type').textContent).toEqual(
+      issue.type
+    );
+
+    expect(nativeElement.querySelector('div#status').textContent).toEqual(
+      issue.status
+    );
+
+    expect(nativeElement.querySelector('div#resolution').textContent).toEqual(
+      issue.resolution
+    );
+
+    expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
+      issue.assignee.username
+    );
+
+    expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
+      issue.reporter.username
+    );
+
+    expect(nativeElement.querySelector('div#votes').textContent).toContain(
+      issue.votes.toString()
+    );
+
+    // dates should be rendered
+    expect(nativeElement.querySelector('div#created').textContent).toContain(
+      issue.creationTime.toDateString()
+    );
+
+    expect(nativeElement.querySelector('div#updated').textContent).toContain(
+      issue.updateTime.toDateString()
+    );
+
+    expect(nativeElement.querySelector('div#estimate').textContent).toContain(
+      issue.estimate.toDateString()
+    );
+
+    // the list of watchers should be rendered
+    const watchersList = [];
+    nativeElement
+      .querySelectorAll('div#watchers ul li')
+      .forEach((watcher) => watchersList.push(watcher.textContent));
+
+    expect(watchersList).toEqual(issue.watchers);
+  });
+
+  it('should render a list of comments', () => {
+    // given the issue details
+    component.issue = issue;
+    fixture.detectChanges();
+
+    // the app-comments component should be rendered (list of comments)
+    expect(nativeElement.querySelector('app-comments')).toBeTruthy();
   });
 });
