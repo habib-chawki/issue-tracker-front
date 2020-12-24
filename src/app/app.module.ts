@@ -6,25 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { IssueComponent } from './components/issue/issue.component';
-import { IssuesComponent } from './components/issues/issues.component';
+import { Backlog } from './components/backlog/backlog.component';
 import { IssueFormComponent } from './components/issue-form/issue-form.component';
 import { IssueDetailsComponent } from './components/issue-details/issue-details.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { IssuesComponent } from './components/issues/issues.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IssueComponent,
-    IssuesComponent,
+    Backlog,
     IssueFormComponent,
     IssueDetailsComponent,
     SignupFormComponent,
     LoginFormComponent,
     CommentComponent,
     CommentsComponent,
+    IssuesComponent,
   ],
   imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
