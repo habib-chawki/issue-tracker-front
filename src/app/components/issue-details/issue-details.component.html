@@ -23,12 +23,9 @@
   <label for="votes">Votes: </label>
   <div id="votes">{{ issue.votes }}</div>
 
+  <!-- list of comments -->
   <label for="comments">Comments: </label>
-  <div id="comments">
-    <ul>
-      <li *ngFor="let comment of issue.comments">{{ comment }}</li>
-    </ul>
-  </div>
+  <app-comments id="comments" [comments]="issue.comments"></app-comments>
 
   <label for="watchers">Watchers: </label>
   <div id="watchers">
