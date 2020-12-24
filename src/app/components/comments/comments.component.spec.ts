@@ -96,7 +96,7 @@ describe('CommentsComponent', () => {
     // given the list size
     const commentsListSize = component.comments.length;
 
-    // the comment components should be rendered
+    // the comment components should have been rendered
     expect(nativeElement.querySelectorAll('app-comment').length).toBe(
       commentsListSize
     );
