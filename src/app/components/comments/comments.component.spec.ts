@@ -1,4 +1,6 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
@@ -51,5 +53,24 @@ describe('CommentsComponent', () => {
     expect(nativeElement.querySelectorAll('ul app-comment').length).toBe(
       component.comments.length
     );
+  });
+
+  fit('should invoke "onRemoveComment()" handler method when "commentRemoved" event is received', () => {
+    spyOn(component, 'onRemoveComment');
+
+    // given a list of comments
+    component.comments = [comment1, comment2];
+    fixture.detectChanges();
+
+    // when a commentRemoved event is triggered
+    const commentElement: DebugElement = fixture.debugElement.query(
+      By.css('app-comment')
+    );
+    commentElement.triggerEventHandler('commentRemoved', comment2);
+
+    fixture.detectChanges();
+
+    // then onRemoveComment should be called
+    expect(component.onRemoveComment).toHaveBeenCalled();
   });
 });
