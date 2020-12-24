@@ -71,6 +71,8 @@ describe('CommentsComponent', () => {
     fixture.detectChanges();
 
     // then onRemoveComment should be called
-    expect(component.onRemoveComment).toHaveBeenCalled();
+    expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
   });
+
+  it('should remove the comment from the comments list when "onRemoveComment()" is invoked', () => {});
 });
