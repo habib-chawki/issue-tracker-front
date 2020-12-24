@@ -13,5 +13,5 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onRemoveComment() {}
+  onRemoveComment(comment: Comment) {}
 }
