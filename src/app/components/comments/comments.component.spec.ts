@@ -55,7 +55,7 @@ describe('CommentsComponent', () => {
     );
   });
 
-  fit('should invoke "onRemoveComment()" handler method when "commentRemoved" event is received', () => {
+  it('should invoke "onRemoveComment()" handler method when "commentRemoved" event is received', () => {
     spyOn(component, 'onRemoveComment');
 
     // given a list of comments
@@ -74,5 +74,17 @@ describe('CommentsComponent', () => {
     expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
   });
 
-  it('should remove the comment from the comments list when "onRemoveComment()" is invoked', () => {});
+  fit('should remove the comment from the comments list when "onRemoveComment()" is invoked', () => {
+    // given a list of comments
+    component.comments = [comment1, comment2];
+
+    // the comment should have been added to the list
+    expect(component.comments).toContain(comment2);
+
+    // when "onRemoveComment()" is called
+    component.onRemoveComment(comment2);
+
+    // then the comment should be removed from the list
+    expect(component.comments).not.toContain(comment2);
+  });
 });
