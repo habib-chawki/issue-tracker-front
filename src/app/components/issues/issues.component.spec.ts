@@ -171,10 +171,10 @@ describe('IssuesComponent', () => {
       fixture.detectChanges();
 
       // when the app-issue component emits an "issueRemoved" event
-      const appIssue: DebugElement = fixture.debugElement.query(
+      const issueElement: DebugElement = fixture.debugElement.query(
         By.css('app-issue')
       );
-      appIssue.triggerEventHandler('issueRemoved', issue);
+      issueElement.triggerEventHandler('issueRemoved', issue);
 
       expect(component.onRemoveIssue).toHaveBeenCalledWith(issue);
     });
