@@ -2,6 +2,7 @@ import IssueType from '../enums/issue-type';
 import IssueStatus from '../enums/issue-status';
 import IssueResolution from '../enums/issue-resolution';
 import { User } from '../user/user';
+import { Comment } from '../comment/comment';
 
 export interface Issue {
   id: string;
@@ -18,7 +19,7 @@ export interface Issue {
   assignee?: User;
   reporter: User;
 
-  comments?: string[];
+  comments?: Comment[];
   votes?: number;
   watchers?: string[];
 

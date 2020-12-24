@@ -1,3 +1,4 @@
+import { CommentBuilder } from '../comment-builder/comment-builder';
 import IssueResolution from '../enums/issue-resolution';
 import IssueStatus from '../enums/issue-status';
 import IssueType from '../enums/issue-type';
@@ -18,7 +19,10 @@ describe('IssueBuilder', () => {
       resolution: IssueResolution.Unresolved,
       assignee: null,
       reporter: null,
-      comments: [],
+      comments: [
+        new CommentBuilder().content('comment1').owner('jon doe').build(),
+        new CommentBuilder().content('comment3').owner('joe doe').build(),
+      ],
       votes: 0,
       watchers: [],
       creationTime: new Date(),

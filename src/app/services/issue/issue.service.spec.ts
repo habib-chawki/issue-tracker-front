@@ -10,6 +10,7 @@ import IssueType from '../../models/enums/issue-type';
 import IssueResolution from '../../models/enums/issue-resolution';
 import IssueStatus from '../../models/enums/issue-status';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 
 describe('IssueService', () => {
   let issueService: IssueService;
@@ -38,7 +39,10 @@ describe('IssueService', () => {
       resolution: IssueResolution.Duplicate,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
-      comments: ['comment1', 'comment2'],
+      comments: [
+        new CommentBuilder().content('comment1').owner('jon doe').build(),
+        new CommentBuilder().content('comment2').owner('jane doe').build(),
+      ],
       votes: 8,
       watchers: ['jon', 'jane'],
       creationTime: new Date(),
@@ -57,7 +61,11 @@ describe('IssueService', () => {
       resolution: IssueResolution.Unresolved,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
-      comments: ['comment1', 'comment2', 'comment3'],
+      comments: [
+        new CommentBuilder().content('comment1').owner('jon doe').build(),
+        new CommentBuilder().content('comment2').owner('jane doe').build(),
+        new CommentBuilder().content('comment3').owner('joe doe').build(),
+      ],
       votes: 2,
       watchers: [],
       creationTime: new Date(),
