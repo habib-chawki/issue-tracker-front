@@ -74,7 +74,7 @@ describe('CommentsComponent', () => {
     expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
   });
 
-  fit('should remove the comment from the comments list when "onRemoveComment()" is invoked', () => {
+  it('should remove the comment from the comments list when "onRemoveComment()" is invoked', () => {
     // given a list of comments
     component.comments = [comment1, comment2];
 
@@ -86,5 +86,28 @@ describe('CommentsComponent', () => {
 
     // then the comment should be removed from the list
     expect(component.comments).not.toContain(comment2);
+  });
+
+  it('should remove the comment component when "onRemoveComment()" is called', () => {
+    // given a list of comments
+    component.comments = [comment1, comment2];
+    fixture.detectChanges();
+
+    // given the list size
+    const commentsListSize = component.comments.length;
+
+    // the comment components should be rendered
+    expect(nativeElement.querySelectorAll('app-comment').length).toBe(
+      commentsListSize
+    );
+
+    // when "onRemoveComment()" is called
+    component.onRemoveComment(comment1);
+    fixture.detectChanges();
+
+    // then the comment component should be removed
+    expect(nativeElement.querySelectorAll('app-comment').length).toBe(
+      commentsListSize - 1
+    );
   });
 });
