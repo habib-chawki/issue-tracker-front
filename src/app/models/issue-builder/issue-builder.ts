@@ -1,3 +1,4 @@
+import { Comment } from '../comment/comment';
 import IssueResolution from '../enums/issue-resolution';
 import IssueStatus from '../enums/issue-status';
 import IssueType from '../enums/issue-type';
@@ -70,7 +71,7 @@ export class IssueBuilder {
     this._issue.reporter = reporter;
     return this;
   }
-  comments(comments: string[]): IssueBuilder {
+  comments(comments: Comment[]): IssueBuilder {
     this._issue.comments = comments;
     return this;
   }
