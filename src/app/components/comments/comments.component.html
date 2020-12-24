@@ -2,7 +2,7 @@
   <app-comment
     *ngFor="let comment of comments"
     [comment]="comment"
-    (commentRemoved)="onRemoveComment()"
+    (commentRemoved)="onRemoveComment($event)"
   >
   </app-comment>
 </ul>
