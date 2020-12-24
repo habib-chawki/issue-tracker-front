@@ -1,0 +1,13 @@
+<button class="add-issue" (click)="onDisplayIssueForm()">Add issue</button>
+
+<app-issue-form
+  *ngIf="displayForm"
+  (issueCreated)="onCreateIssue($event)"
+></app-issue-form>
+
+<app-issues [issues]="issues"></app-issues>
+
+<app-issue-details
+  [issue]="issueDetails"
+  *ngIf="issueDetails.description"
+></app-issue-details>
