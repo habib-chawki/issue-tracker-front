@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -59,7 +60,10 @@ describe('IssuesComponent', () => {
       resolution: IssueResolution.Duplicate,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
-      comments: ['comment1', 'comment2'],
+      comments: [
+        new CommentBuilder().content('comment1').owner('jon doe').build(),
+        new CommentBuilder().content('comment2').owner('jane doe').build(),
+      ],
       votes: 8,
       watchers: ['jon', 'jane'],
       creationTime: new Date(),
@@ -78,7 +82,11 @@ describe('IssuesComponent', () => {
       resolution: IssueResolution.Unresolved,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
-      comments: ['comment1', 'comment2', 'comment3'],
+      comments: [
+        new CommentBuilder().content('comment1').owner('jon doe').build(),
+        new CommentBuilder().content('comment2').owner('jane doe').build(),
+        new CommentBuilder().content('comment3').owner('joe doe').build(),
+      ],
       votes: 2,
       watchers: [],
       creationTime: new Date(),
