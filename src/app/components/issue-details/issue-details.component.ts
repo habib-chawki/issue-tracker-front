@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
 @Component({
   selector: 'app-issue-details',
@@ -9,7 +10,9 @@ import { Issue } from 'src/app/models/issue/issue';
 export class IssueDetailsComponent implements OnInit {
   @Input() issue: Issue = {} as Issue;
 
-  constructor() {}
+  constructor(private issueCommunicationService: IssueCommunicationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.issueCommunicationService.issueClicked.subscribe();
+  }
 }
