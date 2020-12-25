@@ -10,7 +10,7 @@ export class IssueCommunicationService {
 
   constructor() {}
 
-  announceIssueCreated(issue: Issue) {
+  announceIssueCreated(issue) {
     this.issueCreated.next(issue);
   }
 }
