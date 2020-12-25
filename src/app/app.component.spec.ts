@@ -40,7 +40,7 @@ describe('AppComponent', () => {
     );
   });
 
-  fit('should render issues component', () => {
+  it('should render issues component', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const nativeElement = fixture.nativeElement;
     expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
