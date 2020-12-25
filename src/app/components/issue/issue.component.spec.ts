@@ -90,7 +90,7 @@ describe('IssueComponent', () => {
     expect(component.onClick).toHaveBeenCalled();
   });
 
-  fit('should announce that the issue is clicked when "onClick()" is invoked', () => {
+  it('should announce that the issue is clicked when "onClick()" is invoked', () => {
     spyOn(issueCommunicationService, 'announceIssueClicked');
 
     // when the "onClick()" event handler method is invoked
@@ -159,12 +159,15 @@ describe('IssueComponent', () => {
     expect(component.onRemove).toHaveBeenCalled();
   });
 
-  it('should emit "issueRemoved" event when "onRemove()" is called', () => {
-    spyOn(component.issueRemoved, 'emit');
+  fit('should announce that the issue is removed when "onRemove()" is called', () => {
+    spyOn(issueCommunicationService, 'announceIssueRemoved');
+
     // when onRemove is invoked
     component.onRemove();
 
     // then an "issueRemoved" event should be emitted
-    expect(component.issueRemoved.emit).toHaveBeenCalledWith(component.issue);
+    expect(issueCommunicationService.announceIssueRemoved).toHaveBeenCalledWith(
+      component.issue
+    );
   });
 });
