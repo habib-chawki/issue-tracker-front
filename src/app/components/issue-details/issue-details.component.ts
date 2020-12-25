@@ -8,11 +8,13 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
   styleUrls: ['./issue-details.component.scss'],
 })
 export class IssueDetailsComponent implements OnInit {
-  @Input() issue: Issue = {} as Issue;
+  issue: Issue = {} as Issue;
 
   constructor(private issueCommunicationService: IssueCommunicationService) {}
 
   ngOnInit(): void {
-    this.issueCommunicationService.issueClicked.subscribe();
+    this.issueCommunicationService.issueClicked.subscribe((response) => {
+      this.issue = response;
+    });
   }
 }
