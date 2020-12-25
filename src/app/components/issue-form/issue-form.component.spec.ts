@@ -36,7 +36,7 @@ describe('IssueFormComponent', () => {
     expect(nativeElement).toBeTruthy();
   });
 
-  it('should render a form to input every issue detail', () => {
+  it('should render a form with input fields for each issue detail', () => {
     // the form should be rendered with every issue detail input field
     expect(nativeElement.querySelector('form')).toBeTruthy();
 
@@ -77,14 +77,6 @@ describe('IssueFormComponent', () => {
     expect(
       nativeElement.querySelector(
         'form input#assignee[formControlName="assignee"]'
-      )
-    ).toBeTruthy();
-
-    // TODO: use a dropdown list instead when users are implemented
-    // "reporter" text input
-    expect(
-      nativeElement.querySelector(
-        'form input#reporter[formControlName="reporter"]'
       )
     ).toBeTruthy();
 
@@ -146,7 +138,6 @@ describe('IssueFormComponent', () => {
     expect(component.issueForm.controls['status']).toBeTruthy();
     expect(component.issueForm.controls['resolution']).toBeTruthy();
     expect(component.issueForm.controls['assignee']).toBeTruthy();
-    expect(component.issueForm.controls['reporter']).toBeTruthy();
     expect(component.issueForm.controls['estimate']).toBeTruthy();
   });
 
@@ -164,7 +155,7 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  it('should emit an event with the form value when "onSubmit()" is called', () => {
+  it('should announce that the issue is created when "onSubmit()" is called', () => {
     spyOn(issueCommunicationService, 'announceIssueCreated');
 
     // given the form value
