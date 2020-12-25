@@ -6,12 +6,11 @@ import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { User } from 'src/app/models/user/user';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { IssueComponent } from './issue.component';
 
-describe('IssueComponent', () => {
+fdescribe('IssueComponent', () => {
   let component: IssueComponent;
   let fixture: ComponentFixture<IssueComponent>;
   let nativeElement: HTMLElement;
@@ -20,7 +19,6 @@ describe('IssueComponent', () => {
   let reporter: User;
 
   let storageService: StorageService;
-  let issueCommunicationService: IssueCommunicationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,7 +34,6 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     storageService = TestBed.inject(StorageService);
-    issueCommunicationService = TestBed.inject(IssueCommunicationService);
 
     // set up the issue reporter
     reporter = new UserBuilder()
@@ -90,16 +87,14 @@ describe('IssueComponent', () => {
     expect(component.onClick).toHaveBeenCalled();
   });
 
-  it('should announce that the issue is clicked when "onClick()" is invoked', () => {
-    spyOn(issueCommunicationService, 'announceIssueClicked');
+  it('should emit an "issueClicked" event with issue details when "onClick()" is invoked', () => {
+    spyOn(component.issueClicked, 'emit');
 
     // when the "onClick()" event handler method is invoked
     component.onClick();
 
     // then an event should be emitted with the issue details
-    expect(issueCommunicationService.announceIssueClicked).toHaveBeenCalledWith(
-      component.issue
-    );
+    expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 
   it('should render the remove button when the logged-in user is the issue reporter', () => {
@@ -159,15 +154,12 @@ describe('IssueComponent', () => {
     expect(component.onRemove).toHaveBeenCalled();
   });
 
-  fit('should announce that the issue is removed when "onRemove()" is called', () => {
-    spyOn(issueCommunicationService, 'announceIssueRemoved');
-
+  it('should emit "issueRemoved" event when "onRemove()" is called', () => {
+    spyOn(component.issueRemoved, 'emit');
     // when onRemove is invoked
     component.onRemove();
 
     // then an "issueRemoved" event should be emitted
-    expect(issueCommunicationService.announceIssueRemoved).toHaveBeenCalledWith(
-      component.issue
-    );
+    expect(component.issueRemoved.emit).toHaveBeenCalledWith(component.issue);
   });
 });
