@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable, of, Subscription } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -191,7 +192,7 @@ describe('IssueDetailsComponent', () => {
     expect(nativeElement.querySelector('app-comments')).toBeTruthy();
   });
 
-  fit('should subscribe to "issueCommunicationService", listening for "issueClicked" events', () => {
+  it('should subscribe to "issueCommunicationService", listening for "issueClicked" events', () => {
     spyOn(issueCommunicationService.issueClicked, 'subscribe');
 
     // when ngOnInit is called (component mounts for the first time)
@@ -199,5 +200,13 @@ describe('IssueDetailsComponent', () => {
 
     // then we should subscribe to the issueClicked event emitter
     expect(issueCommunicationService.issueClicked.subscribe).toHaveBeenCalled();
+  });
+
+  it('should set the issue to the value of the "issueClicked.subscribe" response', () => {
+    // given an issue clicked is announced
+    issueCommunicationService.announceIssueClicked(issue);
+
+    // then the component issue should be set
+    expect(component.issue).toBe(issue);
   });
 });

@@ -44,7 +44,7 @@ describe('IssueCommunicationService', () => {
     expect(response).toEqual(issueFormValue);
   });
 
-  fit('should announce that the issue is clicked', () => {
+  it('should announce that the issue is clicked', () => {
     let response: Issue;
 
     service.issueClicked.subscribe((res: Issue) => {
