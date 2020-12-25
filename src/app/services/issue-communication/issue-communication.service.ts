@@ -18,4 +18,6 @@ export class IssueCommunicationService {
   announceIssueClicked(issue: Issue) {
     this.issueClicked.next(issue);
   }
+
+  announceIssueRemoved(issue: Issue) {}
 }
