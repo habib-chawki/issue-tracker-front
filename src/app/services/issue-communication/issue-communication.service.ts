@@ -6,7 +6,8 @@ import { Issue } from 'src/app/models/issue/issue';
   providedIn: 'root',
 })
 export class IssueCommunicationService {
-  issueCreated = new Subject<Issue>();
+  issueCreated = new Subject();
+  issueClicked = new Subject<Issue>();
 
   constructor() {}
 

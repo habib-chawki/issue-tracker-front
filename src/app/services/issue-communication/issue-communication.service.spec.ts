@@ -31,7 +31,7 @@ describe('IssueCommunicationService', () => {
   });
 
   it('should announce that the issue is created', () => {
-    let receivedIssue: Issue;
+    let receivedIssue;
 
     service.issueCreated.subscribe((response) => {
       receivedIssue = response;
