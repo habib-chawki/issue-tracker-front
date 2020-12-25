@@ -11,8 +11,6 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class IssueComponent implements OnInit {
   @Input() issue: Issue = {} as Issue;
 
-  @Output() issueRemoved = new EventEmitter();
-
   constructor(
     private storageService: StorageService,
     private issueCommunicationService: IssueCommunicationService
@@ -25,7 +23,7 @@ export class IssueComponent implements OnInit {
   }
 
   onRemove() {
-    this.issueRemoved.emit(this.issue);
+    this.issueCommunicationService.announceIssueRemoved(this.issue);
   }
 
   canRemove(): boolean {
