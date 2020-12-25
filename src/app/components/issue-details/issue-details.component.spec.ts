@@ -210,9 +210,27 @@ describe('IssueDetailsComponent', () => {
     expect(component.issue).toBe(issue);
   });
 
-  fit('should render a "close" button to hide the issue details component', () => {
+  it('should render a "close" button to hide the issue details component', () => {
     expect(nativeElement.querySelector('button#close').textContent).toContain(
       'Close'
     );
   });
+
+  fit('should invoke the "onClose()" handler method when the "Close" button is clicked', () => {
+    // given the onClose() handler method
+    spyOn(component, 'onClose');
+
+    // given the Close button
+    const closeButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#close'
+    );
+
+    // when the button is clicked
+    closeButton.click();
+
+    // then onClose() should be called
+    expect(component.onClose).toHaveBeenCalled();
+  });
+
+  it('should emit an "issueDetailsClosed" event when "onClose()" is called', () => {});
 });

@@ -17,4 +17,6 @@ export class IssueDetailsComponent implements OnInit {
       this.issue = response;
     });
   }
+
+  onClose() {}
 }
