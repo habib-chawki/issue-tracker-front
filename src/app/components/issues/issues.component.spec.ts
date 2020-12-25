@@ -80,81 +80,133 @@ describe('IssuesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a list of issue components', () => {
-    // given an issues array
-    component.issues = [issue, issue2];
+  describe('IssueComponent', () => {
+    it('should render a list of issue components', () => {
+      // given an issues array
+      component.issues = [issue, issue2];
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    // expect the number of rendered issue elements to be the size of the issues array
-    expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
-      component.issues.length
-    );
+      // expect the number of rendered issue elements to be the size of the issues array
+      expect(nativeElement.querySelectorAll('app-issue').length).toEqual(
+        component.issues.length
+      );
+    });
+
+    it('should invoke "onRemoveIssue()" when an "issueRemoved" event is triggered', () => {
+      // given the onRemoveIssue handler method
+      spyOn(component, 'onRemoveIssue');
+
+      // given an issue component
+      component.issues.push(issue);
+      fixture.detectChanges();
+
+      // when the app-issue component emits an "issueRemoved" event
+      const issueElement: DebugElement = fixture.debugElement.query(
+        By.css('app-issue')
+      );
+      issueElement.triggerEventHandler('issueRemoved', issue);
+
+      expect(component.onRemoveIssue).toHaveBeenCalledWith(issue);
+    });
+
+    it('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
+      // given an issue
+      component.issues.push(issue);
+
+      // when onRemoveIssue is called
+      component.onRemoveIssue(issue);
+
+      // then the issue should be removed from the list of issues
+      expect(
+        component.issues.find((element) => element === issue)
+      ).toBeUndefined();
+    });
+
+    it('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
+      // given the list of issues
+      component.issues = [issue, issue2];
+
+      // when onRemoveIssue is invoked
+      component.onRemoveIssue(issue2);
+
+      // then the issue should be removed from the list of issues
+      expect(
+        component.issues.find((element) => element === issue2)
+      ).toBeUndefined();
+    });
+
+    it('should remove the issue component when "onRemoveIssue()" is invoked', () => {
+      // given a list of issues
+      component.issues = [issue, issue2];
+      fixture.detectChanges();
+
+      // given the size of the issues list
+      const issuesListSize = component.issues.length;
+
+      // expect the list of issues to have been rendered
+      expect(nativeElement.querySelectorAll('app-issue').length).toBe(
+        issuesListSize
+      );
+
+      // when an issue is removed
+      component.onRemoveIssue(issue2);
+      fixture.detectChanges();
+
+      // then the issue component should also be removed
+      expect(nativeElement.querySelectorAll('app-issue').length).toBe(
+        issuesListSize - 1
+      );
+    });
   });
 
-  it('should invoke "onRemoveIssue()" when an "issueRemoved" event is triggered', () => {
-    // given the onRemoveIssue handler method
-    spyOn(component, 'onRemoveIssue');
+  describe('IssueDetailsComponent', () => {
+    fit('should invoke "onDisplayIssueDetails()" when an issue is clicked', () => {
+      spyOn(component, 'onDisplayIssueDetails');
 
-    // given an issue component
-    component.issues.push(issue);
-    fixture.detectChanges();
+      // given an issue
+      component.issues.push(issue);
+      fixture.detectChanges();
 
-    // when the app-issue component emits an "issueRemoved" event
-    const issueElement: DebugElement = fixture.debugElement.query(
-      By.css('app-issue')
-    );
-    issueElement.triggerEventHandler('issueRemoved', issue);
+      // when the issue is clicked
+      const issueElement: DebugElement = fixture.debugElement.query(
+        By.css('app-issue')
+      );
+      issueElement.triggerEventHandler('issueClicked', issue);
 
-    expect(component.onRemoveIssue).toHaveBeenCalledWith(issue);
-  });
+      // then the "onDisplayIssueDetails()" event handler should be invoked with the issue details
+      expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+    });
 
-  it('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
-    // given an issue
-    component.issues.push(issue);
+    it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
+      // no issue details should be present at first
+      expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
 
-    // when onRemoveIssue is called
-    component.onRemoveIssue(issue);
+      // when "onDisplayIssueDetails()" is invoked with an issue details
+      component.onDisplayIssueDetails(issue);
 
-    // then the issue should be removed from the list of issues
-    expect(
-      component.issues.find((element) => element === issue)
-    ).toBeUndefined();
-  });
+      fixture.detectChanges();
 
-  it('should remove the issue from the issues list when "onRemoveIssue()" is invoked', () => {
-    // given the list of issues
-    component.issues = [issue, issue2];
+      // then expect the issueDetails component to be rendered
+      expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
+    });
 
-    // when onRemoveIssue is invoked
-    component.onRemoveIssue(issue2);
+    it('should invoke "onDisplayIssueDetails()" when an "issueClicked" event is emitted', () => {
+      spyOn(component, 'onDisplayIssueDetails');
 
-    // then the issue should be removed from the list of issues
-    expect(
-      component.issues.find((element) => element === issue2)
-    ).toBeUndefined();
-  });
+      // given a new issue
+      component.issues.push(issue);
 
-  it('should remove the issue component when "onRemoveIssue()" is invoked', () => {
-    // given a list of issues
-    component.issues = [issue, issue2];
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    // given the size of the issues list
-    const issuesListSize = component.issues.length;
+      // when an "issueClicked" event is triggered
+      const issueElement: DebugElement = fixture.debugElement.query(
+        By.css('app-issue')
+      );
+      issueElement.triggerEventHandler('issueClicked', issue);
 
-    // expect the list of issues to have been rendered
-    expect(nativeElement.querySelectorAll('app-issue').length).toBe(
-      issuesListSize
-    );
-
-    // when an issue is removed
-    component.onRemoveIssue(issue2);
-    fixture.detectChanges();
-
-    // then the issue component should also be removed
-    expect(nativeElement.querySelectorAll('app-issue').length).toBe(
-      issuesListSize - 1
-    );
+      // the "onDisplayIssueDetails()" handler method should be called
+      expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+    });
   });
 });
