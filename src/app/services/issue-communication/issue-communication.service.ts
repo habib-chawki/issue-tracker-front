@@ -11,7 +11,11 @@ export class IssueCommunicationService {
 
   constructor() {}
 
-  announceIssueCreated(issue) {
-    this.issueCreated.next(issue);
+  announceIssueCreated(issueFormValue) {
+    this.issueCreated.next(issueFormValue);
+  }
+
+  announceIssueClicked(issue: Issue) {
+    this.issueClicked.next(issue);
   }
 }
