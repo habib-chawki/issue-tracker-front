@@ -9,7 +9,7 @@ import { IssueCommunicationService } from './issue-communication.service';
 
 describe('IssueCommunicationService', () => {
   let service: IssueCommunicationService;
-  let issueFormValue;
+  let issueFormValue, issue: Issue;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -24,6 +24,8 @@ describe('IssueCommunicationService', () => {
       assignee: null,
       estimate: new Date(),
     };
+
+    issue = new IssueBuilder().id('500').summary('issue summary').build();
   });
 
   it('should be created', () => {
@@ -31,14 +33,26 @@ describe('IssueCommunicationService', () => {
   });
 
   it('should announce that the issue is created', () => {
-    let receivedIssue;
+    let response;
 
-    service.issueCreated.subscribe((response) => {
-      receivedIssue = response;
+    service.issueCreated.subscribe((res) => {
+      response = res;
     });
 
     service.announceIssueCreated(issueFormValue);
 
-    expect(receivedIssue).toEqual(issueFormValue);
+    expect(response).toEqual(issueFormValue);
+  });
+
+  fit('should announce that the issue is clicked', () => {
+    let response: Issue;
+
+    service.issueClicked.subscribe((res: Issue) => {
+      response = res;
+    });
+
+    service.announceIssueClicked(issue);
+
+    expect(response).toEqual(issue);
   });
 });
