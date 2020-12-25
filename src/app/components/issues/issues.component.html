@@ -1,6 +1,13 @@
+<!-- display the list of issues -->
 <app-issue
   *ngFor="let issue of issues"
   [issue]="issue"
   (issueClicked)="onDisplayIssueDetails($event)"
   (issueRemoved)="onRemoveIssue($event)"
 ></app-issue>
+
+<!-- display the details of a single issue -->
+<app-issue-details
+  [issue]="issueDetails"
+  *ngIf="willDisplayIssueDetails"
+></app-issue-details>

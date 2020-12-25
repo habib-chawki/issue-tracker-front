@@ -161,7 +161,7 @@ describe('IssuesComponent', () => {
   });
 
   describe('IssueDetailsComponent', () => {
-    fit('should invoke "onDisplayIssueDetails()" when an issue is clicked', () => {
+    it('should invoke "onDisplayIssueDetails()" when an issue emits an "issueClicked" event', () => {
       spyOn(component, 'onDisplayIssueDetails');
 
       // given an issue
@@ -207,6 +207,16 @@ describe('IssuesComponent', () => {
 
       // the "onDisplayIssueDetails()" handler method should be called
       expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+    });
+
+    it('should toggle "willDisplayIssueDetails" value', () => {
+      // should set to true
+      component.onDisplayIssueDetails(issue);
+      expect(component.willDisplayIssueDetails).toBeTrue();
+
+      // should set to false
+      component.onHideIssueDetails();
+      expect(component.willDisplayIssueDetails).toBeFalse();
     });
   });
 });
