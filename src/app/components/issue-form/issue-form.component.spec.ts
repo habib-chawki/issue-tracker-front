@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
 import { IssueFormComponent } from './issue-form.component';
 
@@ -10,6 +11,8 @@ describe('IssueFormComponent', () => {
   let component: IssueFormComponent;
   let fixture: ComponentFixture<IssueFormComponent>;
   let nativeElement: HTMLElement;
+
+  let issueCommunicationService: IssueCommunicationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,6 +25,8 @@ describe('IssueFormComponent', () => {
     fixture = TestBed.createComponent(IssueFormComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
+
+    issueCommunicationService = TestBed.inject(IssueCommunicationService);
 
     fixture.detectChanges();
   });
@@ -160,7 +165,7 @@ describe('IssueFormComponent', () => {
   });
 
   it('should emit an event with the form value when "onSubmit()" is called', () => {
-    spyOn(component.issueCreated, 'emit');
+    spyOn(issueCommunicationService, 'announceIssueCreated');
 
     // given the form value
     const formValue = {
@@ -170,7 +175,6 @@ describe('IssueFormComponent', () => {
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Duplicate,
       assignee: 'Me',
-      reporter: 'Someone',
       estimate: new Date(),
     };
 
@@ -180,6 +184,8 @@ describe('IssueFormComponent', () => {
     component.onSubmit();
 
     // then an event should be emitted with the form value
-    expect(component.issueCreated.emit).toHaveBeenCalledWith(formValue);
+    expect(issueCommunicationService.announceIssueCreated).toHaveBeenCalledWith(
+      formValue
+    );
   });
 });
