@@ -209,4 +209,10 @@ describe('IssueDetailsComponent', () => {
     // then the component's issue property should be set
     expect(component.issue).toBe(issue);
   });
+
+  fit('should render a "close" button to hide the issue details component', () => {
+    expect(nativeElement.querySelector('button#close').textContent).toContain(
+      'Close'
+    );
+  });
 });
