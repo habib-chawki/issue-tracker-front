@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { IssueComponent } from './issue.component';
 
-fdescribe('IssueComponent', () => {
+describe('IssueComponent', () => {
   let component: IssueComponent;
   let fixture: ComponentFixture<IssueComponent>;
   let nativeElement: HTMLElement;
@@ -88,6 +88,9 @@ fdescribe('IssueComponent', () => {
   });
 
   it('should emit an "issueClicked" event with issue details when "onClick()" is invoked', () => {
+    // given an issue
+    component.issue = issue;
+
     spyOn(component.issueClicked, 'emit');
 
     // when the "onClick()" event handler method is invoked
@@ -155,7 +158,11 @@ fdescribe('IssueComponent', () => {
   });
 
   it('should emit "issueRemoved" event when "onRemove()" is called', () => {
+    // given an issue
+    component.issue = issue;
+
     spyOn(component.issueRemoved, 'emit');
+
     // when onRemove is invoked
     component.onRemove();
 
