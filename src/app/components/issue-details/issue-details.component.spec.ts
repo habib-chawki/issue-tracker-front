@@ -216,7 +216,7 @@ describe('IssueDetailsComponent', () => {
     );
   });
 
-  fit('should invoke the "onClose()" handler method when the "Close" button is clicked', () => {
+  it('should invoke the "onClose()" handler method when the "Close" button is clicked', () => {
     // given the onClose() handler method
     spyOn(component, 'onClose');
 
@@ -232,5 +232,14 @@ describe('IssueDetailsComponent', () => {
     expect(component.onClose).toHaveBeenCalled();
   });
 
-  it('should emit an "issueDetailsClosed" event when "onClose()" is called', () => {});
+  it('should emit an "issueDetailsClosed" event when "onClose()" is called', () => {
+    // given the "issueDetailsClosed" event emitter
+    spyOn(component.issueDetailsClosed, 'emit');
+
+    // when "onClose()" is called
+    component.onClose();
+
+    // then an "issueDetailsClosed" event should be emitted
+    expect(component.issueDetailsClosed.emit).toHaveBeenCalled();
+  });
 });

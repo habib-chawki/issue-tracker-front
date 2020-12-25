@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
@@ -10,6 +11,8 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
 export class IssueDetailsComponent implements OnInit {
   issue: Issue = {} as Issue;
 
+  @Output() issueDetailsClosed = new EventEmitter();
+
   constructor(private issueCommunicationService: IssueCommunicationService) {}
 
   ngOnInit(): void {
@@ -18,5 +21,7 @@ export class IssueDetailsComponent implements OnInit {
     });
   }
 
-  onClose() {}
+  onClose() {
+    this.issueDetailsClosed.emit(null);
+  }
 }
