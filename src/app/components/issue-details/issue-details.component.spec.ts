@@ -5,6 +5,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { CommentComponent } from '../comment/comment.component';
 import { CommentsComponent } from '../comments/comments.component';
 
@@ -14,6 +15,8 @@ describe('IssueDetailsComponent', () => {
   let component: IssueDetailsComponent;
   let fixture: ComponentFixture<IssueDetailsComponent>;
   let nativeElement: HTMLElement;
+
+  let issueCommunicationService: IssueCommunicationService;
 
   let issue: Issue;
 
@@ -33,6 +36,8 @@ describe('IssueDetailsComponent', () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
+
+    issueCommunicationService = TestBed.inject(IssueCommunicationService);
 
     // set up issue details
     issue = {
@@ -184,5 +189,15 @@ describe('IssueDetailsComponent', () => {
 
     // the app-comments component should be rendered (list of comments)
     expect(nativeElement.querySelector('app-comments')).toBeTruthy();
+  });
+
+  fit('should subscribe to "issueCommunicationService", listening for "issueClicked" events', () => {
+    spyOn(issueCommunicationService.issueClicked, 'subscribe');
+
+    // when ngOnInit is called (component mounts for the first time)
+    component.ngOnInit();
+
+    // then we should subscribe to the issueClicked event emitter
+    expect(issueCommunicationService.issueClicked.subscribe).toHaveBeenCalled();
   });
 });
