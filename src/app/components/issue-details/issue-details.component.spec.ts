@@ -203,10 +203,10 @@ describe('IssueDetailsComponent', () => {
   });
 
   it('should set the issue to the value of the "issueClicked.subscribe" response', () => {
-    // given an issue clicked is announced
+    // when an issueClicked is announced
     issueCommunicationService.announceIssueClicked(issue);
 
-    // then the component issue should be set
+    // then the component's issue property should be set
     expect(component.issue).toBe(issue);
   });
 });
