@@ -14,9 +14,8 @@ import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
-import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 import { IssueFormComponent } from '../issue-form/issue-form.component';
-import { IssueComponent } from '../issue/issue.component';
+import { IssuesComponent } from '../issues/issues.component';
 import { Backlog } from './backlog.component';
 
 describe('Backlog', () => {
@@ -30,12 +29,7 @@ describe('Backlog', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        Backlog,
-        IssueComponent,
-        IssueFormComponent,
-        IssueDetailsComponent,
-      ],
+      declarations: [Backlog, IssueFormComponent, IssuesComponent],
       imports: [ReactiveFormsModule, HttpClientTestingModule],
     }).compileComponents();
   });
