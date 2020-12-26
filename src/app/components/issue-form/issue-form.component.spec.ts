@@ -185,7 +185,7 @@ describe('IssueFormComponent', () => {
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValue);
   });
 
-  fit('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
+  it('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
     spyOn(component, 'onCancel');
 
     // given the form cancel button
@@ -198,5 +198,16 @@ describe('IssueFormComponent', () => {
 
     // then "onCancel()" handler method should be called
     expect(component.onCancel).toHaveBeenCalled();
+  });
+
+  fit('should emit an "issueFormCancelled" event when "onCancel()" is called', () => {
+    // given the issueFormCancelled event emitter
+    spyOn(component.issueFormCancelled, 'emit');
+
+    // when onCancel() is called
+    component.onCancel();
+
+    // then an "issueFormCancelled" event should be emitted
+    expect(component.issueFormCancelled.emit).toHaveBeenCalled();
   });
 });
