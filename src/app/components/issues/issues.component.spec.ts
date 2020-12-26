@@ -7,6 +7,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 
 import { IssuesComponent } from './issues.component';
 
@@ -19,7 +20,7 @@ describe('IssuesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IssuesComponent],
+      declarations: [IssuesComponent, IssueDetailsComponent],
     }).compileComponents();
   });
 
@@ -207,6 +208,23 @@ describe('IssuesComponent', () => {
 
       // the "onDisplayIssueDetails()" handler method should be called
       expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+    });
+
+    it('should invoke "onHideIssueDetails()" when an "issueDetailsClosed" event is emitted', () => {
+      // given an "issueDetails" component
+      component.willDisplayIssueDetails = true;
+      fixture.detectChanges();
+
+      spyOn(component, 'onHideIssueDetails');
+
+      // when the "issueDetailsComponent" emits and "issueDetailsClosed" event
+      const issueDetailsElement: DebugElement = fixture.debugElement.query(
+        By.css('app-issue-details')
+      );
+      issueDetailsElement.triggerEventHandler('issueDetailsClosed', null);
+
+      // then "onHideIssueDetails()" should be called
+      expect(component.onHideIssueDetails).toHaveBeenCalled();
     });
 
     it('should toggle "willDisplayIssueDetails" value', () => {
