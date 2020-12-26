@@ -155,8 +155,8 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  it('should announce that the issue is created when "onSubmit()" is called', () => {
-    spyOn(issueCommunicationService, 'announceIssueCreated');
+  fit('should emit an "issueCreated" event when "onSubmit()" is called', () => {
+    spyOn(component.issueCreated, 'emit');
 
     // given the form value
     const formValue = {
@@ -175,8 +175,6 @@ describe('IssueFormComponent', () => {
     component.onSubmit();
 
     // then an event should be emitted with the form value
-    expect(issueCommunicationService.announceIssueCreated).toHaveBeenCalledWith(
-      formValue
-    );
+    expect(component.issueCreated.emit).toHaveBeenCalledWith(formValue);
   });
 });
