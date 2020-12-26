@@ -14,7 +14,7 @@ import { IssueComponent } from '../issue/issue.component';
 
 import { IssuesComponent } from './issues.component';
 
-fdescribe('IssuesComponent', () => {
+describe('IssuesComponent', () => {
   let component: IssuesComponent;
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;

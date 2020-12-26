@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
@@ -8,7 +8,7 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
   styleUrls: ['./issue-details.component.scss'],
 })
 export class IssueDetailsComponent implements OnInit {
-  issue: Issue = {} as Issue;
+  @Input() issue: Issue = {} as Issue;
 
   @Output() issueDetailsClosed = new EventEmitter();
 

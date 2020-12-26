@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Observable, of, Subscription } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';

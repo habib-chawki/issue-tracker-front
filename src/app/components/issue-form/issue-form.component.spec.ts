@@ -3,7 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
 import { IssueFormComponent } from './issue-form.component';
 
