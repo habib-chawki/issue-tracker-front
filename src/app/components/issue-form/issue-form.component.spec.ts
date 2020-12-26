@@ -86,11 +86,19 @@ describe('IssueFormComponent', () => {
         'form input#estimate[formControlName="estimate"]'
       )
     ).toBeTruthy();
+  });
 
+  it('should render an "Add issue" submit button', () => {
     // the submit button should be rendered with an "Add issue" label
     expect(
       nativeElement.querySelector('form button[type="submit"]').innerHTML
     ).toContain('Add issue');
+  });
+
+  it('should render a "Cancel" form button', () => {
+    expect(nativeElement.querySelector('button#cancel').textContent).toContain(
+      'Cancel'
+    );
   });
 
   it('should render issue "type" options based on the values of the "IssueType" enum', () => {
@@ -155,7 +163,7 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  fit('should emit an "issueCreated" event when "onSubmit()" is called', () => {
+  it('should emit an "issueCreated" event when "onSubmit()" is called', () => {
     spyOn(component.issueCreated, 'emit');
 
     // given the form value
