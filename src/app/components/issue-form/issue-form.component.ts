@@ -13,6 +13,7 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
 })
 export class IssueFormComponent implements OnInit {
   @Output() issueCreated = new EventEmitter();
+  @Output() issueFormCancelled = new EventEmitter();
 
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
@@ -39,5 +40,7 @@ export class IssueFormComponent implements OnInit {
     this.issueCreated.emit(this.issueForm.value);
   }
 
-  onCancel() {}
+  onCancel() {
+    this.issueFormCancelled.emit();
+  }
 }
