@@ -10,7 +10,8 @@ import { IssueService } from 'src/app/services/issue/issue.service';
 export class Backlog implements OnInit {
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
-  displayForm: boolean = false;
+
+  willDisplayIssueForm: boolean = false;
 
   constructor(private issueService: IssueService) {}
 
@@ -29,11 +30,8 @@ export class Backlog implements OnInit {
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
-    this.displayForm = !this.displayForm;
+    this.willDisplayIssueForm = true;
   }
 
-  // invoked when an issue component is clicked
-  onDisplayIssueDetails(issue: Issue) {
-    this.issueDetails = issue;
-  }
+  onHideIssueForm() {}
 }
