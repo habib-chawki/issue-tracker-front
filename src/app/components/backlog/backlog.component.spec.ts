@@ -100,7 +100,7 @@ describe('Backlog', () => {
   });
 
   it('should render an "Add issue" button', () => {
-    const addIssueButton = nativeElement.querySelector('button.add-issue');
+    const addIssueButton = nativeElement.querySelector('button#add');
 
     // expect an add issue button to be rendered
     expect(addIssueButton).toBeTruthy();
@@ -148,7 +148,7 @@ describe('Backlog', () => {
       expect(component.onHideIssueForm).toHaveBeenCalled();
     });
 
-    fit('should hide the "issueFormComponent" when "onHideIssueForm()" is called', () => {
+    it('should hide the "issueFormComponent" when "onHideIssueForm()" is called', () => {
       // given the form is displayed
       component.willDisplayIssueForm = true;
       fixture.detectChanges();
