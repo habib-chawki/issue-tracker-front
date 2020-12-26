@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
@@ -12,6 +12,8 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
+  @Output() issueCreated = new EventEmitter();
+
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
   issueResolutions = Object.values(IssueResolution);
@@ -34,6 +36,6 @@ export class IssueFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.issueCommunicationService.announceIssueCreated(this.issueForm.value);
+    this.issueCreated.emit(this.issueForm.value);
   }
 }
