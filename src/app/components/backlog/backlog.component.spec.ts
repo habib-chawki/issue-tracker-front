@@ -131,7 +131,7 @@ describe('Backlog', () => {
       expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
     });
 
-    fit('should invoke "onHideIssueForm()" when an "issueFormCancelled" event is triggered', () => {
+    it('should invoke "onHideIssueForm()" when an "issueFormCancelled" event is triggered', () => {
       // given "onHideIssueForm()" handler method
       spyOn(component, 'onHideIssueForm');
 
@@ -146,6 +146,21 @@ describe('Backlog', () => {
 
       // then "onHideIssueForm()" should be called
       expect(component.onHideIssueForm).toHaveBeenCalled();
+    });
+
+    fit('should hide the "issueFormComponent" when "onHideIssueForm()" is called', () => {
+      // given the form is displayed
+      component.willDisplayIssueForm = true;
+      fixture.detectChanges();
+
+      expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
+
+      // when onHideIssueForm() is called
+      component.onHideIssueForm();
+      fixture.detectChanges();
+
+      // then the form should no longer be displayed
+      expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
     });
 
     it('should handle the "issueCreated" event by invoking the "onCreateIssue()" method', () => {
