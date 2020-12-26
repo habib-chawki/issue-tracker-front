@@ -33,5 +33,7 @@ export class Backlog implements OnInit {
     this.willDisplayIssueForm = true;
   }
 
-  onHideIssueForm() {}
+  onHideIssueForm() {
+    this.willDisplayIssueForm = false;
+  }
 }
