@@ -1,5 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
@@ -22,6 +21,6 @@ export class IssueDetailsComponent implements OnInit {
   }
 
   onClose() {
-    this.issueDetailsClosed.emit(null);
+    this.issueDetailsClosed.emit();
   }
 }
