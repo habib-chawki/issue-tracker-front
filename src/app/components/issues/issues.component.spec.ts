@@ -7,11 +7,14 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { CommentComponent } from '../comment/comment.component';
+import { CommentsComponent } from '../comments/comments.component';
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
+import { IssueComponent } from '../issue/issue.component';
 
 import { IssuesComponent } from './issues.component';
 
-describe('IssuesComponent', () => {
+fdescribe('IssuesComponent', () => {
   let component: IssuesComponent;
   let fixture: ComponentFixture<IssuesComponent>;
   let nativeElement: HTMLElement;
@@ -20,7 +23,13 @@ describe('IssuesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IssuesComponent, IssueDetailsComponent],
+      declarations: [
+        IssuesComponent,
+        IssueComponent,
+        IssueDetailsComponent,
+        CommentsComponent,
+        CommentComponent,
+      ],
     }).compileComponents();
   });
 
@@ -211,6 +220,9 @@ describe('IssuesComponent', () => {
     });
 
     it('should invoke "onHideIssueDetails()" when an "issueDetailsClosed" event is emitted', () => {
+      // given an issue details
+      component.issueDetails = issue;
+
       // given an "issueDetails" component
       component.willDisplayIssueDetails = true;
       fixture.detectChanges();
@@ -221,7 +233,7 @@ describe('IssuesComponent', () => {
       const issueDetailsElement: DebugElement = fixture.debugElement.query(
         By.css('app-issue-details')
       );
-      issueDetailsElement.triggerEventHandler('issueDetailsClosed', null);
+      issueDetailsElement.triggerEventHandler('issueDetailsClosed', true);
 
       // then "onHideIssueDetails()" should be called
       expect(component.onHideIssueDetails).toHaveBeenCalled();
