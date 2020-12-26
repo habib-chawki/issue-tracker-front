@@ -107,44 +107,52 @@ describe('Backlog', () => {
     expect(addIssueButton.textContent).toEqual('Add issue');
   });
 
-  it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
-    spyOn(component, 'onDisplayIssueForm');
-
-    // given the add issue button
-    const addIssueButton: HTMLButtonElement = nativeElement.querySelector(
-      'button.add-issue'
-    );
-
-    // when the button is clicked
-    addIssueButton.click();
-
-    // then the "onDisplayIssueForm()" handler should be invoked
-    expect(component.onDisplayIssueForm).toHaveBeenCalled();
-  });
-
   describe('IssueFormComponent', () => {
-    it('should render the add issue form when the add button is clicked', () => {
-      // add issue form should be hidden at first
-      expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
+    it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
+      spyOn(component, 'onDisplayIssueForm');
 
       // given the add issue button
       const addIssueButton: HTMLButtonElement = nativeElement.querySelector(
-        'button.add-issue'
+        'button#add'
       );
 
       // when the button is clicked
       addIssueButton.click();
+
+      // then the "onDisplayIssueForm()" handler should be invoked
+      expect(component.onDisplayIssueForm).toHaveBeenCalled();
+    });
+
+    it('should render "IssueFormComponent" when "onDisplayIssueForm()" is called', () => {
+      component.onDisplayIssueForm();
       fixture.detectChanges();
 
       // then expect the issue form to be rendered
       expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
     });
 
+    fit('should invoke "onHideIssueForm()" when an "issueFormCancelled" event is triggered', () => {
+      // given "onHideIssueForm()" handler method
+      spyOn(component, 'onHideIssueForm');
+
+      // given the issue form is displayed
+      component.onDisplayIssueForm();
+      fixture.detectChanges();
+
+      // when an "issueFormCancelled" event is triggered
+      fixture.debugElement
+        .query(By.css('app-issue-form'))
+        .triggerEventHandler('issueFormCancelled', true);
+
+      // then "onHideIssueForm()" should be called
+      expect(component.onHideIssueForm).toHaveBeenCalled();
+    });
+
     it('should handle the "issueCreated" event by invoking the "onCreateIssue()" method', () => {
       spyOn(component, 'onCreateIssue');
 
       // given the issue form component displayed
-      component.displayForm = true;
+      component.willDisplayIssueForm = true;
       fixture.detectChanges();
 
       // when a "created" event is emitted
@@ -166,74 +174,6 @@ describe('Backlog', () => {
       // then the new issue should be added to the issues array
       expect(component.issues).toContain(issue);
     });
-
-    it('should render the issue component when "onCreateIssue()" is invoked', () => {
-      // when the "createIssue()" service method returns an observable of issue
-      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
-
-      // when "onCreateIssue()" is called
-      component.onCreateIssue(issue);
-      fixture.detectChanges();
-
-      // then the new issue should be rendered
-      expect(
-        nativeElement.querySelector('app-issues app-issue').textContent
-      ).toContain(issue.type);
-
-      expect(nativeElement.querySelector('app-issue').textContent).toContain(
-        issue.summary
-      );
-    });
-  });
-
-  describe('IssueDetailsComponent', () => {
-    it('should invoke "onDisplayIssueDetails()" when an issue is clicked', () => {
-      spyOn(component, 'onDisplayIssueDetails');
-
-      // given an issue
-      component.issues.push(issue);
-      fixture.detectChanges();
-
-      // when the issue is clicked
-      const issueElement: HTMLElement = nativeElement.querySelector(
-        'app-issue div'
-      );
-      issueElement.click();
-
-      // then the "onDisplayIssueDetails()" event handler should be invoked with the issue details
-      expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
-    });
-
-    it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
-      // no issue details should be present at first
-      expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
-
-      // when "onDisplayIssueDetails()" is invoked with an issue details
-      component.onDisplayIssueDetails(issue);
-
-      fixture.detectChanges();
-
-      // then expect the issueDetails component to be rendered
-      expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
-    });
-
-    it('should invoke "onDisplayIssueDetails()" when an "issueClicked" event is emitted', () => {
-      spyOn(component, 'onDisplayIssueDetails');
-
-      // given a new issue
-      component.issues.push(issue);
-
-      fixture.detectChanges();
-
-      // when an "issueClicked" event is triggered
-      const issueElement: DebugElement = fixture.debugElement.query(
-        By.css('app-issue')
-      );
-      issueElement.triggerEventHandler('issueClicked', issue);
-
-      // the "onDisplayIssueDetails()" handler method should be called
-      expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
-    });
   });
 
   describe('IssueService', () => {
@@ -247,7 +187,7 @@ describe('Backlog', () => {
       expect(issueService.createIssue).toHaveBeenCalledWith(issue);
     });
 
-    it('should invoke the service method "getIssues()" when "ngOnInit()" is first called', () => {
+    it('should invoke the "getIssues()" service method, within "ngOnInit()"', () => {
       spyOn(issueService, 'getIssues').and.returnValue(of([issue, issue2]));
 
       // when "ngOnInit()" is called
