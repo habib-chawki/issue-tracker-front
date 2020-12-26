@@ -89,16 +89,15 @@ describe('IssueFormComponent', () => {
   });
 
   it('should render an "Add issue" submit button', () => {
-    // the submit button should be rendered with an "Add issue" label
     expect(
       nativeElement.querySelector('form button[type="submit"]').innerHTML
     ).toContain('Add issue');
   });
 
   it('should render a "Cancel" form button', () => {
-    expect(nativeElement.querySelector('button#cancel').textContent).toContain(
-      'Cancel'
-    );
+    expect(
+      nativeElement.querySelector('form button#cancel').textContent
+    ).toContain('Cancel');
   });
 
   it('should render issue "type" options based on the values of the "IssueType" enum', () => {
@@ -184,5 +183,20 @@ describe('IssueFormComponent', () => {
 
     // then an event should be emitted with the form value
     expect(component.issueCreated.emit).toHaveBeenCalledWith(formValue);
+  });
+
+  fit('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
+    spyOn(component, 'onCancel');
+
+    // given the form cancel button
+    const cancelButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#cancel'
+    );
+
+    // when the button is clicked
+    cancelButton.click();
+
+    // then "onCancel()" handler method should be called
+    expect(component.onCancel).toHaveBeenCalled();
   });
 });

@@ -38,4 +38,6 @@ export class IssueFormComponent implements OnInit {
   onSubmit() {
     this.issueCreated.emit(this.issueForm.value);
   }
+
+  onCancel() {}
 }
