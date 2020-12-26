@@ -12,8 +12,6 @@ describe('IssueFormComponent', () => {
   let fixture: ComponentFixture<IssueFormComponent>;
   let nativeElement: HTMLElement;
 
-  let issueCommunicationService: IssueCommunicationService;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [IssueFormComponent],
@@ -25,8 +23,6 @@ describe('IssueFormComponent', () => {
     fixture = TestBed.createComponent(IssueFormComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
-
-    issueCommunicationService = TestBed.inject(IssueCommunicationService);
 
     fixture.detectChanges();
   });
@@ -200,7 +196,7 @@ describe('IssueFormComponent', () => {
     expect(component.onCancel).toHaveBeenCalled();
   });
 
-  fit('should emit an "issueFormCancelled" event when "onCancel()" is called', () => {
+  it('should emit an "issueFormCancelled" event when "onCancel()" is called', () => {
     // given the issueFormCancelled event emitter
     spyOn(component.issueFormCancelled, 'emit');
 
