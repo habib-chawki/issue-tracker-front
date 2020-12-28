@@ -55,4 +55,16 @@ describe('IssueCommunicationService', () => {
 
     expect(response).toEqual(issue);
   });
+
+  it('should announce that the issue is updated', () => {
+    let response: Issue;
+
+    service.issueUpdated.subscribe((res: Issue) => {
+      response = res;
+    });
+
+    service.announceIssueUpdated(issue);
+
+    expect(response).toEqual(issue);
+  });
 });

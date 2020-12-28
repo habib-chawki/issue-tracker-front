@@ -8,6 +8,7 @@ import { Issue } from 'src/app/models/issue/issue';
 export class IssueCommunicationService {
   issueCreated = new Subject();
   issueClicked = new Subject<Issue>();
+  issueUpdated = new Subject<Issue>();
 
   constructor() {}
 
@@ -19,5 +20,7 @@ export class IssueCommunicationService {
     this.issueClicked.next(issue);
   }
 
-  announceIssueRemoved(issue: Issue) {}
+  announceIssueUpdated(issue: Issue) {
+    this.issueUpdated.next(issue);
+  }
 }
