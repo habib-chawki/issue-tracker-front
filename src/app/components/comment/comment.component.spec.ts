@@ -101,7 +101,9 @@ describe('CommentComponent', () => {
 
     // then a remove button should be rendered
     expect(nativeElement.querySelector('button#remove')).toBeTruthy();
-    expect(component.canModify()).toBeTrue();
+    expect(nativeElement.querySelector('button#remove').textContent).toContain(
+      'Remove'
+    );
   });
 
   it('should not render a remove button if the logged-in user is not the comment owner', () => {
@@ -115,7 +117,6 @@ describe('CommentComponent', () => {
 
     // then a remove button should be rendered
     expect(nativeElement.querySelector('button#remove')).toBeFalsy();
-    expect(component.canModify()).toBeFalse();
   });
 
   it('should invoke "onRemove()" when the remove button is clicked', () => {
