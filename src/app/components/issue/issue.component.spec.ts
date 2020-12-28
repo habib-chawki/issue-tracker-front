@@ -100,6 +100,32 @@ describe('IssueComponent', () => {
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 
+  fit('should allow issue modification when the logged-in user is the issue reporter', () => {
+    // given an issue
+    component.issue = issue;
+
+    // when the logged-in user is the reporter
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      issue.reporter.id
+    );
+
+    // then it should return true (can modify issue)
+    expect(component.canModify()).toBeTrue();
+  });
+
+  fit('should disallow issue modification when the logged-in user is not the issue reporter', () => {
+    // given an issue
+    component.issue = issue;
+
+    // when the logged-in user is not the reporter
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue('403');
+
+    // then it should return false (can not modify issue)
+    expect(component.canModify()).toBeFalse();
+  });
+
   it('should render the remove button when the logged-in user is the issue reporter', () => {
     // given an issue details
     component.issue = issue;
@@ -111,7 +137,7 @@ describe('IssueComponent', () => {
     );
 
     // then "renderRemove()" should return true
-    expect(component.canRemove()).toBeTrue();
+    expect(component.canModify()).toBeTrue();
 
     fixture.detectChanges();
 
@@ -128,7 +154,7 @@ describe('IssueComponent', () => {
     spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
 
     // then "renderRemove()" should return false
-    expect(component.canRemove()).toBeFalse();
+    expect(component.canModify()).toBeFalse();
 
     fixture.detectChanges();
 
@@ -138,7 +164,7 @@ describe('IssueComponent', () => {
 
   it('should invoke "onRemove()" handler when remove button is clicked', () => {
     // given the logged-in user is the issue reporter
-    spyOn(component, 'canRemove').and.returnValue(true);
+    spyOn(component, 'canModify').and.returnValue(true);
 
     // given the remove issue handler method
     spyOn(component, 'onRemove');
@@ -168,5 +194,9 @@ describe('IssueComponent', () => {
 
     // then an "issueRemoved" event should be emitted
     expect(component.issueRemoved.emit).toHaveBeenCalledWith(component.issue);
+  });
+
+  it('should render the update button when the logged-in user is the reporter', () => {
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
   });
 });
