@@ -26,4 +26,6 @@ export class CommentComponent implements OnInit {
   onRemove() {
     this.commentRemoved.emit(this.comment);
   }
+
+  onUpdate() {}
 }
