@@ -16,7 +16,7 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  canRemove(): boolean {
+  canModify(): boolean {
     return (
       this.storageService.isUserLoggedIn() &&
       this.storageService.getUserIdentifier() === this.comment.owner.id
