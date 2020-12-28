@@ -124,4 +124,23 @@ describe('CommentComponent', () => {
       component.comment
     );
   });
+
+  fit('should render an update button when the logged-in user is the reporter', () => {
+    component.comment = comment;
+
+    // when the logged-in user is the comment owner
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      comment.owner.id
+    );
+
+    // detect changes to render the update button
+    fixture.detectChanges();
+
+    // then an update button should be rendered
+    expect(nativeElement.querySelector('button#update')).toBeTruthy();
+    expect(nativeElement.querySelector('button#update').textContent).toContain(
+      'Update'
+    );
+  });
 });
