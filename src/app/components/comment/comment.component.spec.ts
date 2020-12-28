@@ -61,6 +61,32 @@ describe('CommentComponent', () => {
     );
   });
 
+  it('should allow comment modification when the logged-in user is the comment owner', () => {
+    // given a comment
+    component.comment = comment;
+
+    // when the logged-in user is the owner
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      comment.owner.id
+    );
+
+    // then it should return true (can modify comment)
+    expect(component.canModify()).toBeTrue();
+  });
+
+  it('should disallow comment modification when the logged-in user is not the comment owner', () => {
+    // given an issue
+    component.comment = comment;
+
+    // when the logged-in user is not the owner
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue('403');
+
+    // then it should return false (can not modify comment)
+    expect(component.canModify()).toBeFalse();
+  });
+
   it('should render a remove button if the logged-in user is the comment owner', () => {
     component.comment = comment;
 
@@ -125,7 +151,7 @@ describe('CommentComponent', () => {
     );
   });
 
-  fit('should render an update button when the logged-in user is the reporter', () => {
+  it('should render an update button when the logged-in user is the reporter', () => {
     component.comment = comment;
 
     // when the logged-in user is the comment owner
