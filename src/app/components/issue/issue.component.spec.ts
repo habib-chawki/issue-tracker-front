@@ -100,7 +100,7 @@ describe('IssueComponent', () => {
     expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);
   });
 
-  fit('should allow issue modification when the logged-in user is the issue reporter', () => {
+  it('should allow issue modification when the logged-in user is the issue reporter', () => {
     // given an issue
     component.issue = issue;
 
@@ -114,7 +114,7 @@ describe('IssueComponent', () => {
     expect(component.canModify()).toBeTrue();
   });
 
-  fit('should disallow issue modification when the logged-in user is not the issue reporter', () => {
+  it('should disallow issue modification when the logged-in user is not the issue reporter', () => {
     // given an issue
     component.issue = issue;
 
@@ -126,7 +126,7 @@ describe('IssueComponent', () => {
     expect(component.canModify()).toBeFalse();
   });
 
-  it('should render the remove button when the logged-in user is the issue reporter', () => {
+  fit('should render the remove button when the logged-in user is the issue reporter', () => {
     // given an issue details
     component.issue = issue;
 
@@ -136,16 +136,14 @@ describe('IssueComponent', () => {
       issue.reporter.id
     );
 
-    // then "renderRemove()" should return true
-    expect(component.canModify()).toBeTrue();
-
+    // detect changes after "canModify()" is called
     fixture.detectChanges();
 
     // the remove button should be rendered
     expect(nativeElement.querySelector('button#remove')).toBeTruthy();
   });
 
-  it('should not render the remove button when the logged-in user is not the issue reporter', () => {
+  fit('should not render the remove button when the logged-in user is not the issue reporter', () => {
     // given an issue details
     component.issue = issue;
 
@@ -153,9 +151,7 @@ describe('IssueComponent', () => {
     spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
     spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
 
-    // then "renderRemove()" should return false
-    expect(component.canModify()).toBeFalse();
-
+    // detect changes after "canModify()" is called
     fixture.detectChanges();
 
     // the remove button should not be rendered
