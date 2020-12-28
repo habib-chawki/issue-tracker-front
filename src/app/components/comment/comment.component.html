@@ -2,4 +2,5 @@
   <div id="owner">{{ comment?.owner.username }}</div>
   <div id="content">{{ comment?.content }}</div>
   <button *ngIf="canModify()" id="remove" (click)="onRemove()">Remove</button>
+  <button *ngIf="canModify()" id="update">Update</button>
 </li>
