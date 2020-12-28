@@ -126,7 +126,7 @@ describe('IssueComponent', () => {
     expect(component.canModify()).toBeFalse();
   });
 
-  fit('should render the remove button when the logged-in user is the issue reporter', () => {
+  it('should render the remove button when the logged-in user is the issue reporter', () => {
     // given an issue details
     component.issue = issue;
 
@@ -141,9 +141,12 @@ describe('IssueComponent', () => {
 
     // the remove button should be rendered
     expect(nativeElement.querySelector('button#remove')).toBeTruthy();
+    expect(nativeElement.querySelector('button#remove').textContent).toContain(
+      'Remove'
+    );
   });
 
-  fit('should not render the remove button when the logged-in user is not the issue reporter', () => {
+  it('should not render the remove button when the logged-in user is not the issue reporter', () => {
     // given an issue details
     component.issue = issue;
 
@@ -193,6 +196,16 @@ describe('IssueComponent', () => {
   });
 
   it('should render the update button when the logged-in user is the reporter', () => {
+    // given the issue
+    component.issue = issue;
+
+    // when the logged-in user is the issue reporter
     spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue(
+      issue.reporter.id
+    );
+
+    // then the update issue button should be rendered
+    expect(nativeElement.querySelector('button#update')).toBeTruthy();
   });
 });
