@@ -230,7 +230,7 @@ describe('IssueComponent', () => {
     expect(nativeElement.querySelector('button#update')).toBeFalsy();
   });
 
-  fit('should invoke "onUpdate()" when the update button is clicked', () => {
+  it('should invoke "onUpdate()" when the update button is clicked', () => {
     spyOn(component, 'canModify').and.returnValue(true);
     spyOn(component, 'onUpdate');
 
@@ -246,5 +246,18 @@ describe('IssueComponent', () => {
 
     // then "onUpdate()" handler method should be called
     expect(component.onUpdate).toHaveBeenCalled();
+  });
+
+  fit('should emit an "issueUpdated" event when "onUpdate()" is called', () => {
+    // given the issue
+    component.issue = issue;
+
+    spyOn(component.issueUpdated, 'emit');
+
+    // when onUpdate() is called
+    component.onUpdate();
+
+    // then the "issueUpdated" event should be emitted
+    expect(component.issueUpdated.emit).toHaveBeenCalledWith(issue);
   });
 });
