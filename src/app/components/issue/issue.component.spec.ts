@@ -195,7 +195,7 @@ describe('IssueComponent', () => {
     expect(component.issueRemoved.emit).toHaveBeenCalledWith(component.issue);
   });
 
-  fit('should render the update button when the logged-in user is the reporter', () => {
+  it('should render the update button when the logged-in user is the reporter', () => {
     // given the issue
     component.issue = issue;
 
@@ -205,7 +205,7 @@ describe('IssueComponent', () => {
       issue.reporter.id
     );
 
-    // detect changes after "onModify()" is called
+    // detect changes after "canModify()" is called
     fixture.detectChanges();
 
     // then the update issue button should be rendered
@@ -213,5 +213,20 @@ describe('IssueComponent', () => {
     expect(nativeElement.querySelector('button#update').textContent).toContain(
       'Update'
     );
+  });
+
+  it('should not render the update button when the logged-in user is not the reporter', () => {
+    // given the issue
+    component.issue = issue;
+
+    // when the logged-in user is not the issue reporter
+    spyOn(storageService, 'isUserLoggedIn').and.returnValue(true);
+    spyOn(storageService, 'getUserIdentifier').and.returnValue('401');
+
+    // detect changes after "canModify()" is called
+    fixture.detectChanges();
+
+    // then the update issue button should not be rendered
+    expect(nativeElement.querySelector('button#update')).toBeFalsy();
   });
 });
