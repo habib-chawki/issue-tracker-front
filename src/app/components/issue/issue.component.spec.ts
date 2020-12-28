@@ -229,4 +229,22 @@ describe('IssueComponent', () => {
     // then the update issue button should not be rendered
     expect(nativeElement.querySelector('button#update')).toBeFalsy();
   });
+
+  fit('should invoke "onUpdate()" when the update button is clicked', () => {
+    spyOn(component, 'canModify').and.returnValue(true);
+    spyOn(component, 'onUpdate');
+
+    fixture.detectChanges();
+
+    // given the update button
+    const updateButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#update'
+    );
+
+    // when the button is clicked
+    updateButton.click();
+
+    // then "onUpdate()" handler method should be called
+    expect(component.onUpdate).toHaveBeenCalled();
+  });
 });
