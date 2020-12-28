@@ -12,6 +12,7 @@ export class IssueComponent implements OnInit {
 
   @Output() issueClicked = new EventEmitter();
   @Output() issueRemoved = new EventEmitter();
+  @Output() issueUpdated = new EventEmitter();
 
   constructor(private storageService: StorageService) {}
 
@@ -25,7 +26,9 @@ export class IssueComponent implements OnInit {
     this.issueRemoved.emit(this.issue);
   }
 
-  onUpdate() {}
+  onUpdate() {
+    this.issueUpdated.emit(this.issue);
+  }
 
   canModify(): boolean {
     // issue reporter should be the logged-in user to render the remove button
