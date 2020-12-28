@@ -195,7 +195,7 @@ describe('IssueComponent', () => {
     expect(component.issueRemoved.emit).toHaveBeenCalledWith(component.issue);
   });
 
-  it('should render the update button when the logged-in user is the reporter', () => {
+  fit('should render the update button when the logged-in user is the reporter', () => {
     // given the issue
     component.issue = issue;
 
@@ -205,7 +205,13 @@ describe('IssueComponent', () => {
       issue.reporter.id
     );
 
+    // detect changes after "onModify()" is called
+    fixture.detectChanges();
+
     // then the update issue button should be rendered
     expect(nativeElement.querySelector('button#update')).toBeTruthy();
+    expect(nativeElement.querySelector('button#update').textContent).toContain(
+      'Update'
+    );
   });
 });
