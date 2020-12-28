@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class IssueComponent implements OnInit {
   @Output() issueRemoved = new EventEmitter();
   @Output() issueUpdated = new EventEmitter();
 
-  constructor(private storageService: StorageService) {}
+  constructor(
+    private storageService: StorageService,
+    private issueCommunicationService: IssueCommunicationService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -27,7 +31,7 @@ export class IssueComponent implements OnInit {
   }
 
   onUpdate() {
-    this.issueUpdated.emit(this.issue);
+    this.issueCommunicationService.announceIssueUpdated(this.issue);
   }
 
   canModify(): boolean {
