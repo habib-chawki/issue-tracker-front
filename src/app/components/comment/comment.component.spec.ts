@@ -152,7 +152,7 @@ describe('CommentComponent', () => {
     );
   });
 
-  it('should render an update button when the logged-in user is the reporter', () => {
+  it('should render an update button when the logged-in user is the owner', () => {
     component.comment = comment;
 
     // when the logged-in user is the comment owner
@@ -169,5 +169,23 @@ describe('CommentComponent', () => {
     expect(nativeElement.querySelector('button#update').textContent).toContain(
       'Update'
     );
+  });
+
+  it('should invoke "onUpdate()" handler method when update button is clicked', () => {
+    spyOn(component, 'canModify').and.returnValue(true);
+    spyOn(component, 'onUpdate');
+
+    fixture.detectChanges();
+
+    // given the update button
+    const updateButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#update'
+    );
+
+    // when the button is clicked
+    updateButton.click();
+
+    // then "onUpdate()" should be called
+    expect(component.onUpdate).toHaveBeenCalled();
   });
 });
