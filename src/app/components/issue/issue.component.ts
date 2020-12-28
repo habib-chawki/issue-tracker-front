@@ -25,6 +25,8 @@ export class IssueComponent implements OnInit {
     this.issueRemoved.emit(this.issue);
   }
 
+  onUpdate() {}
+
   canModify(): boolean {
     // issue reporter should be the logged-in user to render the remove button
     return (
