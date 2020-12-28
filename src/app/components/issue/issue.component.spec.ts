@@ -6,6 +6,7 @@ import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { User } from 'src/app/models/user/user';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { IssueComponent } from './issue.component';
@@ -19,6 +20,7 @@ describe('IssueComponent', () => {
   let reporter: User;
 
   let storageService: StorageService;
+  let issueCommunicationService: IssueCommunicationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,6 +36,7 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     storageService = TestBed.inject(StorageService);
+    issueCommunicationService = TestBed.inject(IssueCommunicationService);
 
     // set up the issue reporter
     reporter = new UserBuilder()
@@ -248,16 +251,18 @@ describe('IssueComponent', () => {
     expect(component.onUpdate).toHaveBeenCalled();
   });
 
-  fit('should emit an "issueUpdated" event when "onUpdate()" is called', () => {
+  it('should announce that the issue is to be updated when "onUpdate()" is called', () => {
     // given the issue
     component.issue = issue;
 
-    spyOn(component.issueUpdated, 'emit');
+    spyOn(issueCommunicationService, 'announceIssueUpdated');
 
     // when onUpdate() is called
     component.onUpdate();
 
-    // then the "issueUpdated" event should be emitted
-    expect(component.issueUpdated.emit).toHaveBeenCalledWith(issue);
+    // then it should be announced that the issue is to be updated
+    expect(issueCommunicationService.announceIssueUpdated).toHaveBeenCalledWith(
+      issue
+    );
   });
 });
