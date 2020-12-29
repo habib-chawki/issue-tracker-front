@@ -188,4 +188,31 @@ describe('CommentComponent', () => {
     // then "onUpdate()" should be called
     expect(component.onUpdate).toHaveBeenCalled();
   });
+
+  fit('should render text field with comment content when Update button is clicked', () => {
+    // should not be rendered at first
+    expect(nativeElement.querySelector('input#update-comment')).toBeFalsy();
+
+    // when the update button is clicked
+    component.willUpdate = true;
+    fixture.detectChanges();
+
+    // then it should be rendered
+    expect(nativeElement.querySelector('input#update-comment')).toBeTruthy();
+  });
+
+  it('should render text field with comment content when "onUpdate()" is called', () => {
+    // given a comment
+    component.comment = comment;
+
+    fixture.detectChanges();
+
+    // when "onUpdate()" is called
+    component.onUpdate();
+
+    // then a text filed with comment content should be rendered
+    expect(
+      nativeElement.querySelector('input#update-comment').nodeValue
+    ).toContain(comment.content);
+  });
 });
