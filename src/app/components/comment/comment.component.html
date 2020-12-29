@@ -1,6 +1,13 @@
 <li>
   <div id="owner">{{ comment?.owner.username }}</div>
-  <div id="content">{{ comment?.content }}</div>
+
+  <div *ngIf="!willDisplayUpdateField; else updateField" id="content">
+    {{ comment?.content }}
+  </div>
+
+  <ng-template #updateField>
+    <input type="text" id="update-field" [value]="comment.content" />
+  </ng-template>
 
   <button *ngIf="canModify()" id="remove" (click)="onRemove()">Remove</button>
   <button *ngIf="canModify()" id="update" (click)="onUpdate()">Update</button>
