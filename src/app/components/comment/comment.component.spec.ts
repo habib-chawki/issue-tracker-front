@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
@@ -189,30 +190,31 @@ describe('CommentComponent', () => {
     expect(component.onUpdate).toHaveBeenCalled();
   });
 
-  fit('should render text field with comment content when Update button is clicked', () => {
+  it('should render text field with comment content when onUpdate() is called', () => {
     // should not be rendered at first
     expect(nativeElement.querySelector('input#update-comment')).toBeFalsy();
 
     // when the update button is clicked
-    component.willUpdate = true;
+    component.onUpdate();
     fixture.detectChanges();
 
     // then it should be rendered
     expect(nativeElement.querySelector('input#update-comment')).toBeTruthy();
   });
 
-  it('should render text field with comment content when "onUpdate()" is called', () => {
+  fit('should render text field with comment content when "onUpdate()" is called', () => {
+    // when "onUpdate()" is called
+    // component.onUpdate();
+
     // given a comment
     component.comment = comment;
+    component.willDisplayUpdateField = true;
 
     fixture.detectChanges();
 
-    // when "onUpdate()" is called
-    component.onUpdate();
-
     // then a text filed with comment content should be rendered
     expect(
-      nativeElement.querySelector('input#update-comment').nodeValue
-    ).toContain(comment.content);
+      nativeElement.querySelector('input[type="text"]#update-comment').nodeValue
+    ).toBeTruthy();
   });
 });
