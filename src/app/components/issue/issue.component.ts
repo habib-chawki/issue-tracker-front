@@ -13,7 +13,6 @@ export class IssueComponent implements OnInit {
 
   @Output() issueClicked = new EventEmitter();
   @Output() issueRemoved = new EventEmitter();
-  @Output() issueUpdated = new EventEmitter();
 
   constructor(
     private storageService: StorageService,

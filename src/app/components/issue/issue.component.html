@@ -1,6 +1,7 @@
 <div (click)="onClick()">
   <div id="type">{{ issue.type }}</div>
   <div id="summary">{{ issue.summary }}</div>
+
   <button *ngIf="canModify()" id="remove" (click)="onRemove()">Remove</button>
   <button *ngIf="canModify()" id="update" (click)="onUpdate()">Update</button>
 </div>
