@@ -12,9 +12,19 @@ export class CommentComponent implements OnInit {
 
   @Output() commentRemoved = new EventEmitter();
 
+  willDisplayUpdateField: boolean = false;
+
   constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {}
+
+  onRemove() {
+    this.commentRemoved.emit(this.comment);
+  }
+
+  onUpdate() {
+    this.willDisplayUpdateField = true;
+  }
 
   canModify(): boolean {
     return (
@@ -22,10 +32,4 @@ export class CommentComponent implements OnInit {
       this.storageService.getUserIdentifier() === this.comment.owner.id
     );
   }
-
-  onRemove() {
-    this.commentRemoved.emit(this.comment);
-  }
-
-  onUpdate() {}
 }
