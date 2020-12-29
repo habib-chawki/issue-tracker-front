@@ -190,31 +190,30 @@ describe('CommentComponent', () => {
     expect(component.onUpdate).toHaveBeenCalled();
   });
 
-  it('should render text field with comment content when onUpdate() is called', () => {
+  it('should render a text field with comment content when "Update" button is clicked', () => {
     // should not be rendered at first
-    expect(nativeElement.querySelector('input#update-comment')).toBeFalsy();
+    expect(nativeElement.querySelector('input#update-field')).toBeFalsy();
 
     // when the update button is clicked
-    component.onUpdate();
+    component.willDisplayUpdateField = true;
     fixture.detectChanges();
 
     // then it should be rendered
-    expect(nativeElement.querySelector('input#update-comment')).toBeTruthy();
+    expect(nativeElement.querySelector('input#update-field')).toBeTruthy();
   });
 
-  fit('should render text field with comment content when "onUpdate()" is called', () => {
-    // when "onUpdate()" is called
-    // component.onUpdate();
-
-    // given a comment
+  it('should render text field with comment content when "onUpdate()" is called', () => {
+    // given the comment to be updated
     component.comment = comment;
-    component.willDisplayUpdateField = true;
+    component.onUpdate();
 
     fixture.detectChanges();
 
-    // then a text filed with comment content should be rendered
-    expect(
-      nativeElement.querySelector('input[type="text"]#update-comment').nodeValue
-    ).toBeTruthy();
+    // when the update field is rendered
+    const updateField = fixture.debugElement.query(By.css('input#update-field'))
+      .nativeElement;
+
+    // then its value should be the comment content
+    expect(updateField.value).toContain(comment.content);
   });
 });
