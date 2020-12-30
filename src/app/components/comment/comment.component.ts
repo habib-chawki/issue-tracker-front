@@ -31,6 +31,8 @@ export class CommentComponent implements OnInit {
     this.commentUpdated.emit();
   }
 
+  onCancelUpdate() {}
+
   canModify(): boolean {
     return (
       this.storageService.isUserLoggedIn() &&
