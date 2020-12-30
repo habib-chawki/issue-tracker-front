@@ -255,10 +255,38 @@ describe('CommentComponent', () => {
     spyOn(component.commentUpdated, 'emit');
 
     // when onConfirmUpdate() is called
-    component.onConfirmUpdate();
+    component.onConfirmUpdate('new content');
 
     // then a "commentUpdated" event should be emitted
     expect(component.commentUpdated.emit).toHaveBeenCalled();
+  });
+
+  fit(`should call "onConfirmUpdate()" with the updated content when the "Save" button is clicked`, () => {
+    spyOn(component, 'onConfirmUpdate');
+
+    // given the comment to be updated
+    component.comment = comment;
+
+    // given the update text field is rendered along with the save and cancel buttons
+    component.onUpdate();
+    fixture.detectChanges();
+
+    // given the new comment content
+    const updatedContent = 'New and improved comment content';
+
+    // given the new comment content is inputted
+    const updateField = fixture.debugElement.query(By.css('input#update-field'))
+      .nativeElement;
+    updateField.value = updatedContent;
+
+    // when the save button is clicked
+    const saveButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#confirm-update'
+    );
+    saveButton.click();
+
+    // then "onConfirmUpdate()" should be called with the new comment content
+    expect(component.onConfirmUpdate).toHaveBeenCalledWith(updatedContent);
   });
 
   it('should render a "Cancel" button to cancel the update', () => {
