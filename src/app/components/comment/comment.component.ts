@@ -27,8 +27,7 @@ export class CommentComponent implements OnInit {
     this.willDisplayUpdateField = true;
   }
 
-  onConfirmUpdate(updatedContent) {
-    // update the comment content and emit it
+  onConfirmUpdate(updatedContent: string) {
     this.comment.content = updatedContent;
     this.commentUpdated.emit(this.comment);
   }
