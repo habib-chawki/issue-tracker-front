@@ -6,9 +6,17 @@
   </div>
 
   <ng-template #updateField>
-    <input type="text" id="update-field" [value]="comment.content" />
+    <input
+      #updatedContent
+      type="text"
+      id="update-field"
+      [value]="comment.content"
+    />
 
-    <button id="confirm-update" (click)="onConfirmUpdate()">Save</button>
+    <button id="confirm-update" (click)="onConfirmUpdate(updatedContent.value)">
+      Save
+    </button>
+
     <button id="cancel-update" (click)="onCancelUpdate()">Cancel</button>
   </ng-template>
 
