@@ -47,17 +47,17 @@ describe('CommentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render a comment with its owner and content', () => {
+  it(`should render the comment's owner and content`, () => {
     component.comment = comment;
     fixture.detectChanges();
 
     // the owner's username should be rendered
-    expect(nativeElement.querySelector('li div#owner').textContent).toBe(
+    expect(nativeElement.querySelector('li div#owner').textContent).toContain(
       comment.owner.username
     );
 
     // the comment's content should be renderd
-    expect(nativeElement.querySelector('li div#content').textContent).toBe(
+    expect(nativeElement.querySelector('li div#content').textContent).toContain(
       comment.content
     );
   });
@@ -191,6 +191,10 @@ describe('CommentComponent', () => {
   });
 
   it('should render a text field with comment content when "Update" button is clicked', () => {
+    // given a comment
+    component.comment = comment;
+    fixture.detectChanges();
+
     // should not be rendered at first
     expect(nativeElement.querySelector('input#update-field')).toBeFalsy();
 
@@ -202,7 +206,7 @@ describe('CommentComponent', () => {
     expect(nativeElement.querySelector('input#update-field')).toBeTruthy();
   });
 
-  it('should render text field with comment content when "onUpdate()" is called', () => {
+  it('should render a text field to update the comment content when "onUpdate()" is called', () => {
     // given the comment to be updated
     component.comment = comment;
     component.onUpdate();
