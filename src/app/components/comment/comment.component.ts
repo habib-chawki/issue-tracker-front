@@ -31,7 +31,9 @@ export class CommentComponent implements OnInit {
     this.commentUpdated.emit();
   }
 
-  onCancelUpdate() {}
+  onCancelUpdate() {
+    this.willDisplayUpdateField = false;
+  }
 
   canModify(): boolean {
     return (
