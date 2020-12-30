@@ -229,7 +229,7 @@ describe('CommentComponent', () => {
     ).toContain('Save');
   });
 
-  fit('should invoke "onConfirmUpdate()" when "Save" button is clicked', () => {
+  it('should invoke "onConfirmUpdate()" when "Save" button is clicked', () => {
     // given the comment to be updated
     component.comment = comment;
 
@@ -251,5 +251,15 @@ describe('CommentComponent', () => {
 
     // then "onConfirmUpdate()" should be called
     expect(component.onConfirmUpdate).toHaveBeenCalled();
+  });
+
+  fit('should emit "commentUpdated" event when "onConfirmUpdate()" is called', () => {
+    spyOn(component.commentUpdated, 'emit');
+
+    // when onConfirmUpdate() is called
+    component.onConfirmUpdate();
+
+    // then a commentUpdated event should be emitted
+    expect(component.commentUpdated.emit).toHaveBeenCalled();
   });
 });
