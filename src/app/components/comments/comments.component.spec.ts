@@ -111,7 +111,7 @@ describe('CommentsComponent', () => {
     );
   });
 
-  fit('should call "onUpdateComment()" handler method when "commentUpdated" event is received', () => {
+  it('should call "onUpdateComment()" handler method when "commentUpdated" event is received', () => {
     spyOn(component, 'onUpdateComment');
 
     // given a list of comments
@@ -126,5 +126,24 @@ describe('CommentsComponent', () => {
 
     // then the "onUpdateComment()" handler method should be called
     expect(component.onUpdateComment).toHaveBeenCalledWith(comment2);
+  });
+
+  it('should update comment content when "onUpdateComment()" is called', () => {
+    // given a list of comments
+    component.comments = [comment1, comment2];
+    fixture.detectChanges();
+
+    // given the updated comment
+    const updatedComment: Comment = {
+      ...comment1,
+      content: 'updated comment content ?',
+    };
+
+    // when "onUpdateComment()" is called with the updated comment
+    component.onUpdateComment(updatedComment);
+
+    // then the comment should be updated in the list of comments
+    expect(component.comments).toContain(updatedComment);
+    expect(component.comments).not.toContain(comment1);
   });
 });
