@@ -214,7 +214,7 @@ describe('CommentComponent', () => {
     expect(updateField.value).toContain(comment.content);
   });
 
-  fit('should render a "save" button along with the update text field', () => {
+  it('should render a "save" button along with the update text field', () => {
     // given the comment to be updated
     component.comment = comment;
 
@@ -227,5 +227,29 @@ describe('CommentComponent', () => {
     expect(
       nativeElement.querySelector('button#confirm-update').textContent
     ).toContain('Save');
+  });
+
+  fit('should invoke "onConfirmUpdate()" when "Save" button is clicked', () => {
+    // given the comment to be updated
+    component.comment = comment;
+
+    // when the update text field is rendered
+    component.onUpdate();
+
+    fixture.detectChanges();
+
+    // given the "onConfirmUpdate()" handler method
+    spyOn(component, 'onConfirmUpdate');
+
+    // given the "Save" button
+    const saveButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#confirm-update'
+    );
+
+    // when the button is clicked
+    saveButton.click();
+
+    // then "onConfirmUpdate()" should be called
+    expect(component.onConfirmUpdate).toHaveBeenCalled();
   });
 });
