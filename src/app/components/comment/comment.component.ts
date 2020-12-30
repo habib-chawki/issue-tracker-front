@@ -26,6 +26,8 @@ export class CommentComponent implements OnInit {
     this.willDisplayUpdateField = true;
   }
 
+  onConfirmUpdate() {}
+
   canModify(): boolean {
     return (
       this.storageService.isUserLoggedIn() &&
