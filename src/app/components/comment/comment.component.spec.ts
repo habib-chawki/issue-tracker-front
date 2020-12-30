@@ -1,4 +1,3 @@
-import { query } from '@angular/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
@@ -221,7 +220,6 @@ describe('CommentComponent', () => {
 
     // when the update text field is rendered
     component.onUpdate();
-
     fixture.detectChanges();
 
     // then a "save" button to confirm the update, should be rendered along with it
@@ -236,7 +234,6 @@ describe('CommentComponent', () => {
 
     // when the update text field is rendered
     component.onUpdate();
-
     fixture.detectChanges();
 
     // given the "onConfirmUpdate()" handler method
@@ -270,7 +267,6 @@ describe('CommentComponent', () => {
 
     // when the update text field is rendered
     component.onUpdate();
-
     fixture.detectChanges();
 
     // then a "Cancel" button should also be rendered along with it
@@ -287,7 +283,6 @@ describe('CommentComponent', () => {
 
     // given the update text field is rendered
     component.onUpdate();
-
     fixture.detectChanges();
 
     // given the cancel button
