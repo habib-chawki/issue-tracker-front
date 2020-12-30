@@ -30,12 +30,14 @@ describe('CommentsComponent', () => {
 
     // set up a comment
     comment1 = new CommentBuilder()
+      .id('01')
       .content('comment 1 content')
       .owner(new UserBuilder().username('comment1@owner1').build())
       .build();
 
     // set up another comment
     comment2 = new CommentBuilder()
+      .id('02')
       .content('comment 2 content')
       .owner(new UserBuilder().username('comment2@owner2').build())
       .build();
@@ -67,8 +69,6 @@ describe('CommentsComponent', () => {
       By.css('app-comment')
     );
     commentElement.triggerEventHandler('commentRemoved', comment2);
-
-    fixture.detectChanges();
 
     // then onRemoveComment should be called
     expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
@@ -109,5 +109,22 @@ describe('CommentsComponent', () => {
     expect(nativeElement.querySelectorAll('app-comment').length).toBe(
       commentsListSize - 1
     );
+  });
+
+  it('should call "onUpdateComment()" handler method when "commentUpdated" event is received', () => {
+    spyOn(component, 'onUpdateComment');
+
+    // given a list of comments
+    component.comments = [comment1, comment2];
+    fixture.detectChanges();
+
+    // when a "commentUpdated" event is triggered
+    const commentElement: DebugElement = fixture.debugElement.query(
+      By.css('app-comment')
+    );
+    commentElement.triggerEventHandler('commentUpdated', comment2);
+
+    // then the "onUpdateComment()" handler method should be called
+    expect(component.onUpdateComment).toHaveBeenCalled();
   });
 });
