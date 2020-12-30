@@ -190,23 +190,16 @@ describe('CommentComponent', () => {
     expect(component.onUpdate).toHaveBeenCalled();
   });
 
-  it('should render a text field with comment content when "Update" button is clicked', () => {
+  it('should not render the update text field before "onUpdate()" is called', () => {
     // given a comment
     component.comment = comment;
     fixture.detectChanges();
 
-    // should not be rendered at first
+    // when onUpdate() is not called then the update text field should not be rendered
     expect(nativeElement.querySelector('input#update-field')).toBeFalsy();
-
-    // when the update button is clicked
-    component.willDisplayUpdateField = true;
-    fixture.detectChanges();
-
-    // then it should be rendered
-    expect(nativeElement.querySelector('input#update-field')).toBeTruthy();
   });
 
-  it('should render a text field to update the comment content when "onUpdate()" is called', () => {
+  it(`should render the update text field with the comment's content when "onUpdate()" is called`, () => {
     // given the comment to be updated
     component.comment = comment;
     component.onUpdate();
