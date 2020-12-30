@@ -18,5 +18,8 @@ export class CommentsComponent implements OnInit {
     this.comments.splice(index, 1);
   }
 
-  onUpdateComment(comment: Comment) {}
+  onUpdateComment(comment: Comment) {
+    const index = this.comments.findIndex((item) => item.id === comment.id);
+    this.comments[index] = comment;
+  }
 }
