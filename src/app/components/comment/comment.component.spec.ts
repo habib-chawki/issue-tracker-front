@@ -251,17 +251,25 @@ describe('CommentComponent', () => {
     expect(component.onConfirmUpdate).toHaveBeenCalled();
   });
 
-  it('should emit "commentUpdated" event when "onConfirmUpdate()" is called', () => {
+  it('should emit "commentUpdated" event, with updated comment, when "onConfirmUpdate()" is called', () => {
     spyOn(component.commentUpdated, 'emit');
 
-    // when onConfirmUpdate() is called
-    component.onConfirmUpdate('new content');
+    // given the comment
+    component.comment = comment;
+    fixture.detectChanges();
 
-    // then a "commentUpdated" event should be emitted
-    expect(component.commentUpdated.emit).toHaveBeenCalled();
+    // given the updated comment
+    const updatedContent = 'Newest comment content';
+
+    // when onConfirmUpdate() is called
+    component.onConfirmUpdate(updatedContent);
+
+    // then a "commentUpdated" event should be emitted with the updated comment
+    expect(component.comment.content).toBe(updatedContent);
+    expect(component.commentUpdated.emit).toHaveBeenCalledWith(comment);
   });
 
-  fit(`should call "onConfirmUpdate()" with the updated content when the "Save" button is clicked`, () => {
+  it(`should call "onConfirmUpdate()" with the updated content when the "Save" button is clicked`, () => {
     spyOn(component, 'onConfirmUpdate');
 
     // given the comment to be updated
