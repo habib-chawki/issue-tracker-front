@@ -38,6 +38,7 @@ describe('CommentComponent', () => {
 
     // set the comment
     comment = new CommentBuilder()
+      .id('666')
       .owner(owner)
       .content('This is a comment !')
       .build();
