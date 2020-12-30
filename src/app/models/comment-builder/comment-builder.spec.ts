@@ -7,6 +7,7 @@ describe('CommentBuilder', () => {
 
   beforeEach(() => {
     comment = {
+      id: '666',
       owner: new UserBuilder()
         .id('111')
         .email('comment.owner@email.com')
@@ -21,6 +22,7 @@ describe('CommentBuilder', () => {
 
   it('should create a comment', () => {
     const createdComment = new CommentBuilder()
+      .id(comment.id)
       .owner(comment.owner)
       .content(comment.content)
       .creationTime(comment.creationTime)

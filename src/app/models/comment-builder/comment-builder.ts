@@ -5,11 +5,17 @@ export class CommentBuilder {
 
   constructor() {
     this._comment = {
+      id: '',
       owner: null,
       content: '',
       creationTime: new Date(),
       updateTime: new Date(),
     };
+  }
+
+  id(id): CommentBuilder {
+    this._comment.id = id;
+    return this;
   }
 
   owner(owner): CommentBuilder {
