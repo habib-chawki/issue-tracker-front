@@ -214,7 +214,7 @@ describe('CommentComponent', () => {
     expect(updateField.value).toContain(comment.content);
   });
 
-  it('should render a "save" button along with the update text field', () => {
+  it('should render a "Save" button along with the update text field to confirm the update', () => {
     // given the comment to be updated
     component.comment = comment;
 
@@ -253,13 +253,28 @@ describe('CommentComponent', () => {
     expect(component.onConfirmUpdate).toHaveBeenCalled();
   });
 
-  fit('should emit "commentUpdated" event when "onConfirmUpdate()" is called', () => {
+  it('should emit "commentUpdated" event when "onConfirmUpdate()" is called', () => {
     spyOn(component.commentUpdated, 'emit');
 
     // when onConfirmUpdate() is called
     component.onConfirmUpdate();
 
-    // then a commentUpdated event should be emitted
+    // then a "commentUpdated" event should be emitted
     expect(component.commentUpdated.emit).toHaveBeenCalled();
+  });
+
+  fit('should render a "Cancel" button to cancel the update', () => {
+    // given the comment to be updated
+    component.comment = comment;
+
+    // when the update text field is rendered
+    component.onUpdate();
+
+    fixture.detectChanges();
+
+    // then a "Cancel" button should also be rendered along with it
+    expect(
+      nativeElement.querySelector('button#cancel-update').textContent
+    ).toContain('Cancel');
   });
 });
