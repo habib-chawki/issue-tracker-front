@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
@@ -263,7 +264,7 @@ describe('CommentComponent', () => {
     expect(component.commentUpdated.emit).toHaveBeenCalled();
   });
 
-  fit('should render a "Cancel" button to cancel the update', () => {
+  it('should render a "Cancel" button to cancel the update', () => {
     // given the comment to be updated
     component.comment = comment;
 
@@ -276,5 +277,28 @@ describe('CommentComponent', () => {
     expect(
       nativeElement.querySelector('button#cancel-update').textContent
     ).toContain('Cancel');
+  });
+
+  fit('should invoke "onCancelUpdate()" handler method when "Cancel" button is clicked', () => {
+    spyOn(component, 'onCancelUpdate');
+
+    // given the comment to be updated
+    component.comment = comment;
+
+    // given the update text field is rendered
+    component.onUpdate();
+
+    fixture.detectChanges();
+
+    // given the cancel button
+    const cancelButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#cancel-update'
+    );
+
+    // when the button is clicked
+    cancelButton.click();
+
+    // then onCancelUpdate() should be called
+    expect(component.onCancelUpdate).toHaveBeenCalled();
   });
 });
