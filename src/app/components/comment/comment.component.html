@@ -7,8 +7,9 @@
 
   <ng-template #updateField>
     <input type="text" id="update-field" [value]="comment.content" />
+
     <button id="confirm-update" (click)="onConfirmUpdate()">Save</button>
-    <button id="cancel-update">Cancel</button>
+    <button id="cancel-update" (click)="onCancelUpdate()">Cancel</button>
   </ng-template>
 
   <button *ngIf="canModify()" id="remove" (click)="onRemove()">Remove</button>
