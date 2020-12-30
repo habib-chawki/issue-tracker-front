@@ -11,6 +11,7 @@ export class CommentComponent implements OnInit {
   @Input() comment: Comment;
 
   @Output() commentRemoved = new EventEmitter();
+  @Output() commentUpdated = new EventEmitter();
 
   willDisplayUpdateField: boolean = false;
 
@@ -26,7 +27,9 @@ export class CommentComponent implements OnInit {
     this.willDisplayUpdateField = true;
   }
 
-  onConfirmUpdate() {}
+  onConfirmUpdate() {
+    this.commentUpdated.emit();
+  }
 
   canModify(): boolean {
     return (
