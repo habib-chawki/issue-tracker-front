@@ -279,7 +279,7 @@ describe('CommentComponent', () => {
     ).toContain('Cancel');
   });
 
-  fit('should invoke "onCancelUpdate()" handler method when "Cancel" button is clicked', () => {
+  it('should invoke "onCancelUpdate()" handler method when "Cancel" button is clicked', () => {
     spyOn(component, 'onCancelUpdate');
 
     // given the comment to be updated
@@ -300,5 +300,29 @@ describe('CommentComponent', () => {
 
     // then onCancelUpdate() should be called
     expect(component.onCancelUpdate).toHaveBeenCalled();
+  });
+
+  it('should hide update field and show the same comment content when "Cancel" button is clicked', () => {
+    // given the comment to be updated
+    component.comment = comment;
+
+    // given the update text field is rendered
+    component.onUpdate();
+    fixture.detectChanges();
+
+    // given the cancel button
+    const cancelButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#cancel-update'
+    );
+
+    // when the button is clicked
+    cancelButton.click();
+    fixture.detectChanges();
+
+    // then the update field should be hidden and comment content should remain the same
+    expect(nativeElement.querySelector('input#update-field')).toBeFalsy();
+    expect(nativeElement.querySelector('div#content').textContent).toContain(
+      comment.content
+    );
   });
 });
