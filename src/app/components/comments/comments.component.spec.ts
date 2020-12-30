@@ -111,7 +111,7 @@ describe('CommentsComponent', () => {
     );
   });
 
-  it('should call "onUpdateComment()" handler method when "commentUpdated" event is received', () => {
+  fit('should call "onUpdateComment()" handler method when "commentUpdated" event is received', () => {
     spyOn(component, 'onUpdateComment');
 
     // given a list of comments
@@ -125,6 +125,6 @@ describe('CommentsComponent', () => {
     commentElement.triggerEventHandler('commentUpdated', comment2);
 
     // then the "onUpdateComment()" handler method should be called
-    expect(component.onUpdateComment).toHaveBeenCalled();
+    expect(component.onUpdateComment).toHaveBeenCalledWith(comment2);
   });
 });

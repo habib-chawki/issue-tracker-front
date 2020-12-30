@@ -3,7 +3,7 @@
     *ngFor="let comment of comments"
     [comment]="comment"
     (commentRemoved)="onRemoveComment($event)"
-    (commentUpdated)="onUpdateComment()"
+    (commentUpdated)="onUpdateComment($event)"
   >
   </app-comment>
 </ul>

@@ -18,5 +18,5 @@ export class CommentsComponent implements OnInit {
     this.comments.splice(index, 1);
   }
 
-  onUpdateComment() {}
+  onUpdateComment(comment: Comment) {}
 }
