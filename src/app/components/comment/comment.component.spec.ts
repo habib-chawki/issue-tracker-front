@@ -213,4 +213,19 @@ describe('CommentComponent', () => {
     // then its value should be the comment content
     expect(updateField.value).toContain(comment.content);
   });
+
+  fit('should render a "save" button along with the update text field', () => {
+    // given the comment to be updated
+    component.comment = comment;
+
+    // when the update text field is rendered
+    component.onUpdate();
+
+    fixture.detectChanges();
+
+    // then a "save" button to confirm the update, should be rendered along with it
+    expect(
+      nativeElement.querySelector('button#confirm-update').textContent
+    ).toContain('Save');
+  });
 });
