@@ -32,38 +32,14 @@ describe('IssueCommunicationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should announce that the issue is created', () => {
-    let response;
-
-    service.issueCreated.subscribe((res) => {
-      response = res;
-    });
-
-    service.announceIssueCreated(issueFormValue);
-
-    expect(response).toEqual(issueFormValue);
-  });
-
-  it('should announce that the issue is clicked', () => {
+  it('should announce issue update', () => {
     let response: Issue;
 
-    service.issueClicked.subscribe((res: Issue) => {
+    service.issueUpdate$.subscribe((res: Issue) => {
       response = res;
     });
 
-    service.announceIssueClicked(issue);
-
-    expect(response).toEqual(issue);
-  });
-
-  it('should announce that the issue is updated', () => {
-    let response: Issue;
-
-    service.issueUpdated.subscribe((res: Issue) => {
-      response = res;
-    });
-
-    service.announceIssueUpdated(issue);
+    service.announceIssueUpdate(issue);
 
     expect(response).toEqual(issue);
   });
