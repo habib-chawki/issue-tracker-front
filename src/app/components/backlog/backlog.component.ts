@@ -24,7 +24,9 @@ export class Backlog implements OnInit {
       this.issues = response;
     });
 
-    this.issueCommunicationService.issueUpdate$.subscribe(() => {});
+    this.issueCommunicationService.issueUpdate$.subscribe(() => {
+      this.onUpdateIssue();
+    });
   }
 
   // invoked when the form is submitted
