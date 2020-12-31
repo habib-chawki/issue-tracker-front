@@ -223,6 +223,6 @@ describe('Backlog', () => {
     issueCommunicationService.announceIssueUpdate(issue);
 
     // then onUpdateIssue() should be called
-    expect(component.onUpdateIssue).toHaveBeenCalled();
+    expect(component.onUpdateIssue).toHaveBeenCalledWith(issue);
   });
 });
