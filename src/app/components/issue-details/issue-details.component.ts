@@ -12,13 +12,9 @@ export class IssueDetailsComponent implements OnInit {
 
   @Output() issueDetailsClosed = new EventEmitter();
 
-  constructor(private issueCommunicationService: IssueCommunicationService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.issueCommunicationService.issueClicked.subscribe((response) => {
-      this.issue = response;
-    });
-  }
+  ngOnInit(): void {}
 
   onClose() {
     this.issueDetailsClosed.emit();
