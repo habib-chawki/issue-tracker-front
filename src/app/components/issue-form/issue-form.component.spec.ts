@@ -158,8 +158,8 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  it('should emit an "issueCreated" event when "onSubmit()" is called', () => {
-    spyOn(component.issueCreated, 'emit');
+  it('should emit an "issueFormSaved" event when "onSubmit()" is called', () => {
+    spyOn(component.issueFormSaved, 'emit');
 
     // given the form value
     const formValue = {
@@ -178,7 +178,7 @@ describe('IssueFormComponent', () => {
     component.onSubmit();
 
     // then an event should be emitted with the form value
-    expect(component.issueCreated.emit).toHaveBeenCalledWith(formValue);
+    expect(component.issueFormSaved.emit).toHaveBeenCalledWith(formValue);
   });
 
   it('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
