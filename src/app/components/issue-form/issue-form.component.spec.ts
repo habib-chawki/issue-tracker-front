@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
+import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 
 import { IssueFormComponent } from './issue-form.component';
 
@@ -204,5 +205,32 @@ describe('IssueFormComponent', () => {
 
     // then an "issueFormCancelled" event should be emitted
     expect(component.issueFormCancelled.emit).toHaveBeenCalled();
+  });
+
+  it('should initialize the form value in ngOnInit()', () => {
+    // given an issue
+    const issue = new IssueBuilder()
+      .description('Issue description')
+      .summary('Issue summary')
+      .type(IssueType.Bug)
+      .status(IssueStatus.InProgress)
+      .resolution(IssueResolution.Duplicate)
+      .estimate(new Date())
+      .build();
+
+    // the form value should not be initialized at first
+    expect(issue).not.toEqual(
+      jasmine.objectContaining(component.issueForm.value)
+    );
+
+    // when the initialFormValue is set
+    component.initialFormValue = issue;
+    fixture.detectChanges();
+
+    // when ngOnInit() is called
+    component.ngOnInit();
+
+    // then the form value should be initialized with the issue property values
+    expect(issue).toEqual(jasmine.objectContaining(component.issueForm.value));
   });
 });
