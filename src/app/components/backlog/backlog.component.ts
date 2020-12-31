@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
 @Component({
@@ -13,12 +14,17 @@ export class Backlog implements OnInit {
 
   willDisplayIssueForm: boolean = false;
 
-  constructor(private issueService: IssueService) {}
+  constructor(
+    private issueService: IssueService,
+    private issueCommunicationService: IssueCommunicationService
+  ) {}
 
   ngOnInit(): void {
     this.issueService.getIssues().subscribe((response) => {
       this.issues = response;
     });
+
+    this.issueCommunicationService.issueUpdate$.subscribe(() => {});
   }
 
   // invoked when the form is submitted
@@ -27,6 +33,8 @@ export class Backlog implements OnInit {
       this.issues.push(response);
     });
   }
+
+  onUpdateIssue() {}
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
