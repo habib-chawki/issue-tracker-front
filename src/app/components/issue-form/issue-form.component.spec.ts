@@ -171,7 +171,7 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  fit('should emit an "issueFormSaved" event when "onSubmit()" is called', () => {
+  it('should emit an "issueFormSaved" event when "onSubmit()" is called', () => {
     spyOn(component.issueFormSaved, 'emit');
 
     // given the form value

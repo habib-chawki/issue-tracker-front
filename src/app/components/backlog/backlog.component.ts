@@ -12,6 +12,8 @@ export class Backlog implements OnInit {
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
 
+  formValue: Issue;
+
   willDisplayIssueForm: boolean = false;
 
   constructor(
@@ -37,6 +39,7 @@ export class Backlog implements OnInit {
   }
 
   onUpdateIssue(issue: Issue) {
+    this.formValue = issue;
     this.onDisplayIssueForm();
   }
 

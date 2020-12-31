@@ -20,15 +20,15 @@ describe('StorageService', () => {
   });
 
   it('should store the auth token in localStorage', () => {
-    const body =
+    const tokenBody =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcnBlci5sZWVAZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.67U0lz822lIIsUNyotQgq1zkWNp-ci-8aMJN0rNTroI';
-    const token = storageService.TOKEN_PREFIX + body;
+    const token = storageService.TOKEN_PREFIX + tokenBody;
 
     // when storeToken() is called
     storageService.storeToken(token);
 
     // then the token should be stored in localStorage
-    expect(localStorage.getItem(storageService.TOKEN_KEY)).toBe(body);
+    expect(localStorage.getItem(storageService.TOKEN_KEY)).toBe(tokenBody);
   });
 
   it('should store the user identifier in localStorage', () => {
@@ -57,7 +57,7 @@ describe('StorageService', () => {
     localStorage.setItem(storageService.TOKEN_KEY, token);
     localStorage.setItem(storageService.IDENTIFIER_KEY, userIdentifier);
 
-    // when the auth token is present then the user is logged in
+    // when the auth token and user identifier are both present then the user is logged in
     expect(storageService.isUserLoggedIn()).toBeTrue();
   });
 
