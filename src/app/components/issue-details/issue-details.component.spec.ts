@@ -191,24 +191,6 @@ describe('IssueDetailsComponent', () => {
     expect(nativeElement.querySelector('app-comments')).toBeTruthy();
   });
 
-  it('should subscribe to "issueCommunicationService", listening for "issueClicked" events', () => {
-    spyOn(issueCommunicationService.issueClicked, 'subscribe');
-
-    // when ngOnInit is called (component mounts for the first time)
-    component.ngOnInit();
-
-    // then we should subscribe to the issueClicked event emitter
-    expect(issueCommunicationService.issueClicked.subscribe).toHaveBeenCalled();
-  });
-
-  it('should set the issue to the value of the "issueClicked.subscribe" response', () => {
-    // when an issueClicked is announced
-    issueCommunicationService.announceIssueClicked(issue);
-
-    // then the component's issue property should be set
-    expect(component.issue).toBe(issue);
-  });
-
   it('should render a "close" button to hide the issue details component', () => {
     expect(nativeElement.querySelector('button#close').textContent).toContain(
       'Close'
