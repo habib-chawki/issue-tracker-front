@@ -210,11 +210,9 @@ describe('Backlog', () => {
     });
   });
 
-  fit('should subscribe to issueUpdate$ observable in ngOnInit()', () => {
+  it('should subscribe to issueUpdate$ observable in ngOnInit()', () => {
     spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
-
     component.ngOnInit();
-
     expect(issueCommunicationService.issueUpdate$.subscribe).toHaveBeenCalled();
   });
 
