@@ -255,13 +255,13 @@ describe('IssueComponent', () => {
     // given the issue
     component.issue = issue;
 
-    spyOn(issueCommunicationService, 'announceIssueUpdated');
+    spyOn(issueCommunicationService, 'announceIssueUpdate');
 
     // when onUpdate() is called
     component.onUpdate();
 
     // then it should be announced that the issue is to be updated
-    expect(issueCommunicationService.announceIssueUpdated).toHaveBeenCalledWith(
+    expect(issueCommunicationService.announceIssueUpdate).toHaveBeenCalledWith(
       issue
     );
   });

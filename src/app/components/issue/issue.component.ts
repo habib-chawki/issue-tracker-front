@@ -30,7 +30,7 @@ export class IssueComponent implements OnInit {
   }
 
   onUpdate() {
-    this.issueCommunicationService.announceIssueUpdated(this.issue);
+    this.issueCommunicationService.announceIssueUpdate(this.issue);
   }
 
   canModify(): boolean {
