@@ -12,7 +12,7 @@ import { Issue } from 'src/app/models/issue/issue';
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
-  @Output() issueCreated = new EventEmitter();
+  @Output() issueFormSaved = new EventEmitter();
   @Output() issueFormCancelled = new EventEmitter();
 
   @Input() initialFormValue: Issue;
@@ -43,7 +43,7 @@ export class IssueFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.issueCreated.emit(this.issueForm.value);
+    this.issueFormSaved.emit(this.issueForm.value);
   }
 
   onCancel() {
