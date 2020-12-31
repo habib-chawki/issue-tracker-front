@@ -216,7 +216,7 @@ describe('Backlog', () => {
     expect(issueCommunicationService.issueUpdate$.subscribe).toHaveBeenCalled();
   });
 
-  fit('should call "onUpdateIssue()" when an issue update is announced', () => {
+  it('should call "onUpdateIssue()" when an issue update is announced', () => {
     spyOn(component, 'onUpdateIssue');
 
     // when an issue update is announced
@@ -225,4 +225,17 @@ describe('Backlog', () => {
     // then onUpdateIssue() should be called
     expect(component.onUpdateIssue).toHaveBeenCalledWith(issue);
   });
+
+  fit('should display the "issueFormComponent" when "onUpdateIssue() is called"', () => {
+    // issue form should not be displayed at first
+    expect(component.willDisplayIssueForm).toBeFalse();
+
+    // when "onUpdateIssue()" is called
+    component.onUpdateIssue(issue2);
+
+    // then "willDisplayIssueForm" should be set to true
+    expect(component.willDisplayIssueForm).toBeTrue();
+  });
+
+  it('should set the initial form value when "onUpdateIssue()" is called', () => {});
 });
