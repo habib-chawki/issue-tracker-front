@@ -24,8 +24,8 @@ export class Backlog implements OnInit {
       this.issues = response;
     });
 
-    this.issueCommunicationService.issueUpdate$.subscribe(() => {
-      this.onUpdateIssue();
+    this.issueCommunicationService.issueUpdate$.subscribe((issue: Issue) => {
+      this.onUpdateIssue(issue);
     });
   }
 
@@ -36,7 +36,7 @@ export class Backlog implements OnInit {
     });
   }
 
-  onUpdateIssue() {}
+  onUpdateIssue(issue: Issue) {}
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
