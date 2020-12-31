@@ -4,6 +4,7 @@ import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
+import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueFormComponent } from './issue-form.component';
 
@@ -11,6 +12,8 @@ describe('IssueFormComponent', () => {
   let component: IssueFormComponent;
   let fixture: ComponentFixture<IssueFormComponent>;
   let nativeElement: HTMLElement;
+
+  let issue: Issue;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +28,16 @@ describe('IssueFormComponent', () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
+
+    // given an issue
+    issue = new IssueBuilder()
+      .description('Issue description')
+      .summary('Issue summary')
+      .type(IssueType.Bug)
+      .status(IssueStatus.InProgress)
+      .resolution(IssueResolution.Duplicate)
+      .estimate(new Date())
+      .build();
   });
 
   it('should create', () => {
@@ -158,27 +171,19 @@ describe('IssueFormComponent', () => {
     expect(component.onSubmit).toHaveBeenCalled();
   });
 
-  it('should emit an "issueFormSaved" event when "onSubmit()" is called', () => {
+  fit('should emit an "issueFormSaved" event when "onSubmit()" is called', () => {
     spyOn(component.issueFormSaved, 'emit');
 
     // given the form value
-    const formValue = {
-      description: 'Issue description',
-      summary: 'Issue summary',
-      type: IssueType.Bug,
-      status: IssueStatus.InProgress,
-      resolution: IssueResolution.Duplicate,
-      assignee: 'Me',
-      estimate: new Date(),
-    };
-
-    component.issueForm.setValue(formValue);
+    component.issueForm.patchValue(issue);
 
     // when "onSubmit()" is called
     component.onSubmit();
 
     // then an event should be emitted with the form value
-    expect(component.issueFormSaved.emit).toHaveBeenCalledWith(formValue);
+    expect(component.issueFormSaved.emit).toHaveBeenCalledWith(
+      component.issueForm.value
+    );
   });
 
   it('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
@@ -208,16 +213,6 @@ describe('IssueFormComponent', () => {
   });
 
   it('should initialize the form value in ngOnInit()', () => {
-    // given an issue
-    const issue = new IssueBuilder()
-      .description('Issue description')
-      .summary('Issue summary')
-      .type(IssueType.Bug)
-      .status(IssueStatus.InProgress)
-      .resolution(IssueResolution.Duplicate)
-      .estimate(new Date())
-      .build();
-
     // the form value should not be initialized at first
     expect(issue).not.toEqual(
       jasmine.objectContaining(component.issueForm.value)
