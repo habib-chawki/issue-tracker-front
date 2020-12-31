@@ -36,7 +36,9 @@ export class Backlog implements OnInit {
     });
   }
 
-  onUpdateIssue(issue: Issue) {}
+  onUpdateIssue(issue: Issue) {
+    this.onDisplayIssueForm();
+  }
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
