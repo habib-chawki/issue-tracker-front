@@ -226,6 +226,14 @@ describe('Backlog', () => {
     expect(component.onUpdateIssue).toHaveBeenCalledWith(issue);
   });
 
+  it('should set the initial form value when "onUpdateIssue()" is called', () => {
+    // when "onUpdateIssue()" is called
+    component.onUpdateIssue(issue2);
+
+    // then the form value should be set
+    expect(issue2).toEqual(component.formValue);
+  });
+
   it('should display the "issueFormComponent" when "onUpdateIssue() is called"', () => {
     // issue form should not be displayed at first
     expect(component.willDisplayIssueForm).toBeFalse();
@@ -235,13 +243,5 @@ describe('Backlog', () => {
 
     // then "willDisplayIssueForm" should be set to true
     expect(component.willDisplayIssueForm).toBeTrue();
-  });
-
-  it('should set the initial form value when "onUpdateIssue()" is called', () => {
-    // when "onUpdateIssue()" is called
-    component.onUpdateIssue(issue2);
-
-    // then the form value should be set
-    expect(issue2).toEqual(component.formValue);
   });
 });

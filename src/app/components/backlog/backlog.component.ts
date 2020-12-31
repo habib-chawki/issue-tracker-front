@@ -22,10 +22,12 @@ export class Backlog implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // get the list of issues
     this.issueService.getIssues().subscribe((response) => {
       this.issues = response;
     });
 
+    // listen for issue udpate announcements
     this.issueCommunicationService.issueUpdate$.subscribe((issue: Issue) => {
       this.onUpdateIssue(issue);
     });
@@ -38,6 +40,7 @@ export class Backlog implements OnInit {
     });
   }
 
+  // invoked when an issue update is announced
   onUpdateIssue(issue: Issue) {
     this.formValue = issue;
     this.onDisplayIssueForm();
@@ -48,6 +51,7 @@ export class Backlog implements OnInit {
     this.willDisplayIssueForm = true;
   }
 
+  // invoked when the cancel button is clicked
   onHideIssueForm() {
     this.willDisplayIssueForm = false;
   }
