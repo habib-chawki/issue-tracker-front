@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
+import { Issue } from 'src/app/models/issue/issue';
 
 @Component({
   selector: 'app-issue-form',
@@ -14,6 +14,8 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
 export class IssueFormComponent implements OnInit {
   @Output() issueCreated = new EventEmitter();
   @Output() issueFormCancelled = new EventEmitter();
+
+  @Input() initialFormValue: Issue;
 
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
@@ -32,9 +34,13 @@ export class IssueFormComponent implements OnInit {
     estimate: new FormControl(''),
   });
 
-  constructor(private issueCommunicationService: IssueCommunicationService) {}
+  constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.initialFormValue) {
+      this.issueForm.patchValue(this.initialFormValue);
+    }
+  }
 
   onSubmit() {
     this.issueCreated.emit(this.issueForm.value);
