@@ -12,6 +12,7 @@ import IssueType from 'src/app/models/enums/issue-type';
 
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
 import { IssueFormComponent } from '../issue-form/issue-form.component';
@@ -24,6 +25,7 @@ describe('Backlog', () => {
   let nativeElement: HTMLElement;
 
   let issueService: IssueService;
+  let issueCommunicationService: IssueCommunicationService;
 
   let issue: Issue, issue2: Issue;
 
@@ -42,6 +44,7 @@ describe('Backlog', () => {
     fixture.detectChanges();
 
     issueService = TestBed.inject(IssueService);
+    issueCommunicationService = TestBed.inject(IssueCommunicationService);
 
     // set up an issue with details
     issue = {
@@ -205,5 +208,23 @@ describe('Backlog', () => {
       // then the "getIssues()" method should be called
       expect(issueService.getIssues).toHaveBeenCalled();
     });
+  });
+
+  fit('should subscribe to issueUpdate$ observable in ngOnInit()', () => {
+    spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
+
+    component.ngOnInit();
+
+    expect(issueCommunicationService.issueUpdate$.subscribe).toHaveBeenCalled();
+  });
+
+  fit('should call "onUpdateIssue()" when an issue update is announced', () => {
+    spyOn(component, 'onUpdateIssue');
+
+    // when an issue update is announced
+    issueCommunicationService.announceIssueUpdate(issue);
+
+    // then onUpdateIssue() should be called
+    expect(component.onUpdateIssue).toHaveBeenCalled();
   });
 });
