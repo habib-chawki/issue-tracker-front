@@ -6,21 +6,11 @@ import { Issue } from 'src/app/models/issue/issue';
   providedIn: 'root',
 })
 export class IssueCommunicationService {
-  issueCreated = new Subject();
-  issueClicked = new Subject<Issue>();
-  issueUpdated = new Subject<Issue>();
+  issueUpdate$ = new Subject<Issue>();
 
   constructor() {}
 
-  announceIssueCreated(issueFormValue) {
-    this.issueCreated.next(issueFormValue);
-  }
-
-  announceIssueClicked(issue: Issue) {
-    this.issueClicked.next(issue);
-  }
-
-  announceIssueUpdated(issue: Issue) {
-    this.issueUpdated.next(issue);
+  announceIssueUpdate(issue: Issue) {
+    this.issueUpdate$.next(issue);
   }
 }
