@@ -1,77 +1,40 @@
 <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="summary">Summary</label>
-    <input
-      type="text"
-      id="summary"
-      formControlName="summary"
-      class="form-control"
-    />
-  </div>
+  <label for="summary">Summary</label>
+  <input type="text" id="summary" formControlName="summary" />
 
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea
-      id="description"
-      formControlName="description"
-      class="form-control"
+  <label for="description">Description</label>
+  <textarea id="description" formControlName="description"> </textarea>
+
+  <label for="type">Type</label>
+  <select id="type" formControlName="type">
+    <option *ngFor="let issueType of issueTypes" value="{{ issueType }}">
+      {{ issueType }}
+    </option>
+  </select>
+
+  <label for="status">Status</label>
+  <select id="status" formControlName="status">
+    <option *ngFor="let issueStatus of issueStatuses" value="{{ issueStatus }}">
+      {{ issueStatus }}
+    </option>
+  </select>
+
+  <label for="resolution">Resolution</label>
+  <select type="text" id="resolution" formControlName="resolution">
+    <option
+      *ngFor="let issueResolution of issueResolutions"
+      value="{{ issueResolution }}"
     >
-    </textarea>
-  </div>
+      {{ issueResolution }}
+    </option>
+  </select>
 
-  <div class="form-group">
-    <label for="type">Type</label>
-    <select id="type" formControlName="type" class="form-control">
-      <option *ngFor="let issueType of issueTypes" value="{{ issueType }}">
-        {{ issueType }}
-      </option>
-    </select>
-  </div>
+  <label for="assignee">Assignee</label>
+  <input type="text" id="assignee" formControlName="assignee" />
 
-  <div class="form-group">
-    <label for="status">Status</label>
-    <select id="status" formControlName="status" class="form-control">
-      <option
-        *ngFor="let issueStatus of issueStatuses"
-        value="{{ issueStatus }}"
-      >
-        {{ issueStatus }}
-      </option>
-    </select>
-  </div>
+  <label for="estimate">Estimated time</label>
+  <input type="date" id="estimate" formControlName="estimate" />
 
-  <div class="form-group">
-    <label for="resolution">Resolution</label>
-    <select
-      type="text"
-      id="resolution"
-      formControlName="resolution"
-      class="form-control"
-    >
-      <option
-        *ngFor="let issueResolution of issueResolutions"
-        value="{{ issueResolution }}"
-      >
-        {{ issueResolution }}
-      </option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="assignee">Assignee</label>
-    <input
-      type="text"
-      id="assignee"
-      formControlName="assignee"
-      class="form-control"
-    />
-  </div>
-
-  <div class="form-group">
-    <label for="estimate">Estimated time</label>
-    <input type="date" id="estimate" formControlName="estimate" />
-  </div>
-
-  <button type="submit" id="submit" class="btn btn-primary">Add issue</button>
+  <button type="submit" id="submit">Add issue</button>
   <button id="cancel" (click)="onCancel()">Cancel</button>
 </form>
