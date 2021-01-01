@@ -210,38 +210,43 @@ describe('Backlog', () => {
     });
   });
 
-  it('should subscribe to issueUpdate$ observable in ngOnInit()', () => {
-    spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
-    component.ngOnInit();
-    expect(issueCommunicationService.issueUpdate$.subscribe).toHaveBeenCalled();
-  });
+  describe('IssueCommunicationService', () => {
+    it('should subscribe to "issueUpdate$" observable in "ngOnInit()"', () => {
+      spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
+      component.ngOnInit();
+      expect(
+        issueCommunicationService.issueUpdate$.subscribe
+      ).toHaveBeenCalled();
+    });
 
-  it('should call "onUpdateIssue()" when an issue update is announced', () => {
-    spyOn(component, 'onUpdateIssue');
+    it('should call "onUpdateIssue()" when an issue update is announced', () => {
+      spyOn(component, 'onUpdateIssue');
 
-    // when an issue update is announced
-    issueCommunicationService.announceIssueUpdate(issue);
+      // when an issue update is announced
+      issueCommunicationService.announceIssueUpdate(issue);
 
-    // then onUpdateIssue() should be called
-    expect(component.onUpdateIssue).toHaveBeenCalledWith(issue);
-  });
+      // then onUpdateIssue() should be called
+      expect(component.onUpdateIssue).toHaveBeenCalledWith(issue);
+    });
 
-  it('should set the initial form value when "onUpdateIssue()" is called', () => {
-    // when "onUpdateIssue()" is called
-    component.onUpdateIssue(issue2);
+    it('should set the initial form value when "onUpdateIssue()" is called', () => {
+      // when "onUpdateIssue()" is called
+      component.onUpdateIssue(issue2);
 
-    // then the form value should be set
-    expect(issue2).toEqual(component.formValue);
-  });
+      // then the form value should be set
+      expect(issue2).toEqual(component.formValue);
+    });
 
-  it('should display the "issueFormComponent" when "onUpdateIssue() is called"', () => {
-    // issue form should not be displayed at first
-    expect(component.willDisplayIssueForm).toBeFalse();
+    it('should display the "issueFormComponent" when "onUpdateIssue() is called"', () => {
+      // "issueFormComponent" should not be displayed at first
+      expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
 
-    // when "onUpdateIssue()" is called
-    component.onUpdateIssue(issue2);
+      // when "onUpdateIssue()" is called
+      component.onUpdateIssue(issue2);
+      fixture.detectChanges();
 
-    // then "willDisplayIssueForm" should be set to true
-    expect(component.willDisplayIssueForm).toBeTrue();
+      // then "issueFormComponent" should be displayed
+      expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
+    });
   });
 });
