@@ -35,7 +35,7 @@ describe('StorageService', () => {
     const userIdentifier = 'harper.lee@email.com';
 
     // user identifier should not be present in localStorage at first
-    expect(localStorage.getItem(storageService.IDENTIFIER_KEY)).toBeNull();
+    expect(localStorage.getItem(storageService.IDENTIFIER_KEY)).toBeFalsy();
 
     storageService.storeUserIdentifier(userIdentifier);
 

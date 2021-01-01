@@ -176,37 +176,6 @@ describe('Backlog', () => {
       // then expect the "onSaveIssue()" event handler to have been called
       expect(component.onSaveIssue).toHaveBeenCalledWith(issue);
     });
-
-    it('should add the new issue to the "issues" array when "createIssue()" is invoked', () => {
-      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
-
-      // when 'createIssue()' is called
-      component.createIssue(issue);
-
-      // then the new issue should be added to the issues array
-      expect(component.issues).toContain(issue);
-    });
-
-    fit('should update the issue in the "issues" array when "updateIssue()" is invoked', () => {
-      // given the issues array
-      component.issues = [issue, issue2];
-
-      // given the issue is updated
-      const updatedIssue = {
-        ...issue,
-        description: 'Some new updated description',
-        status: IssueStatus.Done,
-      };
-
-      spyOn(issueService, 'updateIssue').and.returnValue(of(updatedIssue));
-
-      // when "updateIssue()" is called
-      component.updateIssue(updatedIssue);
-
-      // then the issue in the issues array should be updated
-      expect(component.issues).toContain(updatedIssue);
-      expect(component.issues).not.toContain(issue);
-    });
   });
 
   describe('IssueService', () => {
@@ -279,5 +248,36 @@ describe('Backlog', () => {
       // then "issueFormComponent" should be displayed
       expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
     });
+  });
+
+  it('should add the new issue to the "issues" array when "createIssue()" is invoked', () => {
+    spyOn(issueService, 'createIssue').and.returnValue(of(issue));
+
+    // when 'createIssue()' is called
+    component.createIssue(issue);
+
+    // then the new issue should be added to the issues array
+    expect(component.issues).toContain(issue);
+  });
+
+  it('should update the issue in the "issues" array when "updateIssue()" is invoked', () => {
+    // given the issues array
+    component.issues = [issue, issue2];
+
+    // given the issue is updated
+    const updatedIssue = {
+      ...issue,
+      description: 'Some new updated description',
+      status: IssueStatus.Done,
+    };
+
+    spyOn(issueService, 'updateIssue').and.returnValue(of(updatedIssue));
+
+    // when "updateIssue()" is called
+    component.updateIssue(updatedIssue);
+
+    // then the issue in the issues array should be updated
+    expect(component.issues).toContain(updatedIssue);
+    expect(component.issues).not.toContain(issue);
   });
 });
