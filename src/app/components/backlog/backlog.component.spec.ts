@@ -160,18 +160,18 @@ describe('Backlog', () => {
       expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
     });
 
-    it('should handle the "issueCreated" event by invoking the "onCreateIssue()" method', () => {
+    it('should handle the "issueFormSaved" event by invoking the "onCreateIssue()" method', () => {
       spyOn(component, 'onCreateIssue');
 
       // given the issue form component displayed
       component.willDisplayIssueForm = true;
       fixture.detectChanges();
 
-      // when a "created" event is emitted
+      // when a "issueFormSaved" event is emitted
       const issueForm: DebugElement = fixture.debugElement.query(
         By.css('app-issue-form')
       );
-      issueForm.triggerEventHandler('issueCreated', issue);
+      issueForm.triggerEventHandler('issueFormSaved', issue);
 
       // then expect the "onCreateIssue()" event handler to have been called
       expect(component.onCreateIssue).toHaveBeenCalledWith(issue);
