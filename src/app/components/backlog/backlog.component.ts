@@ -33,8 +33,10 @@ export class Backlog implements OnInit {
     );
   }
 
+  onSaveIssue(issue: Issue) {}
+
   // invoked when the form is submitted
-  onCreateIssue(issue: Issue) {
+  createIssue(issue: Issue) {
     this.issueService.createIssue(issue).subscribe((response) => {
       this.issues.push(response);
     });
