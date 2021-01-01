@@ -37,13 +37,18 @@ export class Backlog implements OnInit {
   onSaveIssue(issue: Issue) {}
 
   createIssue(issue: Issue) {
-    this.issueService.createIssue(issue).subscribe((response) => {
-      this.issues.push(response);
+    this.issueService.createIssue(issue).subscribe((createdIssue) => {
+      this.issues.push(createdIssue);
     });
   }
 
   updateIssue(issue: Issue) {
-    this.issueService.updateIssue(issue).subscribe();
+    this.issueService.updateIssue(issue).subscribe((updatedIssue) => {
+      const index = this.issues.findIndex(
+        (item) => item.id === updatedIssue.id
+      );
+      this.issues[index] = updatedIssue;
+    });
   }
 
   // invoked when an issue update is announced
