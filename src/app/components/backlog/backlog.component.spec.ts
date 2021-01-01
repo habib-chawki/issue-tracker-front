@@ -199,7 +199,7 @@ describe('Backlog', () => {
       expect(issueService.getIssues).toHaveBeenCalled();
     });
 
-    it('should invoke "IssueService" when the "createIssue()" is called', () => {
+    it('should invoke "IssueService" when "createIssue()" is called', () => {
       spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
       // when the "createIssue()" method is invoked
@@ -207,6 +207,16 @@ describe('Backlog', () => {
 
       // then the "createIssue()" service method should be called
       expect(issueService.createIssue).toHaveBeenCalledWith(issue);
+    });
+
+    fit('should invoke "IssueService" when "updateIssue()" is called', () => {
+      spyOn(issueService, 'updateIssue').and.returnValue(of(issue));
+
+      // when "updateIssue()" is called
+      component.updateIssue(issue);
+
+      // then the "updateIssue()" service method should be called
+      expect(issueService.updateIssue).toHaveBeenCalledWith(issue);
     });
   });
 

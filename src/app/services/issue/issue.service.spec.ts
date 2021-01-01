@@ -98,7 +98,7 @@ describe('IssueService', () => {
     req.flush(issue);
   });
 
-  fit('should update an issue', () => {
+  it('should update an issue', () => {
     // given an updated issue
     const updatedIssue = { ...issue };
     updatedIssue.description = 'new updated description';
