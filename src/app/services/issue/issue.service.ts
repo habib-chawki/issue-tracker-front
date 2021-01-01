@@ -15,6 +15,10 @@ export class IssueService {
     return this.httpClient.post<Issue>(this.baseUrl, issue);
   }
 
+  updateIssue(issue: Issue): Observable<Issue> {
+    return this.httpClient.put<Issue>(`${this.baseUrl}/${issue.id}`, issue);
+  }
+
   getIssue(id: string): Observable<Issue> {
     return this.httpClient.get<Issue>(`${this.baseUrl}/${id}`);
   }
