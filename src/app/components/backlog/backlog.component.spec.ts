@@ -280,4 +280,29 @@ describe('Backlog', () => {
     expect(component.issues).toContain(updatedIssue);
     expect(component.issues).not.toContain(issue);
   });
+
+  it('should invoke "createIssue()" when the issue is not already in the issues array when "onSaveIssue()" is called', () => {
+    // given the "createIssue()" method
+    spyOn(component, 'createIssue');
+
+    // when "onSaveIssue()" is called and the issues array does not contain the issue
+    component.onSaveIssue(issue);
+
+    // then "createIssue()" should be called
+    expect(component.createIssue).toHaveBeenCalledWith(issue);
+  });
+
+  it('should invoke "updateIssue()" when the issue is already in the issues array when "onSaveIssue()" is called', () => {
+    // given the issues array
+    component.issues = [issue, issue2];
+
+    // given the "updateIssue()" method
+    spyOn(component, 'updateIssue');
+
+    // when "onSaveIssue()" is called and the issues array contains the issue
+    component.onSaveIssue(issue);
+
+    // then "updateIssue()" should be called
+    expect(component.updateIssue).toHaveBeenCalledWith(issue);
+  });
 });
