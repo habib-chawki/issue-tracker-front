@@ -160,8 +160,8 @@ describe('Backlog', () => {
       expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
     });
 
-    it('should handle the "issueFormSaved" event by invoking the "onCreateIssue()" method', () => {
-      spyOn(component, 'onCreateIssue');
+    it('should handle the "issueFormSaved" event by invoking the "onSaveIssue()" method', () => {
+      spyOn(component, 'onSaveIssue');
 
       // given the issue form component displayed
       component.willDisplayIssueForm = true;
@@ -173,15 +173,15 @@ describe('Backlog', () => {
       );
       issueForm.triggerEventHandler('issueFormSaved', issue);
 
-      // then expect the "onCreateIssue()" event handler to have been called
-      expect(component.onCreateIssue).toHaveBeenCalledWith(issue);
+      // then expect the "onSaveIssue()" event handler to have been called
+      expect(component.onSaveIssue).toHaveBeenCalledWith(issue);
     });
 
-    it('should add the new issue to the "issues" array when "onCreateIssue()" is invoked', () => {
+    it('should add the new issue to the "issues" array when "createIssue()" is invoked', () => {
       spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
-      // when 'onCreateIssue()' is called
-      component.onCreateIssue(issue);
+      // when 'createIssue()' is called
+      component.createIssue(issue);
 
       // then the new issue should be added to the issues array
       expect(component.issues).toContain(issue);
@@ -189,11 +189,11 @@ describe('Backlog', () => {
   });
 
   describe('IssueService', () => {
-    it('should invoke the service method "createIssue()" when "onCreateIssue()" is called', () => {
+    it('should invoke the service method "createIssue()" when "createIssue()" is called', () => {
       spyOn(issueService, 'createIssue').and.returnValue(of(issue));
 
-      // when the "onCreateIssue()" method is invoked
-      component.onCreateIssue(issue);
+      // when the "createIssue()" method is invoked
+      component.createIssue(issue);
 
       // then the "createIssue()" service method should be called
       expect(issueService.createIssue).toHaveBeenCalledWith(issue);
