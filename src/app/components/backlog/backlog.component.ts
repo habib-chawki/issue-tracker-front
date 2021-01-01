@@ -28,8 +28,8 @@ export class Backlog implements OnInit {
     });
 
     // listen for issue udpate announcements
-    this.issueCommunicationService.issueUpdate$.subscribe(
-      this.handleIssueUpdate
+    this.issueCommunicationService.issueUpdate$.subscribe((issue: Issue) =>
+      this.handleIssueUpdate(issue)
     );
   }
 
