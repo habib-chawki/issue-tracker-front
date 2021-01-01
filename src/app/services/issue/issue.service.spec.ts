@@ -98,6 +98,30 @@ describe('IssueService', () => {
     req.flush(issue);
   });
 
+  fit('should update an issue', () => {
+    // given an updated issue
+    const updatedIssue = { ...issue };
+    updatedIssue.description = 'new updated description';
+    updatedIssue.status = IssueStatus.Done;
+
+    // when updateIssue is invoked with an issue
+    // then response with the updated issue
+    issueService.updateIssue(issue).subscribe((response) => {
+      expect(response).toEqual(updatedIssue);
+    });
+
+    // expect a 'PUT' request with the issue as body
+    const req = httpTestingController.expectOne(
+      `${issueService.baseUrl}/${issue.id}`
+    );
+
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toBe(issue);
+
+    // return the updated issue
+    req.flush(updatedIssue);
+  });
+
   it('should get a single issue by id', () => {
     // when the "getIssue()" service method is invoked with the issue id
     // then the response should be the issue with the correct id
