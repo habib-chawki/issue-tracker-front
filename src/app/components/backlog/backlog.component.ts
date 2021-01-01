@@ -34,7 +34,11 @@ export class Backlog implements OnInit {
   }
 
   // invoked when the form is submitted
-  onSaveIssue(issue: Issue) {}
+  onSaveIssue(issue: Issue) {
+    const found = this.issues.find((item) => item.id === issue.id);
+
+    found ? this.updateIssue(issue) : this.createIssue(issue);
+  }
 
   createIssue(issue: Issue) {
     this.issueService.createIssue(issue).subscribe((createdIssue) => {
