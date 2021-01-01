@@ -189,16 +189,6 @@ describe('Backlog', () => {
   });
 
   describe('IssueService', () => {
-    it('should invoke the service method "createIssue()" when "createIssue()" is called', () => {
-      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
-
-      // when the "createIssue()" method is invoked
-      component.createIssue(issue);
-
-      // then the "createIssue()" service method should be called
-      expect(issueService.createIssue).toHaveBeenCalledWith(issue);
-    });
-
     it('should invoke the "getIssues()" service method, within "ngOnInit()"', () => {
       spyOn(issueService, 'getIssues').and.returnValue(of([issue, issue2]));
 
@@ -207,6 +197,16 @@ describe('Backlog', () => {
 
       // then the "getIssues()" method should be called
       expect(issueService.getIssues).toHaveBeenCalled();
+    });
+
+    it('should invoke "IssueService" when the "createIssue()" is called', () => {
+      spyOn(issueService, 'createIssue').and.returnValue(of(issue));
+
+      // when the "createIssue()" method is invoked
+      component.createIssue(issue);
+
+      // then the "createIssue()" service method should be called
+      expect(issueService.createIssue).toHaveBeenCalledWith(issue);
     });
   });
 
