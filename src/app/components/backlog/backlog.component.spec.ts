@@ -219,30 +219,30 @@ describe('Backlog', () => {
       ).toHaveBeenCalled();
     });
 
-    it('should call "onUpdateIssue()" when an issue update is announced', () => {
-      spyOn(component, 'onUpdateIssue');
+    it('should call "handleIssueUpdate()" when an issue update is announced', () => {
+      spyOn(component, 'handleIssueUpdate');
 
       // when an issue update is announced
       issueCommunicationService.announceIssueUpdate(issue);
 
-      // then onUpdateIssue() should be called
-      expect(component.onUpdateIssue).toHaveBeenCalledWith(issue);
+      // then handleIssueUpdate() should be called
+      expect(component.handleIssueUpdate).toHaveBeenCalledWith(issue);
     });
 
-    it('should set the initial form value when "onUpdateIssue()" is called', () => {
-      // when "onUpdateIssue()" is called
-      component.onUpdateIssue(issue2);
+    it('should set the initial form value when "handleIssueUpdate()" is called', () => {
+      // when "handleIssueUpdate()" is called
+      component.handleIssueUpdate(issue2);
 
       // then the form value should be set
       expect(issue2).toEqual(component.formValue);
     });
 
-    it('should display the "issueFormComponent" when "onUpdateIssue() is called"', () => {
+    it('should display the "issueFormComponent" when "handleIssueUpdate() is called"', () => {
       // "issueFormComponent" should not be displayed at first
       expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
 
-      // when "onUpdateIssue()" is called
-      component.onUpdateIssue(issue2);
+      // when "handleIssueUpdate()" is called
+      component.handleIssueUpdate(issue2);
       fixture.detectChanges();
 
       // then "issueFormComponent" should be displayed
