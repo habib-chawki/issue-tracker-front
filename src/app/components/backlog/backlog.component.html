@@ -3,7 +3,7 @@
 <app-issue-form
   *ngIf="willDisplayIssueForm"
   [initialFormValue]="formValue"
-  (issueCreated)="onCreateIssue($event)"
+  (issueFormSaved)="onCreateIssue($event)"
   (issueFormCancelled)="onHideIssueForm()"
 ></app-issue-form>
 
