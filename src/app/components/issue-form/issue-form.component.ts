@@ -15,7 +15,7 @@ export class IssueFormComponent implements OnInit {
   @Output() issueFormSaved = new EventEmitter();
   @Output() issueFormCancelled = new EventEmitter();
 
-  @Input() initialFormValue: Issue;
+  @Input() initialFormValue = {};
 
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
