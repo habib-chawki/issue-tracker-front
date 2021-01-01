@@ -28,9 +28,9 @@ export class Backlog implements OnInit {
     });
 
     // listen for issue udpate announcements
-    this.issueCommunicationService.issueUpdate$.subscribe((issue: Issue) => {
-      this.onUpdateIssue(issue);
-    });
+    this.issueCommunicationService.issueUpdate$.subscribe(
+      this.handleIssueUpdate
+    );
   }
 
   // invoked when the form is submitted
@@ -41,7 +41,7 @@ export class Backlog implements OnInit {
   }
 
   // invoked when an issue update is announced
-  onUpdateIssue(issue: Issue) {
+  handleIssueUpdate(issue: Issue) {
     this.formValue = issue;
     this.onDisplayIssueForm();
   }
@@ -51,7 +51,7 @@ export class Backlog implements OnInit {
     this.willDisplayIssueForm = true;
   }
 
-  // invoked when the cancel button is clicked
+  // invoked when the cancel button of the issue form is clicked
   onHideIssueForm() {
     this.willDisplayIssueForm = false;
   }
