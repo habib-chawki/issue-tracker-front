@@ -100,9 +100,11 @@ describe('IssueService', () => {
 
   it('should update an issue', () => {
     // given an updated issue
-    const updatedIssue = { ...issue };
-    updatedIssue.description = 'new updated description';
-    updatedIssue.status = IssueStatus.Done;
+    const updatedIssue = {
+      ...issue,
+      description: 'new updated description',
+      status: IssueStatus.Done,
+    };
 
     // when updateIssue is invoked with an issue
     // then response with the updated issue
