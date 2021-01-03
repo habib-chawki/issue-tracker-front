@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -13,7 +13,7 @@ export class SignupFormComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     userName: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.email),
     password: new FormControl(''),
   });
 
@@ -36,5 +36,9 @@ export class SignupFormComponent implements OnInit {
 
     // store user details (identifier + token)
     this.storageService.storeUserDetails({ identifier, token });
+  }
+
+  get email() {
+    return this.signupForm.controls.email;
   }
 }
