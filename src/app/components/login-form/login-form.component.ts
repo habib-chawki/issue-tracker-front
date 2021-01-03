@@ -34,4 +34,8 @@ export class LoginFormComponent implements OnInit {
     // store the token and identifier in localStorage
     this.storageService.storeUserDetails({ identifier, token });
   }
+
+  get email() {
+    return this.loginForm.controls.email;
+  }
 }

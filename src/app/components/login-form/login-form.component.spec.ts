@@ -125,16 +125,16 @@ describe('LoginFormComponent', () => {
     );
   });
 
-  fit('should not validate the user email', () => {
+  fit('should validate email', () => {
     const invalidEmail = 'this-email-is-invalid';
     const validEmail = 'this-email-is-valid@email.com';
 
     // should invalidate email
-    component.loginForm.controls.email.setValue(invalidEmail);
-    expect(component.loginForm.controls.email.valid).toBeFalse();
+    component.email.setValue(invalidEmail);
+    expect(component.email.valid).toBeFalse();
 
     // should validate email
-    component.loginForm.controls.email.setValue(validEmail);
-    expect(component.loginForm.controls.email.valid).toBeTrue();
+    component.email.setValue(validEmail);
+    expect(component.email.valid).toBeTrue();
   });
 });
