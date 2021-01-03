@@ -124,4 +124,13 @@ describe('LoginFormComponent', () => {
       jasmine.objectContaining({ identifier, token })
     );
   });
+
+  fit('should validate the user email', () => {
+    // given an invalid email
+    const invalidEmail = 'this-email-is-invalid';
+
+    component.loginForm.controls.email.setValue(invalidEmail);
+
+    expect(component.loginForm.controls.email.valid).toBeFalse();
+  });
 });
