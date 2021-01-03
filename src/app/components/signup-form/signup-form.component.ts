@@ -14,7 +14,7 @@ export class SignupFormComponent implements OnInit {
     lastName: new FormControl(''),
     userName: new FormControl(''),
     email: new FormControl('', Validators.email),
-    password: new FormControl(''),
+    password: new FormControl('', Validators.minLength(5)),
   });
 
   constructor(
@@ -40,5 +40,9 @@ export class SignupFormComponent implements OnInit {
 
   get email() {
     return this.signupForm.controls.email;
+  }
+
+  get password() {
+    return this.signupForm.controls.password;
   }
 }
