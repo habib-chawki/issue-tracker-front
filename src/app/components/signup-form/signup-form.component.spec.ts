@@ -174,4 +174,86 @@ describe('SignupFormComponent', () => {
     component.password.setValue(validPassword);
     expect(component.password.valid).toBeTrue();
   });
+
+  fit('should not display error message when email is valid', () => {
+    // given the email input field
+    const emailField = fixture.debugElement.nativeElement.querySelector(
+      'input#email'
+    );
+
+    // when a valid email is inputted and the input field is touched
+    emailField.value = 'valid@email.com';
+
+    emailField.dispatchEvent(new Event('input'));
+    emailField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should not be dispalyed
+    expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
+  });
+
+  fit('should display invalid email error message when email is not valid', () => {
+    // error message should not be displayed at first
+    expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
+
+    // given the email input field
+    const emailField = fixture.debugElement.nativeElement.querySelector(
+      'input#email'
+    );
+
+    // when an invalid email is inputted and the input field is touched
+    emailField.value = 'invalid$email.com';
+
+    emailField.dispatchEvent(new Event('input'));
+    emailField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should be displayed
+    expect(
+      nativeElement.querySelector('div#email-error').textContent
+    ).toContain('Invalid email');
+  });
+
+  fit('should not display error message when password is valid', () => {
+    // given the password input field
+    const passwordField = fixture.debugElement.nativeElement.querySelector(
+      'input#password'
+    );
+
+    // when a valid password is inputted and the password field is blurred
+    passwordField.value = 'v@l!d_pa$$';
+
+    passwordField.dispatchEvent(new Event('input'));
+    passwordField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should not be displayed
+    expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
+  });
+
+  fit('should display error message when the password is invalid', () => {
+    // error message should not be displayed at first
+    expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
+
+    // given the password input field
+    const passwordField = fixture.debugElement.nativeElement.querySelector(
+      'input#password'
+    );
+
+    // when an invalid password is inputted and the password field is blurred
+    passwordField.value = 'pas';
+
+    passwordField.dispatchEvent(new Event('input'));
+    passwordField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should be displayed
+    expect(
+      nativeElement.querySelector('div#password-error').textContent
+    ).toContain('Invalid password');
+  });
 });
