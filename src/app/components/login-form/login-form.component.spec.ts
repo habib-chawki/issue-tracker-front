@@ -151,6 +151,24 @@ describe('LoginFormComponent', () => {
     expect(component.password.valid).toBeTrue();
   });
 
+  it('should not display error message when email is valid', () => {
+    // given the email input field
+    const emailField = fixture.debugElement.nativeElement.querySelector(
+      'input#email'
+    );
+
+    // when a valid email is inputted and the input field is touched
+    emailField.value = 'valid@email.com';
+
+    emailField.dispatchEvent(new Event('input'));
+    emailField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should not be dispalyed
+    expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
+  });
+
   it('should display invalid email error message when email is not valid', () => {
     // error message should not be displayed at first
     expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
@@ -174,21 +192,21 @@ describe('LoginFormComponent', () => {
     ).toContain('Invalid email');
   });
 
-  it('should not display error message when email is valid', () => {
-    // given the email input field
-    const emailField = fixture.debugElement.nativeElement.querySelector(
-      'input#email'
+  it('should not display error message when password is valid', () => {
+    // given the password input field
+    const passwordField = fixture.debugElement.nativeElement.querySelector(
+      'input#password'
     );
 
-    // when a valid email is inputted and the input field is touched
-    emailField.value = 'valid@email.com';
+    // when a valid password is inputted and the password field is blurred
+    passwordField.value = 'v@l!d_pa$$';
 
-    emailField.dispatchEvent(new Event('input'));
-    emailField.dispatchEvent(new Event('blur'));
+    passwordField.dispatchEvent(new Event('input'));
+    passwordField.dispatchEvent(new Event('blur'));
 
     fixture.detectChanges();
 
-    // then the error message should not be dispalyed
-    expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
+    // then the error message should not be displayed
+    expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
   });
 });
