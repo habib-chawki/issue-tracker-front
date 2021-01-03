@@ -11,8 +11,16 @@
   <label for="email">Email:</label>
   <input type="text" formControlName="email" id="email" />
 
+  <div *ngIf="email.touched && email.invalid" id="email-error">
+    Invalid email
+  </div>
+
   <label for="password">Password:</label>
   <input type="text" formControlName="password" id="password" />
+
+  <div *ngIf="password.touched && password.invalid" id="password-error">
+    Invalid password
+  </div>
 
   <button type="submit">Sign up</button>
 </form>
