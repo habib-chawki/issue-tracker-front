@@ -156,10 +156,14 @@ describe('LoginFormComponent', () => {
     expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
 
     // given the email input field
-    const emailField = nativeElement.querySelector('input#email');
+    const emailField = fixture.debugElement.nativeElement.querySelector(
+      'input#email'
+    );
 
     // when an invalid email is inputted and the input field is touched
-    emailField.nodeValue = 'invalid$email.com';
+    emailField.value = 'invalid$email.com';
+
+    emailField.dispatchEvent(new Event('input'));
     emailField.dispatchEvent(new Event('blur'));
 
     fixture.detectChanges();
@@ -168,5 +172,23 @@ describe('LoginFormComponent', () => {
     expect(
       nativeElement.querySelector('div#email-error').textContent
     ).toContain('Invalid email');
+  });
+
+  it('should not display error message when email is valid', () => {
+    // given the email input field
+    const emailField = fixture.debugElement.nativeElement.querySelector(
+      'input#email'
+    );
+
+    // when a valid email is inputted and the input field is touched
+    emailField.value = 'valid@email.com';
+
+    emailField.dispatchEvent(new Event('input'));
+    emailField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should not be dispalyed
+    expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
   });
 });
