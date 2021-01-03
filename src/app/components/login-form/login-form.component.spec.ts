@@ -98,7 +98,7 @@ describe('LoginFormComponent', () => {
     expect(userService.login).toHaveBeenCalledWith(component.loginForm.value);
   });
 
-  it('should invoke tokenService#storeToken with the auth token when "onLogin()" is called', () => {
+  it('should store the auth token and user identifier in "localStorage" when "onLogin()" is called', () => {
     // given the user identifier and auth token
     const identifier = 'George.R.R.Martin@email.com';
     const token =

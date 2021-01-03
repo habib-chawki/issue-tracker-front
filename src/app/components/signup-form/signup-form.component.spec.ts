@@ -122,8 +122,8 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  it('should invoke "tokenService#storeUserDetails()" with the auth token and user identifier when "onSignUp()" is called', () => {
-    // given the authorization token header and user identifier (email)
+  it('should store the auth token and user identifier in "localStorage" when "onSignUp()" is called', () => {
+    // given the authorization token header and user identifier
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkouUi5SLlRvbGtpZW5AZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.IB_-OiA8UNtkZLL9UapBofUaJY8mRBH5SHv66HxbOmM';
     const identifier = 'J.R.R.Tolkien@email.com';
