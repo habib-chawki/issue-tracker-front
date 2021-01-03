@@ -2,7 +2,9 @@
   <label for="email">Email:</label>
   <input type="text" id="email" formControlName="email" />
 
-  <div *ngIf="email.dirty && email.invalid" id="email-error"></div>
+  <div *ngIf="email.touched && email.invalid" id="email-error">
+    Invalid email
+  </div>
 
   <label for="password">Password: </label>
   <input type="password" id="password" formControlName="password" />
