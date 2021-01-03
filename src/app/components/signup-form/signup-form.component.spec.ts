@@ -149,7 +149,7 @@ describe('SignupFormComponent', () => {
     );
   });
 
-  fit('should validate email', () => {
+  it('should validate email', () => {
     const invalidEmail = 'this-email-is-invalid';
     const validEmail = 'this-email-is-valid@email.com';
 
@@ -160,5 +160,18 @@ describe('SignupFormComponent', () => {
     // should validate email
     component.email.setValue(validEmail);
     expect(component.email.valid).toBeTrue();
+  });
+
+  fit('should validate password', () => {
+    const invalidTooShortPassword = 'lmp';
+    const validPassword = 'L%$5sde';
+
+    // should invalidate password
+    component.password.setValue(invalidTooShortPassword);
+    expect(component.password.valid).toBeFalse();
+
+    // should validate password
+    component.password.setValue(validPassword);
+    expect(component.password.valid).toBeTrue();
   });
 });
