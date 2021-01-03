@@ -22,6 +22,8 @@ export class SignupFormComponent implements OnInit {
     private storageService: StorageService
   ) {}
 
+  ngOnInit(): void {}
+
   onSignUp() {
     let token = '';
     let identifier = '';
@@ -29,12 +31,10 @@ export class SignupFormComponent implements OnInit {
     // extract the token and user identifier
     this.userService.signUp(this.signupForm.value).subscribe((response) => {
       token = response.headers.get('Authorization');
-      identifier = response.body.email;
+      identifier = response.body.id;
     });
 
     // store user details (identifier + token)
     this.storageService.storeUserDetails({ identifier, token });
   }
-
-  ngOnInit(): void {}
 }

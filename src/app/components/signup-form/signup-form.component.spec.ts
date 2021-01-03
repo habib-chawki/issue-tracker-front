@@ -130,7 +130,7 @@ describe('SignupFormComponent', () => {
 
     // given the response headers and body
     const headers = new HttpHeaders({ Authorization: token });
-    const body = { email: identifier };
+    const body = { id: identifier };
 
     // given the signup response
     spyOn(userService, 'signUp').and.returnValue(
