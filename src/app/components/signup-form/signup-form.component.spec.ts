@@ -162,7 +162,7 @@ describe('SignupFormComponent', () => {
     expect(component.email.valid).toBeTrue();
   });
 
-  fit('should validate password', () => {
+  it('should validate password', () => {
     const invalidTooShortPassword = 'lmp';
     const validPassword = 'L%$5sde';
 

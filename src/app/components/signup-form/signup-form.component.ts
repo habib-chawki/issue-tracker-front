@@ -13,8 +13,11 @@ export class SignupFormComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     userName: new FormControl(''),
-    email: new FormControl('', Validators.email),
-    password: new FormControl('', Validators.minLength(5)),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
   });
 
   constructor(
