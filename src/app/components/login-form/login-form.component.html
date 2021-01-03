@@ -8,5 +8,10 @@
 
   <label for="password">Password: </label>
   <input type="password" id="password" formControlName="password" />
+
+  <div *ngIf="password.touched && password.invalid" id="password-error">
+    Invalid password
+  </div>
+
   <button type="submit">Login</button>
 </form>
