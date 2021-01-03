@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class LoginFormComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl('', Validators.email),
-    password: new FormControl(''),
+    password: new FormControl('', Validators.minLength(5)),
   });
 
   constructor(
@@ -37,5 +37,9 @@ export class LoginFormComponent implements OnInit {
 
   get email() {
     return this.loginForm.controls.email;
+  }
+
+  get password() {
+    return this.loginForm.controls.password;
   }
 }
