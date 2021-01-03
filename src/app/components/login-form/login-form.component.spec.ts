@@ -209,4 +209,27 @@ describe('LoginFormComponent', () => {
     // then the error message should not be displayed
     expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
   });
+
+  it('should display error message when the password is invalid', () => {
+    // error message should not be displayed at first
+    expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
+
+    // given the password input field
+    const passwordField = fixture.debugElement.nativeElement.querySelector(
+      'input#password'
+    );
+
+    // when an invalid password is inputted and the password field is blurred
+    passwordField.value = 'pas';
+
+    passwordField.dispatchEvent(new Event('input'));
+    passwordField.dispatchEvent(new Event('blur'));
+
+    fixture.detectChanges();
+
+    // then the error message should be displayed
+    expect(
+      nativeElement.querySelector('div#password-error').textContent
+    ).toContain('Invalid password');
+  });
 });
