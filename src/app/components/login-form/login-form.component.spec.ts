@@ -151,20 +151,22 @@ describe('LoginFormComponent', () => {
     expect(component.password.valid).toBeTrue();
   });
 
-  fit('should display invalid email error message when email is not valid', () => {
+  it('should display invalid email error message when email is not valid', () => {
     // error message should not be displayed at first
     expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
 
     // given the email input field
     const emailField = nativeElement.querySelector('input#email');
 
-    // when an invalid email is inputted
+    // when an invalid email is inputted and the input field is touched
     emailField.nodeValue = 'invalid$email.com';
-    emailField.dispatchEvent(new Event('input'));
+    emailField.dispatchEvent(new Event('blur'));
 
     fixture.detectChanges();
 
     // then the error message should be displayed
-    expect(nativeElement.querySelector('div#email-error')).toBeTruthy();
+    expect(
+      nativeElement.querySelector('div#email-error').textContent
+    ).toContain('Invalid email');
   });
 });
