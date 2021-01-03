@@ -106,7 +106,7 @@ describe('LoginFormComponent', () => {
 
     // given the response body and headers
     const headers = new HttpHeaders({ Authorization: token });
-    const body = { email: identifier };
+    const body = { id: identifier };
 
     // given the "storeUserDetails" service method
     spyOn(storageService, 'storeUserDetails');
