@@ -148,4 +148,17 @@ describe('SignupFormComponent', () => {
       jasmine.objectContaining({ identifier, token })
     );
   });
+
+  fit('should validate email', () => {
+    const invalidEmail = 'this-email-is-invalid';
+    const validEmail = 'this-email-is-valid@email.com';
+
+    // should invalidate email
+    component.email.setValue(invalidEmail);
+    expect(component.email.valid).toBeFalse();
+
+    // should validate email
+    component.email.setValue(validEmail);
+    expect(component.email.valid).toBeTrue();
+  });
 });
