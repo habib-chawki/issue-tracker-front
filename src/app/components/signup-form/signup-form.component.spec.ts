@@ -175,7 +175,7 @@ describe('SignupFormComponent', () => {
     expect(component.password.valid).toBeTrue();
   });
 
-  fit('should not display error message when email is valid', () => {
+  it('should not display error message when email is valid', () => {
     // given the email input field
     const emailField = fixture.debugElement.nativeElement.querySelector(
       'input#email'
@@ -193,7 +193,7 @@ describe('SignupFormComponent', () => {
     expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
   });
 
-  fit('should display invalid email error message when email is not valid', () => {
+  it('should display invalid email error message when email is not valid', () => {
     // error message should not be displayed at first
     expect(nativeElement.querySelector('div#email-error')).toBeFalsy();
 
@@ -216,7 +216,7 @@ describe('SignupFormComponent', () => {
     ).toContain('Invalid email');
   });
 
-  fit('should not display error message when password is valid', () => {
+  it('should not display error message when password is valid', () => {
     // given the password input field
     const passwordField = fixture.debugElement.nativeElement.querySelector(
       'input#password'
@@ -234,7 +234,7 @@ describe('SignupFormComponent', () => {
     expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
   });
 
-  fit('should display error message when the password is invalid', () => {
+  it('should display error message when the password is invalid', () => {
     // error message should not be displayed at first
     expect(nativeElement.querySelector('div#password-error')).toBeFalsy();
 

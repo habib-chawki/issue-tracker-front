@@ -1,13 +1,22 @@
+import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 import { Backlog } from './components/backlog/backlog.component';
 import { IssuesComponent } from './components/issues/issues.component';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+  let nativeElement: HTMLElement;
+
+  let router: Router;
+  let location: Location;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -19,30 +28,37 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+    nativeElement = fixture.nativeElement;
+
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
+
+    fixture.detectChanges();
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'issue-tracker'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app.title).toEqual('issue-tracker');
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
+    expect(nativeElement.querySelector('h1').textContent).toContain(
       'App is running'
     );
   });
 
-  it('should render issues component', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const nativeElement = fixture.nativeElement;
+  it('should render "BacklogComponent" when app first loads', () => {
     expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
+  });
+
+  it('should navigate to "/" when the app first loads', () => {
+    router.navigateByUrl('');
+    expect(location.path()).toBe('');
   });
 });
