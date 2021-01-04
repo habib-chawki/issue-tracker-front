@@ -1,11 +1,6 @@
 import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -15,7 +10,7 @@ import { AppComponent } from './app.component';
 import { Backlog } from './components/backlog/backlog.component';
 import { IssuesComponent } from './components/issues/issues.component';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
   let nativeElement: HTMLElement;
@@ -59,9 +54,23 @@ fdescribe('AppComponent', () => {
     );
   });
 
-  it('should render "BacklogComponent" when app first loads', () => {
-    expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
-  });
+  fit('should render "BacklogComponent" when app first loads', fakeAsync(() => {
+    router
+      .navigate([''])
+      .then(() =>
+        expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
+      );
+  }));
+
+  it('should redirect from "" to "/backlog"', fakeAsync(() => {
+    router.navigate(['']).then(() => expect(location.path()).toBe('/backlog'));
+  }));
+
+  it('should navigate to "/backlog"', fakeAsync(() => {
+    router
+      .navigate(['/backlog'])
+      .then(() => expect(location.path()).toBe('/backlog'));
+  }));
 
   it('should navigate to "/signup"', fakeAsync(() => {
     router
@@ -73,15 +82,5 @@ fdescribe('AppComponent', () => {
     router
       .navigate(['/login'])
       .then(() => expect(location.path()).toBe('/login'));
-  }));
-
-  it('should navigate to "/backlog"', fakeAsync(() => {
-    router
-      .navigate(['/backlog'])
-      .then(() => expect(location.path()).toBe('/backlog'));
-  }));
-
-  fit('should redirect from "" to "/backlog"', fakeAsync(() => {
-    router.navigate(['']).then(() => expect(location.path()).toBe('/backlog'));
   }));
 });
