@@ -75,9 +75,13 @@ fdescribe('AppComponent', () => {
       .then(() => expect(location.path()).toBe('/login'));
   }));
 
-  fit('should navigate to "/backlog"', fakeAsync(() => {
+  it('should navigate to "/backlog"', fakeAsync(() => {
     router
       .navigate(['/backlog'])
       .then(() => expect(location.path()).toBe('/backlog'));
+  }));
+
+  fit('should redirect from "" to "/backlog"', fakeAsync(() => {
+    router.navigate(['']).then(() => expect(location.path()).toBe('/backlog'));
   }));
 });
