@@ -86,7 +86,7 @@ describe('AppComponent', () => {
       .then(() => expect(location.path()).toBe('/signup'));
   }));
 
-  fit('should render "SignupFormComponent" when navigated to "/signup"', fakeAsync(() => {
+  it('should render "SignupFormComponent" when navigated to "/signup"', fakeAsync(() => {
     router
       .navigate(['/signup'])
       .then(() =>
@@ -98,5 +98,13 @@ describe('AppComponent', () => {
     router
       .navigate(['/login'])
       .then(() => expect(location.path()).toBe('/login'));
+  }));
+
+  it('should render "LoginFormComponent" when navigated to "/login"', fakeAsync(() => {
+    router
+      .navigate(['/login'])
+      .then(() =>
+        expect(nativeElement.querySelector('app-login-form')).toBeTruthy()
+      );
   }));
 });
