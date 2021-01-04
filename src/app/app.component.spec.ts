@@ -1,6 +1,11 @@
 import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -10,7 +15,7 @@ import { AppComponent } from './app.component';
 import { Backlog } from './components/backlog/backlog.component';
 import { IssuesComponent } from './components/issues/issues.component';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
   let nativeElement: HTMLElement;
@@ -55,56 +60,74 @@ describe('AppComponent', () => {
   });
 
   it('should redirect from "" to "/backlog"', fakeAsync(() => {
-    router.navigate(['']).then(() => expect(location.path()).toBe('/backlog'));
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('')
+        .then(() => expect(location.path()).toBe('/backlog'));
+    });
   }));
 
   it('should render "BacklogComponent" when app first loads', fakeAsync(() => {
-    router
-      .navigate([''])
-      .then(() =>
-        expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
-      );
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('')
+        .then(() =>
+          expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
+        );
+    });
   }));
 
   it('should navigate to "/backlog"', fakeAsync(() => {
-    router
-      .navigate(['/backlog'])
-      .then(() => expect(location.path()).toBe('/backlog'));
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('/backlog')
+        .then(() => expect(location.path()).toBe('/backlog'));
+    });
   }));
 
   it('should render "BacklogComponent" when navigated to "/backlog"', fakeAsync(() => {
-    router
-      .navigate(['/backlog'])
-      .then(() =>
-        expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
-      );
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('/backlog')
+        .then(() =>
+          expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
+        );
+    });
   }));
 
   it('should navigate to "/signup"', fakeAsync(() => {
-    router
-      .navigate(['/signup'])
-      .then(() => expect(location.path()).toBe('/signup'));
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('/signup')
+        .then(() => expect(location.path()).toBe('/signup'));
+    });
   }));
 
   it('should render "SignupFormComponent" when navigated to "/signup"', fakeAsync(() => {
-    router
-      .navigate(['/signup'])
-      .then(() =>
-        expect(nativeElement.querySelector('app-signup-form')).toBeTruthy()
-      );
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('/signup')
+        .then(() =>
+          expect(nativeElement.querySelector('app-signup-form')).toBeTruthy()
+        );
+    });
   }));
 
   it('should navigate to "/login"', fakeAsync(() => {
-    router
-      .navigate(['/login'])
-      .then(() => expect(location.path()).toBe('/login'));
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('/login')
+        .then(() => expect(location.path()).toBe('/login'));
+    });
   }));
 
   it('should render "LoginFormComponent" when navigated to "/login"', fakeAsync(() => {
-    router
-      .navigate(['/login'])
-      .then(() =>
-        expect(nativeElement.querySelector('app-login-form')).toBeTruthy()
-      );
+    fixture.ngZone.run(() => {
+      router
+        .navigateByUrl('/login')
+        .then(() =>
+          expect(nativeElement.querySelector('app-login-form')).toBeTruthy()
+        );
+    });
   }));
 });
