@@ -72,7 +72,7 @@ describe('AppComponent', () => {
       .then(() => expect(location.path()).toBe('/backlog'));
   }));
 
-  fit('should render "BacklogComponent" when navigated to "/backlog"', fakeAsync(() => {
+  it('should render "BacklogComponent" when navigated to "/backlog"', fakeAsync(() => {
     router
       .navigate(['/backlog'])
       .then(() =>
@@ -84,6 +84,14 @@ describe('AppComponent', () => {
     router
       .navigate(['/signup'])
       .then(() => expect(location.path()).toBe('/signup'));
+  }));
+
+  fit('should render "SignupFormComponent" when navigated to "/signup"', fakeAsync(() => {
+    router
+      .navigate(['/signup'])
+      .then(() =>
+        expect(nativeElement.querySelector('app-signup-form')).toBeTruthy()
+      );
   }));
 
   it('should navigate to "/login"', fakeAsync(() => {
