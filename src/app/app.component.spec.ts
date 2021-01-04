@@ -64,10 +64,8 @@ fdescribe('AppComponent', () => {
   });
 
   fit('should navigate to "/signup"', fakeAsync(() => {
-    router.navigate(['/signup']);
-
-    tick();
-
-    expect(location.path()).toBe('/signup');
+    router
+      .navigate(['/signup'])
+      .then(() => expect(location.path()).toBe('/signup'));
   }));
 });
