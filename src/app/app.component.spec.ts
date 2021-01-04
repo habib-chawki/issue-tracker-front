@@ -54,7 +54,11 @@ describe('AppComponent', () => {
     );
   });
 
-  fit('should render "BacklogComponent" when app first loads', fakeAsync(() => {
+  it('should redirect from "" to "/backlog"', fakeAsync(() => {
+    router.navigate(['']).then(() => expect(location.path()).toBe('/backlog'));
+  }));
+
+  it('should render "BacklogComponent" when app first loads', fakeAsync(() => {
     router
       .navigate([''])
       .then(() =>
@@ -62,14 +66,18 @@ describe('AppComponent', () => {
       );
   }));
 
-  it('should redirect from "" to "/backlog"', fakeAsync(() => {
-    router.navigate(['']).then(() => expect(location.path()).toBe('/backlog'));
-  }));
-
   it('should navigate to "/backlog"', fakeAsync(() => {
     router
       .navigate(['/backlog'])
       .then(() => expect(location.path()).toBe('/backlog'));
+  }));
+
+  fit('should render "BacklogComponent" when navigated to "/backlog"', fakeAsync(() => {
+    router
+      .navigate(['/backlog'])
+      .then(() =>
+        expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
+      );
   }));
 
   it('should navigate to "/signup"', fakeAsync(() => {
