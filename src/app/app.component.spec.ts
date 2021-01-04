@@ -77,57 +77,30 @@ fdescribe('AppComponent', () => {
     });
   }));
 
-  it('should navigate to "/backlog"', fakeAsync(() => {
-    fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('/backlog')
-        .then(() => expect(location.path()).toBe('/backlog'));
-    });
-  }));
-
   it('should render "BacklogComponent" when navigated to "/backlog"', fakeAsync(() => {
     fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('/backlog')
-        .then(() =>
-          expect(nativeElement.querySelector('app-backlog')).toBeTruthy()
-        );
-    });
-  }));
-
-  it('should navigate to "/signup"', fakeAsync(() => {
-    fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('/signup')
-        .then(() => expect(location.path()).toBe('/signup'));
+      router.navigateByUrl('/backlog').then(() => {
+        expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
+        expect(location.path()).toBe('/backlog');
+      });
     });
   }));
 
   it('should render "SignupFormComponent" when navigated to "/signup"', fakeAsync(() => {
     fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('/signup')
-        .then(() =>
-          expect(nativeElement.querySelector('app-signup-form')).toBeTruthy()
-        );
-    });
-  }));
-
-  it('should navigate to "/login"', fakeAsync(() => {
-    fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('/login')
-        .then(() => expect(location.path()).toBe('/login'));
+      router.navigateByUrl('/signup').then(() => {
+        expect(nativeElement.querySelector('app-signup-form')).toBeTruthy();
+        expect(location.path()).toBe('/signup');
+      });
     });
   }));
 
   it('should render "LoginFormComponent" when navigated to "/login"', fakeAsync(() => {
     fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('/login')
-        .then(() =>
-          expect(nativeElement.querySelector('app-login-form')).toBeTruthy()
-        );
+      router.navigateByUrl('/login').then(() => {
+        expect(nativeElement.querySelector('app-login-form')).toBeTruthy();
+        expect(location.path()).toBe('/login');
+      });
     });
   }));
 });
