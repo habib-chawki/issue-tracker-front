@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: 'backlog', component: Backlog },
   { path: 'signup', component: SignupFormComponent },
   { path: 'login', component: LoginFormComponent },
+  { path: '', redirectTo: 'backlog', pathMatch: 'full' },
 ];
 
 @NgModule({
