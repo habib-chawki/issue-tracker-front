@@ -63,9 +63,15 @@ fdescribe('AppComponent', () => {
     expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
   });
 
-  fit('should navigate to "/signup"', fakeAsync(() => {
+  it('should navigate to "/signup"', fakeAsync(() => {
     router
       .navigate(['/signup'])
       .then(() => expect(location.path()).toBe('/signup'));
+  }));
+
+  fit('should navigate to "/login"', fakeAsync(() => {
+    router
+      .navigate(['/login'])
+      .then(() => expect(location.path()).toBe('/login'));
   }));
 });
