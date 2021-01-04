@@ -1,9 +1,15 @@
 import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { Backlog } from './components/backlog/backlog.component';
@@ -20,7 +26,7 @@ fdescribe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(routes),
         ReactiveFormsModule,
         HttpClientTestingModule,
       ],
@@ -57,8 +63,11 @@ fdescribe('AppComponent', () => {
     expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
   });
 
-  it('should navigate to "/" when the app first loads', () => {
-    router.navigateByUrl('');
-    expect(location.path()).toBe('');
-  });
+  fit('should navigate to "/signup"', fakeAsync(() => {
+    router.navigate(['/signup']);
+
+    tick();
+
+    expect(location.path()).toBe('/signup');
+  }));
 });
