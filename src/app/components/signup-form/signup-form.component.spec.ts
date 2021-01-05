@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -145,6 +145,12 @@ describe('SignupFormComponent', () => {
   });
 
   it('should store the auth token and user identifier in "localStorage" when "onSignUp()" is called', () => {
+    // given a valid form
+    component.signupForm.patchValue({
+      email: 'valid@email.com',
+      password: 'v@l!d-p@$$',
+    });
+
     // given the authorization token header and user identifier
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkouUi5SLlRvbGtpZW5AZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.IB_-OiA8UNtkZLL9UapBofUaJY8mRBH5SHv66HxbOmM';
@@ -169,6 +175,17 @@ describe('SignupFormComponent', () => {
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
       jasmine.objectContaining({ identifier, token })
     );
+  });
+
+  it('should unsubscribe when the component is destroyed', () => {
+    component.subscription = new Subscription();
+    spyOn(component.subscription, 'unsubscribe');
+
+    // when ngOnDestroy() is called (component is destroyed)
+    component.ngOnDestroy();
+
+    // then expect to unsubscribe from all subscriptions
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 
   it('should validate email', () => {
