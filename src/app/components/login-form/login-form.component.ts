@@ -32,13 +32,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       let identifier = '';
       let token = '';
 
-      this.userService.login(this.loginForm.value).subscribe((response) => {
-        token = response.headers.get('Authorization');
-        identifier = response.body.id;
+      this.subscription = this.userService
+        .login(this.loginForm.value)
+        .subscribe((response) => {
+          token = response.headers.get('Authorization');
+          identifier = response.body.id;
 
-        // store the token and identifier in localStorage
-        this.storageService.storeUserDetails({ identifier, token });
-      });
+          // store the token and identifier in localStorage
+          this.storageService.storeUserDetails({ identifier, token });
+        });
     }
   }
 

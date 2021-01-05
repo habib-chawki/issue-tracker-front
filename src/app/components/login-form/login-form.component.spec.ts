@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -32,6 +32,10 @@ describe('LoginFormComponent', () => {
     storageService = TestBed.inject(StorageService);
 
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    fixture.destroy();
   });
 
   it('should create', () => {
@@ -88,7 +92,9 @@ describe('LoginFormComponent', () => {
   });
 
   it('should call userService#login() with the form value, given the form is valid, when "onLogin()" is called', () => {
-    // given userService#login handler method
+    const observable: Observable<HttpResponse<any>> = new Observable();
+    spyOn(observable, 'subscribe').and.stub();
+
     spyOn(userService, 'login').and.returnValue(of(new HttpResponse()));
 
     // given a valid form
@@ -105,7 +111,7 @@ describe('LoginFormComponent', () => {
   });
 
   it('should not call userService#login(), given the form is invalid, when "onLogin()" is called', () => {
-    spyOn(userService, 'login').and.returnValue(of(new HttpResponse()));
+    spyOn(userService, 'login');
 
     // given an invalid form
     component.loginForm.setValue({
@@ -153,7 +159,7 @@ describe('LoginFormComponent', () => {
     );
   });
 
-  fit('should unsubscribe when the component is destroyed', () => {
+  it('should unsubscribe when the component is destroyed', () => {
     component.subscription = new Subscription();
     spyOn(component.subscription, 'unsubscribe');
 
