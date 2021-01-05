@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -8,7 +9,9 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -37,6 +40,10 @@ export class LoginFormComponent implements OnInit {
         this.storageService.storeUserDetails({ identifier, token });
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   get email() {
