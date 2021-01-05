@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of, Subscription } from 'rxjs';
+import { observable, Observable, of, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -32,6 +32,10 @@ describe('SignupFormComponent', () => {
     storageService = TestBed.inject(StorageService);
 
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    fixture.destroy();
   });
 
   it('should create', () => {
@@ -113,7 +117,10 @@ describe('SignupFormComponent', () => {
   });
 
   it('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
-    spyOn(userService, 'signUp').and.returnValue(of(new HttpResponse()));
+    const observable: Observable<HttpResponse<any>> = new Observable();
+    spyOn(observable, 'subscribe').and.stub();
+
+    spyOn(userService, 'signUp').and.returnValue(of());
 
     // given a valid form
     component.signupForm.patchValue({
@@ -129,7 +136,7 @@ describe('SignupFormComponent', () => {
   });
 
   it('should not invoke "userService#signUp()", given the form is invalid, when "onSignUp()" is called', () => {
-    spyOn(userService, 'signUp').and.returnValue(of(new HttpResponse()));
+    spyOn(userService, 'signUp');
 
     // given an invalid form
     component.signupForm.patchValue({
