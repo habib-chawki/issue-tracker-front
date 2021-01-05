@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -8,7 +9,9 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
   signupForm: FormGroup = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -32,14 +35,20 @@ export class SignupFormComponent implements OnInit {
       let token = '';
       let identifier = '';
 
-      this.userService.signUp(this.signupForm.value).subscribe((response) => {
-        token = response.headers.get('Authorization');
-        identifier = response.body.id;
+      this.subscription = this.userService
+        .signUp(this.signupForm.value)
+        .subscribe((response) => {
+          token = response.headers.get('Authorization');
+          identifier = response.body.id;
 
-        // store user details (identifier + token)
-        this.storageService.storeUserDetails({ identifier, token });
-      });
+          // store user details (identifier + token)
+          this.storageService.storeUserDetails({ identifier, token });
+        });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   get email() {
