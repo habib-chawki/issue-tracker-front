@@ -8,6 +8,9 @@ describe('StorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     storageService = TestBed.inject(StorageService);
+
+    // clear localStorage before each test
+    localStorage.clear();
   });
 
   afterEach(() => {
