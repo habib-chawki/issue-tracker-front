@@ -115,6 +115,12 @@ describe('SignupFormComponent', () => {
   it('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
     spyOn(userService, 'signUp').and.returnValue(of(new HttpResponse()));
 
+    // given a valid form
+    component.signupForm.patchValue({
+      email: 'valid@email.com',
+      password: 'v@l!d-p@$$',
+    });
+
     // when the "onSignUp()" component method is called
     component.onSignUp();
 
@@ -122,7 +128,7 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  fit('should not invoke "userService#signUp()", given the form is invalid, when "onSignUp()" is called', () => {
+  it('should not invoke "userService#signUp()", given the form is invalid, when "onSignUp()" is called', () => {
     spyOn(userService, 'signUp').and.returnValue(of(new HttpResponse()));
 
     // given an invalid form
