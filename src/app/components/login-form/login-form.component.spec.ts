@@ -121,6 +121,12 @@ describe('LoginFormComponent', () => {
   });
 
   it('should store the auth token and user identifier in "localStorage" when "onLogin()" is called', () => {
+    // given a valid form
+    component.loginForm.setValue({
+      email: 'valid@email.com',
+      password: 'v@l!d-p@$$',
+    });
+
     // given the user identifier and auth token
     const identifier = 'George.R.R.Martin@email.com';
     const token =
