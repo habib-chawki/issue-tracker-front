@@ -113,13 +113,29 @@ describe('SignupFormComponent', () => {
   });
 
   it('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
-    spyOn(userService, 'signUp').and.returnValue(of());
+    spyOn(userService, 'signUp').and.returnValue(of(new HttpResponse()));
 
     // when the "onSignUp()" component method is called
     component.onSignUp();
 
     // then the user service "signUp" method should be called with the form values
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
+  });
+
+  fit('should not invoke "userService#signUp()", given the form is invalid, when "onSignUp()" is called', () => {
+    spyOn(userService, 'signUp').and.returnValue(of(new HttpResponse()));
+
+    // given an invalid form
+    component.signupForm.patchValue({
+      email: 'invalid_email.com',
+      password: 'lmp',
+    });
+
+    // when "onLogin()" is called (form submitted)
+    component.onSignUp();
+
+    // then userService#login should not be invoked
+    expect(userService.signUp).not.toHaveBeenCalled();
   });
 
   it('should store the auth token and user identifier in "localStorage" when "onSignUp()" is called', () => {
