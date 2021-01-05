@@ -87,9 +87,15 @@ describe('LoginFormComponent', () => {
     expect(component.onLogin).toHaveBeenCalled();
   });
 
-  it('should call userService#login() with form values when "onLogin()" is called', () => {
+  it('should call userService#login() with the form value, given the form is valid, when "onLogin()" is called', () => {
     // given userService#login handler method
-    spyOn(userService, 'login').and.returnValue(of());
+    spyOn(userService, 'login').and.returnValue(of(new HttpResponse()));
+
+    // given a valid form
+    component.loginForm.setValue({
+      email: 'valid@email.com',
+      password: 'v@l!d-p@$$',
+    });
 
     // when "onLogin()" is called (form is submitted)
     component.onLogin();
@@ -98,7 +104,7 @@ describe('LoginFormComponent', () => {
     expect(userService.login).toHaveBeenCalledWith(component.loginForm.value);
   });
 
-  fit('should not call userService#login(), given the form is invalid, when "onLogin()" is called', () => {
+  it('should not call userService#login(), given the form is invalid, when "onLogin()" is called', () => {
     spyOn(userService, 'login').and.returnValue(of(new HttpResponse()));
 
     // given an invalid form
