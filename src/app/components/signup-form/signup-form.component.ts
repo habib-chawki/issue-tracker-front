@@ -31,14 +31,13 @@ export class SignupFormComponent implements OnInit {
     let token = '';
     let identifier = '';
 
-    // extract the token and user identifier
     this.userService.signUp(this.signupForm.value).subscribe((response) => {
       token = response.headers.get('Authorization');
       identifier = response.body.id;
-    });
 
-    // store user details (identifier + token)
-    this.storageService.storeUserDetails({ identifier, token });
+      // store user details (identifier + token)
+      this.storageService.storeUserDetails({ identifier, token });
+    });
   }
 
   get email() {
