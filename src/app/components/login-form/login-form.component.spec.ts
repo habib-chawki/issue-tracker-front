@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -151,6 +151,17 @@ describe('LoginFormComponent', () => {
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
       jasmine.objectContaining({ identifier, token })
     );
+  });
+
+  fit('should unsubscribe when the component is destroyed', () => {
+    component.subscription = new Subscription();
+    spyOn(component.subscription, 'unsubscribe');
+
+    // when ngOnDestroy() is called (component is destroyed)
+    component.ngOnDestroy();
+
+    // then expect to unsubscribe from all subscriptions
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 
   it('should validate email', () => {
