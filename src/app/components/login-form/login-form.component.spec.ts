@@ -98,6 +98,22 @@ describe('LoginFormComponent', () => {
     expect(userService.login).toHaveBeenCalledWith(component.loginForm.value);
   });
 
+  fit('should not call userService#login(), given the form is invalid, when "onLogin()" is called', () => {
+    spyOn(userService, 'login').and.returnValue(of(new HttpResponse()));
+
+    // given an invalid form
+    component.loginForm.setValue({
+      email: 'invalid_email.com',
+      password: 'lmp',
+    });
+
+    // when "onLogin()" is called (form submitted)
+    component.onLogin();
+
+    // then userService#login should not be invoked
+    expect(userService.login).not.toHaveBeenCalled();
+  });
+
   it('should store the auth token and user identifier in "localStorage" when "onLogin()" is called', () => {
     // given the user identifier and auth token
     const identifier = 'George.R.R.Martin@email.com';
