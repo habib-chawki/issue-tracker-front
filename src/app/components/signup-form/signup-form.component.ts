@@ -28,16 +28,18 @@ export class SignupFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSignUp() {
-    let token = '';
-    let identifier = '';
+    if (this.signupForm.valid) {
+      let token = '';
+      let identifier = '';
 
-    this.userService.signUp(this.signupForm.value).subscribe((response) => {
-      token = response.headers.get('Authorization');
-      identifier = response.body.id;
+      this.userService.signUp(this.signupForm.value).subscribe((response) => {
+        token = response.headers.get('Authorization');
+        identifier = response.body.id;
 
-      // store user details (identifier + token)
-      this.storageService.storeUserDetails({ identifier, token });
-    });
+        // store user details (identifier + token)
+        this.storageService.storeUserDetails({ identifier, token });
+      });
+    }
   }
 
   get email() {
