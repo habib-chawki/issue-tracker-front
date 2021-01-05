@@ -28,14 +28,13 @@ export class LoginFormComponent implements OnInit {
     let identifier = '';
     let token = '';
 
-    // extract the auth token and user identifier
     this.userService.login(this.loginForm.value).subscribe((response) => {
       token = response.headers.get('Authorization');
       identifier = response.body.id;
-    });
 
-    // store the token and identifier in localStorage
-    this.storageService.storeUserDetails({ identifier, token });
+      // store the token and identifier in localStorage
+      this.storageService.storeUserDetails({ identifier, token });
+    });
   }
 
   get email() {
