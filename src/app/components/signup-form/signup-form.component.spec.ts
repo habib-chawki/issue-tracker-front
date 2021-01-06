@@ -117,10 +117,10 @@ describe('SignupFormComponent', () => {
   });
 
   it('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
-    const observable: Observable<HttpResponse<any>> = new Observable();
-    spyOn(observable, 'subscribe').and.stub();
+    component.observable = new Observable();
 
-    spyOn(userService, 'signUp').and.returnValue(of());
+    spyOn(userService, 'signUp').and.returnValue(component.observable);
+    spyOn(component.observable, 'subscribe');
 
     // given a valid form
     component.signupForm.patchValue({
