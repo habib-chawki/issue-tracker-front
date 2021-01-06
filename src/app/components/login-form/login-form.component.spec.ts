@@ -178,7 +178,7 @@ describe('LoginFormComponent', () => {
     );
   });
 
-  fit('should navigate to "/backlog" when login is successful', () => {
+  it('should navigate to "/backlog" when login is successful', () => {
     spyOn(storageService, 'storeUserDetails').and.stub();
     spyOn(router, 'navigate');
 

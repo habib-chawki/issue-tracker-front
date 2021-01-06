@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +15,6 @@ describe('AppComponent', () => {
   let nativeElement: HTMLElement;
 
   let router: Router;
-  let location: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,7 +33,6 @@ describe('AppComponent', () => {
     nativeElement = fixture.nativeElement;
 
     router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
 
     fixture.detectChanges();
   });
@@ -56,9 +53,7 @@ describe('AppComponent', () => {
 
   it('should redirect from "" to "/backlog"', fakeAsync(() => {
     fixture.ngZone.run(() => {
-      router
-        .navigateByUrl('')
-        .then(() => expect(location.path()).toBe('/backlog'));
+      router.navigateByUrl('').then(() => expect(router.url).toBe('/backlog'));
     });
   }));
 
@@ -76,7 +71,7 @@ describe('AppComponent', () => {
     fixture.ngZone.run(() => {
       router.navigateByUrl('/backlog').then(() => {
         expect(nativeElement.querySelector('app-backlog')).toBeTruthy();
-        expect(location.path()).toBe('/backlog');
+        expect(router.url).toBe('/backlog');
       });
     });
   }));
@@ -85,7 +80,7 @@ describe('AppComponent', () => {
     fixture.ngZone.run(() => {
       router.navigateByUrl('/signup').then(() => {
         expect(nativeElement.querySelector('app-signup-form')).toBeTruthy();
-        expect(location.path()).toBe('/signup');
+        expect(router.url).toBe('/signup');
       });
     });
   }));
@@ -94,7 +89,7 @@ describe('AppComponent', () => {
     fixture.ngZone.run(() => {
       router.navigateByUrl('/login').then(() => {
         expect(nativeElement.querySelector('app-login-form')).toBeTruthy();
-        expect(location.path()).toBe('/login');
+        expect(router.url).toBe('/login');
       });
     });
   }));
