@@ -152,15 +152,9 @@ describe('LoginFormComponent', () => {
     expect(component.handleSuccessfulLogin).toHaveBeenCalledWith(response);
   });
 
-  it('should store the auth token and user identifier in "localStorage" when login is successful', () => {
+  fit('should store the auth token and user identifier in "localStorage" when login is successful', () => {
     // given the "storeUserDetails()" service method
     spyOn(storageService, 'storeUserDetails');
-
-    // given a valid form
-    component.loginForm.setValue({
-      email: 'valid@email.com',
-      password: 'v@l!d-p@$$',
-    });
 
     // given the user identifier and auth token
     const identifier = 'George.R.R.Martin@email.com';
@@ -179,6 +173,10 @@ describe('LoginFormComponent', () => {
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
       jasmine.objectContaining({ identifier, token })
     );
+  });
+
+  it('should navigate to the backlog when login is successful', () => {
+    //
   });
 
   it('should unsubscribe when the component is destroyed', () => {
