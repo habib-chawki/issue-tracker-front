@@ -1,6 +1,7 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class LoginFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  observable: Observable<HttpResponse<any>>;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -32,15 +34,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       let identifier = '';
       let token = '';
 
-      this.subscription = this.userService
-        .login(this.loginForm.value)
-        .subscribe((response) => {
-          token = response.headers.get('Authorization');
-          identifier = response.body.id;
+      this.observable = this.userService.login(this.loginForm.value);
 
-          // store the token and identifier in localStorage
-          this.storageService.storeUserDetails({ identifier, token });
-        });
+      this.subscription = this.observable.subscribe((response) => {
+        token = response.headers.get('Authorization');
+        identifier = response.body.id;
+
+        // store the token and identifier in localStorage
+        this.storageService.storeUserDetails({ identifier, token });
+      });
     }
   }
 
