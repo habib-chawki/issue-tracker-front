@@ -1,12 +1,9 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -20,11 +17,16 @@ describe('LoginFormComponent', () => {
 
   let userService: UserService;
   let storageService: StorageService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginFormComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+      ],
     }).compileComponents();
   });
 
@@ -35,6 +37,7 @@ describe('LoginFormComponent', () => {
 
     userService = TestBed.inject(UserService);
     storageService = TestBed.inject(StorageService);
+    router = TestBed.inject(Router);
 
     fixture.detectChanges();
   });
@@ -152,7 +155,7 @@ describe('LoginFormComponent', () => {
     expect(component.handleSuccessfulLogin).toHaveBeenCalledWith(response);
   });
 
-  fit('should store the auth token and user identifier in "localStorage" when login is successful', () => {
+  it('should store the auth token and user identifier in "localStorage" when login is successful', () => {
     // given the "storeUserDetails()" service method
     spyOn(storageService, 'storeUserDetails');
 
@@ -175,8 +178,20 @@ describe('LoginFormComponent', () => {
     );
   });
 
-  it('should navigate to the backlog when login is successful', () => {
-    //
+  fit('should navigate to "/backlog" when login is successful', () => {
+    spyOn(storageService, 'storeUserDetails').and.stub();
+    spyOn(router, 'navigate');
+
+    // when login is successful
+    component.handleSuccessfulLogin(
+      new HttpResponse({
+        headers: new HttpHeaders({ authorization: 'token' }),
+        body: { id: 'id' },
+      })
+    );
+
+    // then it should navigate to "/backlog"
+    expect(router.navigate).toHaveBeenCalledWith(['/backlog']);
   });
 
   it('should unsubscribe when the component is destroyed', () => {
