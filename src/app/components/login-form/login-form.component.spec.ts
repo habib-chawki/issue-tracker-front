@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, Subscription } from 'rxjs';
+import { routes } from 'src/app/app-routing.module';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -25,7 +26,7 @@ describe('LoginFormComponent', () => {
       imports: [
         ReactiveFormsModule,
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(routes),
       ],
     }).compileComponents();
   });
