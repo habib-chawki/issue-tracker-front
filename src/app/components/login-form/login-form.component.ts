@@ -31,19 +31,17 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   onLogin() {
     if (this.loginForm.valid) {
-      let identifier = '';
-      let token = '';
-
       this.observable = this.userService.login(this.loginForm.value);
-
-      this.subscription = this.observable.subscribe((response) => {
-        token = response.headers.get('Authorization');
-        identifier = response.body.id;
-
-        // store the token and identifier in localStorage
-        this.storageService.storeUserDetails({ identifier, token });
-      });
+      this.subscription = this.observable.subscribe(this.handleSuccessfulLogin);
     }
+  }
+
+  handleSuccessfulLogin(response) {
+    const token = response.headers.get('Authorization');
+    const identifier = response.body.id;
+
+    // store the token and identifier in localStorage
+    this.storageService.storeUserDetails({ identifier, token });
   }
 
   ngOnDestroy(): void {
