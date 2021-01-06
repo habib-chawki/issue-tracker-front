@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -24,7 +25,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -36,12 +38,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  handleSuccessfulLogin(response) {
-    const token = response.headers.get('Authorization');
-    const identifier = response.body.id;
-
+  handleSuccessfulLogin(response: HttpResponse<any>) {
     // store the token and identifier in localStorage
-    this.storageService.storeUserDetails({ identifier, token });
+    this.storageService.storeUserDetails({
+      identifier: response.body.id,
+      token: response.headers.get('Authorization'),
+    });
+
+    // navigate to /backlog
+    this.router.navigate(['/backlog']);
   }
 
   ngOnDestroy(): void {
