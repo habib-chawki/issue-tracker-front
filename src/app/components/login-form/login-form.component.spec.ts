@@ -92,10 +92,10 @@ describe('LoginFormComponent', () => {
   });
 
   it('should call userService#login() with the form value, given the form is valid, when "onLogin()" is called', () => {
-    const observable: Observable<HttpResponse<any>> = new Observable();
-    spyOn(observable, 'subscribe').and.stub();
+    component.observable = new Observable();
 
-    spyOn(userService, 'login').and.returnValue(of(new HttpResponse()));
+    spyOn(userService, 'login').and.returnValue(component.observable);
+    spyOn(component.observable, 'subscribe');
 
     // given a valid form
     component.loginForm.setValue({
