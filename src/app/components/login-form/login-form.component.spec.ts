@@ -1,6 +1,11 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable, of, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -124,6 +129,27 @@ describe('LoginFormComponent', () => {
 
     // then userService#login should not be invoked
     expect(userService.login).not.toHaveBeenCalled();
+  });
+
+  it('should invoke "handleSuccessfulLogin()", given a valid form, when "onLogin()" is called', () => {
+    // given the successful login handler
+    spyOn(component, 'handleSuccessfulLogin');
+
+    // given the login response
+    const response = new HttpResponse();
+    spyOn(userService, 'login').and.returnValue(of(response));
+
+    // given a valid form
+    component.loginForm.setValue({
+      email: 'valid@email.com',
+      password: 'v@l!d-p@$$',
+    });
+
+    // when "onLogin()" is invoked
+    component.onLogin();
+
+    // then "handleSuccessfulLogin()" should be called with the login response
+    expect(component.handleSuccessfulLogin).toHaveBeenCalledWith(response);
   });
 
   it('should store the auth token and user identifier in "localStorage" when "onLogin()" is called', () => {
