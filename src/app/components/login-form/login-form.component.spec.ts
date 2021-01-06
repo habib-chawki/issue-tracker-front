@@ -152,7 +152,10 @@ describe('LoginFormComponent', () => {
     expect(component.handleSuccessfulLogin).toHaveBeenCalledWith(response);
   });
 
-  it('should store the auth token and user identifier in "localStorage" when "onLogin()" is called', () => {
+  it('should store the auth token and user identifier in "localStorage" when login is successful', () => {
+    // given the "storeUserDetails()" service method
+    spyOn(storageService, 'storeUserDetails');
+
     // given a valid form
     component.loginForm.setValue({
       email: 'valid@email.com',
@@ -164,20 +167,13 @@ describe('LoginFormComponent', () => {
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikdlb3JnZS5SLlIuTWFydGluQGVtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.Qx4-yL0S1D95hekkN3tLgwiFQdytsE95gp9a3QNK2sA';
 
-    // given the response body and headers
+    // given the login response
     const headers = new HttpHeaders({ Authorization: token });
     const body = { id: identifier };
+    const response = new HttpResponse({ body, headers });
 
-    // given the "storeUserDetails" service method
-    spyOn(storageService, 'storeUserDetails');
-
-    // given the login response
-    spyOn(userService, 'login').and.returnValue(
-      of(new HttpResponse({ body, headers }))
-    );
-
-    // when the "onLogin()" method is invoked
-    component.onLogin();
+    // when the successful login handler method is invoked
+    component.handleSuccessfulLogin(response);
 
     // then tokenService#storeUserDetails should be called with the auth token and user identifier
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
