@@ -1,6 +1,7 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class SignupFormComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+  observable: Observable<HttpResponse<any>>;
 
   signupForm: FormGroup = new FormGroup({
     firstName: new FormControl(''),
@@ -35,15 +37,15 @@ export class SignupFormComponent implements OnInit, OnDestroy {
       let token = '';
       let identifier = '';
 
-      this.subscription = this.userService
-        .signUp(this.signupForm.value)
-        .subscribe((response) => {
-          token = response.headers.get('Authorization');
-          identifier = response.body.id;
+      this.observable = this.userService.signUp(this.signupForm.value);
 
-          // store user details (identifier + token)
-          this.storageService.storeUserDetails({ identifier, token });
-        });
+      this.subscription = this.observable.subscribe((response) => {
+        token = response.headers.get('Authorization');
+        identifier = response.body.id;
+
+        // store user details (identifier + token)
+        this.storageService.storeUserDetails({ identifier, token });
+      });
     }
   }
 
