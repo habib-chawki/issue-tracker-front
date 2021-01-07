@@ -168,9 +168,9 @@ describe('LoginFormComponent', () => {
     // given the login response
     const headers = new HttpHeaders({ Authorization: token });
     const body = { id: identifier };
-    const response = new HttpResponse({ body, headers });
+    const response = new HttpResponse({ headers, body });
 
-    // when the successful login handler method is invoked
+    // when the login is successful
     component.handleSuccessfulLogin(response);
 
     // then tokenService#storeUserDetails should be called with the auth token and user identifier
