@@ -151,16 +151,16 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).not.toHaveBeenCalled();
   });
 
-  it('should invoke "handleSuccessfulSignup()", given a valid form, when "onSingup()" is called', () => {
-    // given the successful login handler
+  fit('should invoke "handleSuccessfulSignup()", given a valid form, when "onSignup()" is called', () => {
+    // given the successful signup handler
     spyOn(component, 'handleSuccessfulSignup');
 
-    // given the login response
+    // given the signup response
     const response = new HttpResponse();
-    spyOn(userService, 'login').and.returnValue(of(response));
+    spyOn(userService, 'signUp').and.returnValue(of(response));
 
     // given a valid form
-    component.signupForm.setValue({
+    component.signupForm.patchValue({
       email: 'valid@email.com',
       password: 'v@l!d-p@$$',
     });
@@ -168,7 +168,7 @@ describe('SignupFormComponent', () => {
     // when "onSignup()" is invoked
     component.onSignup();
 
-    // then "handleSuccessfulSignup()" should be called with the login response
+    // then "handleSuccessfulSignup()" should be called with the signup response
     expect(component.handleSuccessfulSignup).toHaveBeenCalledWith(response);
   });
 
