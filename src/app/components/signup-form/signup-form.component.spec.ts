@@ -151,7 +151,7 @@ describe('SignupFormComponent', () => {
     expect(userService.signUp).not.toHaveBeenCalled();
   });
 
-  fit('should invoke "handleSuccessfulSignup()", given a valid form, when "onSignup()" is called', () => {
+  it('should invoke "handleSuccessfulSignup()", given a valid form, when "onSignup()" is called', () => {
     // given the successful signup handler
     spyOn(component, 'handleSuccessfulSignup');
 
@@ -172,32 +172,22 @@ describe('SignupFormComponent', () => {
     expect(component.handleSuccessfulSignup).toHaveBeenCalledWith(response);
   });
 
-  it('should store the auth token and user identifier in "localStorage" when "onSignup()" is called', () => {
-    // given a valid form
-    component.signupForm.patchValue({
-      email: 'valid@email.com',
-      password: 'v@l!d-p@$$',
-    });
+  fit('should store the auth token and user identifier in "localStorage" when "onSignup()" is called', () => {
+    // given the "storeUserDetails()" service method
+    spyOn(storageService, 'storeUserDetails');
 
     // given the authorization token header and user identifier
     const token =
       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkouUi5SLlRvbGtpZW5AZW1haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.IB_-OiA8UNtkZLL9UapBofUaJY8mRBH5SHv66HxbOmM';
     const identifier = 'J.R.R.Tolkien@email.com';
 
-    // given the response headers and body
+    // given the signup response
     const headers = new HttpHeaders({ Authorization: token });
     const body = { id: identifier };
+    const response = new HttpResponse({ headers, body });
 
-    // given the signup response
-    spyOn(userService, 'signUp').and.returnValue(
-      of(new HttpResponse({ body, headers }))
-    );
-
-    // given the "storeUserDetails()" service method
-    spyOn(storageService, 'storeUserDetails');
-
-    // when "onSignup()" is called
-    component.onSignup();
+    // when the signup is successful
+    component.handleSuccessfulSignup(response);
 
     // then "storeUserDetails()" should be called with the extracted token and user identifier
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
