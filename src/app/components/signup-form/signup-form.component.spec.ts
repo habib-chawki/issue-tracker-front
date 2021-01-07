@@ -2,7 +2,10 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { observable, Observable, of, Subscription } from 'rxjs';
+import { routes } from 'src/app/app-routing.module';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -16,10 +19,16 @@ describe('SignupFormComponent', () => {
   let userService: UserService;
   let storageService: StorageService;
 
+  let router: Router;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignupFormComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes(routes),
+      ],
     }).compileComponents();
   });
 
@@ -30,6 +39,8 @@ describe('SignupFormComponent', () => {
 
     userService = TestBed.inject(UserService);
     storageService = TestBed.inject(StorageService);
+
+    router = TestBed.inject(Router);
 
     fixture.detectChanges();
   });
@@ -172,7 +183,7 @@ describe('SignupFormComponent', () => {
     expect(component.handleSuccessfulSignup).toHaveBeenCalledWith(response);
   });
 
-  fit('should store the auth token and user identifier in "localStorage" when "onSignup()" is called', () => {
+  it('should store the auth token and user identifier in "localStorage" when "onSignup()" is called', () => {
     // given the "storeUserDetails()" service method
     spyOn(storageService, 'storeUserDetails');
 
@@ -193,6 +204,22 @@ describe('SignupFormComponent', () => {
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
       jasmine.objectContaining({ identifier, token })
     );
+  });
+
+  fit('should navigate to "/backlog" when signup is successful', () => {
+    spyOn(storageService, 'storeUserDetails').and.stub();
+    spyOn(router, 'navigate');
+
+    // when signup is successful
+    component.handleSuccessfulSignup(
+      new HttpResponse({
+        headers: new HttpHeaders({ authorization: 'token' }),
+        body: { id: 'id' },
+      })
+    );
+
+    // then it should navigate to "/backlog"
+    expect(router.navigate).toHaveBeenCalledWith(['/backlog']);
   });
 
   it('should unsubscribe when the component is destroyed', () => {
