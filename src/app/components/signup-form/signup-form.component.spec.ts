@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { observable, Observable, of, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { routes } from 'src/app/app-routing.module';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -206,7 +206,7 @@ describe('SignupFormComponent', () => {
     );
   });
 
-  fit('should navigate to "/backlog" when signup is successful', () => {
+  it('should navigate to "/backlog" when signup is successful', () => {
     spyOn(storageService, 'storeUserDetails').and.stub();
     spyOn(router, 'navigate');
 
