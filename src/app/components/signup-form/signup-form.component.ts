@@ -32,7 +32,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  onSignUp() {
+  onSignup() {
     if (this.signupForm.valid) {
       let token = '';
       let identifier = '';
@@ -48,6 +48,8 @@ export class SignupFormComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  handleSuccessfulSignup() {}
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
