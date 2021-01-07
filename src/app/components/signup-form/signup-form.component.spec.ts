@@ -100,9 +100,9 @@ describe('SignupFormComponent', () => {
     expect(component.signupForm.controls['password']).toBeTruthy();
   });
 
-  it('should invoke "onSignUp()" method handler when form submit button is clicked', () => {
-    // given onSignUp component method
-    spyOn(component, 'onSignUp');
+  it('should invoke "onSignup()" method handler when form submit button is clicked', () => {
+    // given "onSignup()" component method
+    spyOn(component, 'onSignup');
 
     // given the sign up form submit button
     const submitButton: HTMLButtonElement = nativeElement.querySelector(
@@ -112,11 +112,11 @@ describe('SignupFormComponent', () => {
     // when the button is clicked
     submitButton.click();
 
-    // then the onSignUp handler method should be invoked
-    expect(component.onSignUp).toHaveBeenCalled();
+    // then the onSignup handler method should be invoked
+    expect(component.onSignup).toHaveBeenCalled();
   });
 
-  it('should invoke "userService#signUp()" when "onSignUp()" is called', () => {
+  it('should invoke "userService#signUp()" with the valid form value when "onSignup()" is called', () => {
     component.observable = new Observable();
 
     spyOn(userService, 'signUp').and.returnValue(component.observable);
@@ -128,14 +128,14 @@ describe('SignupFormComponent', () => {
       password: 'v@l!d-p@$$',
     });
 
-    // when the "onSignUp()" component method is called
-    component.onSignUp();
+    // when the "onSignup()" component method is called
+    component.onSignup();
 
     // then the user service "signUp" method should be called with the form values
     expect(userService.signUp).toHaveBeenCalledWith(component.signupForm.value);
   });
 
-  it('should not invoke "userService#signUp()", given the form is invalid, when "onSignUp()" is called', () => {
+  it('should not invoke "userService#signUp()", given the form is invalid, when "onSignup()" is called', () => {
     spyOn(userService, 'signUp');
 
     // given an invalid form
@@ -145,13 +145,34 @@ describe('SignupFormComponent', () => {
     });
 
     // when "onLogin()" is called (form submitted)
-    component.onSignUp();
+    component.onSignup();
 
     // then userService#login should not be invoked
     expect(userService.signUp).not.toHaveBeenCalled();
   });
 
-  it('should store the auth token and user identifier in "localStorage" when "onSignUp()" is called', () => {
+  it('should invoke "handleSuccessfulSignup()", given a valid form, when "onSingup()" is called', () => {
+    // given the successful login handler
+    spyOn(component, 'handleSuccessfulSignup');
+
+    // given the login response
+    const response = new HttpResponse();
+    spyOn(userService, 'login').and.returnValue(of(response));
+
+    // given a valid form
+    component.signupForm.setValue({
+      email: 'valid@email.com',
+      password: 'v@l!d-p@$$',
+    });
+
+    // when "onSignup()" is invoked
+    component.onSignup();
+
+    // then "handleSuccessfulSignup()" should be called with the login response
+    expect(component.handleSuccessfulSignup).toHaveBeenCalledWith(response);
+  });
+
+  it('should store the auth token and user identifier in "localStorage" when "onSignup()" is called', () => {
     // given a valid form
     component.signupForm.patchValue({
       email: 'valid@email.com',
@@ -175,8 +196,8 @@ describe('SignupFormComponent', () => {
     // given the "storeUserDetails()" service method
     spyOn(storageService, 'storeUserDetails');
 
-    // when "onSignUp()" is called
-    component.onSignUp();
+    // when "onSignup()" is called
+    component.onSignup();
 
     // then "storeUserDetails()" should be called with the extracted token and user identifier
     expect(storageService.storeUserDetails).toHaveBeenCalledWith(
