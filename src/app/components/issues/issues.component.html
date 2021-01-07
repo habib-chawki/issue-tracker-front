@@ -8,7 +8,7 @@
 
 <!-- display the details of a single issue -->
 <app-issue-details
+  *ngIf="willDisplayIssueDetails"
   [issue]="issueDetails"
   (issueDetailsClosed)="onHideIssueDetails()"
-  *ngIf="willDisplayIssueDetails"
 ></app-issue-details>
