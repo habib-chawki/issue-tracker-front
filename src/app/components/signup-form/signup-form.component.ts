@@ -34,22 +34,20 @@ export class SignupFormComponent implements OnInit, OnDestroy {
 
   onSignup() {
     if (this.signupForm.valid) {
-      let token = '';
-      let identifier = '';
-
       this.observable = this.userService.signUp(this.signupForm.value);
-
-      this.subscription = this.observable.subscribe((response) => {
-        token = response.headers.get('Authorization');
-        identifier = response.body.id;
-
-        // store user details (identifier + token)
-        this.storageService.storeUserDetails({ identifier, token });
-      });
+      this.subscription = this.observable.subscribe(
+        this.handleSuccessfulSignup
+      );
     }
   }
 
-  handleSuccessfulSignup() {}
+  handleSuccessfulSignup(response: HttpResponse<any>) {
+    // store user details (identifier + token)
+    this.storageService.storeUserDetails({
+      identifier: response.body.id,
+      token: response.headers.get('Authorization'),
+    });
+  }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
