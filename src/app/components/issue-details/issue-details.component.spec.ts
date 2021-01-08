@@ -223,11 +223,4 @@ describe('IssueDetailsComponent', () => {
     // then an "issueDetailsClosed" event should be emitted
     expect(component.issueDetailsClosed.emit).toHaveBeenCalled();
   });
-
-  fit('should render a text field and a button for adding comments', () => {
-    expect(nativeElement.querySelector('input#comment')).toBeTruthy();
-    expect(nativeElement.querySelector('button#add-comment').textContent).toBe(
-      'Comment'
-    );
-  });
 });

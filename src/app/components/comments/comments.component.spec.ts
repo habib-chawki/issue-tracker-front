@@ -146,4 +146,11 @@ describe('CommentsComponent', () => {
     expect(component.comments).toContain(updatedComment);
     expect(component.comments).not.toContain(comment1);
   });
+
+  it('should render a text field and a button for adding comments', () => {
+    expect(nativeElement.querySelector('input#comment')).toBeTruthy();
+    expect(nativeElement.querySelector('button#add-comment').textContent).toBe(
+      'Comment'
+    );
+  });
 });
