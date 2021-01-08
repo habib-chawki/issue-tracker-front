@@ -1,4 +1,4 @@
-<form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="issueForm" (ngSubmit)="onSave()">
   <label for="summary">Summary</label>
   <input type="text" id="summary" formControlName="summary" />
 
@@ -35,6 +35,6 @@
   <label for="estimate">Estimated time</label>
   <input type="date" id="estimate" formControlName="estimate" />
 
-  <button type="submit" id="submit">Add issue</button>
+  <button type="submit" id="submit">Save</button>
   <button id="cancel" (click)="onCancel()">Cancel</button>
 </form>
