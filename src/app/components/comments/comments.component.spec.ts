@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -154,9 +155,18 @@ describe('CommentsComponent', () => {
     );
   });
 
-  fit('should invoke "onCreateComment()" handler when the "Comment" button is clicked', () => {
+  fit('should invoke "onCreateComment()" when the "Comment" button is clicked', () => {
     // given the "onCreateComment()" handler method
     spyOn(component, 'onCreateComment');
+
+    // given a new comment
+    const newComment = 'the new comment !';
+
+    // given the Comment input field
+    const commentInputField = fixture.debugElement.nativeElement.querySelector(
+      'input#comment'
+    );
+    commentInputField.value = newComment;
 
     // given the Comment button
     const commentButton: HTMLButtonElement = nativeElement.querySelector(
@@ -166,7 +176,7 @@ describe('CommentsComponent', () => {
     // when the button is clicked
     commentButton.click();
 
-    // then "onCreateComment()" should be called
-    expect(component.onCreateComment).toHaveBeenCalled();
+    // then "onCreateComment()" should be called with the new comment
+    expect(component.onCreateComment).toHaveBeenCalledWith(newComment);
   });
 });
