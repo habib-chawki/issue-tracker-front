@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { observable, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
@@ -156,9 +156,9 @@ describe('CommentsComponent', () => {
 
   it('should render a text field and a button for adding comments', () => {
     expect(nativeElement.querySelector('input#comment')).toBeTruthy();
-    expect(nativeElement.querySelector('button#add-comment').textContent).toBe(
-      'Comment'
-    );
+    expect(
+      nativeElement.querySelector('button#add-comment').textContent
+    ).toContain('Comment');
   });
 
   it('should invoke "onCreateComment()" when the "Comment" button is clicked', () => {
@@ -186,11 +186,12 @@ describe('CommentsComponent', () => {
     expect(component.onCreateComment).toHaveBeenCalledWith(newComment);
   });
 
-  fit('should invoke "commentService#createComment()" when "onCreateComment()" is called', () => {
+  it('should invoke "commentService#createComment()" when "onCreateComment()" is called', () => {
     component.observable = new Observable();
     spyOn(component.observable, 'subscribe');
+
     spyOn(commentService, 'createComment').and.returnValue(
-      of(new HttpResponse())
+      component.observable
     );
 
     // given a new comment
