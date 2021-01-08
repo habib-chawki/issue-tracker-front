@@ -13,7 +13,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onCreateComment() {}
+  onCreateComment(comment: string) {}
 
   onRemoveComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item === comment);
