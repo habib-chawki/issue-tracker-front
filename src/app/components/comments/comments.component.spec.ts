@@ -155,7 +155,7 @@ describe('CommentsComponent', () => {
     );
   });
 
-  fit('should invoke "onCreateComment()" when the "Comment" button is clicked', () => {
+  it('should invoke "onCreateComment()" when the "Comment" button is clicked', () => {
     // given the "onCreateComment()" handler method
     spyOn(component, 'onCreateComment');
 

@@ -25,7 +25,11 @@
 
   <!-- list of comments -->
   <label for="comments">Comments: </label>
-  <app-comments id="comments" [comments]="issue.comments"></app-comments>
+  <app-comments
+    id="comments"
+    [comments]="issue.comments"
+    [issueId]="issue.id"
+  ></app-comments>
 
   <label for="watchers">Watchers: </label>
   <div id="watchers">

@@ -8,6 +8,7 @@ import { Comment } from 'src/app/models/comment/comment';
 })
 export class CommentsComponent implements OnInit {
   @Input() comments: Comment[];
+  @Input() issueId: string;
 
   constructor() {}
 
