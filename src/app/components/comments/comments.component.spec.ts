@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
+import { observable, Observable, of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
@@ -186,8 +186,12 @@ describe('CommentsComponent', () => {
     expect(component.onCreateComment).toHaveBeenCalledWith(newComment);
   });
 
-  it('should invoke "commentService#createComment()" when "onCreateComment()" is called', () => {
-    spyOn(commentService, 'createComment');
+  fit('should invoke "commentService#createComment()" when "onCreateComment()" is called', () => {
+    component.observable = new Observable();
+    spyOn(component.observable, 'subscribe');
+    spyOn(commentService, 'createComment').and.returnValue(
+      of(new HttpResponse())
+    );
 
     // given a new comment
     const newComment = 'my new comment';
@@ -199,7 +203,7 @@ describe('CommentsComponent', () => {
     expect(commentService.createComment).toHaveBeenCalledWith(newComment);
   });
 
-  fit('should invoke "handleCreateComment()" within "onCreateComment()" to create the comment', () => {
+  it('should invoke "handleCreateComment()" within "onCreateComment()" to create the comment', () => {
     spyOn(commentService, 'createComment').and.returnValue(
       of(new HttpResponse<any>())
     );
