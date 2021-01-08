@@ -1,4 +1,6 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Comment } from 'src/app/models/comment/comment';
 import { CommentService } from 'src/app/services/comment/comment.service';
 
@@ -11,13 +13,18 @@ export class CommentsComponent implements OnInit {
   @Input() comments: Comment[];
   @Input() issueId: string;
 
+  observable: Observable<HttpResponse<any>>;
+
   constructor(private commentService: CommentService) {}
 
   ngOnInit(): void {}
 
-  onCreateComment(comment: string) {
-    this.commentService.createComment(comment);
+  onCreateComment(content: string) {
+    this.observable = this.commentService.createComment(content);
+    this.observable.subscribe(this.handleCreateComment);
   }
+
+  handleCreateComment() {}
 
   onRemoveComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item === comment);

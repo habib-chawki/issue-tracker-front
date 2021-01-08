@@ -1,4 +1,6 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,5 +8,7 @@ import { Injectable } from '@angular/core';
 export class CommentService {
   constructor() {}
 
-  createComment(content: string) {}
+  createComment(content: string): Observable<HttpResponse<any>> {
+    return null;
+  }
 }
