@@ -4,7 +4,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
-import { Issue } from 'src/app/models/issue/issue';
 
 @Component({
   selector: 'app-issue-form',
@@ -42,7 +41,7 @@ export class IssueFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSave() {
     this.issueFormSaved.emit(this.issueForm.value);
   }
 
