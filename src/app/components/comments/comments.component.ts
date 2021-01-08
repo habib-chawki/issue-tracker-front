@@ -13,6 +13,8 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onCreateComment() {}
+
   onRemoveComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item === comment);
     this.comments.splice(index, 1);
