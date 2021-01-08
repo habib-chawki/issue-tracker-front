@@ -1,10 +1,10 @@
-import { query } from '@angular/animations';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
+import { CommentService } from 'src/app/services/comment/comment.service';
 import { CommentComponent } from '../comment/comment.component';
 
 import { CommentsComponent } from './comments.component';
@@ -13,6 +13,8 @@ describe('CommentsComponent', () => {
   let component: CommentsComponent;
   let fixture: ComponentFixture<CommentsComponent>;
   let nativeElement: HTMLElement;
+
+  let commentService: CommentService;
 
   let comment1: Comment, comment2: Comment;
 
@@ -28,6 +30,8 @@ describe('CommentsComponent', () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
+
+    commentService = TestBed.inject(CommentService);
 
     // set up a comment
     comment1 = new CommentBuilder()
@@ -178,5 +182,18 @@ describe('CommentsComponent', () => {
 
     // then "onCreateComment()" should be called with the new comment
     expect(component.onCreateComment).toHaveBeenCalledWith(newComment);
+  });
+
+  fit('should invoke "commentService#createComment()" when "onCreateComment()" is called', () => {
+    spyOn(commentService, 'createComment');
+
+    // given a new comment
+    const newComment = 'my new comment';
+
+    // when onCreateComment() is called
+    component.onCreateComment(newComment);
+
+    // then "commentService#createComment()" should be invoked
+    expect(commentService.createComment).toHaveBeenCalledWith(newComment);
   });
 });
