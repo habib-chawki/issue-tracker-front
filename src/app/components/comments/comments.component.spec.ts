@@ -153,4 +153,20 @@ describe('CommentsComponent', () => {
       'Comment'
     );
   });
+
+  fit('should invoke "onCreateComment()" handler when the "Comment" button is clicked', () => {
+    // given the "onCreateComment()" handler method
+    spyOn(component, 'onCreateComment');
+
+    // given the Comment button
+    const commentButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#add-comment'
+    );
+
+    // when the button is clicked
+    commentButton.click();
+
+    // then "onCreateComment()" should be called
+    expect(component.onCreateComment).toHaveBeenCalled();
+  });
 });
