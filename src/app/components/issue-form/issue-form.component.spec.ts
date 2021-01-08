@@ -8,7 +8,7 @@ import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueFormComponent } from './issue-form.component';
 
-describe('IssueFormComponent', () => {
+fdescribe('IssueFormComponent', () => {
   let component: IssueFormComponent;
   let fixture: ComponentFixture<IssueFormComponent>;
   let nativeElement: HTMLElement;
@@ -97,10 +97,10 @@ describe('IssueFormComponent', () => {
     ).toBeTruthy();
   });
 
-  it('should render an "Add issue" submit button', () => {
+  it('should render a "Save" submit button', () => {
     expect(
       nativeElement.querySelector('form button[type="submit"]').innerHTML
-    ).toContain('Add issue');
+    ).toContain('Save');
   });
 
   it('should render a "Cancel" form button', () => {
@@ -157,9 +157,9 @@ describe('IssueFormComponent', () => {
     expect(component.issueForm.controls['estimate']).toBeTruthy();
   });
 
-  it('should invoke "onSubmit()" when the submit button is clicked', () => {
-    // given the "onSubmit()" method
-    spyOn(component, 'onSubmit');
+  it('should invoke "onSave()" when the submit button is clicked', () => {
+    // given the "onSave()" method
+    spyOn(component, 'onSave');
 
     // when the submit button is clicked
     const submitButton: HTMLButtonElement = nativeElement.querySelector(
@@ -168,17 +168,17 @@ describe('IssueFormComponent', () => {
     submitButton.click();
 
     // then the method should be invoked
-    expect(component.onSubmit).toHaveBeenCalled();
+    expect(component.onSave).toHaveBeenCalled();
   });
 
-  it('should emit an "issueFormSaved" event when "onSubmit()" is called', () => {
+  it('should emit an "issueFormSaved" event when "onSave()" is called', () => {
     spyOn(component.issueFormSaved, 'emit');
 
     // given the form value
     component.issueForm.patchValue(issue);
 
-    // when "onSubmit()" is called
-    component.onSubmit();
+    // when "onSave()" is called
+    component.onSave();
 
     // then an event should be emitted with the form value
     expect(component.issueFormSaved.emit).toHaveBeenCalledWith(
