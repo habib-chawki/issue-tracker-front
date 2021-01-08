@@ -8,7 +8,7 @@ import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueFormComponent } from './issue-form.component';
 
-fdescribe('IssueFormComponent', () => {
+describe('IssueFormComponent', () => {
   let component: IssueFormComponent;
   let fixture: ComponentFixture<IssueFormComponent>;
   let nativeElement: HTMLElement;
