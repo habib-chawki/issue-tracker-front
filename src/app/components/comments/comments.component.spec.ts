@@ -194,14 +194,18 @@ describe('CommentsComponent', () => {
       component.observable
     );
 
-    // given a new comment
-    const newComment = 'my new comment';
+    // given a new comment content and the issue id
+    const newCommentContent = 'my new comment';
+    const issueId = '100';
 
     // when onCreateComment() is called
-    component.onCreateComment(newComment);
+    component.onCreateComment(newCommentContent);
 
     // then "commentService#createComment()" should be invoked
-    expect(commentService.createComment).toHaveBeenCalledWith(newComment);
+    expect(commentService.createComment).toHaveBeenCalledWith(
+      newCommentContent,
+      issueId
+    );
   });
 
   it('should invoke "handleCreateComment()" within "onCreateComment()" to create the comment', () => {
@@ -215,5 +219,19 @@ describe('CommentsComponent', () => {
 
     // then handleCreateComment() should be invoked
     expect(component.handleCreateComment).toHaveBeenCalled();
+  });
+
+  fit('should add the new comment to the list of comments when "handleCreateComment()" is called', () => {
+    // given the list of comments
+    component.comments = [comment1];
+
+    // given the backend response
+    const response = new HttpResponse<Comment>({ body: comment2 });
+
+    // when "handleCreateComment()" is called
+    component.handleCreateComment(response);
+
+    // then the new comment should be added to the list of comments
+    expect(component.comments).toContain(comment2);
   });
 });
