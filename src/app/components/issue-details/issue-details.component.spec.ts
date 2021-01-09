@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
@@ -27,6 +28,7 @@ describe('IssueDetailsComponent', () => {
         CommentsComponent,
         CommentComponent,
       ],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
   });
 
