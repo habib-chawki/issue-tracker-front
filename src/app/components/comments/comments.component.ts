@@ -22,7 +22,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   onCreateComment(content: string) {
     this.observable = this.commentService.createComment(content, this.issueId);
-    this.observable.subscribe(this.handleCreateComment);
+    this.subscription = this.observable.subscribe(this.handleCreateComment);
   }
 
   handleCreateComment(response: HttpResponse<Comment>) {

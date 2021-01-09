@@ -235,14 +235,14 @@ describe('CommentsComponent', () => {
     expect(component.comments).toContain(comment2);
   });
 
-  fit('should unsubscribe when the component is destroyed', () => {
+  it('should unsubscribe when the component is destroyed', () => {
     component.subscription = new Subscription();
     spyOn(component.subscription, 'unsubscribe');
 
     // when the component is destroyed
     component.ngOnDestroy();
 
-    // then unsubscribe
+    // then expect to unsubscribe from all subscriptions
     expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 });
