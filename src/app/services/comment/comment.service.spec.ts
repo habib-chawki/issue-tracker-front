@@ -34,8 +34,8 @@ describe('CommentService', () => {
     expect(commentService).toBeTruthy();
   });
 
-  fit('should create comment', () => {
-    // when createComment() is called
+  it('should create comment', () => {
+    // when "createComment()" is called
     commentService
       .createComment(comment.content, issueId)
       .subscribe((response) => {
@@ -50,7 +50,7 @@ describe('CommentService', () => {
     expect(req.request.method).toBe('POST');
     expect(req.request.body.content).toBe(comment.content);
 
-    // response
+    // respond with the created comment
     req.flush(comment);
   });
 });
