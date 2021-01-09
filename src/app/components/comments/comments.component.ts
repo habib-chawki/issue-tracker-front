@@ -1,4 +1,3 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Comment } from 'src/app/models/comment/comment';
@@ -13,7 +12,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   @Input() comments: Comment[];
   @Input() issueId: string;
 
-  observable: Observable<HttpResponse<any>>;
+  observable: Observable<Comment>;
   subscription: Subscription;
 
   constructor(private commentService: CommentService) {}
@@ -25,8 +24,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
     this.subscription = this.observable.subscribe(this.handleCreateComment);
   }
 
-  handleCreateComment(response: HttpResponse<Comment>) {
-    this.comments.push(response.body);
+  handleCreateComment(response: Comment) {
+    this.comments.push(response);
   }
 
   onRemoveComment(comment: Comment) {
