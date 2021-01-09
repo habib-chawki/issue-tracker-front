@@ -209,9 +209,7 @@ describe('CommentsComponent', () => {
   });
 
   it('should invoke "handleCreateComment()" within "onCreateComment()" to create the comment', () => {
-    spyOn(commentService, 'createComment').and.returnValue(
-      of(new HttpResponse<any>())
-    );
+    spyOn(commentService, 'createComment').and.returnValue(of(comment1));
     spyOn(component, 'handleCreateComment');
 
     // when onCreateComment() is called
@@ -225,11 +223,8 @@ describe('CommentsComponent', () => {
     // given the list of comments
     component.comments = [comment1];
 
-    // given the backend response
-    const response = new HttpResponse<Comment>({ body: comment2 });
-
     // when "handleCreateComment()" is called
-    component.handleCreateComment(response);
+    component.handleCreateComment(comment2);
 
     // then the new comment should be added to the list of comments
     expect(component.comments).toContain(comment2);
