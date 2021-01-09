@@ -20,11 +20,13 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {}
 
   onCreateComment(content: string) {
-    this.observable = this.commentService.createComment(content);
+    this.observable = this.commentService.createComment(content, this.issueId);
     this.observable.subscribe(this.handleCreateComment);
   }
 
-  handleCreateComment() {}
+  handleCreateComment(response: HttpResponse<Comment>) {
+    this.comments.push(response.body);
+  }
 
   onRemoveComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item === comment);
