@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import { Comment } from 'src/app/models/comment/comment';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
@@ -221,7 +221,7 @@ describe('CommentsComponent', () => {
     expect(component.handleCreateComment).toHaveBeenCalled();
   });
 
-  fit('should add the new comment to the list of comments when "handleCreateComment()" is called', () => {
+  it('should add the new comment to the list of comments when "handleCreateComment()" is called', () => {
     // given the list of comments
     component.comments = [comment1];
 
@@ -233,5 +233,16 @@ describe('CommentsComponent', () => {
 
     // then the new comment should be added to the list of comments
     expect(component.comments).toContain(comment2);
+  });
+
+  fit('should unsubscribe when the component is destroyed', () => {
+    component.subscription = new Subscription();
+    spyOn(component.subscription, 'unsubscribe');
+
+    // when the component is destroyed
+    component.ngOnDestroy();
+
+    // then unsubscribe
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 });
