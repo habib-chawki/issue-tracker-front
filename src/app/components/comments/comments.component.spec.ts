@@ -197,7 +197,7 @@ describe('CommentsComponent', () => {
 
     // given a new comment content and the issue id
     const newCommentContent = 'my new comment';
-    const issueId = '100';
+    component.issueId = '100';
 
     // when onCreateComment() is called
     component.onCreateComment(newCommentContent);
@@ -205,7 +205,7 @@ describe('CommentsComponent', () => {
     // then "commentService#createComment()" should be invoked
     expect(commentService.createComment).toHaveBeenCalledWith(
       newCommentContent,
-      issueId
+      component.issueId
     );
   });
 
