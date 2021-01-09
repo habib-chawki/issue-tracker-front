@@ -8,7 +8,10 @@ import { Observable } from 'rxjs';
 export class CommentService {
   constructor() {}
 
-  createComment(content: string): Observable<HttpResponse<any>> {
+  createComment(
+    content: string,
+    issueId: string
+  ): Observable<HttpResponse<any>> {
     return null;
   }
 }
