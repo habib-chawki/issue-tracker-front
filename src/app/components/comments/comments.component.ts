@@ -51,10 +51,10 @@ export class CommentsComponent implements OnInit, OnDestroy {
       this.issueId
     );
 
-    this.subscriptions.add(this.observable.subscribe(this.HandleUpdateComment));
+    this.subscriptions.add(this.observable.subscribe(this.handleUpdateComment));
   }
 
-  HandleUpdateComment(comment: Comment) {
+  handleUpdateComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item.id === comment.id);
     this.comments[index] = comment;
   }

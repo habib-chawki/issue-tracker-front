@@ -20,7 +20,7 @@ export class CommentService {
     );
   }
 
-  removeComment(commentId: string, issueId: string): Observable<any> {
+  removeComment(commentId: string, issueId: string): Observable<Comment> {
     return null;
   }
 
@@ -28,7 +28,7 @@ export class CommentService {
     content: string,
     commentId: string,
     issueId: string
-  ): Observable<any> {
+  ): Observable<Comment> {
     return null;
   }
 }
