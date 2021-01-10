@@ -54,22 +54,50 @@ describe('CommentService', () => {
     req.flush(comment);
   });
 
-  fit('should remove comment', () => {
+  it('should remove comment', () => {
+    // given the delete comment endpoint url
+    const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
+      comment.id
+    }`;
+
     // when "removeComment()" is called
     commentService.removeComment(comment.id, issueId).subscribe((response) => {
       expect(response).toEqual(comment);
     });
-
-    const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
-      comment.id
-    }`;
 
     // then a delete request should be made to remove the comment
     const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toBe('DELETE');
 
-    // respond with the created comment
+    // respond with the removed comment
+    req.flush(comment);
+  });
+
+  fit('should update comment', () => {
+    // given the update comment endpoint url
+    const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
+      comment.id
+    }`;
+
+    // given the new comment content
+    const newContent = 'updated comment content';
+
+    // when "updateComment()" is called
+    commentService
+      .updateComment(newContent, comment.id, issueId)
+      .subscribe((response) => {
+        expect(response).toEqual(comment);
+      });
+
+    // then a patch request should be made
+    const req = httpTestingController.expectOne(url);
+
+    expect(req.request.method).toBe('PATCH');
+    expect(req.request.body).toEqual({ content: newContent });
+
+    // respond with the updated comment
+    comment.content = newContent;
     req.flush(comment);
   });
 });
