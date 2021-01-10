@@ -79,7 +79,38 @@ describe('CommentsComponent', () => {
     commentElement.triggerEventHandler('commentRemoved', comment2);
 
     // then onRemoveComment should be called
-    expect(component.handleRemoveComment).toHaveBeenCalledWith(comment2);
+    expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
+  });
+
+  fit('should invoke "commentService#removeComment()" when "onRemoveComment()" is called', () => {
+    component.issueId = '200';
+
+    component.observable = new Observable();
+    spyOn(component.observable, 'subscribe');
+
+    spyOn(commentService, 'removeComment').and.returnValue(
+      component.observable
+    );
+
+    // when "onRemoveComment()" is called
+    component.onRemoveComment(comment1);
+
+    // then "commentService#removeComment()" should be invoked
+    expect(commentService.removeComment).toHaveBeenCalledWith(
+      comment1.id,
+      component.issueId
+    );
+  });
+
+  it('should invoke "handleCreateComment()" within "onCreateComment()" to create the comment', () => {
+    spyOn(commentService, 'createComment').and.returnValue(of(comment1));
+    spyOn(component, 'handleCreateComment');
+
+    // when onCreateComment() is called
+    component.onCreateComment('new comment');
+
+    // then handleCreateComment() should be invoked
+    expect(component.handleCreateComment).toHaveBeenCalled();
   });
 
   it('should remove the comment from the comments list when "handleRemoveComment()" is invoked', () => {
@@ -133,10 +164,10 @@ describe('CommentsComponent', () => {
     commentElement.triggerEventHandler('commentUpdated', comment2);
 
     // then the "onUpdateComment()" handler method should be called
-    expect(component.HandleUpdateComment).toHaveBeenCalledWith(comment2);
+    expect(component.onUpdateComment).toHaveBeenCalledWith(comment2);
   });
 
-  it('should update comment content when "onUpdateComment()" is called', () => {
+  it('should update comment content when "handleUpdateComment()" is called', () => {
     // given a list of comments
     component.comments = [comment1, comment2];
     fixture.detectChanges();
@@ -147,7 +178,7 @@ describe('CommentsComponent', () => {
       content: 'updated comment content ?',
     };
 
-    // when "onUpdateComment()" is called with the updated comment
+    // when "handleUpdateComment()" is called with the updated comment
     component.HandleUpdateComment(updatedComment);
 
     // then the comment should be updated in the list of comments
