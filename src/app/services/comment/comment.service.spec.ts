@@ -48,7 +48,7 @@ describe('CommentService', () => {
     );
 
     expect(req.request.method).toBe('POST');
-    expect(req.request.body.content).toBe(comment.content);
+    expect(req.request.body).toEqual({ content: comment.content });
 
     // respond with the created comment
     req.flush(comment);
@@ -74,7 +74,7 @@ describe('CommentService', () => {
     req.flush(comment);
   });
 
-  fit('should update comment', () => {
+  it('should update comment', () => {
     // given the update comment endpoint url
     const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
       comment.id
