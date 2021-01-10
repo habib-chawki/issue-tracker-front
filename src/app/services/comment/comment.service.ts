@@ -12,18 +12,13 @@ export class CommentService {
   constructor(private httpClient: HttpClient) {}
 
   createComment(content: string, issueId: string): Observable<Comment> {
-    return this.httpClient.post<Comment>(
-      this.baseUrl.replace('{issueId}', issueId),
-      {
-        content,
-      }
-    );
+    const url = this.baseUrl.replace('{issueId}', issueId);
+    return this.httpClient.post<Comment>(url, { content });
   }
 
   removeComment(commentId: string, issueId: string): Observable<Comment> {
-    return this.httpClient.delete<Comment>(
-      `${this.baseUrl.replace('{issueId}', issueId)}/${commentId}`
-    );
+    const url = `${this.baseUrl.replace('{issueId}', issueId)}/${commentId}`;
+    return this.httpClient.delete<Comment>(url);
   }
 
   updateComment(
@@ -31,9 +26,7 @@ export class CommentService {
     commentId: string,
     issueId: string
   ): Observable<Comment> {
-    return this.httpClient.patch<Comment>(
-      `${this.baseUrl.replace('{issueId}', issueId)}/${commentId}`,
-      { content }
-    );
+    const url = `${this.baseUrl.replace('{issueId}', issueId)}/${commentId}`;
+    return this.httpClient.patch<Comment>(url, { content });
   }
 }
