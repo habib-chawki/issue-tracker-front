@@ -82,7 +82,7 @@ describe('CommentsComponent', () => {
     expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
   });
 
-  fit('should invoke "commentService#removeComment()" when "onRemoveComment()" is called', () => {
+  it('should invoke "commentService#removeComment()" when "onRemoveComment()" is called', () => {
     component.issueId = '200';
 
     component.observable = new Observable();
@@ -102,15 +102,15 @@ describe('CommentsComponent', () => {
     );
   });
 
-  it('should invoke "handleCreateComment()" within "onCreateComment()" to create the comment', () => {
-    spyOn(commentService, 'createComment').and.returnValue(of(comment1));
-    spyOn(component, 'handleCreateComment');
+  it('should invoke "handleRemoveComment()" within "onRemoveComment()"', () => {
+    spyOn(commentService, 'removeComment').and.returnValue(of(comment1));
+    spyOn(component, 'handleRemoveComment');
 
-    // when onCreateComment() is called
-    component.onCreateComment('new comment');
+    // when onRemoveComment() is called
+    component.onRemoveComment(comment1);
 
-    // then handleCreateComment() should be invoked
-    expect(component.handleCreateComment).toHaveBeenCalled();
+    // then handleRemoveComment() should be invoked
+    expect(component.handleRemoveComment).toHaveBeenCalled();
   });
 
   it('should remove the comment from the comments list when "handleRemoveComment()" is invoked', () => {
