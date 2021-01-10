@@ -19,4 +19,16 @@ export class CommentService {
       }
     );
   }
+
+  removeComment(commentId: string, issueId: string): Observable<any> {
+    return null;
+  }
+
+  updateComment(
+    content: string,
+    commentId: string,
+    issueId: string
+  ): Observable<any> {
+    return null;
+  }
 }

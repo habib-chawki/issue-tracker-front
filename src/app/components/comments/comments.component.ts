@@ -31,11 +31,22 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   onRemoveComment(comment: Comment) {
+    this.observable = this.commentService.removeComment(
+      comment.id,
+      this.issueId
+    );
+
+    this.subscriptions.add(this.observable.subscribe(this.handleRemoveComment));
+  }
+
+  handleRemoveComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item === comment);
     this.comments.splice(index, 1);
   }
 
-  onUpdateComment(comment: Comment) {
+  onUpdateComment(comment: Comment) {}
+
+  HandleUpdateComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item.id === comment.id);
     this.comments[index] = comment;
   }
