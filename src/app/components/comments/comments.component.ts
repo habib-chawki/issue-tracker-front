@@ -13,7 +13,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   @Input() issueId: string;
 
   observable: Observable<Comment>;
-  subscription: Subscription;
+  subscriptions: Subscription;
 
   constructor(private commentService: CommentService) {}
 
@@ -21,7 +21,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   onCreateComment(content: string) {
     this.observable = this.commentService.createComment(content, this.issueId);
-    this.subscription = this.observable.subscribe(this.handleCreateComment);
+    this.subscriptions = this.observable.subscribe(this.handleCreateComment);
   }
 
   handleCreateComment(response: Comment) {
@@ -39,6 +39,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

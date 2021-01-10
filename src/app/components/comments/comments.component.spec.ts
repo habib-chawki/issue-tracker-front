@@ -232,13 +232,13 @@ describe('CommentsComponent', () => {
   });
 
   it('should unsubscribe when the component is destroyed', () => {
-    component.subscription = new Subscription();
-    spyOn(component.subscription, 'unsubscribe');
+    component.subscriptions = new Subscription();
+    spyOn(component.subscriptions, 'unsubscribe');
 
     // when the component is destroyed
     component.ngOnDestroy();
 
     // then expect to unsubscribe from all subscriptions
-    expect(component.subscription.unsubscribe).toHaveBeenCalled();
+    expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
 });
