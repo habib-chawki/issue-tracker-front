@@ -31,6 +31,9 @@ export class CommentService {
     commentId: string,
     issueId: string
   ): Observable<Comment> {
-    return null;
+    return this.httpClient.patch<Comment>(
+      `${this.baseUrl.replace('{issueId}', issueId)}/${commentId}`,
+      { content }
+    );
   }
 }
