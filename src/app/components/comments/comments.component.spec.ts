@@ -167,6 +167,38 @@ describe('CommentsComponent', () => {
     expect(component.onUpdateComment).toHaveBeenCalledWith(comment2);
   });
 
+  it('should invoke "commentService#updateComment()" when "onUpdateComment()" is called', () => {
+    component.issueId = '200';
+
+    component.observable = new Observable();
+    spyOn(component.observable, 'subscribe');
+
+    spyOn(commentService, 'updateComment').and.returnValue(
+      component.observable
+    );
+
+    // when "onUpdateComment()" is called
+    component.onUpdateComment(comment1);
+
+    // then "commentService#updateComment()" should be invoked
+    expect(commentService.updateComment).toHaveBeenCalledWith(
+      comment1.content,
+      comment1.id,
+      component.issueId
+    );
+  });
+
+  it('should invoke "handleRemoveComment()" within "onRemoveComment()"', () => {
+    spyOn(commentService, 'removeComment').and.returnValue(of(comment1));
+    spyOn(component, 'handleRemoveComment');
+
+    // when onRemoveComment() is called
+    component.onRemoveComment(comment1);
+
+    // then handleRemoveComment() should be invoked
+    expect(component.handleRemoveComment).toHaveBeenCalled();
+  });
+
   it('should update comment content when "handleUpdateComment()" is called', () => {
     // given a list of comments
     component.comments = [comment1, comment2];
