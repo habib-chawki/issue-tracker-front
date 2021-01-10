@@ -44,7 +44,15 @@ export class CommentsComponent implements OnInit, OnDestroy {
     this.comments.splice(index, 1);
   }
 
-  onUpdateComment(comment: Comment) {}
+  onUpdateComment(comment: Comment) {
+    this.observable = this.commentService.updateComment(
+      comment.content,
+      comment.id,
+      this.issueId
+    );
+
+    this.subscriptions.add(this.observable.subscribe(this.HandleUpdateComment));
+  }
 
   HandleUpdateComment(comment: Comment) {
     const index = this.comments.findIndex((item) => item.id === comment.id);
