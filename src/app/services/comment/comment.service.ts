@@ -21,7 +21,9 @@ export class CommentService {
   }
 
   removeComment(commentId: string, issueId: string): Observable<Comment> {
-    return null;
+    return this.httpClient.delete<Comment>(
+      `${this.baseUrl.replace('{issueId}', issueId)}/${commentId}`
+    );
   }
 
   updateComment(
