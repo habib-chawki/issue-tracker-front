@@ -53,4 +53,23 @@ describe('CommentService', () => {
     // respond with the created comment
     req.flush(comment);
   });
+
+  fit('should remove comment', () => {
+    // when "removeComment()" is called
+    commentService.removeComment(comment.id, issueId).subscribe((response) => {
+      expect(response).toEqual(comment);
+    });
+
+    const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
+      comment.id
+    }`;
+
+    // then a delete request should be made to remove the comment
+    const req = httpTestingController.expectOne(url);
+
+    expect(req.request.method).toBe('DELETE');
+
+    // respond with the created comment
+    req.flush(comment);
+  });
 });
