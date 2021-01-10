@@ -15,6 +15,8 @@ describe('CommentService', () => {
   let comment: Comment;
   const issueId = '100';
 
+  const baseUrl = `http://localhost:80/issues/${issueId}/comments`;
+
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
 
@@ -43,9 +45,7 @@ describe('CommentService', () => {
       });
 
     // then a post request should be made to create the comment
-    const req = httpTestingController.expectOne(
-      commentService.baseUrl.replace('{issueId}', issueId)
-    );
+    const req = httpTestingController.expectOne(baseUrl);
 
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ content: comment.content });
@@ -56,9 +56,7 @@ describe('CommentService', () => {
 
   it('should remove comment', () => {
     // given the delete comment endpoint url
-    const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
-      comment.id
-    }`;
+    const url = `${baseUrl}/${comment.id}`;
 
     // when "removeComment()" is called
     commentService.removeComment(comment.id, issueId).subscribe((response) => {
@@ -76,9 +74,7 @@ describe('CommentService', () => {
 
   it('should update comment', () => {
     // given the update comment endpoint url
-    const url = `${commentService.baseUrl.replace('{issueId}', issueId)}/${
-      comment.id
-    }`;
+    const url = `${baseUrl}/${comment.id}`;
 
     // given the new comment content
     const newContent = 'updated comment content';
