@@ -79,24 +79,24 @@ describe('CommentsComponent', () => {
     commentElement.triggerEventHandler('commentRemoved', comment2);
 
     // then onRemoveComment should be called
-    expect(component.onRemoveComment).toHaveBeenCalledWith(comment2);
+    expect(component.handleRemoveComment).toHaveBeenCalledWith(comment2);
   });
 
-  it('should remove the comment from the comments list when "onRemoveComment()" is invoked', () => {
+  it('should remove the comment from the comments list when "handleRemoveComment()" is invoked', () => {
     // given a list of comments
     component.comments = [comment1, comment2];
 
     // the comment should have been added to the list
     expect(component.comments).toContain(comment2);
 
-    // when "onRemoveComment()" is called
-    component.onRemoveComment(comment2);
+    // when "handleRemoveComment()" is called
+    component.handleRemoveComment(comment2);
 
     // then the comment should be removed from the list
     expect(component.comments).not.toContain(comment2);
   });
 
-  it('should remove the comment component when "onRemoveComment()" is called', () => {
+  it('should remove the comment component when "handleRemoveComment()" is called', () => {
     // given a list of comments
     component.comments = [comment1, comment2];
     fixture.detectChanges();
@@ -109,8 +109,8 @@ describe('CommentsComponent', () => {
       commentsListSize
     );
 
-    // when "onRemoveComment()" is called
-    component.onRemoveComment(comment1);
+    // when "handleRemoveComment()" is called
+    component.handleRemoveComment(comment1);
     fixture.detectChanges();
 
     // then the comment component should be removed
@@ -133,7 +133,7 @@ describe('CommentsComponent', () => {
     commentElement.triggerEventHandler('commentUpdated', comment2);
 
     // then the "onUpdateComment()" handler method should be called
-    expect(component.onUpdateComment).toHaveBeenCalledWith(comment2);
+    expect(component.HandleUpdateComment).toHaveBeenCalledWith(comment2);
   });
 
   it('should update comment content when "onUpdateComment()" is called', () => {
@@ -148,7 +148,7 @@ describe('CommentsComponent', () => {
     };
 
     // when "onUpdateComment()" is called with the updated comment
-    component.onUpdateComment(updatedComment);
+    component.HandleUpdateComment(updatedComment);
 
     // then the comment should be updated in the list of comments
     expect(component.comments).toContain(updatedComment);
