@@ -188,15 +188,15 @@ describe('CommentsComponent', () => {
     );
   });
 
-  it('should invoke "handleRemoveComment()" within "onRemoveComment()"', () => {
-    spyOn(commentService, 'removeComment').and.returnValue(of(comment1));
-    spyOn(component, 'handleRemoveComment');
+  it('should invoke "handleUpdateComment()" within "onUpdateComment()"', () => {
+    spyOn(commentService, 'updateComment').and.returnValue(of(comment1));
+    spyOn(component, 'handleUpdateComment');
 
-    // when onRemoveComment() is called
-    component.onRemoveComment(comment1);
+    // when onUpdateComment() is called
+    component.onUpdateComment(comment1);
 
-    // then handleRemoveComment() should be invoked
-    expect(component.handleRemoveComment).toHaveBeenCalled();
+    // then handleUpdateComment() should be invoked
+    expect(component.handleUpdateComment).toHaveBeenCalled();
   });
 
   it('should update comment content when "handleUpdateComment()" is called', () => {
@@ -211,7 +211,7 @@ describe('CommentsComponent', () => {
     };
 
     // when "handleUpdateComment()" is called with the updated comment
-    component.HandleUpdateComment(updatedComment);
+    component.handleUpdateComment(updatedComment);
 
     // then the comment should be updated in the list of comments
     expect(component.comments).toContain(updatedComment);
