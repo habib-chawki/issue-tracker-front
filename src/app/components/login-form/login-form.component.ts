@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -26,7 +26,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit(): void {}
@@ -46,7 +47,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     });
 
     // navigate to /backlog
-    this.router.navigate(['/backlog']);
+    this.ngZone.run(() => {
+      this.router.navigate(['/backlog']);
+    });
   }
 
   ngOnDestroy(): void {
