@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IssuesComponent } from '../issues/issues.component';
 
 import { ColumnComponent } from './column.component';
 
@@ -9,7 +10,7 @@ describe('ColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ColumnComponent],
+      declarations: [ColumnComponent, IssuesComponent],
     }).compileComponents();
   });
 
@@ -25,7 +26,7 @@ describe('ColumnComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render a title', () => {
+  it('should render a title', () => {
     // given a title
     component.title = 'Column title';
 
@@ -34,5 +35,9 @@ describe('ColumnComponent', () => {
     expect(nativeElement.querySelector('div#title').textContent).toBe(
       component.title
     );
+  });
+
+  fit('should render a list of issues', () => {
+    expect(nativeElement.querySelector('app-issues')).toBeTruthy();
   });
 });
