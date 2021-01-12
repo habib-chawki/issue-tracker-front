@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
 
@@ -32,5 +33,10 @@ export class IssuesComponent implements OnInit {
   // invoked when the close button of the issueDetails component is clicked
   onHideIssueDetails() {
     this.willDisplayIssueDetails = false;
+  }
+
+  // handle issue drop
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.issues, event.previousIndex, event.currentIndex);
   }
 }
