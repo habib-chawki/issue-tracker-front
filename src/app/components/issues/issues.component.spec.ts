@@ -251,4 +251,18 @@ describe('IssuesComponent', () => {
       expect(component.willDisplayIssueDetails).toBeFalse();
     });
   });
+
+  fit('should invoke "onDrop()" when an "cdkDropListDropped" event is emitted', () => {
+    // given the "onDrop()" handler method
+    spyOn(component, 'onDrop');
+
+    // given the issues drop list
+    const dropList = nativeElement.querySelector('div#drop-list');
+
+    // when an "cdkDropListDropped" event is emitted
+    dropList.dispatchEvent(new Event('cdkDropListDropped'));
+
+    // then "onDrop()" should be called
+    expect(component.onDrop).toHaveBeenCalled();
+  });
 });
