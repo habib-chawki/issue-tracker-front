@@ -14,6 +14,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { IssuesComponent } from './components/issues/issues.component';
+import { ColumnComponent } from './components/column/column/column.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { IssuesComponent } from './components/issues/issues.component';
     CommentComponent,
     CommentsComponent,
     IssuesComponent,
+    ColumnComponent,
   ],
   imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
