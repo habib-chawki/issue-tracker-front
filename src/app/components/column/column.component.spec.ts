@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
+import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from '../issues/issues.component';
 
 import { ColumnComponent } from './column.component';
@@ -10,7 +12,7 @@ describe('ColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ColumnComponent, IssuesComponent],
+      declarations: [ColumnComponent, IssuesComponent, IssueComponent],
     }).compileComponents();
   });
 
@@ -37,7 +39,27 @@ describe('ColumnComponent', () => {
     );
   });
 
-  fit('should render a list of issues', () => {
-    expect(nativeElement.querySelector('app-issues')).toBeTruthy();
+  it('should render a list of issues', () => {
+    // given the list of issues
+    component.issues = [
+      new IssueBuilder()
+        .id('100')
+        .summary('issue 1 summary')
+        .estimate(new Date())
+        .build(),
+
+      new IssueBuilder()
+        .id('200')
+        .summary('issue 2 summary')
+        .estimate(new Date())
+        .build(),
+    ];
+
+    fixture.detectChanges();
+
+    // all issues should be rendered
+    expect(nativeElement.querySelectorAll('app-issue').length).toBe(
+      component.issues.length
+    );
   });
 });
