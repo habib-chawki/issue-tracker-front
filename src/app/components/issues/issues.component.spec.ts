@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -252,7 +253,7 @@ describe('IssuesComponent', () => {
     });
   });
 
-  fit('should invoke "onDrop()" when an "cdkDropListDropped" event is emitted', () => {
+  it('should invoke "onDrop()" when an "cdkDropListDropped" event is emitted', () => {
     // given the "onDrop()" handler method
     spyOn(component, 'onDrop');
 
@@ -264,5 +265,20 @@ describe('IssuesComponent', () => {
 
     // then "onDrop()" should be called
     expect(component.onDrop).toHaveBeenCalled();
+  });
+
+  it('should reorder issues list when "onDrop()" is called', () => {
+    // given a list of issues
+    component.issues = [issue, issue2];
+
+    // when an issue is dropped
+    const event = { previousIndex: 1, currentIndex: 0 } as CdkDragDrop<
+      string[]
+    >;
+
+    component.onDrop(event);
+
+    // then its position in the issues list should be changed
+    expect(component.issues[0]).toBe(issue2);
   });
 });
