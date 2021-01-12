@@ -40,6 +40,9 @@ describe('ColumnComponent', () => {
   });
 
   it('should render a list of issues', () => {
+    // nothing should be rendered at first
+    expect(nativeElement.querySelectorAll('app-issue').length).toBe(0);
+
     // given the list of issues
     component.issues = [
       new IssueBuilder()
