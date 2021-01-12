@@ -15,6 +15,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { ColumnComponent } from './components/column/column/column.component';
+import { BoardComponent } from './components/board/board.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ColumnComponent } from './components/column/column/column.component';
     CommentsComponent,
     IssuesComponent,
     ColumnComponent,
+    BoardComponent,
   ],
   imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
