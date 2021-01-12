@@ -14,8 +14,9 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { IssuesComponent } from './components/issues/issues.component';
-import { ColumnComponent } from './components/column/column/column.component';
+import { ColumnComponent } from './components/column/column.component';
 import { BoardComponent } from './components/board/board.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { BoardComponent } from './components/board/board.component';
     ColumnComponent,
     BoardComponent,
   ],
-  imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
+  imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

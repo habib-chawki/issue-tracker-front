@@ -35,7 +35,7 @@ describe('BoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render a list of columns', () => {
+  it('should render a list of columns', () => {
     // nothing should be rendered at first
     expect(nativeElement.querySelectorAll('app-colum').length).toBe(0);
 
