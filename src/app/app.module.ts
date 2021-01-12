@@ -17,6 +17,9 @@ import { IssuesComponent } from './components/issues/issues.component';
 import { ColumnComponent } from './components/column/column.component';
 import { BoardComponent } from './components/board/board.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ColumnComponent,
     BoardComponent,
   ],
-  imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    DragDropModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
