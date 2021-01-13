@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Backlog } from './components/backlog/backlog.component';
+import { BacklogComponent } from './components/backlog/backlog.component';
+import { BoardComponent } from './components/board/board.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 export const routes: Routes = [
-  { path: 'backlog', component: Backlog },
   { path: 'signup', component: SignupFormComponent },
   { path: 'login', component: LoginFormComponent },
+  { path: 'backlog', component: BacklogComponent },
+  { path: 'board', component: BoardComponent },
   { path: '', redirectTo: 'backlog', pathMatch: 'full' },
 ];
 
