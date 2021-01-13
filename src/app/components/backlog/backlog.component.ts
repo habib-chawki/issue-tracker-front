@@ -8,7 +8,7 @@ import { IssueService } from 'src/app/services/issue/issue.service';
   templateUrl: './backlog.component.html',
   styleUrls: ['./backlog.component.scss'],
 })
-export class Backlog implements OnInit {
+export class BacklogComponent implements OnInit {
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
 
