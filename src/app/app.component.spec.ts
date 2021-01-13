@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { Backlog } from './components/backlog/backlog.component';
+import { BacklogComponent } from './components/backlog/backlog.component';
 import { IssuesComponent } from './components/issues/issues.component';
 
 describe('AppComponent', () => {
@@ -23,7 +23,7 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
       ],
-      declarations: [AppComponent, Backlog, IssuesComponent],
+      declarations: [AppComponent, BacklogComponent, IssuesComponent],
     }).compileComponents();
   });
 
@@ -90,6 +90,15 @@ describe('AppComponent', () => {
       router.navigateByUrl('/login').then(() => {
         expect(nativeElement.querySelector('app-login-form')).toBeTruthy();
         expect(router.url).toBe('/login');
+      });
+    });
+  }));
+
+  fit('should render "BoardComponent" when navigated to "/board"', fakeAsync(() => {
+    fixture.ngZone.run(() => {
+      router.navigateByUrl('/board').then(() => {
+        expect(nativeElement.querySelector('app-board')).toBeTruthy();
+        expect(router.url).toBe('/board');
       });
     });
   }));

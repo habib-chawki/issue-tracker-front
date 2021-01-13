@@ -17,11 +17,11 @@ import { IssueService } from 'src/app/services/issue/issue.service';
 
 import { IssueFormComponent } from '../issue-form/issue-form.component';
 import { IssuesComponent } from '../issues/issues.component';
-import { Backlog } from './backlog.component';
+import { BacklogComponent } from './backlog.component';
 
 describe('Backlog', () => {
-  let component: Backlog;
-  let fixture: ComponentFixture<Backlog>;
+  let component: BacklogComponent;
+  let fixture: ComponentFixture<BacklogComponent>;
   let nativeElement: HTMLElement;
 
   let issueService: IssueService;
@@ -31,13 +31,13 @@ describe('Backlog', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [Backlog, IssueFormComponent, IssuesComponent],
+      declarations: [BacklogComponent, IssueFormComponent, IssuesComponent],
       imports: [ReactiveFormsModule, HttpClientTestingModule],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Backlog);
+    fixture = TestBed.createComponent(BacklogComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
 
