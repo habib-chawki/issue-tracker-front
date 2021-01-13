@@ -94,7 +94,7 @@ describe('AppComponent', () => {
     });
   }));
 
-  fit('should render "BoardComponent" when navigated to "/board"', fakeAsync(() => {
+  it('should render "BoardComponent" when navigated to "/board"', fakeAsync(() => {
     fixture.ngZone.run(() => {
       router.navigateByUrl('/board').then(() => {
         expect(nativeElement.querySelector('app-board')).toBeTruthy();
