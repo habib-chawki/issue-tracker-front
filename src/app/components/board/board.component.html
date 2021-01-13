@@ -1,5 +1,7 @@
-<app-column
-  *ngFor="let column of columns"
-  [title]="column.title"
-  [issues]="column.issues"
-></app-column>
+<div cdkDropListGroup>
+  <app-column
+    *ngFor="let column of columns"
+    [title]="column.title"
+    [issues]="column.issues"
+  ></app-column>
+</div>
