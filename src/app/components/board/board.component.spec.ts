@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnComponent } from '../column/column.component';
@@ -19,6 +20,7 @@ describe('BoardComponent', () => {
         IssuesComponent,
         IssueComponent,
       ],
+      imports: [DragDropModule],
     }).compileComponents();
   });
 

@@ -1,4 +1,4 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -32,7 +32,7 @@ describe('IssuesComponent', () => {
         CommentsComponent,
         CommentComponent,
       ],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, DragDropModule],
     }).compileComponents();
   });
 

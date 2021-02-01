@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -32,7 +33,7 @@ describe('Backlog', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BacklogComponent, IssueFormComponent, IssuesComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule, DragDropModule],
     }).compileComponents();
   });
 
