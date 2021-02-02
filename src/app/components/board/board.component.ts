@@ -12,4 +12,6 @@ export class BoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onDisplayColumnForm() {}
 }
