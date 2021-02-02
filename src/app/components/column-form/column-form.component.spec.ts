@@ -31,21 +31,23 @@ describe('ColumnFormComponent', () => {
   });
 
   it('should render column title label', () => {
-    expect(nativeElement.querySelector('label[for="title"]').textContent).toBe(
-      'Title'
-    );
+    expect(
+      nativeElement.querySelector('form label[for="title"]').textContent
+    ).toBe('Title');
   });
 
   it('should render input field for column title', () => {
-    expect(nativeElement.querySelector('input#title')).toBeTruthy();
+    expect(nativeElement.querySelector('form input#title')).toBeTruthy();
   });
 
   it('should render "Save" column button', () => {
-    expect(nativeElement.querySelector('button#save').textContent).toBe('Save');
+    expect(nativeElement.querySelector('form button#save').textContent).toBe(
+      'Save'
+    );
   });
 
   it('should render "Cancel" form button', () => {
-    expect(nativeElement.querySelector('button#cancel').textContent).toBe(
+    expect(nativeElement.querySelector('form button#cancel').textContent).toBe(
       'Cancel'
     );
   });
