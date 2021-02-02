@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ColumnFormComponent implements OnInit {
   @Output() columnFormSaved = new EventEmitter();
+  @Output() columnFormCancelled = new EventEmitter();
 
   constructor() {}
 
@@ -16,5 +17,7 @@ export class ColumnFormComponent implements OnInit {
     this.columnFormSaved.emit();
   }
 
-  onCancel() {}
+  onCancel() {
+    this.columnFormCancelled.emit();
+  }
 }
