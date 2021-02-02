@@ -46,7 +46,7 @@ describe('ColumnFormComponent', () => {
     );
   });
 
-  it('should invoke onSave() when "Save" button is clicked', () => {
+  it('should invoke "onSave()" when "Save" button is clicked', () => {
     // given the "onSave()" handler method
     spyOn(component, 'onSave');
 
@@ -59,18 +59,22 @@ describe('ColumnFormComponent', () => {
     saveButton.click();
 
     // then expect "onSave()" to be invoked
-    expect(component.onSave).toHaveBeenCalled();
+    expect(component.onSave).toHaveBeenCalledWith();
   });
 
-  it('should emit "columnFormSaved" event when "onSave()" is invoked', () => {
+  it('should emit "columnFormSaved" event with the form value when "onSave()" is invoked', () => {
     // given the "columnFormSaved" event
     spyOn(component.columnFormSaved, 'emit');
+
+    // given the form value
+    const formValue = { title: 'column title' };
+    component.columnForm.setValue(formValue);
 
     // when "onSave()" is called
     component.onSave();
 
-    // then the event should be emitted
-    expect(component.columnFormSaved.emit).toHaveBeenCalled();
+    // then the event should be emitted with the form value
+    expect(component.columnFormSaved.emit).toHaveBeenCalledWith(formValue);
   });
 
   it('should invoke onCancel() when "Cancel" button is clicked', () => {
@@ -89,7 +93,7 @@ describe('ColumnFormComponent', () => {
     expect(component.onCancel).toHaveBeenCalled();
   });
 
-  fit('should emit "columnFormCancelled" event when "onCancel()" is invoked', () => {
+  it('should emit "columnFormCancelled" event when "onCancel()" is invoked', () => {
     // given the "columnFormCancelled" event
     spyOn(component.columnFormCancelled, 'emit');
 
