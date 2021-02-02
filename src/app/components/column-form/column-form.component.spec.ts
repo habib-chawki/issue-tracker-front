@@ -40,9 +40,25 @@ describe('ColumnFormComponent', () => {
     expect(nativeElement.querySelector('button#save').textContent).toBe('Save');
   });
 
-  fit('should render "Cancel" form button', () => {
+  it('should render "Cancel" form button', () => {
     expect(nativeElement.querySelector('button#cancel').textContent).toBe(
       'Cancel'
     );
+  });
+
+  it('should invoke onSave() when "Save" button is clicked', () => {
+    // given the "onSave()" handler method
+    spyOn(component, 'onSave');
+
+    // given the "Save" form button
+    const saveButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#save'
+    );
+
+    // when the button is clicked
+    saveButton.click();
+
+    // then expect "onSave()" to be invoked
+    expect(component.onSave).toHaveBeenCalled();
   });
 });
