@@ -61,4 +61,20 @@ describe('ColumnFormComponent', () => {
     // then expect "onSave()" to be invoked
     expect(component.onSave).toHaveBeenCalled();
   });
+
+  fit('should invoke onCancel() when "Cancel" button is clicked', () => {
+    // given the "onCancel()" handler method
+    spyOn(component, 'onCancel');
+
+    // given the "Cancel" button
+    const cancelButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#cancel'
+    );
+
+    // when the button is clicked
+    cancelButton.click();
+
+    // then "onCancel()" shoud be invoked
+    expect(component.onCancel).toHaveBeenCalled();
+  });
 });
