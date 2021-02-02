@@ -9,9 +9,13 @@ import { Issue } from 'src/app/models/issue/issue';
 export class BoardComponent implements OnInit {
   columns: { title: string; issues: Issue[] }[];
 
+  willDisplayColumnForm = false;
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  onDisplayColumnForm() {}
+  onDisplayColumnForm() {
+    this.willDisplayColumnForm = true;
+  }
 }
