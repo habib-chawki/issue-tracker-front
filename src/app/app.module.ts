@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ColumnFormComponent } from './components/column-form/column-form.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     IssuesComponent,
     ColumnComponent,
     BoardComponent,
+    ColumnFormComponent,
   ],
   imports: [
     DragDropModule,
