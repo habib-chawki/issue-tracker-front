@@ -73,4 +73,20 @@ describe('BoardComponent', () => {
       'Add column'
     );
   });
+
+  fit('should invoke "onDisplayColumnForm()" when "Add column" button is clicked', () => {
+    // given the onDisplayColumnForm() handler method
+    spyOn(component, 'onDisplayColumnForm');
+
+    // given the add column button
+    const addButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#add'
+    );
+
+    // when the button is clicked
+    addButton.click();
+
+    // then expect "onDisplayColumnForm()" to be invoked
+    expect(component.onDisplayColumnForm).toHaveBeenCalled();
+  });
 });

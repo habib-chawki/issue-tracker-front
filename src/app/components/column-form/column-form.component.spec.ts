@@ -26,7 +26,7 @@ describe('ColumnFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render column title label', () => {
+  it('should render column title label', () => {
     expect(nativeElement.querySelector('label[for="title"]').textContent).toBe(
       'Title'
     );
