@@ -36,7 +36,13 @@ describe('ColumnFormComponent', () => {
     expect(nativeElement.querySelector('input#title')).toBeTruthy();
   });
 
-  fit('should render "Save" column button', () => {
+  it('should render "Save" column button', () => {
     expect(nativeElement.querySelector('button#save').textContent).toBe('Save');
+  });
+
+  fit('should render "Cancel" form button', () => {
+    expect(nativeElement.querySelector('button#cancel').textContent).toBe(
+      'Cancel'
+    );
   });
 });
