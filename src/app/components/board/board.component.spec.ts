@@ -1,6 +1,7 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
+import { ColumnFormComponent } from '../column-form/column-form.component';
 import { ColumnComponent } from '../column/column.component';
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from '../issues/issues.component';
@@ -19,6 +20,7 @@ describe('BoardComponent', () => {
         ColumnComponent,
         IssuesComponent,
         IssueComponent,
+        ColumnFormComponent,
       ],
       imports: [DragDropModule],
     }).compileComponents();
@@ -74,7 +76,7 @@ describe('BoardComponent', () => {
     );
   });
 
-  fit('should invoke "onDisplayColumnForm()" when "Add column" button is clicked', () => {
+  it('should invoke "onDisplayColumnForm()" when "Add column" button is clicked', () => {
     // given the onDisplayColumnForm() handler method
     spyOn(component, 'onDisplayColumnForm');
 
@@ -88,5 +90,17 @@ describe('BoardComponent', () => {
 
     // then expect "onDisplayColumnForm()" to be invoked
     expect(component.onDisplayColumnForm).toHaveBeenCalled();
+  });
+
+  it('should display the column form when "onDisplayColumnForm()" is invoked', () => {
+    // column form component should not be rendered at first
+    expect(nativeElement.querySelector('app-column-form')).toBeFalsy();
+
+    // when "onDisplayColumnForm()" is called
+    component.onDisplayColumnForm();
+    fixture.detectChanges();
+
+    // then expect the form component to be displayed
+    expect(nativeElement.querySelector('app-column-form')).toBeTruthy();
   });
 });
