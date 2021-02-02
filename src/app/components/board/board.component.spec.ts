@@ -67,4 +67,10 @@ describe('BoardComponent', () => {
       component.columns.length
     );
   });
+
+  fit('should render "Add column" button', () => {
+    expect(nativeElement.querySelector('button#add').textContent).toBe(
+      'Add column'
+    );
+  });
 });
