@@ -11,4 +11,6 @@ export class ColumnFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {}
+
+  onCancel() {}
 }
