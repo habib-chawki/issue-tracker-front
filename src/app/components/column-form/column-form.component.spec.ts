@@ -5,21 +5,28 @@ import { ColumnFormComponent } from './column-form.component';
 describe('ColumnFormComponent', () => {
   let component: ColumnFormComponent;
   let fixture: ComponentFixture<ColumnFormComponent>;
+  let nativeElement: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ColumnFormComponent ]
-    })
-    .compileComponents();
+      declarations: [ColumnFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ColumnFormComponent);
     component = fixture.componentInstance;
+
+    nativeElement = fixture.nativeElement;
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  fit('should render input field for column title', () => {
+    expect(nativeElement.querySelector('input#title')).toBeTruthy();
   });
 });
