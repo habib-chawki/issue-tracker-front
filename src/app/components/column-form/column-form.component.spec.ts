@@ -35,4 +35,8 @@ describe('ColumnFormComponent', () => {
   it('should render input field for column title', () => {
     expect(nativeElement.querySelector('input#title')).toBeTruthy();
   });
+
+  fit('should render "Save" column button', () => {
+    expect(nativeElement.querySelector('button#save').textContent).toBe('Save');
+  });
 });
