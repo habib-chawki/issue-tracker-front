@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-column-form',
@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./column-form.component.scss'],
 })
 export class ColumnFormComponent implements OnInit {
+  @Output() columnFormSaved = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSave() {}
+  onSave() {
+    this.columnFormSaved.emit();
+  }
 
   onCancel() {}
 }
