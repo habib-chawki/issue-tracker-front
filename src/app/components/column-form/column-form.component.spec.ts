@@ -26,6 +26,10 @@ describe('ColumnFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render form', () => {
+    expect(nativeElement.querySelector('form')).toBeTruthy();
+  });
+
   it('should render column title label', () => {
     expect(nativeElement.querySelector('label[for="title"]').textContent).toBe(
       'Title'
