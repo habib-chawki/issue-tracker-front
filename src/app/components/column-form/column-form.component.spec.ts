@@ -62,7 +62,18 @@ describe('ColumnFormComponent', () => {
     expect(component.onSave).toHaveBeenCalled();
   });
 
-  fit('should invoke onCancel() when "Cancel" button is clicked', () => {
+  it('should emit "columnFormSaved" event when onSave() is invoked', () => {
+    // given the "columnFormSaved" event
+    spyOn(component.columnFormSaved, 'emit');
+
+    // when "onSave()" is called
+    component.onSave();
+
+    // then the event should be emitted
+    expect(component.columnFormSaved.emit).toHaveBeenCalled();
+  });
+
+  it('should invoke onCancel() when "Cancel" button is clicked', () => {
     // given the "onCancel()" handler method
     spyOn(component, 'onCancel');
 
