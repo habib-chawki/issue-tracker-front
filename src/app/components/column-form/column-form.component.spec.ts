@@ -26,7 +26,13 @@ describe('ColumnFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render input field for column title', () => {
+  fit('should render column title label', () => {
+    expect(nativeElement.querySelector('label[for="title"]').textContent).toBe(
+      'Title'
+    );
+  });
+
+  it('should render input field for column title', () => {
     expect(nativeElement.querySelector('input#title')).toBeTruthy();
   });
 });
