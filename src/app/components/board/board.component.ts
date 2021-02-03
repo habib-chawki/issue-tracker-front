@@ -22,4 +22,6 @@ export class BoardComponent implements OnInit {
   onColumnFormCancelled() {
     this.willDisplayColumnForm = false;
   }
+
+  onColumnFormSaved(formValue) {}
 }
