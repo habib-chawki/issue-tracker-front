@@ -123,7 +123,7 @@ describe('BoardComponent', () => {
     expect(component.onColumnFormCancelled).toHaveBeenCalled();
   });
 
-  it('should hide column form when onColumnFormCancelled() is invoked', () => {
+  it('should hide column form when "onColumnFormCancelled()" is invoked', () => {
     // given the column form should be displayed at first
     component.willDisplayColumnForm = true;
     fixture.detectChanges();
@@ -136,5 +136,26 @@ describe('BoardComponent', () => {
 
     // then the column form should be hidden
     expect(nativeElement.querySelector('app-column-form')).toBeFalsy();
+  });
+
+  fit('should invoke "onColumnFormSaved()" when columnFormSaved event is triggered', () => {
+    // given the column form should be displayed at first
+    component.willDisplayColumnForm = true;
+    fixture.detectChanges();
+
+    // given the column form saved handler method
+    spyOn(component, 'onColumnFormSaved');
+
+    // given the column form value
+    const columnFormValue = {
+      title: 'some title',
+    };
+
+    // when the ColumnForm component emits a "columnFormSaved" event with the form value
+    const columnForm = fixture.debugElement.query(By.css('app-column-form'));
+    columnForm.triggerEventHandler('columnFormSaved', columnFormValue);
+
+    // then the onColumnSaved handler method should be called with the form value
+    expect(component.onColumnFormSaved).toHaveBeenCalledWith(columnFormValue);
   });
 });
