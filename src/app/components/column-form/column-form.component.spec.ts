@@ -112,7 +112,7 @@ describe('ColumnFormComponent', () => {
     expect(component.columnFormCancelled.emit).toHaveBeenCalled();
   });
 
-  it('should set the form value when the form is submitted', () => {
+  it('should control the form values', () => {
     // given the title input field
     const titleInputField = fixture.debugElement.nativeElement.querySelector(
       'input#title'
@@ -132,13 +132,11 @@ describe('ColumnFormComponent', () => {
     // given the "onSave()" handler method
     spyOn(component, 'onSave');
 
-    // given the submit button
-    const submitButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#save'
-    );
+    // given the form
+    const form = fixture.debugElement.nativeElement.querySelector('form');
 
-    // when the button is clicked (form is submitted)
-    submitButton.click();
+    // when "ngSubmit" event is triggered (form is submitted)
+    form.dispatchEvent(new Event('ngSubmit'));
 
     // then "onSave()" should be invoked
     expect(component.onSave).toHaveBeenCalled();
