@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { title } from 'process';
 
 import { ColumnFormComponent } from './column-form.component';
 
@@ -108,5 +109,33 @@ describe('ColumnFormComponent', () => {
 
     // then the event should be emitted
     expect(component.columnFormCancelled.emit).toHaveBeenCalled();
+  });
+
+  it('should set the form value when the form is submitted', () => {
+    // given the title input field
+    const titleInputField = fixture.debugElement.nativeElement.querySelector(
+      'input#title'
+    );
+
+    titleInputField.value = 'Column title';
+    titleInputField.dispatchEvent(new Event('input'));
+
+    expect(component.columnForm.controls['title'].value).toEqual(
+      'Column title'
+    );
+  });
+
+  it('should invoke "onSave()" when the form is submitted', () => {
+    // given the onSave() handler method
+    spyOn(component, 'onSave');
+
+    // given the form
+    const form = fixture.debugElement.nativeElement.querySelector('form');
+
+    // when an "ngSubmit" event is triggered
+    form.dispatchEvent(new Event('ngSubmit'));
+
+    // then onSave() should be invoked
+    expect(component.onSave).toHaveBeenCalled();
   });
 });
