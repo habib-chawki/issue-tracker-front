@@ -138,8 +138,8 @@ describe('BoardComponent', () => {
     expect(nativeElement.querySelector('app-column-form')).toBeFalsy();
   });
 
-  fit('should invoke "onColumnFormSaved()" when columnFormSaved event is triggered', () => {
-    // given the column form should be displayed at first
+  it('should invoke "onColumnFormSaved()" when columnFormSaved event is triggered', () => {
+    // given the column form
     component.willDisplayColumnForm = true;
     fixture.detectChanges();
 
