@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
     this.willDisplayColumnForm = true;
   }
 
-  onHideColumnForm() {
+  onColumnFormCancelled() {
     this.willDisplayColumnForm = false;
   }
 }

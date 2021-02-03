@@ -106,32 +106,32 @@ describe('BoardComponent', () => {
     expect(nativeElement.querySelector('app-column-form')).toBeTruthy();
   });
 
-  it('should invoke "onHideColumnForm()" when a "columnFormCancelled" event is triggered', () => {
+  it('should invoke "onColumnFormCancelled()" when a "columnFormCancelled" event is triggered', () => {
     // given the form column component is displayed
     component.willDisplayColumnForm = true;
     fixture.detectChanges();
 
-    // given "onHideColumnForm()" handler method
-    spyOn(component, 'onHideColumnForm');
+    // given "onColumnFormCancelled()" handler method
+    spyOn(component, 'onColumnFormCancelled');
 
     // when the ColumnForm component emits a "columnFormCancelled" event
     const columnForm = fixture.debugElement.query(By.css('app-column-form'));
 
     columnForm.triggerEventHandler('columnFormCancelled', null);
 
-    // then expect "onHideColumnForm()" to be invoked
-    expect(component.onHideColumnForm).toHaveBeenCalled();
+    // then expect "onColumnFormCancelled()" to be invoked
+    expect(component.onColumnFormCancelled).toHaveBeenCalled();
   });
 
-  fit('should hide column form when onHideColumnForm() is invoked', () => {
+  it('should hide column form when onColumnFormCancelled() is invoked', () => {
     // given the column form should be displayed at first
     component.willDisplayColumnForm = true;
     fixture.detectChanges();
 
     expect(nativeElement.querySelector('app-column-form')).toBeTruthy();
 
-    // when "onHideColumnForm()" is invoked
-    component.onHideColumnForm();
+    // when "onColumnFormCancelled()" is invoked
+    component.onColumnFormCancelled();
     fixture.detectChanges();
 
     // then the column form should be hidden
