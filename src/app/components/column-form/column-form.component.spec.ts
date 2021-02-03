@@ -112,7 +112,7 @@ describe('ColumnFormComponent', () => {
     expect(component.columnFormCancelled.emit).toHaveBeenCalled();
   });
 
-  it('should control the form values', () => {
+  it('should control the form input values', () => {
     // given the title input field
     const titleInputField = fixture.debugElement.nativeElement.querySelector(
       'input#title'
@@ -121,6 +121,7 @@ describe('ColumnFormComponent', () => {
     // given the inputted column title
     const title = 'column title';
 
+    // when a title is inputted
     titleInputField.value = title;
     titleInputField.dispatchEvent(new Event('input'));
 
