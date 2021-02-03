@@ -11,4 +11,5 @@
 <app-column-form
   *ngIf="willDisplayColumnForm"
   (columnFormCancelled)="onHideColumnForm()"
+  (columnFormSaved)="onColumnFormSaved($event)"
 ></app-column-form>
