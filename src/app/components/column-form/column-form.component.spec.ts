@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { title } from 'process';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ColumnFormComponent } from './column-form.component';
 
@@ -11,6 +11,7 @@ describe('ColumnFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ColumnFormComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   });
 
@@ -117,25 +118,29 @@ describe('ColumnFormComponent', () => {
       'input#title'
     );
 
-    titleInputField.value = 'Column title';
+    // given the inputted column title
+    const title = 'column title';
+
+    titleInputField.value = title;
     titleInputField.dispatchEvent(new Event('input'));
 
-    expect(component.columnForm.controls['title'].value).toEqual(
-      'Column title'
-    );
+    // then expect the form value to have been set
+    expect(component.columnForm.controls['title'].value).toEqual(title);
   });
 
   it('should invoke "onSave()" when the form is submitted', () => {
-    // given the onSave() handler method
+    // given the "onSave()" handler method
     spyOn(component, 'onSave');
 
-    // given the form
-    const form = fixture.debugElement.nativeElement.querySelector('form');
+    // given the submit button
+    const submitButton: HTMLButtonElement = nativeElement.querySelector(
+      'button#save'
+    );
 
-    // when an "ngSubmit" event is triggered
-    form.dispatchEvent(new Event('ngSubmit'));
+    // when the button is clicked (form is submitted)
+    submitButton.click();
 
-    // then onSave() should be invoked
+    // then "onSave()" should be invoked
     expect(component.onSave).toHaveBeenCalled();
   });
 });
