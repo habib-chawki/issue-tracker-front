@@ -1,5 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnFormComponent } from '../column-form/column-form.component';
@@ -23,7 +24,7 @@ describe('BoardComponent', () => {
         IssueComponent,
         ColumnFormComponent,
       ],
-      imports: [DragDropModule],
+      imports: [DragDropModule, ReactiveFormsModule],
     }).compileComponents();
   });
 
