@@ -106,7 +106,7 @@ describe('BoardComponent', () => {
     expect(nativeElement.querySelector('app-column-form')).toBeTruthy();
   });
 
-  fit('should invoke "onHideColumnForm()" when a "columnFormCancelled" event is triggered', () => {
+  it('should invoke "onHideColumnForm()" when a "columnFormCancelled" event is triggered', () => {
     // given the form column component is displayed
     component.willDisplayColumnForm = true;
     fixture.detectChanges();
@@ -121,5 +121,20 @@ describe('BoardComponent', () => {
 
     // then expect "onHideColumnForm()" to be invoked
     expect(component.onHideColumnForm).toHaveBeenCalled();
+  });
+
+  fit('should hide column form when onHideColumnForm() is invoked', () => {
+    // given the column form should be displayed at first
+    component.willDisplayColumnForm = true;
+    fixture.detectChanges();
+
+    expect(nativeElement.querySelector('app-column-form')).toBeTruthy();
+
+    // when "onHideColumnForm()" is invoked
+    component.onHideColumnForm();
+    fixture.detectChanges();
+
+    // then the column form should be hidden
+    expect(nativeElement.querySelector('app-column-form')).toBeFalsy();
   });
 });
