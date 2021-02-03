@@ -1,5 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnFormComponent } from '../column-form/column-form.component';
 import { ColumnComponent } from '../column/column.component';
@@ -102,5 +103,22 @@ describe('BoardComponent', () => {
 
     // then expect the form component to be displayed
     expect(nativeElement.querySelector('app-column-form')).toBeTruthy();
+  });
+
+  fit('should invoke "onHideColumnForm()" when a "columnFormCancelled" event is triggered', () => {
+    // given the form column component is displayed
+    component.willDisplayColumnForm = true;
+    fixture.detectChanges();
+
+    // given "onHideColumnForm()" handler method
+    spyOn(component, 'onHideColumnForm');
+
+    // when the ColumnForm component emits a "columnFormCancelled" event
+    const columnForm = fixture.debugElement.query(By.css('app-column-form'));
+
+    columnForm.triggerEventHandler('columnFormCancelled', null);
+
+    // then expect "onHideColumnForm()" to be invoked
+    expect(component.onHideColumnForm).toHaveBeenCalled();
   });
 });
