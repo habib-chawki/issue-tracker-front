@@ -8,4 +8,7 @@
   ></app-column>
 </div>
 
-<app-column-form *ngIf="willDisplayColumnForm"></app-column-form>
+<app-column-form
+  *ngIf="willDisplayColumnForm"
+  (columnFormCancelled)="onHideColumnForm()"
+></app-column-form>
