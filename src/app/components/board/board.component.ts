@@ -18,4 +18,6 @@ export class BoardComponent implements OnInit {
   onDisplayColumnForm() {
     this.willDisplayColumnForm = true;
   }
+
+  onHideColumnForm() {}
 }
