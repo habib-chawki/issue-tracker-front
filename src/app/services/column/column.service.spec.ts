@@ -38,12 +38,16 @@ describe('ColumnService', () => {
     expect(columnService).toBeTruthy();
   });
 
-  fit('should create column', () => {
+  it('should create column', () => {
     columnService.createColumn(column, boardId).subscribe((response) => {
       expect(response).toBe(column);
     });
 
     const req = httpTestingController.expectOne(baseUrl);
+
+    expect(req.request.url).toBe(baseUrl);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toBe(column);
 
     req.flush(column);
   });
