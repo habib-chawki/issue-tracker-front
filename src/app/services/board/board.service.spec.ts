@@ -52,7 +52,7 @@ describe('BoardService', () => {
     req.flush(board);
   });
 
-  fit('should get board by id', () => {
+  it('should get board by id', () => {
     const url = `${baseUrl}/${board.id}`;
 
     boardService.getBoard(board.id).subscribe((response: Board) => {
@@ -60,6 +60,10 @@ describe('BoardService', () => {
     });
 
     const req = httpTestingController.expectOne(url);
+
+    expect(req.request.url).toBe(url);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.body).toBeNull();
 
     req.flush(board);
   });
