@@ -11,7 +11,7 @@ import { ColumnService } from 'src/app/services/column/column.service';
 })
 export class BoardComponent implements OnInit, OnDestroy {
   board: Board;
-  columns: Column[];
+  columns: Column[] = [];
 
   observable: Observable<Column>;
   subscriptions: Subscription;
@@ -20,7 +20,9 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   constructor(private columnService: ColumnService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscriptions = new Subscription();
+  }
 
   onDisplayColumnForm() {
     this.willDisplayColumnForm = true;
@@ -32,6 +34,12 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onColumnFormSaved(formValue) {
     this.observable = this.columnService.createColumn(formValue, this.board.id);
+
+    this.subscriptions.add(
+      this.observable.subscribe((response: Column) => {
+        this.columns.push(response);
+      })
+    );
   }
 
   ngOnDestroy(): void {
