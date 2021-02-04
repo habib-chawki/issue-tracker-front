@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import Board from 'src/app/models/board/board';
+import Column from 'src/app/models/column/column';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { ColumnFormComponent } from '../column-form/column-form.component';
@@ -20,6 +21,7 @@ describe('BoardComponent', () => {
   let nativeElement: HTMLElement;
 
   let board: Board;
+  let column: Column;
   let columnService: ColumnService;
 
   beforeEach(async () => {
@@ -49,6 +51,12 @@ describe('BoardComponent', () => {
       id: '100',
       name: 'scrum board',
       columns: [],
+    };
+
+    column = {
+      id: '200',
+      title: 'Done',
+      issues: [],
     };
   });
 
@@ -193,5 +201,28 @@ describe('BoardComponent', () => {
 
     // then expect column service to be invoked
     expect(columnService.createColumn).toHaveBeenCalled();
+  });
+
+  fit('should set observable property returned from columnService#createColumn()', () => {
+    // given the board
+    component.board = board;
+
+    // given the columnService#createColumn() returns an observable of column
+    const observable = of(column);
+    spyOn(columnService, 'createColumn').and.returnValue(observable);
+
+    // the observable property should be undefined at first
+    expect(component.observable).toBeUndefined();
+
+    // given a form value
+    const formValue = {
+      title: 'Column title',
+    };
+
+    // when onColumnFormSaved() is called
+    component.onColumnFormSaved(formValue);
+
+    // then expect the observable property to be set
+    expect(component.observable).toBe(observable);
   });
 });
