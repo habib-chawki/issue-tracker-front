@@ -42,6 +42,10 @@ export class BoardComponent implements OnInit, OnDestroy {
     );
   }
 
+  handleCreateColumn(column: Column) {
+    this.columns.push(column);
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
