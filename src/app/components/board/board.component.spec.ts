@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
@@ -203,7 +203,7 @@ describe('BoardComponent', () => {
     expect(columnService.createColumn).toHaveBeenCalled();
   });
 
-  fit('should set observable property returned from columnService#createColumn()', () => {
+  it('should set observable property returned from columnService#createColumn()', () => {
     // given the board
     component.board = board;
 
@@ -224,5 +224,16 @@ describe('BoardComponent', () => {
 
     // then expect the observable property to be set
     expect(component.observable).toBe(observable);
+  });
+
+  fit('should unsubscribe from all subscriptions when ngOnDestroy() is called', () => {
+    component.subscriptions = new Subscription();
+    spyOn(component.subscriptions, 'unsubscribe');
+
+    // when component is destroyed
+    component.ngOnDestroy();
+
+    // then expect to unsubscribe from all subscriptions
+    expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
 });
