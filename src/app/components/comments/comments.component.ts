@@ -13,13 +13,11 @@ export class CommentsComponent implements OnInit, OnDestroy {
   @Input() issueId: string;
 
   observable: Observable<Comment>;
-  subscriptions: Subscription;
+  subscriptions = new Subscription();
 
   constructor(private commentService: CommentService) {}
 
-  ngOnInit(): void {
-    this.subscriptions = new Subscription();
-  }
+  ngOnInit(): void {}
 
   onCreateComment(content: string) {
     this.observable = this.commentService.createComment(content, this.issueId);

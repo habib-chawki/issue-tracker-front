@@ -14,15 +14,13 @@ export class BoardComponent implements OnInit, OnDestroy {
   columns: Column[] = [];
 
   observable: Observable<Column>;
-  subscriptions: Subscription;
+  subscriptions = new Subscription();
 
   willDisplayColumnForm = false;
 
   constructor(private columnService: ColumnService) {}
 
-  ngOnInit(): void {
-    this.subscriptions = new Subscription();
-  }
+  ngOnInit(): void {}
 
   onDisplayColumnForm() {
     this.willDisplayColumnForm = true;
