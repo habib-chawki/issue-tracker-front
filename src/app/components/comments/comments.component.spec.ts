@@ -295,7 +295,6 @@ describe('CommentsComponent', () => {
   });
 
   it('should unsubscribe when the component is destroyed', () => {
-    component.subscriptions = new Subscription();
     spyOn(component.subscriptions, 'unsubscribe');
 
     // when the component is destroyed
