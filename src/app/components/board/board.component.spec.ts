@@ -235,4 +235,15 @@ describe('BoardComponent', () => {
     // then expect to unsubscribe from all subscriptions
     expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
+
+  it('should add column to columns list when handleCreateColumn() is invoked', () => {
+    // given the list of columns
+    component.columns = [];
+
+    // when handleCreateColumn() is called
+    component.handleCreateColumn(column);
+
+    // then expect the column to have been added to the list
+    expect(component.columns).toContain(column);
+  });
 });
