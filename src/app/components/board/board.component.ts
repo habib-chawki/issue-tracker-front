@@ -34,12 +34,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onColumnFormSaved(formValue) {
     this.observable = this.columnService.createColumn(formValue, this.board.id);
-
-    this.subscriptions.add(
-      this.observable.subscribe((response: Column) => {
-        this.columns.push(response);
-      })
-    );
+    this.subscriptions.add(this.observable.subscribe(this.handleCreateColumn));
   }
 
   handleCreateColumn(column: Column) {
