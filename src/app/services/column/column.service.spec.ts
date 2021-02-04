@@ -8,7 +8,7 @@ import Column from 'src/app/models/column/column';
 import { ColumnService } from './column.service';
 
 describe('ColumnService', () => {
-  let service: ColumnService;
+  let columnService: ColumnService;
   let httpTestingController: HttpTestingController;
 
   const boardId = '100';
@@ -19,7 +19,7 @@ describe('ColumnService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
 
-    service = TestBed.inject(ColumnService);
+    columnService = TestBed.inject(ColumnService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
@@ -35,8 +35,16 @@ describe('ColumnService', () => {
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(columnService).toBeTruthy();
   });
 
-  it('should create column', () => {});
+  fit('should create column', () => {
+    columnService.createColumn(column, boardId).subscribe((response) => {
+      expect(response).toBe(column);
+    });
+
+    const req = httpTestingController.expectOne(baseUrl);
+
+    req.flush(column);
+  });
 });
