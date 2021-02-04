@@ -27,6 +27,7 @@ describe('ColumnService', () => {
     column = {
       id: '10',
       title: 'To do',
+      issues: [],
     };
   });
 
