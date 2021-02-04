@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
+import { ColumnService } from 'src/app/services/column/column.service';
 
 @Component({
   selector: 'app-board',
@@ -11,7 +12,7 @@ export class BoardComponent implements OnInit {
 
   willDisplayColumnForm = false;
 
-  constructor() {}
+  constructor(private columnService: ColumnService) {}
 
   ngOnInit(): void {}
 
@@ -23,5 +24,7 @@ export class BoardComponent implements OnInit {
     this.willDisplayColumnForm = false;
   }
 
-  onColumnFormSaved(formValue) {}
+  onColumnFormSaved(formValue) {
+    this.columnService.createColumn(formValue, '100');
+  }
 }
