@@ -236,6 +236,23 @@ describe('BoardComponent', () => {
     expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
 
+  it('should invoke "handleCreateColumn()" within "onColumnFormSaved()"', () => {
+    // given the board
+    component.board = board;
+
+    spyOn(columnService, 'createColumn').and.returnValue(of(column));
+    spyOn(component, 'handleCreateColumn');
+
+    // given a form value
+    const formValue = {
+      title: 'Column title',
+    };
+
+    component.onColumnFormSaved(formValue);
+
+    expect(component.handleCreateColumn).toHaveBeenCalled();
+  });
+
   it('should add column to columns list when handleCreateColumn() is invoked', () => {
     // given the list of columns
     component.columns = [];
