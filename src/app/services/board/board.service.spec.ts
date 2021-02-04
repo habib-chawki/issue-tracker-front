@@ -13,6 +13,8 @@ describe('BoardService', () => {
 
   let board: Board;
 
+  const baseUrl = 'http://localhost:80/boards';
+
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
 
@@ -36,19 +38,29 @@ describe('BoardService', () => {
     expect(boardService).toBeTruthy();
   });
 
-  fit('should create board', () => {
-    const baseUrl = 'localhost:80/boards';
-
+  it('should create board', () => {
     boardService.createBoard(board).subscribe((response: Board) => {
       expect(response).toBe(board);
     });
 
-    const res = httpTestingController.expectOne(baseUrl);
+    const req = httpTestingController.expectOne(baseUrl);
 
-    expect(res.request.url).toBe(baseUrl);
-    expect(res.request.method).toBe('POST');
-    expect(res.request.body).toBe(board);
+    expect(req.request.url).toBe(baseUrl);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toBe(board);
 
-    res.flush(board);
+    req.flush(board);
+  });
+
+  fit('should get board by id', () => {
+    const url = `${baseUrl}/${board.id}`;
+
+    boardService.getBoard(board.id).subscribe((response: Board) => {
+      expect(response).toBe(board);
+    });
+
+    const req = httpTestingController.expectOne(url);
+
+    req.flush(board);
   });
 });
