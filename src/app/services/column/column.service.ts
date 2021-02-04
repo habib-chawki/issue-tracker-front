@@ -11,7 +11,7 @@ export class ColumnService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createColumn(column: Column, boardId: string): Observable<Column> {
+  createColumn(column, boardId: string): Observable<Column> {
     return this.httpClient.post<Column>(
       this.baseUrl.replace('boardId', boardId),
       column
