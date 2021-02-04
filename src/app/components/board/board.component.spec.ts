@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { ColumnFormComponent } from '../column-form/column-form.component';
@@ -54,6 +55,7 @@ describe('BoardComponent', () => {
     // given the list of columns
     component.columns = [
       {
+        id: '1',
         title: 'To do',
         issues: [
           new IssueBuilder().id('100').build(),
@@ -61,10 +63,12 @@ describe('BoardComponent', () => {
         ],
       },
       {
+        id: '2',
         title: 'In progress',
         issues: [new IssueBuilder().id('300').build()],
       },
       {
+        id: '3',
         title: 'Done',
         issues: [new IssueBuilder().id('400').build()],
       },
@@ -166,7 +170,7 @@ describe('BoardComponent', () => {
   });
 
   fit('should invoke columnService#createColumn() when "onColumnFormSaved()" is called', () => {
-    spyOn(columnService, 'createColumn');
+    spyOn(columnService, 'createColumn').and.returnValue(of());
 
     // given a form value
     const column = {

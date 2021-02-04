@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Board from 'src/app/models/board/board';
+import Column from 'src/app/models/column/column';
 import { Issue } from 'src/app/models/issue/issue';
 import { ColumnService } from 'src/app/services/column/column.service';
 
@@ -8,7 +10,8 @@ import { ColumnService } from 'src/app/services/column/column.service';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
-  columns: { title: string; issues: Issue[] }[];
+  board: Board;
+  columns: Column[];
 
   willDisplayColumnForm = false;
 
@@ -25,6 +28,10 @@ export class BoardComponent implements OnInit {
   }
 
   onColumnFormSaved(formValue) {
-    this.columnService.createColumn(formValue, '100');
+    this.columnService
+      .createColumn(formValue, this.board.id)
+      .subscribe((response: Column) => {
+        this.board.columns.push(response);
+      });
   }
 }
