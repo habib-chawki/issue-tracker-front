@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import Board from 'src/app/models/board/board';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { ColumnFormComponent } from '../column-form/column-form.component';
@@ -18,6 +19,7 @@ describe('BoardComponent', () => {
   let fixture: ComponentFixture<BoardComponent>;
   let nativeElement: HTMLElement;
 
+  let board: Board;
   let columnService: ColumnService;
 
   beforeEach(async () => {
@@ -42,6 +44,12 @@ describe('BoardComponent', () => {
     columnService = TestBed.inject(ColumnService);
 
     fixture.detectChanges();
+
+    board = {
+      id: '100',
+      name: 'scrum board',
+      columns: [],
+    };
   });
 
   it('should create', () => {
@@ -169,7 +177,10 @@ describe('BoardComponent', () => {
     expect(component.onColumnFormSaved).toHaveBeenCalledWith(columnFormValue);
   });
 
-  fit('should invoke columnService#createColumn() when "onColumnFormSaved()" is called', () => {
+  it('should invoke columnService#createColumn() when "onColumnFormSaved()" is called', () => {
+    // given the board
+    component.board = board;
+
     spyOn(columnService, 'createColumn').and.returnValue(of());
 
     // given a form value
