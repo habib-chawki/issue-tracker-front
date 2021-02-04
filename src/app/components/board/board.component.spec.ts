@@ -226,8 +226,7 @@ describe('BoardComponent', () => {
     expect(component.observable).toBe(observable);
   });
 
-  fit('should unsubscribe from all subscriptions when ngOnDestroy() is called', () => {
-    component.subscriptions = new Subscription();
+  it('should unsubscribe from all subscriptions when ngOnDestroy() is called', () => {
     spyOn(component.subscriptions, 'unsubscribe');
 
     // when component is destroyed
