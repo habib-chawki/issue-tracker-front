@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { of, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
@@ -234,6 +234,28 @@ describe('BoardComponent', () => {
 
     // then expect to unsubscribe from all subscriptions
     expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
+  });
+
+  it('should add to subscriptions', () => {
+    // given the board
+    component.board = board;
+
+    // given the observable
+    component.observable = new Observable();
+
+    spyOn(columnService, 'createColumn').and.returnValue(of(column));
+    spyOn(component.subscriptions, 'add');
+
+    // given a form value
+    const formValue = {
+      title: 'Column title',
+    };
+
+    // when onColumnFormSaved() is called
+    component.onColumnFormSaved(formValue);
+
+    // then expect subscription to have been added to the subscriptions object
+    expect(component.subscriptions.add).toHaveBeenCalled();
   });
 
   it('should invoke "handleCreateColumn()" within "onColumnFormSaved()"', () => {
