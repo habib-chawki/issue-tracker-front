@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
-import { Issue } from 'src/app/models/issue/issue';
 import { ColumnService } from 'src/app/services/column/column.service';
 
 @Component({
@@ -28,10 +27,6 @@ export class BoardComponent implements OnInit {
   }
 
   onColumnFormSaved(formValue) {
-    this.columnService
-      .createColumn(formValue, this.board.id)
-      .subscribe((response: Column) => {
-        this.board.columns.push(response);
-      });
+    this.columnService.createColumn(formValue, this.board.id);
   }
 }
