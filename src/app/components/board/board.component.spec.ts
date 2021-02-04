@@ -276,9 +276,6 @@ describe('BoardComponent', () => {
   });
 
   it('should add column to columns list when handleCreateColumn() is invoked', () => {
-    // given the list of columns
-    component.columns = [];
-
     // when handleCreateColumn() is called
     component.handleCreateColumn(column);
 
