@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import { ColumnService } from 'src/app/services/column/column.service';
@@ -9,11 +9,12 @@ import { ColumnService } from 'src/app/services/column/column.service';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, OnDestroy {
   board: Board;
   columns: Column[];
 
   observable: Observable<Column>;
+  subscriptions: Subscription;
 
   willDisplayColumnForm = false;
 
@@ -31,5 +32,9 @@ export class BoardComponent implements OnInit {
 
   onColumnFormSaved(formValue) {
     this.observable = this.columnService.createColumn(formValue, this.board.id);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
