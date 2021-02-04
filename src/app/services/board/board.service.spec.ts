@@ -3,6 +3,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import Board from 'src/app/models/board/board';
 
 import { BoardService } from './board.service';
 
@@ -19,7 +20,13 @@ describe('BoardService', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  beforeEach(() => {});
+  beforeEach(() => {
+    board = {
+      id: '1',
+      name: 'scrum_board',
+      columns: [],
+    };
+  });
 
   afterEach(() => {
     httpTestingController.verify();
@@ -29,7 +36,15 @@ describe('BoardService', () => {
     expect(boardService).toBeTruthy();
   });
 
-  it('should create board', () => {
-    boardService.createBoard().subscribe((board: Board) => {});
+  fit('should create board', () => {
+    const baseUrl = 'localhost:80/boards';
+
+    boardService.createBoard(board).subscribe((response: Board) => {
+      expect(response).toBe(board);
+    });
+
+    const res = httpTestingController.expectOne(baseUrl);
+
+    res.flush(board);
   });
 });
