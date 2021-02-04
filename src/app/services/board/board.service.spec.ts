@@ -45,6 +45,10 @@ describe('BoardService', () => {
 
     const res = httpTestingController.expectOne(baseUrl);
 
+    expect(res.request.url).toBe(baseUrl);
+    expect(res.request.method).toBe('POST');
+    expect(res.request.body).toBe(board);
+
     res.flush(board);
   });
 });
