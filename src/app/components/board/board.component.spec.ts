@@ -1,8 +1,10 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
+import { ColumnService } from 'src/app/services/column/column.service';
 import { ColumnFormComponent } from '../column-form/column-form.component';
 import { ColumnComponent } from '../column/column.component';
 import { IssueComponent } from '../issue/issue.component';
@@ -15,6 +17,8 @@ describe('BoardComponent', () => {
   let fixture: ComponentFixture<BoardComponent>;
   let nativeElement: HTMLElement;
 
+  let columnService: ColumnService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -24,7 +28,7 @@ describe('BoardComponent', () => {
         IssueComponent,
         ColumnFormComponent,
       ],
-      imports: [DragDropModule, ReactiveFormsModule],
+      imports: [DragDropModule, ReactiveFormsModule, HttpClientTestingModule],
     }).compileComponents();
   });
 
@@ -33,6 +37,8 @@ describe('BoardComponent', () => {
     component = fixture.componentInstance;
 
     nativeElement = fixture.nativeElement;
+
+    columnService = TestBed.inject(ColumnService);
 
     fixture.detectChanges();
   });
@@ -157,5 +163,20 @@ describe('BoardComponent', () => {
 
     // then the onColumnSaved handler method should be called with the form value
     expect(component.onColumnFormSaved).toHaveBeenCalledWith(columnFormValue);
+  });
+
+  fit('should invoke columnService#createColumn() when "onColumnFormSaved()" is called', () => {
+    spyOn(columnService, 'createColumn');
+
+    // given a form value
+    const column = {
+      title: 'Column title',
+    };
+
+    // when onColumnFormSaved() is called
+    component.onColumnFormSaved(column);
+
+    // then expect column service to be invoked
+    expect(columnService.createColumn).toHaveBeenCalled();
   });
 });
