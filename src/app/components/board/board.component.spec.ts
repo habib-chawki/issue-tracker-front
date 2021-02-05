@@ -50,7 +50,26 @@ describe('BoardComponent', () => {
     board = {
       id: '100',
       name: 'scrum board',
-      columns: [],
+      columns: [
+        {
+          id: '1',
+          title: 'To do',
+          issues: [
+            new IssueBuilder().id('100').build(),
+            new IssueBuilder().id('200').build(),
+          ],
+        },
+        {
+          id: '2',
+          title: 'In progress',
+          issues: [new IssueBuilder().id('300').build()],
+        },
+        {
+          id: '3',
+          title: 'Done',
+          issues: [new IssueBuilder().id('400').build()],
+        },
+      ],
     };
 
     column = {
@@ -69,32 +88,13 @@ describe('BoardComponent', () => {
     expect(nativeElement.querySelectorAll('app-colum').length).toBe(0);
 
     // given the list of columns
-    component.columns = [
-      {
-        id: '1',
-        title: 'To do',
-        issues: [
-          new IssueBuilder().id('100').build(),
-          new IssueBuilder().id('200').build(),
-        ],
-      },
-      {
-        id: '2',
-        title: 'In progress',
-        issues: [new IssueBuilder().id('300').build()],
-      },
-      {
-        id: '3',
-        title: 'Done',
-        issues: [new IssueBuilder().id('400').build()],
-      },
-    ];
+    component.board = board;
 
     fixture.detectChanges();
 
     // the columns should all be rendered
     expect(nativeElement.querySelectorAll('app-column').length).toBe(
-      component.columns.length
+      component.board.columns.length
     );
   });
 
@@ -276,10 +276,12 @@ describe('BoardComponent', () => {
   });
 
   it('should add column to columns list when handleCreateColumn() is invoked', () => {
+    component.board = board;
+
     // when handleCreateColumn() is called
     component.handleCreateColumn(column);
 
     // then expect the column to have been added to the list
-    expect(component.columns).toContain(column);
+    expect(component.board.columns).toContain(column);
   });
 });
