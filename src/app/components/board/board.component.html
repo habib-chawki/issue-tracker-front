@@ -2,7 +2,7 @@
 
 <div cdkDropListGroup>
   <app-column
-    *ngFor="let column of columns"
+    *ngFor="let column of board?.columns"
     [title]="column.title"
     [issues]="column.issues"
   ></app-column>
