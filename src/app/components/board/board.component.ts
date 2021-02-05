@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
@@ -10,8 +10,7 @@ import { ColumnService } from 'src/app/services/column/column.service';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  board: Board;
-  columns: Column[] = [];
+  @Input() board: Board;
 
   observable: Observable<Column>;
   subscriptions = new Subscription();
@@ -36,7 +35,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   handleCreateColumn(column: Column) {
-    this.columns.push(column);
+    this.board.columns.push(column);
   }
 
   ngOnDestroy(): void {
