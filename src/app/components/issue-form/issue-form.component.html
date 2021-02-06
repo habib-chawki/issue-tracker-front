@@ -4,8 +4,11 @@
     <input matInput type="text" id="summary" formControlName="summary" />
   </mat-form-field>
 
-  <label for="description">Description</label>
-  <textarea id="description" formControlName="description"> </textarea>
+  <mat-form-field>
+    <mat-label for="description">Description</mat-label>
+    <textarea matInput id="description" formControlName="description">
+    </textarea>
+  </mat-form-field>
 
   <label for="type">Type</label>
   <select id="type" formControlName="type">
