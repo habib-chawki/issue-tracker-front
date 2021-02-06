@@ -73,7 +73,7 @@ describe('BoardComponent', () => {
     };
 
     column = {
-      id: '200',
+      id: '4',
       title: 'Done',
       issues: [],
     };
