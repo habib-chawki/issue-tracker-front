@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
+import { IssueFormComponent } from '../issue-form/issue-form.component';
 
 @Component({
   selector: 'app-backlog',
@@ -18,7 +20,8 @@ export class BacklogComponent implements OnInit {
 
   constructor(
     private issueService: IssueService,
-    private issueCommunicationService: IssueCommunicationService
+    private issueCommunicationService: IssueCommunicationService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +67,7 @@ export class BacklogComponent implements OnInit {
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
     this.willDisplayIssueForm = true;
+    this.dialog.open(IssueFormComponent);
   }
 
   // invoked when the cancel button of the issue form is clicked
