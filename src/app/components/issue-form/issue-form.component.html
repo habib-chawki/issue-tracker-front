@@ -31,15 +31,17 @@
     </mat-select>
   </mat-form-field>
 
-  <label for="resolution">Resolution</label>
-  <select type="text" id="resolution" formControlName="resolution">
-    <option
-      *ngFor="let issueResolution of issueResolutions"
-      value="{{ issueResolution }}"
-    >
-      {{ issueResolution }}
-    </option>
-  </select>
+  <mat-form-field>
+    <mat-label for="resolution">Resolution</mat-label>
+    <mat-select type="text" id="resolution" formControlName="resolution">
+      <mat-option
+        *ngFor="let issueResolution of issueResolutions"
+        value="{{ issueResolution }}"
+      >
+        {{ issueResolution }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <label for="assignee">Assignee</label>
   <input type="text" id="assignee" formControlName="assignee" />
