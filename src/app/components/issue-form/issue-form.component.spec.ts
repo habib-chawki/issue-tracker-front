@@ -8,7 +8,7 @@ import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueFormComponent } from './issue-form.component';
 
-describe('IssueFormComponent', () => {
+fdescribe('IssueFormComponent', () => {
   let component: IssueFormComponent;
   let fixture: ComponentFixture<IssueFormComponent>;
   let nativeElement: HTMLElement;
@@ -40,7 +40,7 @@ describe('IssueFormComponent', () => {
       .build();
   });
 
-  it('should create', () => {
+  fit('should create', () => {
     expect(component).toBeTruthy();
     expect(nativeElement).toBeTruthy();
   });

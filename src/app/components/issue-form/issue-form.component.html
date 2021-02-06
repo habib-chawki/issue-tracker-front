@@ -12,8 +12,8 @@
 
   <mat-form-field>
     <mat-label for="type">Type</mat-label>
-    <mat-select matNativeControl id="type" formControlName="type">
-      <mat-option *ngFor="let issueType of issueTypes" value="{{ issueType }}">
+    <mat-select name="type" formControlName="type">
+      <mat-option *ngFor="let issueType of issueTypes" [value]="issueType">
         {{ issueType }}
       </mat-option>
     </mat-select>
