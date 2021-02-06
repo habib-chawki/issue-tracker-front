@@ -1,4 +1,6 @@
-<button id="add" (click)="onDisplayIssueForm()">Add issue</button>
+<button mat-raised-button id="add" (click)="onDisplayIssueForm()">
+  Add issue
+</button>
 
 <app-issue-form
   *ngIf="willDisplayIssueForm"
