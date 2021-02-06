@@ -19,12 +19,17 @@
     </mat-select>
   </mat-form-field>
 
-  <label for="status">Status</label>
-  <select id="status" formControlName="status">
-    <option *ngFor="let issueStatus of issueStatuses" value="{{ issueStatus }}">
-      {{ issueStatus }}
-    </option>
-  </select>
+  <mat-form-field>
+    <mat-label for="status">Status</mat-label>
+    <mat-select id="status" formControlName="status">
+      <mat-option
+        *ngFor="let issueStatus of issueStatuses"
+        value="{{ issueStatus }}"
+      >
+        {{ issueStatus }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <label for="resolution">Resolution</label>
   <select type="text" id="resolution" formControlName="resolution">
