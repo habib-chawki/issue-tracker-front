@@ -1,6 +1,8 @@
 <form [formGroup]="issueForm" (ngSubmit)="onSave()">
-  <label for="summary">Summary</label>
-  <input type="text" id="summary" formControlName="summary" />
+  <mat-form-field>
+    <mat-label>Summary</mat-label>
+    <input matInput type="text" id="summary" formControlName="summary" />
+  </mat-form-field>
 
   <label for="description">Description</label>
   <textarea id="description" formControlName="description"> </textarea>
@@ -35,6 +37,6 @@
   <label for="estimate">Estimated time</label>
   <input type="date" id="estimate" formControlName="estimate" />
 
-  <button type="submit" id="submit">Save</button>
-  <button id="cancel" (click)="onCancel()">Cancel</button>
+  <button mat-raised-button type="submit" id="submit">Save</button>
+  <button mat-raised-button id="cancel" (click)="onCancel()">Cancel</button>
 </form>
