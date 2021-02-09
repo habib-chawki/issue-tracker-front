@@ -1,58 +1,69 @@
 <form [formGroup]="issueForm" (ngSubmit)="onSave()">
-  <mat-form-field>
-    <mat-label>Summary</mat-label>
-    <input matInput type="text" id="summary" formControlName="summary" />
-  </mat-form-field>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Summary</mat-label>
+      <input matInput type="text" id="summary" formControlName="summary" />
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label for="description">Description</mat-label>
-    <textarea matInput id="description" formControlName="description">
-    </textarea>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label for="description">Description</mat-label>
+      <textarea matInput id="description" formControlName="description">
+      </textarea>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label for="type">Type</mat-label>
-    <mat-select name="type" formControlName="type">
-      <mat-option *ngFor="let issueType of issueTypes" [value]="issueType">
-        {{ issueType }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label for="type">Type</mat-label>
+      <mat-select name="type" formControlName="type">
+        <mat-option *ngFor="let issueType of issueTypes" [value]="issueType">
+          {{ issueType }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label for="status">Status</mat-label>
-    <mat-select id="status" formControlName="status">
-      <mat-option
-        *ngFor="let issueStatus of issueStatuses"
-        value="{{ issueStatus }}"
+    <mat-form-field>
+      <mat-label for="status">Status</mat-label>
+      <mat-select id="status" formControlName="status">
+        <mat-option
+          *ngFor="let issueStatus of issueStatuses"
+          value="{{ issueStatus }}"
+        >
+          {{ issueStatus }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="resolution">Resolution</mat-label>
+      <mat-select type="text" id="resolution" formControlName="resolution">
+        <mat-option
+          *ngFor="let issueResolution of issueResolutions"
+          value="{{ issueResolution }}"
+        >
+          {{ issueResolution }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="assignee">Assignee</mat-label>
+      <input matInput type="text" id="assignee" formControlName="assignee" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="estimate">Estimated time</mat-label>
+      <input matInput type="date" id="estimate" formControlName="estimate" />
+    </mat-form-field>
+
+    <mat-dialog-actions>
+      <button mat-raised-button type="submit" id="submit">Save</button>
+      <button
+        mat-raised-button
+        mat-dialog-close
+        id="cancel"
+        (click)="onCancel()"
       >
-        {{ issueStatus }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label for="resolution">Resolution</mat-label>
-    <mat-select type="text" id="resolution" formControlName="resolution">
-      <mat-option
-        *ngFor="let issueResolution of issueResolutions"
-        value="{{ issueResolution }}"
-      >
-        {{ issueResolution }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label for="assignee">Assignee</mat-label>
-    <input matInput type="text" id="assignee" formControlName="assignee" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label for="estimate">Estimated time</mat-label>
-    <input matInput type="date" id="estimate" formControlName="estimate" />
-  </mat-form-field>
-
-  <button mat-raised-button type="submit" id="submit">Save</button>
-  <button mat-raised-button id="cancel" (click)="onCancel()">Cancel</button>
+        Cancel
+      </button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
 </form>
