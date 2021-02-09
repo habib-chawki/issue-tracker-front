@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
 @Component({
   selector: 'app-issue-form',
@@ -11,7 +12,6 @@ import IssueType from 'src/app/models/enums/issue-type';
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
-  @Output() issueFormSaved = new EventEmitter();
   @Output() issueFormCancelled = new EventEmitter();
 
   @Input() initialFormValue = {};
@@ -33,7 +33,7 @@ export class IssueFormComponent implements OnInit {
     estimate: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private issueCommunicationService: IssueCommunicationService) {}
 
   ngOnInit(): void {
     if (this.initialFormValue) {
@@ -42,7 +42,7 @@ export class IssueFormComponent implements OnInit {
   }
 
   onSave() {
-    this.issueFormSaved.emit(this.issueForm.value);
+    this.issueCommunicationService.announceIssueFormSaved(this.issueForm.value);
   }
 
   onCancel() {
