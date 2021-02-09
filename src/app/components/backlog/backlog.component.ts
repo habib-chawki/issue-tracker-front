@@ -16,8 +16,6 @@ export class BacklogComponent implements OnInit {
 
   formValue: Issue;
 
-  willDisplayIssueForm: boolean = false;
-
   constructor(
     private issueService: IssueService,
     private issueCommunicationService: IssueCommunicationService,
@@ -69,12 +67,6 @@ export class BacklogComponent implements OnInit {
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
-    this.willDisplayIssueForm = true;
-    this.dialog.open(IssueFormComponent);
+    this.dialog.open(IssueFormComponent, { data: this.formValue });
   }
-
-  // invoked when the cancel button of the issue form is clicked
-  // onHideIssueForm() {
-  //   this.willDisplayIssueForm = false;
-  // }
 }
