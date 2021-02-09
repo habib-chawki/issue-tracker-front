@@ -1,6 +1,6 @@
 <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
   <mat-form-field>
-    <mat-label for="email">Email</mat-label>
+    <mat-label>Email</mat-label>
     <input matInput type="text" id="email" formControlName="email" />
 
     <mat-error
@@ -16,7 +16,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label for="password">Password: </mat-label>
+    <mat-label>Password</mat-label>
     <input matInput type="password" id="password" formControlName="password" />
 
     <mat-hint>At least 5 characters long</mat-hint>
