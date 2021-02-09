@@ -8,12 +8,14 @@
     </mat-error>
   </mat-form-field>
 
-  <label for="password">Password: </label>
-  <input type="password" id="password" formControlName="password" />
+  <mat-form-field>
+    <mat-label for="password">Password: </mat-label>
+    <input matInput type="password" id="password" formControlName="password" />
 
-  <div *ngIf="password.touched && password.invalid" id="password-error">
-    Invalid password
-  </div>
+    <mat-error *ngIf="password.touched && password.invalid" id="password-error">
+      Invalid password
+    </mat-error>
+  </mat-form-field>
 
   <button type="submit">Login</button>
 </form>
