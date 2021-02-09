@@ -43,4 +43,16 @@ describe('IssueCommunicationService', () => {
 
     expect(response).toEqual(issue);
   });
+
+  it('should announce issue form saved', () => {
+    let response: Issue;
+
+    service.issueFormSaved$.subscribe((res: Issue) => {
+      response = res;
+    });
+
+    service.announceIssueFormSaved(issue);
+
+    expect(response).toEqual(issue);
+  });
 });
