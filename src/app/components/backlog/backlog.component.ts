@@ -60,13 +60,13 @@ export class BacklogComponent implements OnInit {
   }
 
   // invoked when an issue update is announced
-  handleIssueUpdate(issue: Issue) {
+  handleIssueUpdate = (issue: Issue) => {
     this.initialIssueFormValue = issue;
     this.onDisplayIssueForm();
-  }
+  };
 
   // invoked when the add issue button is clicked
-  onDisplayIssueForm() {
+  onDisplayIssueForm = () => {
     this.dialog.open(IssueFormComponent, { data: this.initialIssueFormValue });
-  }
+  };
 }
