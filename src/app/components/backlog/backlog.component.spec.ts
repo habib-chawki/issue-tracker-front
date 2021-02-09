@@ -3,6 +3,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatLabel } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 
@@ -19,7 +21,7 @@ import { IssueFormComponent } from '../issue-form/issue-form.component';
 import { IssuesComponent } from '../issues/issues.component';
 import { BacklogComponent } from './backlog.component';
 
-fdescribe('Backlog', () => {
+describe('Backlog', () => {
   let component: BacklogComponent;
   let fixture: ComponentFixture<BacklogComponent>;
   let nativeElement: HTMLElement;
@@ -39,6 +41,7 @@ fdescribe('Backlog', () => {
         HttpClientTestingModule,
         DragDropModule,
         MatDialogModule,
+        BrowserAnimationsModule,
       ],
     }).compileComponents();
   });
@@ -113,7 +116,7 @@ fdescribe('Backlog', () => {
     expect(addIssueButton.textContent).toContain('Add issue');
   });
 
-  fdescribe('IssueFormComponent', () => {
+  describe('IssueFormComponent', () => {
     it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
       spyOn(component, 'onDisplayIssueForm');
 
