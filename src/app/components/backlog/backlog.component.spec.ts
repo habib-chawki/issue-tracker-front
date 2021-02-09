@@ -103,12 +103,12 @@ fdescribe('Backlog', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render an "Add issue" button', () => {
+  fit('should render an "Add issue" button', () => {
     const addIssueButton = nativeElement.querySelector('button#add');
 
     // expect an add issue button to be rendered
     expect(addIssueButton).toBeTruthy();
-    expect(addIssueButton.textContent).toEqual('Add issue');
+    expect(addIssueButton.textContent).toContain('Add issue');
   });
 
   describe('IssueFormComponent', () => {
