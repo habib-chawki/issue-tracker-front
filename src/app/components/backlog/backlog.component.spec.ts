@@ -103,7 +103,7 @@ fdescribe('Backlog', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should render an "Add issue" button', () => {
+  it('should render an "Add issue" button', () => {
     const addIssueButton = nativeElement.querySelector('button#add');
 
     // expect an add issue button to be rendered
@@ -133,55 +133,6 @@ fdescribe('Backlog', () => {
 
       // then expect the issue form to be rendered
       expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
-    });
-
-    // it('should invoke "onHideIssueForm()" when an "issueFormCancelled" event is triggered', () => {
-    //   // given "onHideIssueForm()" handler method
-    //   spyOn(component, 'onHideIssueForm');
-
-    //   // given the issue form is displayed
-    //   component.onDisplayIssueForm();
-    //   fixture.detectChanges();
-
-    //   // when an "issueFormCancelled" event is triggered
-    //   fixture.debugElement
-    //     .query(By.css('app-issue-form'))
-    //     .triggerEventHandler('issueFormCancelled', true);
-
-    //   // then "onHideIssueForm()" should be called
-    //   expect(component.onHideIssueForm).toHaveBeenCalled();
-    // });
-
-    // it('should hide the "issueFormComponent" when "onHideIssueForm()" is called', () => {
-    //   // given the form is displayed
-    //   component.willDisplayIssueForm = true;
-    //   fixture.detectChanges();
-
-    //   expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
-
-    //   // when onHideIssueForm() is called
-    //   component.onHideIssueForm();
-    //   fixture.detectChanges();
-
-    //   // then the form should no longer be displayed
-    //   expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
-    // });
-
-    it('should handle the "issueFormSaved" event by invoking the "onSaveIssue()" method', () => {
-      spyOn(component, 'onSaveIssue');
-
-      // given the issue form component displayed
-      component.willDisplayIssueForm = true;
-      fixture.detectChanges();
-
-      // when a "issueFormSaved" event is emitted
-      const issueForm: DebugElement = fixture.debugElement.query(
-        By.css('app-issue-form')
-      );
-      issueForm.triggerEventHandler('issueFormSaved', issue);
-
-      // then expect the "onSaveIssue()" event handler to have been called
-      expect(component.onSaveIssue).toHaveBeenCalledWith(issue);
     });
   });
 
@@ -217,7 +168,7 @@ fdescribe('Backlog', () => {
     });
   });
 
-  describe('IssueCommunicationService', () => {
+  fdescribe('IssueCommunicationService', () => {
     it('should subscribe to "issueUpdate$" observable in "ngOnInit()"', () => {
       spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
       component.ngOnInit();
@@ -234,6 +185,24 @@ fdescribe('Backlog', () => {
 
       // then handleIssueUpdate() should be called
       expect(component.handleIssueUpdate).toHaveBeenCalledWith(issue);
+    });
+
+    it('should subscribe to "issueFormSaved$" observable in "ngOnInit()"', () => {
+      spyOn(issueCommunicationService.issueFormSaved$, 'subscribe');
+      component.ngOnInit();
+      expect(
+        issueCommunicationService.issueFormSaved$.subscribe
+      ).toHaveBeenCalled();
+    });
+
+    it('should invoke "onSaveIssue()" when an issue form saved is announced', () => {
+      spyOn(component, 'onSaveIssue');
+
+      // when an issue form saved is announced
+      issueCommunicationService.announceIssueFormSaved(issue);
+
+      // then expect the "onSaveIssue()" event handler to have been called
+      expect(component.onSaveIssue).toHaveBeenCalledWith(issue);
     });
 
     it('should set the initial form value when "handleIssueUpdate()" is called', () => {
