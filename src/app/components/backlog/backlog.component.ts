@@ -14,7 +14,7 @@ export class BacklogComponent implements OnInit {
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
 
-  formValue: Issue;
+  initialIssueFormValue: Issue = {} as Issue;
 
   constructor(
     private issueService: IssueService,
@@ -61,12 +61,12 @@ export class BacklogComponent implements OnInit {
 
   // invoked when an issue update is announced
   handleIssueUpdate(issue: Issue) {
-    this.formValue = issue;
+    this.initialIssueFormValue = issue;
     this.onDisplayIssueForm();
   }
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm() {
-    this.dialog.open(IssueFormComponent, { data: this.formValue });
+    this.dialog.open(IssueFormComponent, { data: this.initialIssueFormValue });
   }
 }
