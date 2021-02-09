@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
@@ -31,6 +31,8 @@ fdescribe('Backlog', () => {
 
   let issue: Issue, issue2: Issue;
 
+  let dialog: MatDialog;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BacklogComponent, IssueFormComponent, IssuesComponent],
@@ -52,6 +54,8 @@ fdescribe('Backlog', () => {
 
     issueService = TestBed.inject(IssueService);
     issueCommunicationService = TestBed.inject(IssueCommunicationService);
+
+    dialog = TestBed.inject(MatDialog);
 
     // set up an issue with details
     issue = {
@@ -170,8 +174,13 @@ fdescribe('Backlog', () => {
 
   fdescribe('IssueCommunicationService', () => {
     it('should subscribe to "issueUpdate$" observable in "ngOnInit()"', () => {
+      // given
       spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
+
+      // when
       component.ngOnInit();
+
+      // then
       expect(
         issueCommunicationService.issueUpdate$.subscribe
       ).toHaveBeenCalled();
@@ -188,8 +197,13 @@ fdescribe('Backlog', () => {
     });
 
     it('should subscribe to "issueFormSaved$" observable in "ngOnInit()"', () => {
+      // given
       spyOn(issueCommunicationService.issueFormSaved$, 'subscribe');
+
+      // when
       component.ngOnInit();
+
+      // then
       expect(
         issueCommunicationService.issueFormSaved$.subscribe
       ).toHaveBeenCalled();
@@ -215,16 +229,16 @@ fdescribe('Backlog', () => {
       expect(component.initialIssueFormValue).toEqual(issue2);
     });
 
-    it('should display the "issueFormComponent" when "handleIssueUpdate() is called"', () => {
-      // "issueFormComponent" should not be displayed at first
-      expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
+    it('should open the "issueFormComponent" dialog with the initial form value when "handleIssueUpdate()" is called', () => {
+      spyOn(dialog, 'open');
 
       // when "handleIssueUpdate()" is called
       component.handleIssueUpdate(issue2);
-      fixture.detectChanges();
 
-      // then "issueFormComponent" should be displayed
-      expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
+      // then "issueFormComponent" dialog should be opened
+      expect(dialog.open).toHaveBeenCalledWith(IssueFormComponent, {
+        data: issue2,
+      });
     });
   });
 
