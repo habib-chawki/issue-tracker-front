@@ -129,37 +129,37 @@ describe('Backlog', () => {
       expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
     });
 
-    it('should invoke "onHideIssueForm()" when an "issueFormCancelled" event is triggered', () => {
-      // given "onHideIssueForm()" handler method
-      spyOn(component, 'onHideIssueForm');
+    // it('should invoke "onHideIssueForm()" when an "issueFormCancelled" event is triggered', () => {
+    //   // given "onHideIssueForm()" handler method
+    //   spyOn(component, 'onHideIssueForm');
 
-      // given the issue form is displayed
-      component.onDisplayIssueForm();
-      fixture.detectChanges();
+    //   // given the issue form is displayed
+    //   component.onDisplayIssueForm();
+    //   fixture.detectChanges();
 
-      // when an "issueFormCancelled" event is triggered
-      fixture.debugElement
-        .query(By.css('app-issue-form'))
-        .triggerEventHandler('issueFormCancelled', true);
+    //   // when an "issueFormCancelled" event is triggered
+    //   fixture.debugElement
+    //     .query(By.css('app-issue-form'))
+    //     .triggerEventHandler('issueFormCancelled', true);
 
-      // then "onHideIssueForm()" should be called
-      expect(component.onHideIssueForm).toHaveBeenCalled();
-    });
+    //   // then "onHideIssueForm()" should be called
+    //   expect(component.onHideIssueForm).toHaveBeenCalled();
+    // });
 
-    it('should hide the "issueFormComponent" when "onHideIssueForm()" is called', () => {
-      // given the form is displayed
-      component.willDisplayIssueForm = true;
-      fixture.detectChanges();
+    // it('should hide the "issueFormComponent" when "onHideIssueForm()" is called', () => {
+    //   // given the form is displayed
+    //   component.willDisplayIssueForm = true;
+    //   fixture.detectChanges();
 
-      expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
+    //   expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
 
-      // when onHideIssueForm() is called
-      component.onHideIssueForm();
-      fixture.detectChanges();
+    //   // when onHideIssueForm() is called
+    //   component.onHideIssueForm();
+    //   fixture.detectChanges();
 
-      // then the form should no longer be displayed
-      expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
-    });
+    //   // then the form should no longer be displayed
+    //   expect(nativeElement.querySelector('app-issue-form')).toBeFalsy();
+    // });
 
     it('should handle the "issueFormSaved" event by invoking the "onSaveIssue()" method', () => {
       spyOn(component, 'onSaveIssue');
