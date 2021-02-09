@@ -189,6 +189,9 @@ fdescribe('Backlog', () => {
     it('should invoke "handleIssueUpdate()" when an issue update is announced', () => {
       spyOn(component, 'handleIssueUpdate');
 
+      // when component is initialized
+      component.ngOnInit();
+
       // when an issue update is announced
       issueCommunicationService.announceIssueUpdate(issue);
 
@@ -211,6 +214,9 @@ fdescribe('Backlog', () => {
 
     it('should invoke "onSaveIssue()" when an issue form saved is announced', () => {
       spyOn(component, 'onSaveIssue');
+
+      // when component is initialized
+      component.ngOnInit();
 
       // when an issue form saved is announced
       issueCommunicationService.announceIssueFormSaved(issue);
