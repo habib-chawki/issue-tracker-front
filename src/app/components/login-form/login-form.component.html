@@ -21,9 +21,18 @@
 
     <mat-hint>At least 5 characters long</mat-hint>
 
-    <mat-error *ngIf="password.touched && password.invalid" id="password-error">
+    <mat-error
+      *ngIf="
+        password.touched && password.invalid && !password.hasError('required')
+      "
+      id="password-error"
+    >
       Invalid password
     </mat-error>
+
+    <mat-error *ngIf="password.hasError('required')"
+      >Password is <strong>required</strong></mat-error
+    >
   </mat-form-field>
 
   <button mat-raised-button type="submit">Login</button>
