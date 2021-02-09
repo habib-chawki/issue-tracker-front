@@ -31,17 +31,20 @@ export class BacklogComponent implements OnInit {
     });
 
     // listen for issue udpate announcements
-    this.issueCommunicationService.issueUpdate$.subscribe((issue: Issue) =>
-      this.handleIssueUpdate(issue)
+    this.issueCommunicationService.issueUpdate$.subscribe(
+      this.handleIssueUpdate
     );
+
+    // listen for issue form saved announcements
+    this.issueCommunicationService.issueFormSaved$.subscribe(this.onSaveIssue);
   }
 
   // invoked when the form is submitted
-  onSaveIssue(issue: Issue) {
+  onSaveIssue = (issue: Issue) => {
     const found = this.issues.find((item) => item.id === issue.id);
 
     found ? this.updateIssue(issue) : this.createIssue(issue);
-  }
+  };
 
   createIssue(issue: Issue) {
     this.issueService.createIssue(issue).subscribe((createdIssue) => {
@@ -71,7 +74,7 @@ export class BacklogComponent implements OnInit {
   }
 
   // invoked when the cancel button of the issue form is clicked
-  onHideIssueForm() {
-    this.willDisplayIssueForm = false;
-  }
+  // onHideIssueForm() {
+  //   this.willDisplayIssueForm = false;
+  // }
 }
