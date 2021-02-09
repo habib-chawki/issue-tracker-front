@@ -177,7 +177,7 @@ fdescribe('Backlog', () => {
       ).toHaveBeenCalled();
     });
 
-    it('should call "handleIssueUpdate()" when an issue update is announced', () => {
+    it('should invoke "handleIssueUpdate()" when an issue update is announced', () => {
       spyOn(component, 'handleIssueUpdate');
 
       // when an issue update is announced
@@ -206,11 +206,13 @@ fdescribe('Backlog', () => {
     });
 
     it('should set the initial form value when "handleIssueUpdate()" is called', () => {
+      spyOn(component, 'onDisplayIssueForm').and.stub();
+
       // when "handleIssueUpdate()" is called
       component.handleIssueUpdate(issue2);
 
       // then the form value should be set
-      expect(issue2).toEqual(component.formValue);
+      expect(component.initialIssueFormValue).toEqual(issue2);
     });
 
     it('should display the "issueFormComponent" when "handleIssueUpdate() is called"', () => {
