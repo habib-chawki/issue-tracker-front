@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
@@ -20,7 +21,7 @@ import { IssueFormComponent } from '../issue-form/issue-form.component';
 import { IssuesComponent } from '../issues/issues.component';
 import { BacklogComponent } from './backlog.component';
 
-describe('Backlog', () => {
+fdescribe('Backlog', () => {
   let component: BacklogComponent;
   let fixture: ComponentFixture<BacklogComponent>;
   let nativeElement: HTMLElement;
@@ -33,7 +34,12 @@ describe('Backlog', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BacklogComponent, IssueFormComponent, IssuesComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule, DragDropModule],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        DragDropModule,
+        MatDialogModule,
+      ],
     }).compileComponents();
   });
 
