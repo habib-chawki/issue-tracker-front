@@ -1,10 +1,8 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 
@@ -115,7 +113,7 @@ fdescribe('Backlog', () => {
     expect(addIssueButton.textContent).toContain('Add issue');
   });
 
-  describe('IssueFormComponent', () => {
+  fdescribe('IssueFormComponent', () => {
     it('should invoke "onDisplayIssueForm()" when the add issue button is clicked', () => {
       spyOn(component, 'onDisplayIssueForm');
 
@@ -131,12 +129,15 @@ fdescribe('Backlog', () => {
       expect(component.onDisplayIssueForm).toHaveBeenCalled();
     });
 
-    it('should render "IssueFormComponent" when "onDisplayIssueForm()" is called', () => {
-      component.onDisplayIssueForm();
-      fixture.detectChanges();
+    it('should open "IssueFormComponent" dialog when "onDisplayIssueForm()" is called', () => {
+      spyOn(dialog, 'open');
 
-      // then expect the issue form to be rendered
-      expect(nativeElement.querySelector('app-issue-form')).toBeTruthy();
+      component.onDisplayIssueForm();
+
+      // expect the issue form dialog to be opened
+      expect(dialog.open).toHaveBeenCalledWith(IssueFormComponent, {
+        data: {},
+      });
     });
   });
 
@@ -172,7 +173,7 @@ fdescribe('Backlog', () => {
     });
   });
 
-  fdescribe('IssueCommunicationService', () => {
+  describe('IssueCommunicationService', () => {
     it('should subscribe to "issueUpdate$" observable in "ngOnInit()"', () => {
       // given
       spyOn(issueCommunicationService.issueUpdate$, 'subscribe');
