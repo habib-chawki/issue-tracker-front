@@ -9,9 +9,3 @@
     [issues]="column.issues"
   ></app-column>
 </div>
-
-<app-column-form
-  *ngIf="willDisplayColumnForm"
-  (columnFormCancelled)="onColumnFormCancelled()"
-  (columnFormSaved)="onColumnFormSaved($event)"
-></app-column-form>

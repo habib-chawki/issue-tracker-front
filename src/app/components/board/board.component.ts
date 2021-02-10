@@ -18,8 +18,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   observable: Observable<Column>;
   subscriptions = new Subscription();
 
-  willDisplayColumnForm = false;
-
   constructor(
     private columnService: ColumnService,
     private columnCommunicationService: ColumnCommunicationService,
@@ -35,11 +33,6 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onDisplayColumnForm() {
     this.dialog.open(ColumnFormComponent);
-    this.willDisplayColumnForm = true;
-  }
-
-  onColumnFormCancelled() {
-    this.willDisplayColumnForm = false;
   }
 
   onColumnFormSaved(formValue) {
