@@ -3,6 +3,7 @@ import IssueStatus from '../enums/issue-status';
 import IssueResolution from '../enums/issue-resolution';
 import { User } from '../user/user';
 import { Comment } from '../comment/comment';
+import IssuePriority from '../enums/issue-priority';
 
 export interface Issue {
   id: string;
@@ -11,6 +12,8 @@ export interface Issue {
 
   description?: string;
   summary: string;
+
+  priority: IssuePriority;
 
   type: IssueType;
   status: IssueStatus;
