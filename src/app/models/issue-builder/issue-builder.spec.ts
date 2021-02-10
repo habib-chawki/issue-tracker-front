@@ -1,4 +1,5 @@
 import { CommentBuilder } from '../comment-builder/comment-builder';
+import IssuePriority from '../enums/issue-priority';
 import IssueResolution from '../enums/issue-resolution';
 import IssueStatus from '../enums/issue-status';
 import IssueType from '../enums/issue-type';
@@ -14,6 +15,7 @@ describe('IssueBuilder', () => {
       key: 'SoldkeMP5sdfE',
       description: 'Desc',
       summary: 'Summary',
+      priority: IssuePriority.low,
       type: IssueType.Story,
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Unresolved,

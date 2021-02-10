@@ -1,4 +1,5 @@
 import { Comment } from '../comment/comment';
+import IssuePriority from '../enums/issue-priority';
 import IssueResolution from '../enums/issue-resolution';
 import IssueStatus from '../enums/issue-status';
 import IssueType from '../enums/issue-type';
@@ -14,6 +15,7 @@ export class IssueBuilder {
       key: null,
       description: null,
       summary: null,
+      priority: null,
       type: null,
       status: null,
       resolution: null,
@@ -45,6 +47,11 @@ export class IssueBuilder {
 
   summary(summary: string): IssueBuilder {
     this._issue.summary = summary;
+    return this;
+  }
+
+  priority(priority: IssuePriority): IssueBuilder {
+    this._issue.priority = priority;
     return this;
   }
 
