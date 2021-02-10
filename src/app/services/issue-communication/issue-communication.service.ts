@@ -8,6 +8,7 @@ import { Issue } from 'src/app/models/issue/issue';
 export class IssueCommunicationService {
   issueUpdate$ = new Subject<Issue>();
   issueFormSaved$ = new Subject<Issue>();
+  displayIssueDetails$ = new Subject<Issue>();
 
   constructor() {}
 
@@ -17,5 +18,9 @@ export class IssueCommunicationService {
 
   announceIssueFormSaved(issue: Issue) {
     this.issueFormSaved$.next(issue);
+  }
+
+  announceDisplayIssueDetails(issue: Issue) {
+    this.displayIssueDetails$.next(issue);
   }
 }
