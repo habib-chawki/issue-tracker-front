@@ -225,35 +225,35 @@ describe('IssuesComponent', () => {
       expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
     });
 
-    it('should invoke "onHideIssueDetails()" when an "issueDetailsClosed" event is emitted', () => {
-      // given an issue details
-      component.issueDetails = issue;
+    // it('should invoke "onHideIssueDetails()" when an "issueDetailsClosed" event is emitted', () => {
+    //   // given an issue details
+    //   component.issueDetails = issue;
 
-      // given an "issueDetails" component
-      component.willDisplayIssueDetails = true;
-      fixture.detectChanges();
+    //   // given an "issueDetails" component
+    //   component.willDisplayIssueDetails = true;
+    //   fixture.detectChanges();
 
-      spyOn(component, 'onHideIssueDetails');
+    //   spyOn(component, 'onHideIssueDetails');
 
-      // when the "issueDetailsComponent" emits and "issueDetailsClosed" event
-      const issueDetailsElement: DebugElement = fixture.debugElement.query(
-        By.css('app-issue-details')
-      );
-      issueDetailsElement.triggerEventHandler('issueDetailsClosed', true);
+    //   // when the "issueDetailsComponent" emits and "issueDetailsClosed" event
+    //   const issueDetailsElement: DebugElement = fixture.debugElement.query(
+    //     By.css('app-issue-details')
+    //   );
+    //   issueDetailsElement.triggerEventHandler('issueDetailsClosed', true);
 
-      // then "onHideIssueDetails()" should be called
-      expect(component.onHideIssueDetails).toHaveBeenCalled();
-    });
+    //   // then "onHideIssueDetails()" should be called
+    //   expect(component.onHideIssueDetails).toHaveBeenCalled();
+    // });
 
-    it('should toggle "willDisplayIssueDetails" value', () => {
-      // should set to true
-      component.onDisplayIssueDetails(issue);
-      expect(component.willDisplayIssueDetails).toBeTrue();
+    // it('should toggle "willDisplayIssueDetails" value', () => {
+    //   // should set to true
+    //   component.onDisplayIssueDetails(issue);
+    //   expect(component.willDisplayIssueDetails).toBeTrue();
 
-      // should set to false
-      component.onHideIssueDetails();
-      expect(component.willDisplayIssueDetails).toBeFalse();
-    });
+    //   // should set to false
+    //   component.onHideIssueDetails();
+    //   expect(component.willDisplayIssueDetails).toBeFalse();
+    // });
   });
 
   it('should invoke "onDrop()" when an "cdkDropListDropped" event is emitted', () => {
