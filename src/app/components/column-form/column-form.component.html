@@ -5,7 +5,9 @@
   </mat-form-field>
 
   <mat-dialog-actions>
-    <button mat-raised-button type="submit" id="save">Save</button>
-    <button mat-raised-button id="cancel" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button mat-dialog-close type="submit" id="save">
+      Save
+    </button>
+    <button mat-raised-button mat-dialog-close id="cancel">Cancel</button>
   </mat-dialog-actions>
 </form>
