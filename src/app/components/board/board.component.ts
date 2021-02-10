@@ -13,7 +13,7 @@ import { ColumnFormComponent } from '../column-form/column-form.component';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  @Input() board: Board;
+  @Input() board: Board = { columns: [] } as Board;
 
   observable: Observable<Column>;
   subscriptions = new Subscription();
@@ -29,7 +29,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // listen for column form saved announcements
     this.columnCommunicationService.columnFormSaved$.subscribe(
-      this.onColumnFormSaved
+      this.handleCreateColumn
     );
   }
 
@@ -47,9 +47,9 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.observable.subscribe(this.handleCreateColumn));
   }
 
-  handleCreateColumn(column: Column) {
+  handleCreateColumn = (column: Column) => {
     this.board.columns.push(column);
-  }
+  };
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
