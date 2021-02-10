@@ -4,7 +4,10 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Issue } from 'src/app/models/issue/issue';
+import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
+import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 
 @Component({
   selector: 'app-issues',
@@ -14,12 +17,16 @@ import { Issue } from 'src/app/models/issue/issue';
 export class IssuesComponent implements OnInit {
   @Input() issues: Issue[] = [];
 
-  issueDetails: Issue;
-  willDisplayIssueDetails: boolean = false;
+  constructor(
+    private dialog: MatDialog,
+    private issueCommunicationService: IssueCommunicationService
+  ) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.issueCommunicationService.displayIssueDetails$.subscribe(
+      this.onDisplayIssueDetails
+    );
+  }
 
   // invoked when the issue remove button is clicked
   onRemoveIssue(issue: Issue) {
@@ -28,16 +35,11 @@ export class IssuesComponent implements OnInit {
     this.issues.splice(index, 1);
   }
 
-  // invoked when an issue component is clicked
-  onDisplayIssueDetails(issue: Issue) {
-    this.issueDetails = issue;
-    this.willDisplayIssueDetails = true;
-  }
-
-  // invoked when the close button of the issueDetails component is clicked
-  onHideIssueDetails() {
-    this.willDisplayIssueDetails = false;
-  }
+  // invoked when an issue component is double clicked
+  onDisplayIssueDetails = (issue: Issue) => {
+    // open the issue details dialog
+    this.dialog.open(IssueDetailsComponent, { data: issue });
+  };
 
   // handle issue drop
   onDrop(event: CdkDragDrop<string[]>) {
