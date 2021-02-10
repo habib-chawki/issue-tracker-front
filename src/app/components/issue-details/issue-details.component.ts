@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-issue-details',
@@ -7,15 +8,9 @@ import { Issue } from 'src/app/models/issue/issue';
   styleUrls: ['./issue-details.component.scss'],
 })
 export class IssueDetailsComponent implements OnInit {
-  @Input() issue: Issue = {} as Issue;
-
-  @Output() issueDetailsClosed = new EventEmitter();
+  @Inject(MAT_DIALOG_DATA) issue: Issue = {} as Issue;
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  onClose() {
-    this.issueDetailsClosed.emit();
-  }
 }

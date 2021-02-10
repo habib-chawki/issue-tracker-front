@@ -201,30 +201,30 @@ describe('IssueDetailsComponent', () => {
     );
   });
 
-  it('should invoke the "onClose()" handler method when the "Close" button is clicked', () => {
-    // given the onClose() handler method
-    spyOn(component, 'onClose');
+  // it('should invoke the "onClose()" handler method when the "Close" button is clicked', () => {
+  //   // given the onClose() handler method
+  //   spyOn(component, 'onClose');
 
-    // given the Close button
-    const closeButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#close'
-    );
+  //   // given the Close button
+  //   const closeButton: HTMLButtonElement = nativeElement.querySelector(
+  //     'button#close'
+  //   );
 
-    // when the button is clicked
-    closeButton.click();
+  //   // when the button is clicked
+  //   closeButton.click();
 
-    // then onClose() should be called
-    expect(component.onClose).toHaveBeenCalled();
-  });
+  //   // then onClose() should be called
+  //   expect(component.onClose).toHaveBeenCalled();
+  // });
 
-  it('should emit an "issueDetailsClosed" event when "onClose()" is called', () => {
-    // given the "issueDetailsClosed" event emitter
-    spyOn(component.issueDetailsClosed, 'emit');
+  // it('should emit an "issueDetailsClosed" event when "onClose()" is called', () => {
+  //   // given the "issueDetailsClosed" event emitter
+  //   spyOn(component.issueDetailsClosed, 'emit');
 
-    // when "onClose()" is called
-    component.onClose();
+  //   // when "onClose()" is called
+  //   component.onClose();
 
-    // then an "issueDetailsClosed" event should be emitted
-    expect(component.issueDetailsClosed.emit).toHaveBeenCalled();
-  });
+  //   // then an "issueDetailsClosed" event should be emitted
+  //   expect(component.issueDetailsClosed.emit).toHaveBeenCalled();
+  // });
 });
