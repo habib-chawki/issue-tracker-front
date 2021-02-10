@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
@@ -13,8 +13,6 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
-  @Output() issueFormCancelled = new EventEmitter();
-
   @Input() initialFormValue = {};
 
   issuePriorities = Object.values(IssuePriority);
@@ -47,9 +45,5 @@ export class IssueFormComponent implements OnInit {
 
   onSave() {
     this.issueCommunicationService.announceIssueFormSaved(this.issueForm.value);
-  }
-
-  onCancel() {
-    this.issueFormCancelled.emit();
   }
 }

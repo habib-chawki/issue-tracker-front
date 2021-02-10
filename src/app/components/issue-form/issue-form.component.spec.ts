@@ -186,31 +186,31 @@ describe('IssueFormComponent', () => {
   //   );
   // });
 
-  it('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
-    spyOn(component, 'onCancel');
+  // it('should invoke "onCancel()" handler method when the "Cancel" button is clicked', () => {
+  //   spyOn(component, 'onCancel');
 
-    // given the form cancel button
-    const cancelButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#cancel'
-    );
+  //   // given the form cancel button
+  //   const cancelButton: HTMLButtonElement = nativeElement.querySelector(
+  //     'button#cancel'
+  //   );
 
-    // when the button is clicked
-    cancelButton.click();
+  //   // when the button is clicked
+  //   cancelButton.click();
 
-    // then "onCancel()" handler method should be called
-    expect(component.onCancel).toHaveBeenCalled();
-  });
+  //   // then "onCancel()" handler method should be called
+  //   expect(component.onCancel).toHaveBeenCalled();
+  // });
 
-  it('should emit an "issueFormCancelled" event when "onCancel()" is called', () => {
-    // given the issueFormCancelled event emitter
-    spyOn(component.issueFormCancelled, 'emit');
+  // it('should emit an "issueFormCancelled" event when "onCancel()" is called', () => {
+  //   // given the issueFormCancelled event emitter
+  //   spyOn(component.issueFormCancelled, 'emit');
 
-    // when onCancel() is called
-    component.onCancel();
+  //   // when onCancel() is called
+  //   component.onCancel();
 
-    // then an "issueFormCancelled" event should be emitted
-    expect(component.issueFormCancelled.emit).toHaveBeenCalled();
-  });
+  //   // then an "issueFormCancelled" event should be emitted
+  //   expect(component.issueFormCancelled.emit).toHaveBeenCalled();
+  // });
 
   it('should initialize the form value in ngOnInit()', () => {
     // the form value should not be initialized at first
