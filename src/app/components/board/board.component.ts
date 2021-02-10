@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
+import { ColumnCommunicationService } from 'src/app/services/column-communication/column-communication.service';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { ColumnFormComponent } from '../column-form/column-form.component';
 
@@ -21,10 +22,16 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   constructor(
     private columnService: ColumnService,
+    private columnCommunicationService: ColumnCommunicationService,
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // listen for column form saved announcements
+    this.columnCommunicationService.columnFormSaved$.subscribe(
+      this.onColumnFormSaved
+    );
+  }
 
   onDisplayColumnForm() {
     this.dialog.open(ColumnFormComponent);
