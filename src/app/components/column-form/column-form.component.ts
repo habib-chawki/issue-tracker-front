@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ColumnCommunicationService } from 'src/app/services/column-communication/column-communication.service';
 
 @Component({
   selector: 'app-column-form',
@@ -11,15 +12,17 @@ export class ColumnFormComponent implements OnInit {
   @Output() columnFormCancelled = new EventEmitter();
 
   columnForm = new FormGroup({
-    title: new FormControl(),
+    title: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor(private columnCommunicationService: ColumnCommunicationService) {}
 
   ngOnInit(): void {}
 
   onSave() {
-    this.columnFormSaved.emit(this.columnForm.value);
+    this.columnCommunicationService.announceColumnFormSaved(
+      this.columnForm.value
+    );
   }
 
   onCancel() {
