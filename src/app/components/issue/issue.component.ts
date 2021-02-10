@@ -11,7 +11,6 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class IssueComponent implements OnInit {
   @Input() issue: Issue = {} as Issue;
 
-  @Output() issueClicked = new EventEmitter();
   @Output() issueRemoved = new EventEmitter();
 
   constructor(
@@ -22,7 +21,7 @@ export class IssueComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
-    this.issueClicked.emit(this.issue);
+    this.issueCommunicationService.announceDisplayIssueDetails(this.issue);
   }
 
   onRemove() {
