@@ -7,25 +7,22 @@ import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueCommunicationService } from './issue-communication.service';
 
-describe('IssueCommunicationService', () => {
+fdescribe('IssueCommunicationService', () => {
   let service: IssueCommunicationService;
-  let issueFormValue, issue: Issue;
+  let issue: Issue;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(IssueCommunicationService);
 
-    issueFormValue = {
-      description: 'description',
-      summary: 'summary',
-      type: IssueType.Bug,
-      status: IssueStatus.Done,
-      resolution: IssueResolution.Duplicate,
-      assignee: null,
-      estimate: new Date(),
-    };
-
-    issue = new IssueBuilder().id('500').summary('issue summary').build();
+    issue = new IssueBuilder()
+      .id('500')
+      .description('issue description')
+      .summary('issue summary')
+      .type(IssueType.Story)
+      .status(IssueStatus.Done)
+      .resolution(IssueResolution.Duplicate)
+      .build();
   });
 
   it('should be created', () => {
