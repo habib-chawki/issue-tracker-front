@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ColumnCommunicationService } from 'src/app/services/column-communication/column-communication.service';
 
@@ -8,9 +8,6 @@ import { ColumnCommunicationService } from 'src/app/services/column-communicatio
   styleUrls: ['./column-form.component.scss'],
 })
 export class ColumnFormComponent implements OnInit {
-  @Output() columnFormSaved = new EventEmitter();
-  @Output() columnFormCancelled = new EventEmitter();
-
   columnForm = new FormGroup({
     title: new FormControl('', Validators.required),
   });
@@ -23,9 +20,5 @@ export class ColumnFormComponent implements OnInit {
     this.columnCommunicationService.announceColumnFormSaved(
       this.columnForm.value
     );
-  }
-
-  onCancel() {
-    this.columnFormCancelled.emit();
   }
 }

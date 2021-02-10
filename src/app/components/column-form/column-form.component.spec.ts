@@ -70,47 +70,47 @@ describe('ColumnFormComponent', () => {
     expect(component.onSave).toHaveBeenCalledWith();
   });
 
-  it('should emit "columnFormSaved" event with the form value when "onSave()" is invoked', () => {
-    // given the "columnFormSaved" event
-    spyOn(component.columnFormSaved, 'emit');
+  // it('should emit "columnFormSaved" event with the form value when "onSave()" is invoked', () => {
+  //   // given the "columnFormSaved" event
+  //   spyOn(component.columnFormSaved, 'emit');
 
-    // given the form value
-    const formValue = { title: 'column title' };
-    component.columnForm.setValue(formValue);
+  //   // given the form value
+  //   const formValue = { title: 'column title' };
+  //   component.columnForm.setValue(formValue);
 
-    // when "onSave()" is called
-    component.onSave();
+  //   // when "onSave()" is called
+  //   component.onSave();
 
-    // then the event should be emitted with the form value
-    expect(component.columnFormSaved.emit).toHaveBeenCalledWith(formValue);
-  });
+  //   // then the event should be emitted with the form value
+  //   expect(component.columnFormSaved.emit).toHaveBeenCalledWith(formValue);
+  // });
 
-  it('should invoke onCancel() when "Cancel" button is clicked', () => {
-    // given the "onCancel()" handler method
-    spyOn(component, 'onCancel');
+  // it('should invoke onCancel() when "Cancel" button is clicked', () => {
+  //   // given the "onCancel()" handler method
+  //   spyOn(component, 'onCancel');
 
-    // given the "Cancel" button
-    const cancelButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#cancel'
-    );
+  //   // given the "Cancel" button
+  //   const cancelButton: HTMLButtonElement = nativeElement.querySelector(
+  //     'button#cancel'
+  //   );
 
-    // when the button is clicked
-    cancelButton.click();
+  //   // when the button is clicked
+  //   cancelButton.click();
 
-    // then "onCancel()" shoud be invoked
-    expect(component.onCancel).toHaveBeenCalled();
-  });
+  //   // then "onCancel()" shoud be invoked
+  //   expect(component.onCancel).toHaveBeenCalled();
+  // });
 
-  it('should emit "columnFormCancelled" event when "onCancel()" is invoked', () => {
-    // given the "columnFormCancelled" event
-    spyOn(component.columnFormCancelled, 'emit');
+  // it('should emit "columnFormCancelled" event when "onCancel()" is invoked', () => {
+  //   // given the "columnFormCancelled" event
+  //   spyOn(component.columnFormCancelled, 'emit');
 
-    // when "onCancel()" is called
-    component.onCancel();
+  //   // when "onCancel()" is called
+  //   component.onCancel();
 
-    // then the event should be emitted
-    expect(component.columnFormCancelled.emit).toHaveBeenCalled();
-  });
+  //   // then the event should be emitted
+  //   expect(component.columnFormCancelled.emit).toHaveBeenCalled();
+  // });
 
   it('should control the form input values', () => {
     // given the title input field
