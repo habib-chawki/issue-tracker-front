@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import IssuePriority from 'src/app/models/enums/issue-priority';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -16,6 +17,7 @@ export class IssueFormComponent implements OnInit {
 
   @Input() initialFormValue = {};
 
+  issuePriorities = Object.values(IssuePriority);
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
   issueResolutions = Object.values(IssueResolution);
@@ -23,6 +25,8 @@ export class IssueFormComponent implements OnInit {
   issueForm = new FormGroup({
     description: new FormControl(''),
     summary: new FormControl(''),
+
+    priority: new FormControl(IssuePriority.medium),
 
     type: new FormControl(IssueType.Story),
     status: new FormControl(IssueStatus.Todo),
