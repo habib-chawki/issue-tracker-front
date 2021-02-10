@@ -3,10 +3,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatLabel } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
+import IssuePriority from 'src/app/models/enums/issue-priority';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -64,6 +64,7 @@ describe('Backlog', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
+      priority: IssuePriority.medium,
       type: IssueType.Bug,
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Duplicate,
@@ -86,6 +87,7 @@ describe('Backlog', () => {
       key: 'Rt9xP',
       description: 'Issue 2 description',
       summary: 'Issue 2 summary',
+      priority: IssuePriority.low,
       type: IssueType.Story,
       status: IssueStatus.Todo,
       resolution: IssueResolution.Unresolved,

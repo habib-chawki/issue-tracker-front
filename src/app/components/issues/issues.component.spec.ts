@@ -4,6 +4,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
+import IssuePriority from 'src/app/models/enums/issue-priority';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
@@ -49,6 +50,7 @@ describe('IssuesComponent', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
+      priority: IssuePriority.low,
       type: IssueType.Bug,
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Duplicate,
@@ -71,6 +73,7 @@ describe('IssuesComponent', () => {
       key: 'Rt9xP',
       description: 'Issue 2 description',
       summary: 'Issue 2 summary',
+      priority: IssuePriority.high,
       type: IssueType.Story,
       status: IssueStatus.Todo,
       resolution: IssueResolution.Unresolved,

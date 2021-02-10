@@ -7,7 +7,7 @@ import { Issue } from 'src/app/models/issue/issue';
 
 import { IssueCommunicationService } from './issue-communication.service';
 
-fdescribe('IssueCommunicationService', () => {
+describe('IssueCommunicationService', () => {
   let service: IssueCommunicationService;
   let issue: Issue;
 

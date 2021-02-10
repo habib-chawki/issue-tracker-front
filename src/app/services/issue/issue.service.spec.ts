@@ -11,6 +11,7 @@ import IssueResolution from '../../models/enums/issue-resolution';
 import IssueStatus from '../../models/enums/issue-status';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
+import IssuePriority from 'src/app/models/enums/issue-priority';
 
 describe('IssueService', () => {
   let issueService: IssueService;
@@ -34,6 +35,7 @@ describe('IssueService', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
+      priority: IssuePriority.high,
       type: IssueType.Bug,
       status: IssueStatus.InProgress,
       resolution: IssueResolution.Duplicate,
@@ -56,6 +58,7 @@ describe('IssueService', () => {
       key: 'Rt9xP',
       description: 'Issue 2 description',
       summary: 'Issue 2 summary',
+      priority: IssuePriority.medium,
       type: IssueType.Story,
       status: IssueStatus.Todo,
       resolution: IssueResolution.Unresolved,
