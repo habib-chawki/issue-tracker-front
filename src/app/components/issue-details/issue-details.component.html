@@ -47,6 +47,7 @@
   <label for="estimate">Estimated time: </label>
   <div id="estimate">{{ issue.estimate }}</div>
 
-  <!-- render a close button to hide the component -->
-  <button id="close" (click)="onClose()">Close</button>
+  <mat-dialog-actions>
+    <button id="close" mat-raised-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
 </div>
