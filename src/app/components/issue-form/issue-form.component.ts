@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
 import IssueResolution from 'src/app/models/enums/issue-resolution';
@@ -13,8 +14,6 @@ import { IssueCommunicationService } from 'src/app/services/issue-communication/
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
-  @Input() initialFormValue = {};
-
   issuePriorities = Object.values(IssuePriority);
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
@@ -35,7 +34,10 @@ export class IssueFormComponent implements OnInit {
     estimate: new FormControl(''),
   });
 
-  constructor(private issueCommunicationService: IssueCommunicationService) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public initialFormValue,
+    private issueCommunicationService: IssueCommunicationService
+  ) {}
 
   ngOnInit(): void {
     if (this.initialFormValue) {
