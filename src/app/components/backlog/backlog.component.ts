@@ -51,12 +51,10 @@ export class BacklogComponent implements OnInit {
   }
 
   updateIssue(issue: Issue) {
-    this.issueService.updateIssue(issue).subscribe((updatedIssue) => {
-      const index = this.issues.findIndex(
-        (item) => item.id === updatedIssue.id
-      );
-      this.issues[index] = updatedIssue;
-    });
+    // this.issueService.updateIssue(issue).subscribe((updatedIssue) => {
+    const index = this.issues.findIndex((item) => item.id === issue.id);
+    this.issues[index] = issue;
+    // });
   }
 
   // invoked when an issue update is announced
