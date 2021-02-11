@@ -1,4 +1,4 @@
-<mat-card (dblclick)="onDisplayIssueDetails()">
+<mat-card (dblclick)="onDisplayDetails()">
   <div id="type">{{ issue.type }}</div>
   <div id="summary">{{ issue.summary }}</div>
 
@@ -7,7 +7,7 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onDisplayIssueDetails()">
+    <button mat-menu-item (click)="onDisplayDetails()">
       <mat-icon>preview</mat-icon>
       Display details
     </button>
