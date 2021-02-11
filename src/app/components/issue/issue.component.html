@@ -2,9 +2,16 @@
   <div id="type">{{ issue.type }}</div>
   <div id="summary">{{ issue.summary }}</div>
 
-  <button mat-icon-button>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>preview</mat-icon>
+      Display details
+    </button>
+  </mat-menu>
 
   <mat-card-actions>
     <button *ngIf="canModify()" id="update" (click)="onUpdate()">Update</button>
