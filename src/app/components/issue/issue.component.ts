@@ -20,7 +20,7 @@ export class IssueComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onClick() {
+  onDisplayIssueDetails() {
     this.issueCommunicationService.announceDisplayIssueDetails(this.issue);
   }
 
