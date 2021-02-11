@@ -6,6 +6,7 @@ import IssuePriority from 'src/app/models/enums/issue-priority';
 import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
+import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 
 @Component({
@@ -46,6 +47,11 @@ export class IssueFormComponent implements OnInit {
   }
 
   onSave() {
-    this.issueCommunicationService.announceIssueFormSaved(this.issueForm.value);
+    const issue: Issue = {
+      id: this.initialFormValue.id,
+      ...this.issueForm.value,
+    };
+
+    this.issueCommunicationService.announceIssueFormSaved(issue);
   }
 }
