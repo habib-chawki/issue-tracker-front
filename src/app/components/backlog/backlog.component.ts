@@ -45,9 +45,9 @@ export class BacklogComponent implements OnInit {
   };
 
   createIssue(issue: Issue) {
-    this.issueService.createIssue(issue).subscribe((createdIssue) => {
-      this.issues.push(createdIssue);
-    });
+    // this.issueService.createIssue(issue).subscribe((createdIssue) => {
+    this.issues.push(issue);
+    // });
   }
 
   updateIssue(issue: Issue) {
