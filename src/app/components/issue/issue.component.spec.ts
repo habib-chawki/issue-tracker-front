@@ -77,8 +77,8 @@ describe('IssueComponent', () => {
     );
   });
 
-  it('should invoke "onDisplayIssueDetails()" handler when issue element is clicked', () => {
-    spyOn(component, 'onDisplayIssueDetails');
+  it('should invoke "onDisplayDetails()" handler when issue element is clicked', () => {
+    spyOn(component, 'onDisplayDetails');
 
     // given the issue template element
     const issue = nativeElement.querySelector('div');
@@ -86,18 +86,18 @@ describe('IssueComponent', () => {
     // when it is clicked
     issue.click();
 
-    // then the "onDisplayIssueDetails()" handler should be invoked
-    expect(component.onDisplayIssueDetails).toHaveBeenCalled();
+    // then the "onDisplayDetails()" handler should be invoked
+    expect(component.onDisplayDetails).toHaveBeenCalled();
   });
 
-  // it('should emit an "issueClicked" event with issue details when "onDisplayIssueDetails()" is invoked', () => {
+  // it('should emit an "issueClicked" event with issue details when "onDisplayDetails()" is invoked', () => {
   //   // given an issue
   //   component.issue = issue;
 
   //   spyOn(component.issueClicked, 'emit');
 
-  //   // when the "onDisplayIssueDetails()" event handler method is invoked
-  //   component.onDisplayIssueDetails();
+  //   // when the "onDisplayDetails()" event handler method is invoked
+  //   component.onDisplayDetails();
 
   //   // then an event should be emitted with the issue details
   //   expect(component.issueClicked.emit).toHaveBeenCalledWith(component.issue);

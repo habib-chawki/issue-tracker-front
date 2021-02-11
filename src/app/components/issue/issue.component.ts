@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Issue } from 'src/app/models/issue/issue';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
+import { IssueFormComponent } from '../issue-form/issue-form.component';
 
 @Component({
   selector: 'app-issue',
@@ -17,13 +17,12 @@ export class IssueComponent implements OnInit {
 
   constructor(
     private storageService: StorageService,
-    private issueCommunicationService: IssueCommunicationService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
 
-  onDisplayIssueDetails() {
+  onDisplayDetails() {
     this.dialog.open(IssueDetailsComponent, { data: this.issue });
   }
 
@@ -32,7 +31,7 @@ export class IssueComponent implements OnInit {
   }
 
   onUpdate() {
-    this.issueCommunicationService.announceIssueUpdate(this.issue);
+    this.dialog.open(IssueFormComponent, { data: this.issue });
   }
 
   canModify(): boolean {
