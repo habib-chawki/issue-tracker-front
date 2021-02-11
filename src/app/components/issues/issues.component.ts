@@ -4,10 +4,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Issue } from 'src/app/models/issue/issue';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
-import { IssueDetailsComponent } from '../issue-details/issue-details.component';
 
 @Component({
   selector: 'app-issues',
@@ -17,16 +14,9 @@ import { IssueDetailsComponent } from '../issue-details/issue-details.component'
 export class IssuesComponent implements OnInit {
   @Input() issues: Issue[] = [];
 
-  constructor(
-    private dialog: MatDialog,
-    private issueCommunicationService: IssueCommunicationService
-  ) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.issueCommunicationService.displayIssueDetails$.subscribe(
-      this.onDisplayIssueDetails
-    );
-  }
+  ngOnInit(): void {}
 
   // invoked when the issue remove button is clicked
   onRemoveIssue(issue: Issue) {
@@ -34,12 +24,6 @@ export class IssuesComponent implements OnInit {
     const index = this.issues.indexOf(issue);
     this.issues.splice(index, 1);
   }
-
-  // invoked when an issue component is double clicked
-  onDisplayIssueDetails = (issue: Issue) => {
-    // open the issue details dialog
-    this.dialog.open(IssueDetailsComponent, { data: issue });
-  };
 
   // handle issue drop
   onDrop(event: CdkDragDrop<string[]>) {
