@@ -14,8 +14,6 @@ export class BacklogComponent implements OnInit {
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
 
-  initialIssueFormValue: Issue = {} as Issue;
-
   constructor(
     private issueService: IssueService,
     private issueCommunicationService: IssueCommunicationService,
@@ -28,24 +26,23 @@ export class BacklogComponent implements OnInit {
       this.issues = response;
     });
 
-    // listen for issue udpate announcements
-    this.issueCommunicationService.issueUpdate$.subscribe(
-      this.handleIssueUpdate
-    );
-
     // listen for issue form saved announcements
     this.issueCommunicationService.issueFormSaved$.subscribe(this.onSaveIssue);
   }
 
-  // invoked when the form is submitted
   onSaveIssue = (issue: Issue) => {
-    const found = this.issues.find((item) => item.id === issue.id);
+    // decide whether to create a new issue or update an already existing issue
+    const found = this.issues.find((item) => {
+      item.id === issue.id;
+      console.log(item.id + ' vs ' + issue.id);
+    });
 
     found ? this.updateIssue(issue) : this.createIssue(issue);
   };
 
   createIssue(issue: Issue) {
     // this.issueService.createIssue(issue).subscribe((createdIssue) => {
+    issue.id = Math.floor(Math.random() * 1000).toString();
     this.issues.push(issue);
     // });
   }
@@ -57,14 +54,8 @@ export class BacklogComponent implements OnInit {
     // });
   }
 
-  // invoked when an issue update is announced
-  handleIssueUpdate = (issue: Issue) => {
-    this.initialIssueFormValue = issue;
-    this.onDisplayIssueForm();
-  };
-
   // invoked when the add issue button is clicked
   onDisplayIssueForm = () => {
-    this.dialog.open(IssueFormComponent, { data: this.initialIssueFormValue });
+    this.dialog.open(IssueFormComponent);
   };
 }

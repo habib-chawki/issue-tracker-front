@@ -192,18 +192,18 @@ describe('Backlog', () => {
       ).toHaveBeenCalled();
     });
 
-    it('should invoke "handleIssueUpdate()" when an issue update is announced', () => {
-      spyOn(component, 'handleIssueUpdate');
+    // it('should invoke "handleIssueUpdate()" when an issue update is announced', () => {
+    //   spyOn(component, 'handleIssueUpdate');
 
-      // when component is initialized
-      component.ngOnInit();
+    //   // when component is initialized
+    //   component.ngOnInit();
 
-      // when an issue update is announced
-      issueCommunicationService.announceIssueUpdate(issue);
+    //   // when an issue update is announced
+    //   issueCommunicationService.announceIssueUpdate(issue);
 
-      // then handleIssueUpdate() should be called
-      expect(component.handleIssueUpdate).toHaveBeenCalledWith(issue);
-    });
+    //   // then handleIssueUpdate() should be called
+    //   expect(component.handleIssueUpdate).toHaveBeenCalledWith(issue);
+    // });
 
     it('should subscribe to "issueFormSaved$" observable in "ngOnInit()"', () => {
       // given
@@ -231,27 +231,27 @@ describe('Backlog', () => {
       expect(component.onSaveIssue).toHaveBeenCalledWith(issue);
     });
 
-    it('should set the initial form value when "handleIssueUpdate()" is called', () => {
-      spyOn(component, 'onDisplayIssueForm').and.stub();
+    // it('should set the initial form value when "handleIssueUpdate()" is called', () => {
+    //   spyOn(component, 'onDisplayIssueForm').and.stub();
 
-      // when "handleIssueUpdate()" is called
-      component.handleIssueUpdate(issue2);
+    //   // when "handleIssueUpdate()" is called
+    //   component.handleIssueUpdate(issue2);
 
-      // then the form value should be set
-      expect(component.initialIssueFormValue).toEqual(issue2);
-    });
+    //   // then the form value should be set
+    //   expect(component.initialIssueFormValue).toEqual(issue2);
+    // });
 
-    it('should open the "issueFormComponent" dialog with the initial form value when "handleIssueUpdate()" is called', () => {
-      spyOn(dialog, 'open');
+    // it('should open the "issueFormComponent" dialog with the initial form value when "handleIssueUpdate()" is called', () => {
+    //   spyOn(dialog, 'open');
 
-      // when "handleIssueUpdate()" is called
-      component.handleIssueUpdate(issue2);
+    //   // when "handleIssueUpdate()" is called
+    //   component.handleIssueUpdate(issue2);
 
-      // then "issueFormComponent" dialog should be opened
-      expect(dialog.open).toHaveBeenCalledWith(IssueFormComponent, {
-        data: issue2,
-      });
-    });
+    //   // then "issueFormComponent" dialog should be opened
+    //   expect(dialog.open).toHaveBeenCalledWith(IssueFormComponent, {
+    //     data: issue2,
+    //   });
+    // });
   });
 
   it('should add the new issue to the "issues" array when "createIssue()" is invoked', () => {
