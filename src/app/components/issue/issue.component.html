@@ -11,10 +11,15 @@
       <mat-icon>preview</mat-icon>
       Display details
     </button>
-  </mat-menu>
 
-  <mat-card-actions>
-    <button *ngIf="canModify()" id="update" (click)="onUpdate()">Update</button>
-    <button *ngIf="canModify()" id="remove" (click)="onRemove()">Remove</button>
-  </mat-card-actions>
+    <button mat-menu-item id="update" (click)="onUpdate()">
+      <mat-icon>update</mat-icon>
+      Update
+    </button>
+
+    <button mat-menu-item id="remove" (click)="onRemove()">
+      <mat-icon>delete_forever</mat-icon>
+      Remove
+    </button>
+  </mat-menu>
 </mat-card>
