@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'backlog', component: BacklogComponent },
   { path: 'board', component: BoardComponent },
-  { path: '', redirectTo: 'backlog', pathMatch: 'full' },
+  { path: '', redirectTo: 'signup', pathMatch: 'full' },
 ];
 
 @NgModule({
