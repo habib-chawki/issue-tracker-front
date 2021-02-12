@@ -51,9 +51,9 @@ describe('AppComponent', () => {
     );
   });
 
-  it('should redirect from "" to "/backlog"', fakeAsync(() => {
+  it('should redirect from "" to "/signup"', fakeAsync(() => {
     fixture.ngZone.run(() => {
-      router.navigateByUrl('').then(() => expect(router.url).toBe('/backlog'));
+      router.navigateByUrl('').then(() => expect(router.url).toBe('/signup'));
     });
   }));
 

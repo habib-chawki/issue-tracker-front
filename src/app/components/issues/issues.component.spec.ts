@@ -177,79 +177,60 @@ describe('IssuesComponent', () => {
   });
 
   describe('IssueDetailsComponent', () => {
-    it('should invoke "onDisplayIssueDetails()" when an issue emits an "issueClicked" event', () => {
-      spyOn(component, 'onDisplayIssueDetails');
-
-      // given an issue
-      component.issues.push(issue);
-      fixture.detectChanges();
-
-      // when the issue is clicked
-      const issueElement: DebugElement = fixture.debugElement.query(
-        By.css('app-issue')
-      );
-      issueElement.triggerEventHandler('issueClicked', issue);
-
-      // then the "onDisplayIssueDetails()" event handler should be invoked with the issue details
-      expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
-    });
-
-    it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
-      // no issue details should be present at first
-      expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
-
-      // when "onDisplayIssueDetails()" is invoked with an issue details
-      component.onDisplayIssueDetails(issue);
-
-      fixture.detectChanges();
-
-      // then expect the issueDetails component to be rendered
-      expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
-    });
-
-    it('should invoke "onDisplayIssueDetails()" when an "issueClicked" event is emitted', () => {
-      spyOn(component, 'onDisplayIssueDetails');
-
-      // given a new issue
-      component.issues.push(issue);
-
-      fixture.detectChanges();
-
-      // when an "issueClicked" event is triggered
-      const issueElement: DebugElement = fixture.debugElement.query(
-        By.css('app-issue')
-      );
-      issueElement.triggerEventHandler('issueClicked', issue);
-
-      // the "onDisplayIssueDetails()" handler method should be called
-      expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
-    });
-
+    // it('should invoke "onDisplayIssueDetails()" when an issue emits an "issueClicked" event', () => {
+    //   spyOn(component, 'onDisplayIssueDetails');
+    //   // given an issue
+    //   component.issues.push(issue);
+    //   fixture.detectChanges();
+    //   // when the issue is clicked
+    //   const issueElement: DebugElement = fixture.debugElement.query(
+    //     By.css('app-issue')
+    //   );
+    //   issueElement.triggerEventHandler('issueClicked', issue);
+    //   // then the "onDisplayIssueDetails()" event handler should be invoked with the issue details
+    //   expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+    // });
+    // it('should render issue details when "onDisplayIssueDetails()" is invoked', () => {
+    //   // no issue details should be present at first
+    //   expect(nativeElement.querySelector('app-issue-details')).toBeFalsy();
+    //   // when "onDisplayIssueDetails()" is invoked with an issue details
+    //   component.onDisplayIssueDetails(issue);
+    //   fixture.detectChanges();
+    //   // then expect the issueDetails component to be rendered
+    //   expect(nativeElement.querySelector('app-issue-details')).toBeTruthy();
+    // });
+    // it('should invoke "onDisplayIssueDetails()" when an "issueClicked" event is emitted', () => {
+    //   spyOn(component, 'onDisplayIssueDetails');
+    //   // given a new issue
+    //   component.issues.push(issue);
+    //   fixture.detectChanges();
+    //   // when an "issueClicked" event is triggered
+    //   const issueElement: DebugElement = fixture.debugElement.query(
+    //     By.css('app-issue')
+    //   );
+    //   issueElement.triggerEventHandler('issueClicked', issue);
+    //   // the "onDisplayIssueDetails()" handler method should be called
+    //   expect(component.onDisplayIssueDetails).toHaveBeenCalledWith(issue);
+    // });
     // it('should invoke "onHideIssueDetails()" when an "issueDetailsClosed" event is emitted', () => {
     //   // given an issue details
     //   component.issueDetails = issue;
-
     //   // given an "issueDetails" component
     //   component.willDisplayIssueDetails = true;
     //   fixture.detectChanges();
-
     //   spyOn(component, 'onHideIssueDetails');
-
     //   // when the "issueDetailsComponent" emits and "issueDetailsClosed" event
     //   const issueDetailsElement: DebugElement = fixture.debugElement.query(
     //     By.css('app-issue-details')
     //   );
     //   issueDetailsElement.triggerEventHandler('issueDetailsClosed', true);
-
     //   // then "onHideIssueDetails()" should be called
     //   expect(component.onHideIssueDetails).toHaveBeenCalled();
     // });
-
     // it('should toggle "willDisplayIssueDetails" value', () => {
     //   // should set to true
     //   component.onDisplayIssueDetails(issue);
     //   expect(component.willDisplayIssueDetails).toBeTrue();
-
     //   // should set to false
     //   component.onHideIssueDetails();
     //   expect(component.willDisplayIssueDetails).toBeFalse();
