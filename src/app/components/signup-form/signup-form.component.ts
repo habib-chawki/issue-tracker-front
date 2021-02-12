@@ -39,12 +39,13 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     if (this.signupForm.valid) {
       this.observable = this.userService.signUp(this.signupForm.value);
       this.subscription = this.observable.subscribe(
-        this.handleSuccessfulSignup
+        // this.handleSuccessfulSignup
+        (response) => console.log(response)
       );
     }
   }
 
-  handleSuccessfulSignup(response: HttpResponse<any>) {
+  handleSuccessfulSignup = (response: HttpResponse<any>) => {
     // store user details (identifier + token)
     this.storageService.storeUserDetails({
       identifier: response.body.id,
@@ -55,7 +56,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     this.ngZone.run(() => {
       this.router.navigate(['/backlog']);
     });
-  }
+  };
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();

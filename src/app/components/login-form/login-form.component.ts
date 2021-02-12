@@ -35,11 +35,14 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   onLogin() {
     if (this.loginForm.valid) {
       this.observable = this.userService.login(this.loginForm.value);
-      this.subscription = this.observable.subscribe(this.handleSuccessfulLogin);
+      this.subscription = this.observable.subscribe(
+        // this.handleSuccessfulLogin
+        (response) => console.log(response)
+      );
     }
   }
 
-  handleSuccessfulLogin(response: HttpResponse<any>) {
+  handleSuccessfulLogin = (response: HttpResponse<any>) => {
     // store the token and identifier in localStorage
     this.storageService.storeUserDetails({
       identifier: response.body.id,
@@ -50,7 +53,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.ngZone.run(() => {
       this.router.navigate(['/backlog']);
     });
-  }
+  };
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
