@@ -1,12 +1,7 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
   <mat-form-field>
-    <mat-label>First name</mat-label>
-    <input matInput type="text" formControlName="firstName" id="first-name" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label for="last-name">Last name</mat-label>
-    <input matInput type="text" formControlName="lastName" id="last-name" />
+    <mat-label>Full name</mat-label>
+    <input matInput type="text" formControlName="fullName" id="full-name" />
   </mat-form-field>
 
   <mat-form-field>
