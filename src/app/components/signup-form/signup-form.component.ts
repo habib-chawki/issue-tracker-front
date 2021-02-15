@@ -50,7 +50,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
       token: response.headers.get('Authorization'),
     });
 
-    // navigate to /backlog and replace url (disable back navigation)
+    // navigate to "/backlog" and replace url (disable back navigation)
     this.ngZone.run(() => {
       this.router.navigate(['/backlog'], { replaceUrl: true });
     });

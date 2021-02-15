@@ -19,6 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     // exlude signup and login routes
     if (request.url.endsWith('signup') || request.url.endsWith('login'))
       return next.handle(request);
+
     // add the Authorization token header
     const authRequest = request.clone({
       setHeaders: {
