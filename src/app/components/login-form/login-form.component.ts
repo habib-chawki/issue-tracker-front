@@ -46,9 +46,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       token: response.headers.get('Authorization'),
     });
 
-    // navigate to /backlog
+    // navigate to /backlog replace url (disable back navigation)
     this.ngZone.run(() => {
-      this.router.navigate(['/backlog']);
+      this.router.navigate(['/backlog'], { replaceUrl: true });
     });
   };
 
