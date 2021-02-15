@@ -47,10 +47,15 @@ export class IssueFormComponent implements OnInit {
   }
 
   onSave() {
-    const issue: Issue = {
-      id: this.initialFormValue.id,
-      ...this.issueForm.value,
-    };
+    let issue: Issue = this.issueForm.value;
+
+    // add the original issue "id" if the issue is to be updated rather than created
+    if (this.initialFormValue) {
+      issue = {
+        id: this.initialFormValue.id,
+        ...issue,
+      };
+    }
 
     this.issueCommunicationService.announceIssueFormSaved(issue);
   }
