@@ -35,10 +35,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   onLogin() {
     if (this.loginForm.valid) {
       this.observable = this.userService.login(this.loginForm.value);
-      this.subscription = this.observable.subscribe(
-        // this.handleSuccessfulLogin
-        (response) => console.log(response)
-      );
+      this.subscription = this.observable.subscribe(this.handleSuccessfulLogin);
     }
   }
 
