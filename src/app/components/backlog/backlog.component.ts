@@ -32,18 +32,13 @@ export class BacklogComponent implements OnInit {
 
   onSaveIssue = (issue: Issue) => {
     // decide whether to create a new issue or update an already existing issue
-    const found = this.issues.find((item) => {
-      item.id === issue.id;
-    });
-
-    found ? this.updateIssue(issue) : this.createIssue(issue);
+    issue.id ? this.updateIssue(issue) : this.createIssue(issue);
   };
 
   createIssue(issue: Issue) {
-    // this.issueService.createIssue(issue).subscribe((createdIssue) => {
-    issue.id = Math.floor(Math.random() * 1000).toString();
-    this.issues.push(issue);
-    // });
+    this.issueService.createIssue(issue).subscribe((createdIssue) => {
+      this.issues.push(issue);
+    });
   }
 
   updateIssue(issue: Issue) {
