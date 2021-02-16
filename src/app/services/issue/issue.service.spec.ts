@@ -109,8 +109,7 @@ describe('IssueService', () => {
       status: IssueStatus.Done,
     };
 
-    // when updateIssue is invoked with an issue
-    // then response with the updated issue
+    // when updateIssue() is invoked then response with the updated issue
     issueService.updateIssue(issue).subscribe((response) => {
       expect(response).toEqual(updatedIssue);
     });
@@ -157,5 +156,15 @@ describe('IssueService', () => {
 
     // return the list of mocked issues
     req.flush(issues);
+  });
+
+  it('should delete an issue by id', () => {
+    issueService.deleteIssue(issue.id).subscribe();
+
+    const req = httpTestingController.expectOne(
+      `${issueService.baseUrl}/${issue.id}`
+    );
+
+    expect(req.request.method).toBe('DELETE');
   });
 });
