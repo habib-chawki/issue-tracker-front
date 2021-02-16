@@ -27,4 +27,8 @@ export class IssueService {
   getIssues(): Observable<Issue[]> {
     return this.httpClient.get<Issue[]>(this.baseUrl);
   }
+
+  deleteIssue(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }
