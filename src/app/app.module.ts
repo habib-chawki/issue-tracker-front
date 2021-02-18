@@ -29,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { httpInterceptorProviders } from './interceptors/providers';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { httpInterceptorProviders } from './interceptors/providers';
     ColumnComponent,
     BoardComponent,
     ColumnFormComponent,
+    ProjectsComponent,
   ],
   imports: [
     DragDropModule,
