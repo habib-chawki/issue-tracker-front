@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Project from 'src/app/models/project/project.spec';
+import { ProjectService } from 'src/app/services/project/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -7,18 +8,13 @@ import Project from 'src/app/models/project/project.spec';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
-  projects: Project[] = [
-    {
-      id: '1',
-      name: 'project 1',
-    },
-    {
-      id: '2',
-      name: 'project 2',
-    },
-  ];
+  projects: Project[];
 
-  constructor() {}
+  constructor(private projectService: ProjectService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe((response: Project[]) => {
+      this.projects = response;
+    });
+  }
 }
