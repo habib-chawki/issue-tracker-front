@@ -1,4 +1,9 @@
 <form [formGroup]="projectForm" (ngSubmit)="onSave()">
-  <input id="name" type="text" formContorlName="name" />
-  <button mat-raised-button type="submit">Save</button>
+  <mat-form-field>
+    <mat-label>Project name</mat-label>
+    <input matInput id="name" type="text" formContorlName="name" />
+  </mat-form-field>
+
+  <button mat-raised-button mat-dialog-close type="submit">Save</button>
+  <button mat-raised-button mat-dialog-close>Close</button>
 </form>
