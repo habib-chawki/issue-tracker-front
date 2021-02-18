@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
@@ -11,16 +12,24 @@ import { IssueFormComponent } from '../issue-form/issue-form.component';
   styleUrls: ['./backlog.component.scss'],
 })
 export class BacklogComponent implements OnInit {
+  projectId: string;
+
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
 
   constructor(
     private issueService: IssueService,
     private issueCommunicationService: IssueCommunicationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    // extract the project id query param
+    this.route.queryParams.subscribe((params) => {
+      this.projectId = params.project;
+    });
+
     // get the list of issues
     this.issueService.getIssues().subscribe((response) => {
       this.issues = response;
