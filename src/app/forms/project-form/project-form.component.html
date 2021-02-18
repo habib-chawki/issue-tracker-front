@@ -2,6 +2,9 @@
   <mat-form-field>
     <mat-label>Project name</mat-label>
     <input matInput id="name" type="text" formContorlName="name" />
+    <mat-error *ngIf="name.hasError('required')"
+      >Email is <strong>required</strong></mat-error
+    >
   </mat-form-field>
 
   <button mat-raised-button mat-dialog-close type="submit">Save</button>
