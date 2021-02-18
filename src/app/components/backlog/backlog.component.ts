@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class BacklogComponent implements OnInit {
 
   constructor(
     private issueService: IssueService,
+    private projectService: ProjectService,
     private issueCommunicationService: IssueCommunicationService,
     private dialog: MatDialog,
     private route: ActivatedRoute
@@ -30,8 +32,8 @@ export class BacklogComponent implements OnInit {
       this.projectId = params.project;
     });
 
-    // get the list of issues
-    this.issueService.getIssues().subscribe((response) => {
+    // get the project backlog (list of issues)
+    this.projectService.getBacklog(this.projectId).subscribe((response) => {
       this.issues = response;
     });
 
