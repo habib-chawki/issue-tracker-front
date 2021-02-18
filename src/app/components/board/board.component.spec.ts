@@ -8,7 +8,7 @@ import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { ColumnService } from 'src/app/services/column/column.service';
-import { ColumnFormComponent } from '../column-form/column-form.component';
+import { ColumnFormComponent } from '../../forms/column-form/column-form.component';
 import { ColumnComponent } from '../column/column.component';
 import { IssueComponent } from '../issue/issue.component';
 import { IssuesComponent } from '../issues/issues.component';

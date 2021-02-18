@@ -5,7 +5,7 @@ import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import { ColumnCommunicationService } from 'src/app/services/column-communication/column-communication.service';
 import { ColumnService } from 'src/app/services/column/column.service';
-import { ColumnFormComponent } from '../column-form/column-form.component';
+import { ColumnFormComponent } from '../../forms/column-form/column-form.component';
 
 @Component({
   selector: 'app-board',

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
-import { IssueFormComponent } from '../issue-form/issue-form.component';
+import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 
 @Component({
   selector: 'app-backlog',

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Issue } from 'src/app/models/issue/issue';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { IssueDetailsComponent } from '../issue-details/issue-details.component';
-import { IssueFormComponent } from '../issue-form/issue-form.component';
+import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 
 @Component({
   selector: 'app-issue',

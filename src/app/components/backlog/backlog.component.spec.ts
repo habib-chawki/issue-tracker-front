@@ -17,7 +17,7 @@ import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
-import { IssueFormComponent } from '../issue-form/issue-form.component';
+import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 import { IssuesComponent } from '../issues/issues.component';
 import { BacklogComponent } from './backlog.component';
 
