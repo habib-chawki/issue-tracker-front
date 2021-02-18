@@ -26,10 +26,16 @@ export class ProjectsComponent implements OnInit {
 
     // listen for project form saved announcements
     this.projectCommunicationService.projectFormSaved$.subscribe(
-      (project: Project) => {
-        this.projects.push(project);
-      }
+      this.createProject
     );
+  }
+
+  createProject(project) {
+    this.projectService
+      .createProject(project)
+      .subscribe((createdProject: Project) => {
+        this.projects.push(createdProject);
+      });
   }
 
   onAddProject() {
