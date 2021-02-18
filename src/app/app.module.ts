@@ -16,6 +16,9 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { ColumnComponent } from './components/column/column.component';
 import { BoardComponent } from './components/board/board.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectComponent } from './components/project/project.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -29,7 +32,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { httpInterceptorProviders } from './interceptors/providers';
-import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
     BoardComponent,
     ColumnFormComponent,
     ProjectsComponent,
+    ProjectComponent,
   ],
   imports: [
     DragDropModule,
