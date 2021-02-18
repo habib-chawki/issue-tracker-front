@@ -6,7 +6,7 @@ import Project from 'src/app/models/project/project.spec';
   providedIn: 'root',
 })
 export class ProjectCommunicationService {
-  projectFormSaved$: Subject<Project>;
+  projectFormSaved$ = new Subject<Project>();
 
   constructor() {}
 

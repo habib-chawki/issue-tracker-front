@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProjectCommunicationService } from 'src/app/services/project-communication/project-communication.service';
 
 @Component({
   selector: 'app-project-form',
@@ -11,11 +12,17 @@ export class ProjectFormComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
   });
 
-  constructor() {}
+  constructor(
+    private projectCommunicationService: ProjectCommunicationService
+  ) {}
 
   ngOnInit(): void {}
 
-  onSave() {}
+  onSave() {
+    this.projectCommunicationService.announceProjectFormSaved(
+      this.projectForm.value
+    );
+  }
 
   get name() {
     return this.projectForm.controls.name;
