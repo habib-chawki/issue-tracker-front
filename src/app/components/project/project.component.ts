@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Project from 'src/app/models/project/project.spec';
 
 @Component({
@@ -9,7 +10,13 @@ import Project from 'src/app/models/project/project.spec';
 export class ProjectComponent implements OnInit {
   @Input() project: Project;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  onClick() {
+    this.router.navigate(['backlog'], {
+      queryParams: { project: this.project.id },
+    });
+  }
 }
