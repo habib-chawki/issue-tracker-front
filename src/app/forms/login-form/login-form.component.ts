@@ -48,7 +48,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
     // navigate to "/backlog" and replace url (disable back navigation)
     this.ngZone.run(() => {
-      this.router.navigate(['/backlog'], { replaceUrl: true });
+      this.router.navigate(['/projects'], { replaceUrl: true });
     });
   };
 
