@@ -8,8 +8,8 @@ import { ProjectCommunicationService } from 'src/app/services/project-communicat
   styleUrls: ['./project-form.component.scss'],
 })
 export class ProjectFormComponent implements OnInit {
-  projectForm: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+  projectForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
   });
 
   constructor(
