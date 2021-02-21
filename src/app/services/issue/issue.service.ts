@@ -12,8 +12,12 @@ export class IssueService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createIssue(issue: Issue): Observable<Issue> {
-    return this.httpClient.post<Issue>(this.baseUrl, issue);
+  createIssue(issue: Issue, projectId: string): Observable<Issue> {
+    return this.httpClient.post<Issue>(this.baseUrl, issue, {
+      params: {
+        project: projectId,
+      },
+    });
   }
 
   updateIssue(issue: Issue): Observable<Issue> {
