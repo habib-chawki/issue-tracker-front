@@ -22,6 +22,6 @@ export class ProjectService {
   }
 
   getBacklog(projectId: string): Observable<Issue[]> {
-    return this.httpClient.get<Issue[]>(`${this.baseUrl}/${projectId}/issues`);
+    return this.httpClient.get<Issue[]>(`${this.baseUrl}/${projectId}/backlog`);
   }
 }
