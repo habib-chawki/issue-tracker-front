@@ -1,9 +1,13 @@
 <form [formGroup]="projectForm" (ngSubmit)="onSave()">
   <mat-form-field>
     <mat-label>Project name</mat-label>
-    <input matInput id="name" type="text" formContorlName="name" />
+    <input matInput id="name" type="text" formControlName="name" />
+    <mat-error
+      *ngIf="name.touched && name.invalid && !name.hasError('required')"
+      >At least 5 characters long</mat-error
+    >
     <mat-error *ngIf="name.hasError('required')"
-      >Email is <strong>required</strong></mat-error
+      >Name is <strong>required</strong></mat-error
     >
   </mat-form-field>
 
