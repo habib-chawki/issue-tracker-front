@@ -30,13 +30,13 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
-  createProject(project) {
+  createProject = (project) => {
     this.projectService
       .createProject(project)
       .subscribe((createdProject: Project) => {
         this.projects.push(createdProject);
       });
-  }
+  };
 
   onAddProject() {
     this.dialog.open(ProjectFormComponent);
