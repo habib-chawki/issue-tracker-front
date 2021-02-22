@@ -73,4 +73,10 @@ export class BacklogComponent implements OnInit {
   onDisplaySprintBacklog() {
     this.willDisplaySprintBacklog = true;
   }
+
+  onHideSpringBacklog() {
+    this.willDisplaySprintBacklog = false;
+  }
+
+  onStartSprint() {}
 }
