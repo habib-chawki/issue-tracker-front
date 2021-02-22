@@ -1,5 +1,13 @@
-<button mat-raised-button id="add" (click)="onDisplayIssueForm()">
+<button mat-raised-button id="add-issue" (click)="onDisplayIssueForm()">
   Add issue
 </button>
 
-<app-issues [issues]="issues"></app-issues>
+<button mat-raised-button id="add-sprint" (click)="onDisplaySprintBacklog()">
+  Add sprint
+</button>
+
+<div cdkDropListGroup>
+  <app-issues *ngIf="willDisplaySprintBacklog"></app-issues>
+
+  <app-issues [issues]="issues"></app-issues>
+</div>
