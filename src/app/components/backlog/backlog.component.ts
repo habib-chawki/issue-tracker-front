@@ -6,6 +6,7 @@ import { Issue } from 'src/app/models/issue/issue';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 
 @Component({
@@ -25,6 +26,7 @@ export class BacklogComponent implements OnInit {
     private issueService: IssueService,
     private projectService: ProjectService,
     private issueCommunicationService: IssueIntercomService,
+    private sprintIntercomService: SprintIntercomService,
     private dialog: MatDialog,
     private route: ActivatedRoute
   ) {}
@@ -42,6 +44,9 @@ export class BacklogComponent implements OnInit {
 
     // listen for issue form saved announcements
     this.issueCommunicationService.issueFormSaved$.subscribe(this.onSaveIssue);
+
+    // listen for sprint form saved announcements
+    this.sprintIntercomService.sprintFormSaved$.subscribe(this.onStartSprint);
   }
 
   onSaveIssue = (issue: Issue) => {
@@ -79,7 +84,7 @@ export class BacklogComponent implements OnInit {
     this.willDisplaySprintBacklog = false;
   }
 
-  onStartSprint() {
+  onStartSprint = () => {
     this.dialog.open(SprintFormComponent);
-  }
+  };
 }
