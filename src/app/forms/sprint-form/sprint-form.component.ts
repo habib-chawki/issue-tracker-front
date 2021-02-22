@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 
 @Component({
   selector: 'app-sprint-form',
@@ -14,11 +15,13 @@ export class SprintFormComponent implements OnInit {
     endDate: new FormControl(new Date().getDate() + 30, Validators.required),
   });
 
-  constructor() {}
+  constructor(private sprintIntercomService: SprintIntercomService) {}
 
   ngOnInit(): void {}
 
-  onSave() {}
+  onSave() {
+    this.sprintIntercomService.announceSprintFormSaved(this.sprintForm.value);
+  }
 
   get name() {
     return this.sprintForm.controls.name;
