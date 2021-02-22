@@ -1,5 +1,13 @@
 <form [formGroup]="sprintForm" (ngSubmit)="onSave()">
   <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" />
+    <mat-error *ngIf="name.hasError('required')"
+      >Sprint name is <strong>required</strong></mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Goal summary</mat-label>
     <textarea
       matInput
@@ -9,7 +17,7 @@
       cols="30"
       rows="10"
     ></textarea>
-    <mat-error *ngIf="name.hasError('required')"
+    <mat-error *ngIf="goal.hasError('required')"
       >Sprint goal is <strong>required</strong></mat-error
     >
   </mat-form-field>

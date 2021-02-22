@@ -18,6 +18,8 @@ export class SprintFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onSave() {}
+
   get name() {
     return this.sprintForm.controls.name;
   }
