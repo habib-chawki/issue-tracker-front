@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProjectCommunicationService } from './project-communication.service';
+import { ProjectCommunicationService } from './project-intercom.service';
 
 describe('ProjectCommunicationService', () => {
   let service: ProjectCommunicationService;
