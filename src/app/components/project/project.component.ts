@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import Project from 'src/app/models/project/project.spec';
+import Project from 'src/app/models/project/project';
 
 @Component({
   selector: 'app-project',

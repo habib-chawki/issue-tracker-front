@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProjectFormComponent } from 'src/app/forms/project-form/project-form.component';
-import Project from 'src/app/models/project/project.spec';
+import Project from 'src/app/models/project/project';
 import { ProjectCommunicationService } from 'src/app/services/project-intercom/project-intercom.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 
