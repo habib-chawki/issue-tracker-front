@@ -18,6 +18,8 @@ export class BacklogComponent implements OnInit {
   issues: Issue[] = [];
   issueDetails: Issue = {} as Issue;
 
+  willDisplaySprintBacklog: boolean = false;
+
   constructor(
     private issueService: IssueService,
     private projectService: ProjectService,
@@ -67,4 +69,8 @@ export class BacklogComponent implements OnInit {
   onDisplayIssueForm = () => {
     this.dialog.open(IssueFormComponent);
   };
+
+  onDisplaySprintBacklog() {
+    this.willDisplaySprintBacklog = true;
+  }
 }
