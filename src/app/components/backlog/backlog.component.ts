@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
@@ -78,5 +79,7 @@ export class BacklogComponent implements OnInit {
     this.willDisplaySprintBacklog = false;
   }
 
-  onStartSprint() {}
+  onStartSprint() {
+    this.dialog.open(SprintFormComponent);
+  }
 }
