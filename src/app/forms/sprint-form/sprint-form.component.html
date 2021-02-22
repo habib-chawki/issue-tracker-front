@@ -1,1 +1,19 @@
-<p>sprint-form works!</p>
+<form [formGroup]="sprintForm" (ngSubmit)="onSave()">
+  <mat-form-field>
+    <mat-label>Goal summary</mat-label>
+    <textarea
+      matInput
+      formControlName="goal"
+      name="goal"
+      id="goal"
+      cols="30"
+      rows="10"
+    ></textarea>
+    <mat-error *ngIf="name.hasError('required')"
+      >Sprint goal is <strong>required</strong></mat-error
+    >
+  </mat-form-field>
+
+  <button mat-raised-button type="submit">Save</button>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+</form>
