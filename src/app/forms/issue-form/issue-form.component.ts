@@ -7,7 +7,7 @@ import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
+import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 
 @Component({
   selector: 'app-issue-form',
@@ -37,7 +37,7 @@ export class IssueFormComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public initialFormValue,
-    private issueCommunicationService: IssueCommunicationService
+    private issueCommunicationService: IssueIntercomService
   ) {}
 
   ngOnInit(): void {

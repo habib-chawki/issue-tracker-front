@@ -5,7 +5,7 @@ import { Issue } from 'src/app/models/issue/issue';
 @Injectable({
   providedIn: 'root',
 })
-export class IssueCommunicationService {
+export class IssueIntercomService {
   issueUpdate$ = new Subject<Issue>();
   issueFormSaved$ = new Subject<Issue>();
   displayIssueDetails$ = new Subject<Issue>();

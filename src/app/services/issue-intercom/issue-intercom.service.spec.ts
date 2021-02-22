@@ -5,15 +5,15 @@ import IssueType from 'src/app/models/enums/issue-type';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 
-import { IssueCommunicationService } from './issue-communication.service';
+import { IssueIntercomService } from './issue-intercom.service';
 
-describe('IssueCommunicationService', () => {
-  let service: IssueCommunicationService;
+describe('IssueIntercomService', () => {
+  let service: IssueIntercomService;
   let issue: Issue;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IssueCommunicationService);
+    service = TestBed.inject(IssueIntercomService);
 
     issue = new IssueBuilder()
       .id('500')

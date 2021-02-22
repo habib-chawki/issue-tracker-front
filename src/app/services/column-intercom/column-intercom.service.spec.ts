@@ -3,7 +3,7 @@ import Column from 'src/app/models/column/column';
 
 import { ColumnIntercomService } from './column-intercom.service';
 
-describe('ColumnCommunicationService', () => {
+describe('ColumnIntercomService', () => {
   let service: ColumnIntercomService;
 
   let column: Column;

@@ -6,7 +6,7 @@ import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { User } from 'src/app/models/user/user';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
+import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { IssueComponent } from './issue.component';
@@ -20,7 +20,7 @@ describe('IssueComponent', () => {
   let reporter: User;
 
   let storageService: StorageService;
-  let issueCommunicationService: IssueCommunicationService;
+  let issueCommunicationService: IssueIntercomService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,7 +36,7 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     storageService = TestBed.inject(StorageService);
-    issueCommunicationService = TestBed.inject(IssueCommunicationService);
+    issueCommunicationService = TestBed.inject(IssueIntercomService);
 
     // set up the issue reporter
     reporter = new UserBuilder()

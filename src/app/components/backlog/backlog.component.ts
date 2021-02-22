@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Issue } from 'src/app/models/issue/issue';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
+import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
@@ -21,7 +21,7 @@ export class BacklogComponent implements OnInit {
   constructor(
     private issueService: IssueService,
     private projectService: ProjectService,
-    private issueCommunicationService: IssueCommunicationService,
+    private issueCommunicationService: IssueIntercomService,
     private dialog: MatDialog,
     private route: ActivatedRoute
   ) {}

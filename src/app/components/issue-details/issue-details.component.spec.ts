@@ -7,7 +7,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
-import { IssueCommunicationService } from 'src/app/services/issue-communication/issue-communication.service';
+import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { CommentComponent } from '../comment/comment.component';
 import { CommentsComponent } from '../comments/comments.component';
 
@@ -18,7 +18,7 @@ describe('IssueDetailsComponent', () => {
   let fixture: ComponentFixture<IssueDetailsComponent>;
   let nativeElement: HTMLElement;
 
-  let issueCommunicationService: IssueCommunicationService;
+  let issueCommunicationService: IssueIntercomService;
 
   let issue: Issue;
 
@@ -40,7 +40,7 @@ describe('IssueDetailsComponent', () => {
 
     fixture.detectChanges();
 
-    issueCommunicationService = TestBed.inject(IssueCommunicationService);
+    issueCommunicationService = TestBed.inject(IssueIntercomService);
 
     // set up issue details
     issue = {
