@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
-import { ColumnCommunicationService } from 'src/app/services/column-communication/column-communication.service';
+import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { ColumnFormComponent } from '../../forms/column-form/column-form.component';
 
@@ -20,7 +20,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   constructor(
     private columnService: ColumnService,
-    private columnCommunicationService: ColumnCommunicationService,
+    private columnCommunicationService: ColumnIntercomService,
     private dialog: MatDialog
   ) {}
 

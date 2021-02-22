@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ColumnCommunicationService } from 'src/app/services/column-communication/column-communication.service';
+import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
 
 @Component({
   selector: 'app-column-form',
@@ -12,7 +12,7 @@ export class ColumnFormComponent implements OnInit {
     title: new FormControl('', Validators.required),
   });
 
-  constructor(private columnCommunicationService: ColumnCommunicationService) {}
+  constructor(private columnCommunicationService: ColumnIntercomService) {}
 
   ngOnInit(): void {}
 

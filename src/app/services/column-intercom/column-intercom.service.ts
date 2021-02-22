@@ -5,7 +5,7 @@ import Column from 'src/app/models/column/column';
 @Injectable({
   providedIn: 'root',
 })
-export class ColumnCommunicationService {
+export class ColumnIntercomService {
   columnFormSaved$ = new Subject<Column>();
 
   constructor() {}
