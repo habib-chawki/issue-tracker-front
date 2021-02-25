@@ -34,6 +34,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { httpInterceptorProviders } from './interceptors/providers';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { SprintFormComponent } from './forms/sprint-form/sprint-form.component';
+import { SprintComponent } from './components/sprint/sprint.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SprintFormComponent } from './forms/sprint-form/sprint-form.component';
     ProjectComponent,
     ProjectFormComponent,
     SprintFormComponent,
+    SprintComponent,
   ],
   imports: [
     DragDropModule,
