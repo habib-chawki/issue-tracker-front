@@ -13,7 +13,7 @@ export class SprintComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSaveSprintIssues() {}
+  onSaveSprintBacklog() {}
 
   onStartSprint() {}
 }
