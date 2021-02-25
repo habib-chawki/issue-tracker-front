@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
 import { Issue } from 'src/app/models/issue/issue';
+import Sprint from 'src/app/models/sprint/sprint';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -15,10 +16,11 @@ import { IssueFormComponent } from '../../forms/issue-form/issue-form.component'
   styleUrls: ['./backlog.component.scss'],
 })
 export class BacklogComponent implements OnInit {
+  sprint: Sprint;
+
   projectId: string;
 
   issues: Issue[] = [];
-  issueDetails: Issue = {} as Issue;
 
   willDisplaySprintBacklog: boolean = false;
 
@@ -78,11 +80,12 @@ export class BacklogComponent implements OnInit {
     this.dialog.open(IssueFormComponent);
   };
 
-  onDisplaySprintBacklog = () => {
+  onDisplaySprintBacklog = (sprint: Sprint) => {
+    this.sprint = sprint;
     this.willDisplaySprintBacklog = true;
   };
 
-  onCreateSprint = () => {
+  onDisplaySprintForm = () => {
     this.dialog.open(SprintFormComponent);
   };
 }
