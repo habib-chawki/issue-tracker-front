@@ -46,7 +46,9 @@ export class BacklogComponent implements OnInit {
     this.issueCommunicationService.issueFormSaved$.subscribe(this.onSaveIssue);
 
     // listen for sprint form saved announcements
-    this.sprintIntercomService.sprintFormSaved$.subscribe(this.onStartSprint);
+    this.sprintIntercomService.sprintFormSaved$.subscribe(
+      this.onDisplaySprintBacklog
+    );
   }
 
   onSaveIssue = (issue: Issue) => {
@@ -76,15 +78,11 @@ export class BacklogComponent implements OnInit {
     this.dialog.open(IssueFormComponent);
   };
 
-  onDisplaySprintBacklog() {
+  onDisplaySprintBacklog = () => {
     this.willDisplaySprintBacklog = true;
-  }
+  };
 
-  onHideSpringBacklog() {
-    this.willDisplaySprintBacklog = false;
-  }
-
-  onStartSprint = () => {
+  onCreateSprint = () => {
     this.dialog.open(SprintFormComponent);
   };
 }
