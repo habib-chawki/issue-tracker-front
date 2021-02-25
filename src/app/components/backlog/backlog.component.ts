@@ -88,7 +88,6 @@ export class BacklogComponent implements OnInit {
       .createSprint(this.projectId, sprintFormValue)
       .subscribe((sprint: Sprint) => {
         this.sprint = sprint;
-
         this.willDisplaySprintBacklog = true;
       });
   };
