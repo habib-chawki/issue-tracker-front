@@ -2,26 +2,21 @@
   Add issue
 </button>
 
-<button mat-raised-button id="add-sprint" (click)="onDisplaySprintBacklog()">
+<button mat-raised-button id="add-sprint" (click)="onCreateSprint()">
   Add sprint
 </button>
 
 <div cdkDropListGroup>
+  <!-- sprint backlog -->
   <app-issues *ngIf="willDisplaySprintBacklog"></app-issues>
   <button
     mat-raised-button
     *ngIf="willDisplaySprintBacklog"
-    (click)="onStartSprint()"
+    (click)="onDisplaySprintBacklog()"
   >
     Start sprint
   </button>
-  <button
-    mat-raised-button
-    *ngIf="willDisplaySprintBacklog"
-    (click)="onHideSprintBacklog()"
-  >
-    Cancel sprint
-  </button>
 
+  <!-- product backlog -->
   <app-issues [issues]="issues"></app-issues>
 </div>
