@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
@@ -13,7 +14,7 @@ export class SprintComponent implements OnInit {
 
   @Input() sprint: Sprint;
 
-  constructor(private sprintService: SprintService) {}
+  constructor(private sprintService: SprintService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -28,5 +29,9 @@ export class SprintComponent implements OnInit {
     console.log(this.sprint);
   }
 
-  onStartSprint() {}
+  onStartSprint() {
+    this.router.navigate(['/board'], {
+      queryParams: { sprint: this.sprint.id },
+    });
+  }
 }
