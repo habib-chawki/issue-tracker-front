@@ -35,18 +35,18 @@ export class BoardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // extract sprint id query param
-    this.route.params.subscribe((queryParams) => {
+    // extract query params
+    this.route.queryParams.subscribe((queryParams) => {
       this.sprintId = queryParams.sprint;
-      this.projectId = queryParams.projectId;
-    });
+      this.projectId = queryParams.project;
 
-    // fetch sprint backlog (list of issues)
-    this.sprintService
-      .getSprint(this.projectId, this.sprintId)
-      .subscribe((response) => {
-        this.sprint = response;
-      });
+      // fetch sprint
+      this.sprintService
+        .getSprint(this.projectId, this.sprintId)
+        .subscribe((response) => {
+          this.sprint = response;
+        });
+    });
 
     // listen for column form saved announcements
     this.columnCommunicationService.columnFormSaved$.subscribe(
