@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
@@ -15,16 +16,26 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
 export class BoardComponent implements OnInit, OnDestroy {
   @Input() board: Board = { columns: [] } as Board;
 
+  sprintId: string;
+
   observable: Observable<Column>;
   subscriptions = new Subscription();
 
   constructor(
     private columnService: ColumnService,
     private columnCommunicationService: ColumnIntercomService,
+    private route: ActivatedRoute,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    // extract sprint id query param
+    this.route.params.subscribe((queryParams) => {
+      this.sprintId = queryParams.sprint;
+    });
+
+    // fetch sprint backlog (list of issues)
+
     // listen for column form saved announcements
     this.columnCommunicationService.columnFormSaved$.subscribe(
       this.handleCreateColumn

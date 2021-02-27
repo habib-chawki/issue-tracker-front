@@ -37,8 +37,8 @@ export class BacklogComponent implements OnInit {
 
   ngOnInit(): void {
     // extract the project id query param
-    this.route.queryParams.subscribe((params) => {
-      this.projectId = params.project;
+    this.route.queryParams.subscribe((queryParams) => {
+      this.projectId = queryParams.project;
     });
 
     // get the project backlog (list of issues)
