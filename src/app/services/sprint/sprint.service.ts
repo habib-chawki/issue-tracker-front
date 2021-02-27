@@ -22,4 +22,9 @@ export class SprintService {
     const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}/issues`;
     this.httpClient.post(url, issues);
   }
+
+  getSprintBacklog(projectId: string, sprintId: string): Observable<Issue[]> {
+    const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}/issues`;
+    return this.httpClient.get<Issue[]>(url);
+  }
 }
