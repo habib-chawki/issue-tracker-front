@@ -25,13 +25,11 @@ export class SprintComponent implements OnInit {
       this.sprint.id,
       this.backlog
     );
-
-    console.log(this.sprint);
   }
 
-  onStartSprint() {
+  onStartSprint = () => {
     this.router.navigate(['/board'], {
-      queryParams: { sprint: this.sprint.id },
+      queryParams: { sprint: this.sprint.id, project: this.sprint.project },
     });
-  }
+  };
 }
