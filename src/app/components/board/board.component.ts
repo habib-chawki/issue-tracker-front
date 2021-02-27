@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
-import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
 import { ColumnService } from 'src/app/services/column/column.service';
@@ -44,7 +43,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     // fetch sprint backlog (list of issues)
     this.sprintService
-      .getSprintBacklog(this.projectId, this.sprintId)
+      .getSprint(this.projectId, this.sprintId)
       .subscribe((response) => {
         this.sprint = response;
       });
