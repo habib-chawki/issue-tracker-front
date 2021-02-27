@@ -50,7 +50,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     // listen for column form saved announcements
     this.columnCommunicationService.columnFormSaved$.subscribe(
-      this.handleCreateColumn
+      this.onColumnFormSaved
     );
   }
 
@@ -58,10 +58,10 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.dialog.open(ColumnFormComponent);
   }
 
-  onColumnFormSaved(formValue) {
+  onColumnFormSaved = (formValue) => {
     this.observable = this.columnService.createColumn(formValue, this.board.id);
     this.subscriptions.add(this.observable.subscribe(this.handleCreateColumn));
-  }
+  };
 
   handleCreateColumn = (column: Column) => {
     this.board.columns.push(column);
