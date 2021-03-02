@@ -18,9 +18,13 @@ export class SprintService {
     return this.httpClient.post<Sprint>(url, sprint);
   }
 
-  setSprintBacklog(projectId: string, sprintId: string, issues: Issue[]) {
-    const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}/issues`;
-    this.httpClient.post(url, issues);
+  setSprintBacklog(
+    projectId: string,
+    sprintId: string,
+    issuesIds: number[]
+  ): Observable<number> {
+    const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}/backlog`;
+    return this.httpClient.patch<number>(url, issuesIds);
   }
 
   getSprint(projectId: string, sprintId: string): Observable<Sprint> {
