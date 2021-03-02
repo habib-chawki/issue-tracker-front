@@ -3,6 +3,10 @@
 </button>
 
 <div cdkDropListGroup>
+  <!-- render the to do column containing the sprint backlog issues -->
+  <app-column [issues]="sprint?.backlog"></app-column>
+
+  <!-- render the other board columns -->
   <app-column
     *ngFor="let column of board?.columns"
     [title]="column.title"
