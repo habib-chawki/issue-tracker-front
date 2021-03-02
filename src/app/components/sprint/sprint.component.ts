@@ -19,12 +19,14 @@ export class SprintComponent implements OnInit {
   ngOnInit(): void {}
 
   onSaveSprintBacklog() {
-    // TODO: save sprint backlog
-    this.sprintService.setSprintBacklog(
-      this.sprint.project,
-      this.sprint.id,
-      this.backlog
-    );
+    // extract issues ids
+    const issuesIds = this.backlog.map((issue: Issue) => +issue.id);
+
+    this.sprintService
+      .setSprintBacklog(this.sprint.project, this.sprint.id, issuesIds)
+      .subscribe((response) => {
+        console.log('Number of issues updated ' + response);
+      });
   }
 
   onStartSprint = () => {
