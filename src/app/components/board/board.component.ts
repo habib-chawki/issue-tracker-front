@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  @Input() board: Board = { columns: [] } as Board;
+  board: Board = { columns: [] } as Board;
 
   sprint: Sprint;
 
