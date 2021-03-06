@@ -1,6 +1,15 @@
-<button mat-raised-button id="add" (click)="onDisplayColumnForm()">
+<button
+  *ngIf="board?.id"
+  mat-raised-button
+  id="add-column"
+  (click)="onDisplayColumnForm()"
+>
   Add column
 </button>
+
+<ng-template #createBoard>
+  <button mat-raised-button>Create board</button>
+</ng-template>
 
 <div cdkDropListGroup>
   <!-- render the to do column containing the sprint backlog issues -->
