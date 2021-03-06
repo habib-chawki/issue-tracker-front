@@ -28,6 +28,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
 
   constructor(
+    private boardService: BoardService,
     private boardIntercomService: BoardIntercomService,
     private columnService: ColumnService,
     private columnIntercomService: ColumnIntercomService,
@@ -63,17 +64,19 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.dialog.open(ColumnFormComponent);
   }
 
-  onColumnFormSaved = (formValue) => {
+  onColumnFormSaved = (columnFormValue) => {
     this.subscription = this.columnService
-      .createColumn(formValue, this.board.id)
-      .subscribe(this.handleCreateColumn);
+      .createColumn(columnFormValue, this.board.id)
+      .subscribe((column: Column) => {
+        this.board.columns.push(column);
+      });
   };
 
-  onBoardFormSaved() {}
-
-  handleCreateColumn = (column: Column) => {
-    this.board.columns.push(column);
-  };
+  onBoardFormSaved(boardFormValue) {
+    this.boardService.createBoard(boardFormValue).subscribe((response) => {
+      this.board = response;
+    });
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
