@@ -227,13 +227,13 @@ describe('BoardComponent', () => {
   });
 
   it('should unsubscribe from all subscriptions when ngOnDestroy() is called', () => {
-    spyOn(component.subscriptions, 'unsubscribe');
+    spyOn(component.subscription, 'unsubscribe');
 
     // when component is destroyed
     component.ngOnDestroy();
 
     // then expect to unsubscribe from all subscriptions
-    expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
+    expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
 
   it('should add to subscriptions', () => {
@@ -244,7 +244,7 @@ describe('BoardComponent', () => {
     component.observable = new Observable();
 
     spyOn(columnService, 'createColumn').and.returnValue(of(column));
-    spyOn(component.subscriptions, 'add');
+    spyOn(component.subscription, 'add');
 
     // given a form value
     const formValue = {
@@ -255,7 +255,7 @@ describe('BoardComponent', () => {
     component.onColumnFormSaved(formValue);
 
     // then expect subscription to have been added to the subscriptions object
-    expect(component.subscriptions.add).toHaveBeenCalled();
+    expect(component.subscription.add).toHaveBeenCalled();
   });
 
   it('should invoke "handleCreateColumn()" within "onColumnFormSaved()"', () => {

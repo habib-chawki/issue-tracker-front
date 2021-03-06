@@ -23,8 +23,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   sprintId: string;
   projectId: string;
 
-  observable: Observable<Column>;
-  subscriptions = new Subscription();
+  subscription = new Subscription();
 
   constructor(
     private columnService: ColumnService,
@@ -59,8 +58,9 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   onColumnFormSaved = (formValue) => {
-    this.observable = this.columnService.createColumn(formValue, this.board.id);
-    this.subscriptions.add(this.observable.subscribe(this.handleCreateColumn));
+    this.subscription = this.columnService
+      .createColumn(formValue, this.board.id)
+      .subscribe(this.handleCreateColumn);
   };
 
   handleCreateColumn = (column: Column) => {
@@ -68,6 +68,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   };
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
