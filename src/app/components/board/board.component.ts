@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import Sprint from 'src/app/models/sprint/sprint';
+import { BoardService } from 'src/app/services/board/board.service';
 import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
@@ -26,6 +27,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
 
   constructor(
+    private boardService: BoardService,
     private columnService: ColumnService,
     private columnCommunicationService: ColumnIntercomService,
     private sprintService: SprintService,
@@ -62,6 +64,8 @@ export class BoardComponent implements OnInit, OnDestroy {
       .createColumn(formValue, this.board.id)
       .subscribe(this.handleCreateColumn);
   };
+
+  createBoard() {}
 
   handleCreateColumn = (column: Column) => {
     this.board.columns.push(column);

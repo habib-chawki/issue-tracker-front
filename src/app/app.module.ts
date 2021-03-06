@@ -35,6 +35,7 @@ import { httpInterceptorProviders } from './interceptors/providers';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { SprintFormComponent } from './forms/sprint-form/sprint-form.component';
 import { SprintComponent } from './components/sprint/sprint.component';
+import { BoardFormComponent } from './forms/board-form/board-form.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SprintComponent } from './components/sprint/sprint.component';
     ProjectFormComponent,
     SprintFormComponent,
     SprintComponent,
+    BoardFormComponent,
   ],
   imports: [
     DragDropModule,
