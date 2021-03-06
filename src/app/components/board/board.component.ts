@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import Sprint from 'src/app/models/sprint/sprint';
@@ -62,6 +63,10 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onDisplayColumnForm() {
     this.dialog.open(ColumnFormComponent);
+  }
+
+  onDisplayBoardForm() {
+    this.dialog.open(BoardFormComponent);
   }
 
   onColumnFormSaved = (columnFormValue) => {
