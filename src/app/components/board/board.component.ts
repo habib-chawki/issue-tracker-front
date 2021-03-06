@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import Sprint from 'src/app/models/sprint/sprint';
+import { BoardIntercomService } from 'src/app/services/board-intercom/board-intercom.service';
 import { BoardService } from 'src/app/services/board/board.service';
 import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
 import { ColumnService } from 'src/app/services/column/column.service';
@@ -27,9 +28,9 @@ export class BoardComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
 
   constructor(
-    private boardService: BoardService,
+    private boardIntercomService: BoardIntercomService,
     private columnService: ColumnService,
-    private columnCommunicationService: ColumnIntercomService,
+    private columnIntercomService: ColumnIntercomService,
     private sprintService: SprintService,
     private route: ActivatedRoute,
     private dialog: MatDialog
@@ -49,8 +50,11 @@ export class BoardComponent implements OnInit, OnDestroy {
         });
     });
 
+    // listen for board form saved announcements
+    this.boardIntercomService.boardFormSaved$.subscribe(this.onBoardFormSaved);
+
     // listen for column form saved announcements
-    this.columnCommunicationService.columnFormSaved$.subscribe(
+    this.columnIntercomService.columnFormSaved$.subscribe(
       this.onColumnFormSaved
     );
   }
@@ -65,7 +69,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       .subscribe(this.handleCreateColumn);
   };
 
-  createBoard() {}
+  onBoardFormSaved() {}
 
   handleCreateColumn = (column: Column) => {
     this.board.columns.push(column);
