@@ -10,7 +10,7 @@ export class BoardIntercomService {
 
   constructor() {}
 
-  annouceBoardFormSaved(board: Board) {
+  announceBoardFormSaved(board: Board) {
     this.boardFormSaved$.next(board);
   }
 }

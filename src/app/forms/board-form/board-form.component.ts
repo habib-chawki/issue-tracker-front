@@ -17,6 +17,6 @@ export class BoardFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {
-    this.boardIntercomService.annouceBoardFormSaved(this.boardForm.value);
+    this.boardIntercomService.announceBoardFormSaved(this.boardForm.value);
   }
 }
