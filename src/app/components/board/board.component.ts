@@ -48,6 +48,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.sprintService
         .getSprint(this.projectId, this.sprintId)
         .subscribe((response) => {
+          console.log('SPRINT: ' + JSON.stringify(response));
           this.sprint = response;
         });
     });
@@ -77,11 +78,13 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
   };
 
-  onBoardFormSaved(boardFormValue) {
-    this.boardService.createBoard(boardFormValue).subscribe((response) => {
-      this.board = response;
-    });
-  }
+  onBoardFormSaved = (boardFormValue) => {
+    this.boardService
+      .createBoard(this.sprint.id, boardFormValue)
+      .subscribe((response) => {
+        this.board = response;
+      });
+  };
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
