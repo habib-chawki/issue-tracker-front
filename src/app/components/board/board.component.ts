@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
-import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import Sprint from 'src/app/models/sprint/sprint';
 import { BoardIntercomService } from 'src/app/services/board-intercom/board-intercom.service';
@@ -19,8 +18,6 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  // board: Board = { columns: [] } as Board;
-
   sprint: Sprint;
 
   sprintId: string;
