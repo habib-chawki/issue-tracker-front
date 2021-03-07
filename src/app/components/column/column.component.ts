@@ -1,3 +1,8 @@
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import Column from 'src/app/models/column/column';
 
@@ -12,4 +17,23 @@ export class ColumnComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      // within the same column
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      // between columns
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 }
