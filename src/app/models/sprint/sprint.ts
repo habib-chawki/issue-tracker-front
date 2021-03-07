@@ -1,3 +1,4 @@
+import Board from '../board/board';
 import { Issue } from '../issue/issue';
 
 export default interface Sprint {
@@ -6,6 +7,7 @@ export default interface Sprint {
   goal: string;
   project: string;
   backlog: Issue[];
+  board: Board;
   startDate: Date;
   endDate: Date;
 }
