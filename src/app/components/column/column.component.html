@@ -1,2 +1,6 @@
-<div id="title">{{ title }}</div>
-<app-issues [issues]="issues"></app-issues>
+<div id="title">{{ column.title }}</div>
+<issue-app
+  *ngFor="issue; of: column.issues"
+  [issue]="issue"
+  cdkDrag
+></issue-app>
