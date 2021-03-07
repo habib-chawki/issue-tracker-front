@@ -19,7 +19,7 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  board: Board = { columns: [] } as Board;
+  // board: Board = { columns: [] } as Board;
 
   sprint: Sprint;
 
@@ -72,7 +72,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onColumnFormSaved = (columnFormValue) => {
     this.subscription = this.columnService
-      .createColumn(columnFormValue, this.board.id)
+      .createColumn(this.board.id, columnFormValue)
       .subscribe((column: Column) => {
         this.board.columns.push(column);
       });
@@ -82,9 +82,13 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.boardService
       .createBoard(this.sprint.id, boardFormValue)
       .subscribe((response) => {
-        this.board = response;
+        this.sprint.board = response;
       });
   };
+
+  get board() {
+    return this.sprint?.board;
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
