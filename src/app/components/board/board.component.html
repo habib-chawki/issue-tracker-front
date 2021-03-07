@@ -21,7 +21,6 @@
   <!-- render the other board columns -->
   <app-column
     *ngFor="let column of board?.columns"
-    [title]="column.title"
-    [issues]="column.issues"
+    [column]="column"
   ></app-column>
 </div>
