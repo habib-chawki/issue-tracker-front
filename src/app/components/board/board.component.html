@@ -1,14 +1,15 @@
-<button
-  *ngIf="board?.id; else createBoard"
-  mat-raised-button
-  id="add-column"
-  (click)="onDisplayColumnForm()"
->
-  Add column
-</button>
+<ng-container
+  *ngIf="board?.id; then createColumn; else createBoard"
+></ng-container>
+
+<ng-template #createColumn>
+  <button mat-raised-button (click)="onDisplayColumnForm()">Add column</button>
+</ng-template>
 
 <ng-template #createBoard>
-  <button mat-raised-button>Create board</button>
+  <button mat-raised-button (click)="onDisplayBoardForm()">
+    Create scrum board
+  </button>
 </ng-template>
 
 <div cdkDropListGroup>
