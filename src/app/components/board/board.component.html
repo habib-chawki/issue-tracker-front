@@ -2,10 +2,12 @@
   *ngIf="board?.id; then createColumn; else createBoard"
 ></ng-container>
 
+<!-- rendered when the board has already been created -->
 <ng-template #createColumn>
   <button mat-raised-button (click)="onDisplayColumnForm()">Add column</button>
 </ng-template>
 
+<!-- rendered when the board hasn't been created yet -->
 <ng-template #createBoard>
   <button mat-raised-button (click)="onDisplayBoardForm()">
     Create scrum board
