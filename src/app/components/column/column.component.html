@@ -1,6 +1,15 @@
 <div id="title">{{ column.title }}</div>
-<issue-app
-  *ngFor="issue; of: column.issues"
-  [issue]="issue"
-  cdkDrag
-></issue-app>
+
+<div
+  id="drop-list"
+  class="drop-list"
+  cdkDropList
+  [cdkDropListData]="column?.issues"
+  (cdkDropListDropped)="onDrop($event)"
+>
+  <issue-app
+    *ngFor="let issue of column?.issues"
+    [issue]="issue"
+    cdkDrag
+  ></issue-app>
+</div>
