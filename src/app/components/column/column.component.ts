@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Issue } from 'src/app/models/issue/issue';
+import Column from 'src/app/models/column/column';
 
 @Component({
   selector: 'app-column',
@@ -7,8 +7,7 @@ import { Issue } from 'src/app/models/issue/issue';
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent implements OnInit {
-  @Input() title: string;
-  @Input() issues: Issue[];
+  @Input() column: Column;
 
   constructor() {}
 
