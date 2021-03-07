@@ -1,5 +1,5 @@
 <button
-  *ngIf="board?.id"
+  *ngIf="board?.id; else createBoard"
   mat-raised-button
   id="add-column"
   (click)="onDisplayColumnForm()"
