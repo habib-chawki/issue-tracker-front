@@ -22,5 +22,6 @@
   <app-column
     *ngFor="let column of board?.columns"
     [column]="column"
+    [boardId]="sprint?.board.id"
   ></app-column>
 </div>
