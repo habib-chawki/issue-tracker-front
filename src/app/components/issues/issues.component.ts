@@ -28,7 +28,7 @@ export class IssuesComponent implements OnInit {
   }
 
   // handle issue drop
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop(event: CdkDragDrop<Issue[]>) {
     if (event.previousContainer === event.container) {
       // within the same list
       moveItemInArray(
