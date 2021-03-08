@@ -5,6 +5,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import Column from 'src/app/models/column/column';
+import { Issue } from 'src/app/models/issue/issue';
 import { ColumnService } from 'src/app/services/column/column.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class ColumnComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop = (event: CdkDragDrop<Issue[]>) => {
     if (event.previousContainer === event.container) {
       // within the same column
       moveItemInArray(
@@ -30,7 +31,13 @@ export class ColumnComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      //TODO: update the issue column
+      // update the issue column
+      this.columnService.updateIssueColumn(
+        this.boardId,
+        event.previousContainer.id,
+        event.item.data.id,
+        event.container.id
+      );
 
       // between columns
       transferArrayItem(
@@ -40,5 +47,5 @@ export class ColumnComponent implements OnInit {
         event.currentIndex
       );
     }
-  }
+  };
 }
