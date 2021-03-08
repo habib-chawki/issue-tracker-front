@@ -10,5 +10,6 @@
     *ngFor="let issue of column?.issues"
     [issue]="issue"
     cdkDrag
+    [cdkDragData]="issue"
   ></issue-app>
 </div>
