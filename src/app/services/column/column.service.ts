@@ -8,14 +8,24 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ColumnService {
-  baseUrl = `${environment.apiUrl}/boards/boardId/column`;
+  baseUrl = `${environment.apiUrl}/boards`;
 
   constructor(private httpClient: HttpClient) {}
 
   createColumn(boardId: string, column): Observable<Column> {
-    return this.httpClient.post<Column>(
-      this.baseUrl.replace('boardId', boardId),
-      column
-    );
+    const url = `${this.baseUrl}/${boardId}/column`;
+
+    return this.httpClient.post<Column>(url, column);
+  }
+
+  updateIssueColumn(
+    boardId: string,
+    columnId: string,
+    issueId: string,
+    newColumnId: string
+  ): Observable<any> {
+    const url = `${this.baseUrl}/${boardId}/columns/${columnId}/issues/${issueId}`;
+
+    return this.httpClient.patch(url, { newColumnId });
   }
 }
