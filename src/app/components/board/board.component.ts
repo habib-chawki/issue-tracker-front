@@ -84,7 +84,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   };
 
   get board() {
-    return this.sprint?.board;
+    return this.sprint.board;
   }
 
   ngOnDestroy(): void {
