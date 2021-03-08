@@ -24,7 +24,7 @@ export class ColumnComponent implements OnInit {
 
   onDrop = (event: CdkDragDrop<Issue[]>) => {
     if (event.previousContainer === event.container) {
-      // within the same column
+      // drag issues within the same column
       moveItemInArray(
         event.container.data,
         event.previousIndex,
@@ -32,20 +32,22 @@ export class ColumnComponent implements OnInit {
       );
     } else {
       // update the issue column
-      this.columnService.updateIssueColumn(
-        this.boardId,
-        event.previousContainer.id,
-        event.item.data.id,
-        event.container.id
-      );
-
-      // between columns
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      this.columnService
+        .updateIssueColumn(
+          this.boardId,
+          event.previousContainer.id,
+          event.item.data.id,
+          event.container.id
+        )
+        .subscribe(() => {
+          // drag issues between columns
+          transferArrayItem(
+            event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex
+          );
+        });
     }
   };
 }
