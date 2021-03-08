@@ -5,6 +5,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import Column from 'src/app/models/column/column';
+import { ColumnService } from 'src/app/services/column/column.service';
 
 @Component({
   selector: 'app-column',
@@ -14,7 +15,9 @@ import Column from 'src/app/models/column/column';
 export class ColumnComponent implements OnInit {
   @Input() column: Column;
 
-  constructor() {}
+  @Input() boardId: string;
+
+  constructor(private columnService: ColumnService) {}
 
   ngOnInit(): void {}
 
@@ -27,6 +30,8 @@ export class ColumnComponent implements OnInit {
         event.currentIndex
       );
     } else {
+      //TODO: update the issue column
+
       // between columns
       transferArrayItem(
         event.previousContainer.data,
