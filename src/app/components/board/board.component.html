@@ -16,7 +16,7 @@
 
 <div cdkDropListGroup>
   <!-- render the to do column containing the sprint backlog issues -->
-  <app-column [column]="toDoColumn"></app-column>
+  <app-column [column]="toDoColumn" [boardId]="sprint?.board.id"></app-column>
 
   <!-- render the other board columns -->
   <app-column
