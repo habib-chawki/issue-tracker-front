@@ -23,6 +23,12 @@ export class BoardComponent implements OnInit, OnDestroy {
   sprintId: string;
   projectId: string;
 
+  toDoColumn: Column = {
+    id: null,
+    title: 'To do',
+    issues: [],
+  };
+
   subscription = new Subscription();
 
   constructor(
@@ -47,6 +53,14 @@ export class BoardComponent implements OnInit, OnDestroy {
         .subscribe((response) => {
           console.log('SPRINT: ' + JSON.stringify(response));
           this.sprint = response;
+
+          // extract the to do column issues
+          const toDoColumnIssues = this.sprint.backlog.filter((issue) => {
+            issue.id === null;
+          });
+
+          // set the to do column issues
+          this.toDoColumn.issues = toDoColumnIssues;
         });
     });
 
