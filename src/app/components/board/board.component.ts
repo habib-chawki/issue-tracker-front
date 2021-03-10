@@ -34,17 +34,17 @@ export class BoardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // extract query params
+    // extract query params (sprint and project ids)
     this.route.queryParams.subscribe((queryParams) => {
       const sprintId = queryParams.sprint;
       const projectId = queryParams.project;
 
-      // fetch sprint
+      // fetch the sprint
       this.sprintService
         .getSprint(projectId, sprintId)
-        .subscribe((response: Sprint) => {
-          console.log('FETCHED SPRINT: ' + JSON.stringify(response));
-          this.sprint = response;
+        .subscribe((fetchedSprint: Sprint) => {
+          console.log('FETCHED SPRINT: ' + JSON.stringify(fetchedSprint));
+          this.sprint = fetchedSprint;
         });
     });
 
@@ -79,12 +79,12 @@ export class BoardComponent implements OnInit, OnDestroy {
       .createColumn(this.board.id, columnFormValue)
       .subscribe((column: Column) => {
         console.log('CREATED COLUMN ' + JSON.stringify(column));
-        this.board.columns.push(column);
+        this.sprint.board.columns.push(column);
       });
   };
 
   get board() {
-    return this.sprint.board;
+    return this.sprint?.board;
   }
 
   ngOnDestroy(): void {
