@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
+import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import Sprint from 'src/app/models/sprint/sprint';
 import { BoardIntercomService } from 'src/app/services/board-intercom/board-intercom.service';
@@ -20,11 +21,6 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
 export class BoardComponent implements OnInit, OnDestroy {
   sprint: Sprint;
 
-  sprintId: string;
-  projectId: string;
-
-  toDoColumn: Column;
-
   subscription = new Subscription();
 
   constructor(
@@ -40,29 +36,15 @@ export class BoardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // extract query params
     this.route.queryParams.subscribe((queryParams) => {
-      this.sprintId = queryParams.sprint;
-      this.projectId = queryParams.project;
+      const sprintId = queryParams.sprint;
+      const projectId = queryParams.project;
 
       // fetch sprint
       this.sprintService
-        .getSprint(this.projectId, this.sprintId)
-        .subscribe((response) => {
-          console.log('SPRINT: ' + JSON.stringify(response));
+        .getSprint(projectId, sprintId)
+        .subscribe((response: Sprint) => {
+          console.log('FETCHED SPRINT: ' + JSON.stringify(response));
           this.sprint = response;
-
-          // extract the to do column issues
-          const toDoColumnIssues = this.sprint.backlog.filter((issue) => {
-            issue.id === null;
-          });
-
-          console.log('TO DO ISSUES: ' + toDoColumnIssues);
-
-          // set the to do column issues
-          this.toDoColumn = {
-            id: null,
-            title: 'To do',
-            issues: toDoColumnIssues,
-          };
         });
     });
 
@@ -83,19 +65,21 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.dialog.open(BoardFormComponent);
   }
 
+  onBoardFormSaved = (boardFormValue) => {
+    this.boardService
+      .createBoard(this.sprint.id, boardFormValue)
+      .subscribe((board: Board) => {
+        console.log('CREATED BOARD: ' + JSON.stringify(board));
+        this.sprint.board = board;
+      });
+  };
+
   onColumnFormSaved = (columnFormValue) => {
     this.subscription = this.columnService
       .createColumn(this.board.id, columnFormValue)
       .subscribe((column: Column) => {
+        console.log('CREATED COLUMN ' + JSON.stringify(column));
         this.board.columns.push(column);
-      });
-  };
-
-  onBoardFormSaved = (boardFormValue) => {
-    this.boardService
-      .createBoard(this.sprint.id, boardFormValue)
-      .subscribe((response) => {
-        this.sprint.board = response;
       });
   };
 
