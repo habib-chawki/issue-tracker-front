@@ -3,13 +3,13 @@
 <div
   class="drop-list"
   cdkDropList
-  [cdkDropListData]="column?.issues"
+  [cdkDropListData]="column.issues"
   (cdkDropListDropped)="onDrop($event)"
 >
-  <issue-app
-    *ngFor="let issue of column?.issues"
+  <app-issue
+    *ngFor="let issue of column.issues"
     [issue]="issue"
     cdkDrag
     [cdkDragData]="issue"
-  ></issue-app>
+  ></app-issue>
 </div>
