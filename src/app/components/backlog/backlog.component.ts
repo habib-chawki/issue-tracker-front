@@ -63,7 +63,8 @@ export class BacklogComponent implements OnInit {
   createIssue(issue: Issue) {
     this.issueService
       .createIssue(issue, this.projectId)
-      .subscribe((createdIssue) => {
+      .subscribe((createdIssue: Issue) => {
+        console.log('CREATED ISSUE: ' + JSON.stringify(createdIssue));
         this.issues.push(createdIssue);
       });
   }
@@ -88,6 +89,8 @@ export class BacklogComponent implements OnInit {
       .createSprint(this.projectId, sprintFormValue)
       .subscribe((sprint: Sprint) => {
         // set the sprint project
+        console.log('CREATED SPRINT: ' + JSON.stringify(sprint));
+
         this.sprint = sprint;
         this.sprint.project = this.projectId;
 
