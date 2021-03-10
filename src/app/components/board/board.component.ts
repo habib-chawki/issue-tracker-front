@@ -66,26 +66,26 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   onBoardFormSaved = (boardFormValue) => {
-    this.boardService
-      .createBoard(this.sprint.id, boardFormValue)
-      .subscribe((board: Board) => {
-        console.log('CREATED BOARD: ' + JSON.stringify(board));
-        this.sprint.board = board;
-      });
+    this.boardService.createBoard(this.sprint.id, boardFormValue).subscribe({
+      next: (createdBoard: Board) => {
+        console.log('CREATED BOARD: ' + JSON.stringify(createdBoard));
+        this.sprint.board = createdBoard;
+      },
+      error: (error) => console.log('ERROR: ' + error),
+    });
   };
 
   onColumnFormSaved = (columnFormValue) => {
     this.subscription = this.columnService
-      .createColumn(this.board.id, columnFormValue)
-      .subscribe((column: Column) => {
-        console.log('CREATED COLUMN ' + JSON.stringify(column));
-        this.sprint.board.columns.push(column);
+      .createColumn(this.sprint.board.id, columnFormValue)
+      .subscribe({
+        next: (createdColumn: Column) => {
+          console.log('CREATED COLUMN ' + JSON.stringify(createdColumn));
+          this.sprint.board.columns.push(createdColumn);
+        },
+        error: (error) => console.log('ERROR: ' + error),
       });
   };
-
-  get board() {
-    return this.sprint?.board;
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
