@@ -15,14 +15,7 @@
 </ng-template>
 
 <div cdkDropListGroup>
-  <!-- render the to do column containing the sprint backlog issues -->
-  <app-column
-    *ngIf="board"
-    [column]="toDoColumn"
-    [boardId]="board?.id"
-  ></app-column>
-
-  <!-- render the other board columns -->
+  <!-- render board columns -->
   <app-column
     *ngFor="let column of board?.columns"
     [column]="column"
