@@ -26,6 +26,6 @@ export class ColumnService {
   ): Observable<any> {
     const url = `${this.baseUrl}/${boardId}/columns/${columnId}/issues/${issueId}`;
 
-    return this.httpClient.patch(url, { newColumnId });
+    return this.httpClient.patch(url, { newColumnId: newColumnId.toString() });
   }
 }
