@@ -23,11 +23,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   sprintId: string;
   projectId: string;
 
-  toDoColumn: Column = {
-    id: null,
-    title: 'To do',
-    issues: [],
-  };
+  toDoColumn: Column;
 
   subscription = new Subscription();
 
@@ -59,8 +55,14 @@ export class BoardComponent implements OnInit, OnDestroy {
             issue.id === null;
           });
 
+          console.log('TO DO ISSUES: ' + toDoColumnIssues);
+
           // set the to do column issues
-          this.toDoColumn.issues = toDoColumnIssues;
+          this.toDoColumn = {
+            id: null,
+            title: 'To do',
+            issues: toDoColumnIssues,
+          };
         });
     });
 
