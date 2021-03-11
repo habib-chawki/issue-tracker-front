@@ -20,6 +20,8 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
 })
 export class BoardComponent implements OnInit, OnDestroy {
   sprint: Sprint;
+  board: Board = {} as Board;
+  columns: Column[] = [];
 
   subscription = new Subscription();
 
@@ -45,6 +47,11 @@ export class BoardComponent implements OnInit, OnDestroy {
         .subscribe((fetchedSprint: Sprint) => {
           console.log('FETCHED SPRINT: ' + JSON.stringify(fetchedSprint));
           this.sprint = fetchedSprint;
+
+          if (this.sprint.board) {
+            this.board = this.sprint.board;
+            this.columns = this.board.columns;
+          }
         });
     });
 
@@ -65,23 +72,25 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.dialog.open(BoardFormComponent);
   }
 
+  // create board
   onBoardFormSaved = (boardFormValue) => {
     this.boardService.createBoard(this.sprint.id, boardFormValue).subscribe({
       next: (createdBoard: Board) => {
-        console.log('CREATED BOARD: ' + JSON.stringify(createdBoard));
-        this.sprint.board = createdBoard;
+        this.board = createdBoard;
+        console.log('CREATED BOARD: ' + JSON.stringify(this.board));
       },
       error: (error) => console.log('ERROR: ' + error),
     });
   };
 
+  // create column
   onColumnFormSaved = (columnFormValue) => {
     this.subscription = this.columnService
       .createColumn(this.sprint.board.id, columnFormValue)
       .subscribe({
         next: (createdColumn: Column) => {
+          this.columns = [...this.columns, createdColumn];
           console.log('CREATED COLUMN ' + JSON.stringify(createdColumn));
-          this.sprint.board.columns.push(createdColumn);
         },
         error: (error) => console.log('ERROR: ' + error),
       });
