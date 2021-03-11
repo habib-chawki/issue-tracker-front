@@ -1,5 +1,5 @@
 <ng-container
-  *ngIf="sprint?.board; then createColumn; else createBoard"
+  *ngIf="board?.id; then createColumn; else createBoard"
 ></ng-container>
 
 <!-- rendered when the board has already been created -->
@@ -17,8 +17,8 @@
 <div cdkDropListGroup>
   <!-- render board columns -->
   <app-column
-    *ngFor="let column of sprint?.board?.columns"
+    *ngFor="let column of columns"
     [column]="column"
-    [boardId]="sprint?.board?.id"
+    [boardId]="board?.id"
   ></app-column>
 </div>
