@@ -1,5 +1,3 @@
-<ul>
-  <li *ngFor="let sprint of sprints">
-    {{ sprint.name }} {{ sprint.backlog.length }}
-  </li>
-</ul>
+<mat-card *ngFor="let sprint of activeSprints">
+  {{ sprint.name }}
+</mat-card>
