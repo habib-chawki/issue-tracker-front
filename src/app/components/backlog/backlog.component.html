@@ -6,6 +6,10 @@
   Add sprint
 </button>
 
+<button mat-raised-button id="add-sprint" (click)="fetchActiveSprints()">
+  Active sprints
+</button>
+
 <div cdkDropListGroup>
   <app-sprint [sprint]="sprint" *ngIf="willDisplaySprintBacklog"></app-sprint>
   <!-- product backlog -->
