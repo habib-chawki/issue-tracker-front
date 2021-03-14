@@ -30,8 +30,15 @@ export class SprintComponent implements OnInit {
   }
 
   onStartSprint = () => {
-    this.router.navigate(['/board'], {
-      queryParams: { sprint: this.sprint.id, project: this.sprint.project },
-    });
+    // update sprint status, set it to "Active"
+    this.sprintService
+      .updateSprintStatus(this.sprint.project, this.sprint.id, 'Active')
+      .subscribe((sprint: Sprint) => {
+        console.log('SPRINT WITH UPDATED STATUS: ' + JSON.stringify(sprint));
+        // navigate to the board upon successful status update
+        this.router.navigate(['/board'], {
+          queryParams: { sprint: sprint.id, project: sprint.project },
+        });
+      });
   };
 }
