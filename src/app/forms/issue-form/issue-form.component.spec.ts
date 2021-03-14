@@ -33,9 +33,9 @@ describe('IssueFormComponent', () => {
     issue = new IssueBuilder()
       .description('Issue description')
       .summary('Issue summary')
-      .type(IssueType.Bug)
-      .status(IssueStatus.InProgress)
-      .resolution(IssueResolution.Duplicate)
+      .type(IssueType.BUG)
+      .status(IssueStatus.INPROGRESS)
+      .resolution(IssueResolution.DUPLICATE)
       .estimate(new Date())
       .build();
   });

@@ -24,11 +24,11 @@ export class IssueFormComponent implements OnInit {
     description: new FormControl(''),
     summary: new FormControl(''),
 
-    priority: new FormControl(IssuePriority.medium),
+    priority: new FormControl(IssuePriority.MEDIUM),
 
-    type: new FormControl(IssueType.Story),
-    status: new FormControl(IssueStatus.Todo),
-    resolution: new FormControl(IssueResolution.Unresolved),
+    type: new FormControl(IssueType.STORY),
+    status: new FormControl(IssueStatus.TODO),
+    resolution: new FormControl(IssueResolution.UNRESOLVED),
 
     assignee: new FormControl(''),
 

@@ -64,10 +64,10 @@ describe('Backlog', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
-      priority: IssuePriority.medium,
-      type: IssueType.Bug,
-      status: IssueStatus.InProgress,
-      resolution: IssueResolution.Duplicate,
+      priority: IssuePriority.MEDIUM,
+      type: IssueType.BUG,
+      status: IssueStatus.INPROGRESS,
+      resolution: IssueResolution.DUPLICATE,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
       comments: [
@@ -87,10 +87,10 @@ describe('Backlog', () => {
       key: 'Rt9xP',
       description: 'Issue 2 description',
       summary: 'Issue 2 summary',
-      priority: IssuePriority.low,
-      type: IssueType.Story,
-      status: IssueStatus.Todo,
-      resolution: IssueResolution.Unresolved,
+      priority: IssuePriority.LOW,
+      type: IssueType.STORY,
+      status: IssueStatus.TODO,
+      resolution: IssueResolution.UNRESOLVED,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
       comments: [
@@ -272,7 +272,7 @@ describe('Backlog', () => {
     const updatedIssue = {
       ...issue,
       description: 'Some new updated description',
-      status: IssueStatus.Done,
+      status: IssueStatus.DONE,
     };
 
     spyOn(issueService, 'updateIssue').and.returnValue(of(updatedIssue));

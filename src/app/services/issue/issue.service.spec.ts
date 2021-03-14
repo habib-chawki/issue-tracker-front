@@ -35,10 +35,10 @@ describe('IssueService', () => {
       key: 'Dh85m',
       description: 'Issue description',
       summary: 'Issue summary',
-      priority: IssuePriority.high,
-      type: IssueType.Bug,
-      status: IssueStatus.InProgress,
-      resolution: IssueResolution.Duplicate,
+      priority: IssuePriority.HIGH,
+      type: IssueType.BUG,
+      status: IssueStatus.INPROGRESS,
+      resolution: IssueResolution.DUPLICATE,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
       comments: [
@@ -58,10 +58,10 @@ describe('IssueService', () => {
       key: 'Rt9xP',
       description: 'Issue 2 description',
       summary: 'Issue 2 summary',
-      priority: IssuePriority.medium,
-      type: IssueType.Story,
-      status: IssueStatus.Todo,
-      resolution: IssueResolution.Unresolved,
+      priority: IssuePriority.MEDIUM,
+      type: IssueType.STORY,
+      status: IssueStatus.TODO,
+      resolution: IssueResolution.UNRESOLVED,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
       comments: [
@@ -106,7 +106,7 @@ describe('IssueService', () => {
     const updatedIssue = {
       ...issue,
       description: 'new updated description',
-      status: IssueStatus.Done,
+      status: IssueStatus.DONE,
     };
 
     // when updateIssue() is invoked then response with the updated issue

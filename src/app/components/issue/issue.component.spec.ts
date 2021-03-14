@@ -47,7 +47,7 @@ describe('IssueComponent', () => {
     // set up an issue
     issue = new IssueBuilder()
       .id('1')
-      .type(IssueType.Bug)
+      .type(IssueType.BUG)
       .summary('issue summary')
       .reporter(reporter)
       .build();

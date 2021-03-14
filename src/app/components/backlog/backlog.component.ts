@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
+import SprintStatus from 'src/app/models/enums/sprint-status';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
@@ -100,5 +101,15 @@ export class BacklogComponent implements OnInit {
 
   onDisplaySprintForm = () => {
     this.dialog.open(SprintFormComponent);
+  };
+
+  fetchActiveSprints = () => {
+    this.sprintService
+      .getSprintsByStatus(this.sprint.project, SprintStatus.ACTIVE)
+      .subscribe({
+        next: (sprints) => {
+          console.log('ACTIVE SPRINTS: ' + JSON.stringify(sprints));
+        },
+      });
   };
 }

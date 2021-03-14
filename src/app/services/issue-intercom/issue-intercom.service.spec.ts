@@ -19,9 +19,9 @@ describe('IssueIntercomService', () => {
       .id('500')
       .description('issue description')
       .summary('issue summary')
-      .type(IssueType.Story)
-      .status(IssueStatus.Done)
-      .resolution(IssueResolution.Duplicate)
+      .type(IssueType.STORY)
+      .status(IssueStatus.DONE)
+      .resolution(IssueResolution.DUPLICATE)
       .build();
   });
 
