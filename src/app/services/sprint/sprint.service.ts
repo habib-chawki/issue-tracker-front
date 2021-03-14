@@ -41,4 +41,10 @@ export class SprintService {
 
     return this.httpClient.patch<Sprint>(url, requestBody);
   }
+
+  getSprintsByStatus(projectId: string, status: string): Observable<Sprint[]> {
+    const url = `${this.baseUrl}/${projectId}/sprints?status=${status}`;
+
+    return this.httpClient.get<Sprint[]>(url);
+  }
 }
