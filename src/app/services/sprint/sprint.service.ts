@@ -30,4 +30,15 @@ export class SprintService {
     const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}`;
     return this.httpClient.get<Sprint>(url);
   }
+
+  updateSprintStatus(
+    projectId: string,
+    sprintId: string,
+    status: string
+  ): Observable<Sprint> {
+    const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}`;
+    const requestBody = { newSprintStatus: status };
+
+    return this.httpClient.patch<Sprint>(url, requestBody);
+  }
 }
