@@ -1,1 +1,5 @@
-<p>sprints works!</p>
+<ul>
+  <li *ngFor="let sprint of sprints">
+    {{ sprint.name }} {{ sprint.backlog.length }}
+  </li>
+</ul>
