@@ -5,6 +5,7 @@ import { BoardComponent } from './components/board/board.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { SignupFormComponent } from './forms/signup-form/signup-form.component';
+import { SprintsComponent } from './components/sprints/sprints.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'backlog', component: BacklogComponent },
   { path: 'board', component: BoardComponent },
+  { path: 'sprints', component: SprintsComponent },
   { path: '', redirectTo: 'signup', pathMatch: 'full' },
 ];
 
