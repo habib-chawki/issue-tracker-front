@@ -37,6 +37,7 @@ import { SprintFormComponent } from './forms/sprint-form/sprint-form.component';
 import { SprintComponent } from './components/sprint/sprint.component';
 import { BoardFormComponent } from './forms/board-form/board-form.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
+import { SprintDetailsComponent } from './components/sprint-details/sprint-details.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SprintsComponent } from './components/sprints/sprints.component';
     SprintComponent,
     BoardFormComponent,
     SprintsComponent,
+    SprintDetailsComponent,
   ],
   imports: [
     DragDropModule,
