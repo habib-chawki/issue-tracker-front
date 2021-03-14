@@ -1,7 +1,7 @@
 enum IssuePriority {
-  high = 'High',
-  medium = 'Medium',
-  low = 'Low',
+  HIGH = 'High',
+  MEDIUM = 'Medium',
+  LOW = 'Low',
 }
 
 export default IssuePriority;

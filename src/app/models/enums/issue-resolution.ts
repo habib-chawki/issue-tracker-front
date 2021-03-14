@@ -1,8 +1,8 @@
 enum IssueResolution {
-  Unresolved = 'Unresolved',
-  Done = 'Done',
-  Duplicate = 'Duplicate',
-  WontDo = 'Wont Do',
+  UNRESOLVED = 'Unresolved',
+  DONE = 'Done',
+  DUPLICATE = 'Duplicate',
+  WONTDO = 'Wont Do',
 }
 
 export default IssueResolution;
