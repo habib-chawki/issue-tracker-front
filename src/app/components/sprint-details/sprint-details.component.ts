@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Sprint from 'src/app/models/sprint/sprint';
 
 @Component({
@@ -8,13 +8,22 @@ import Sprint from 'src/app/models/sprint/sprint';
   styleUrls: ['./sprint-details.component.scss'],
 })
 export class SprintDetailsComponent implements OnInit {
+  projectId: string;
   @Input() sprint: Sprint;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // extract query params
+    this.route.queryParams.subscribe((queryParams) => {
+      this.projectId = queryParams.project;
+    });
+  }
 
   onDisplaySprintDetails = () => {
-    console.log(this.sprint);
+    // navigate to board component
+    this.router.navigate(['board'], {
+      queryParams: { project: this.projectId, sprint: this.sprint.id },
+    });
   };
 }
