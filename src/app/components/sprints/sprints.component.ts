@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import SprintStatus from 'src/app/models/enums/sprint-status';
+import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { SprintService } from 'src/app/services/sprint/sprint.service';
   styleUrls: ['./sprints.component.scss'],
 })
 export class SprintsComponent implements OnInit {
+  activeSprints: Sprint[];
   projectId: string;
 
   constructor(
@@ -25,8 +27,11 @@ export class SprintsComponent implements OnInit {
       this.sprintService
         .getSprintsByStatus(this.projectId, SprintStatus.ACTIVE)
         .subscribe({
-          next: (sprints) => {
-            console.log('ACTIVE SPRINTS: ' + JSON.stringify(sprints));
+          next: (sprints: Sprint[]) => {
+            this.activeSprints = sprints;
+            console.log(
+              'ACTIVE SPRINTS: ' + JSON.stringify(this.activeSprints)
+            );
           },
         });
     });
