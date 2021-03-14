@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import { Issue } from 'src/app/models/issue/issue';
@@ -33,6 +33,7 @@ export class BacklogComponent implements OnInit {
     private sprintIntercomService: SprintIntercomService,
     private sprintService: SprintService,
     private dialog: MatDialog,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -103,13 +104,10 @@ export class BacklogComponent implements OnInit {
     this.dialog.open(SprintFormComponent);
   };
 
-  fetchActiveSprints = () => {
-    this.sprintService
-      .getSprintsByStatus(this.sprint.project, SprintStatus.ACTIVE)
-      .subscribe({
-        next: (sprints) => {
-          console.log('ACTIVE SPRINTS: ' + JSON.stringify(sprints));
-        },
-      });
+  onDisplayActiveSprints = () => {
+    // navigate to sprints component
+    this.router.navigate(['/sprints'], {
+      queryParams: { project: this.projectId },
+    });
   };
 }
