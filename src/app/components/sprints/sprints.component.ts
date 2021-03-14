@@ -17,18 +17,18 @@ export class SprintsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // extract the project id query param
     this.route.queryParams.subscribe((queryParams) => {
       this.projectId = queryParams.project;
-    });
-  }
 
-  fetchActiveSprints() {
-    this.sprintService
-      .getSprintsByStatus(this.projectId, SprintStatus.ACTIVE)
-      .subscribe({
-        next: (sprints) => {
-          console.log('ACTIVE SPRINTS: ' + JSON.stringify(sprints));
-        },
-      });
+      // fetch active sprints
+      this.sprintService
+        .getSprintsByStatus(this.projectId, SprintStatus.ACTIVE)
+        .subscribe({
+          next: (sprints) => {
+            console.log('ACTIVE SPRINTS: ' + JSON.stringify(sprints));
+          },
+        });
+    });
   }
 }
