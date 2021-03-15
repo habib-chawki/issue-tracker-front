@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
 import Board from 'src/app/models/board/board';
@@ -20,11 +20,11 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+
   sprint: Sprint;
   board: Board = {} as Board;
   columns: Column[] = [];
-
-  subscription = new Subscription();
 
   constructor(
     private boardService: BoardService,
@@ -89,7 +89,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   // create column
   onColumnFormSaved = (columnFormValue) => {
-    this.subscription = this.columnService
+    this.columnService
       .createColumn(this.sprint.board.id, columnFormValue)
       .subscribe({
         next: (createdColumn: Column) => {
@@ -100,7 +100,5 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
   };
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 }
