@@ -3,7 +3,9 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import Column from 'src/app/models/column/column';
 import { ColumnService } from 'src/app/services/column/column.service';
 
@@ -12,9 +14,10 @@ import { ColumnService } from 'src/app/services/column/column.service';
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent implements OnInit {
-  @Input() column: Column;
+export class ColumnComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
 
+  @Input() column: Column;
   @Input() boardId: string;
 
   constructor(private columnService: ColumnService) {}
@@ -38,6 +41,7 @@ export class ColumnComponent implements OnInit {
       // update the issue column
       this.columnService
         .updateIssueColumn(boardId, columnId, issueId, newColumnId)
+        .pipe(takeUntil(this.unsubscribe$))
         .subscribe({
           next: () => {
             // drag issues between columns
@@ -52,4 +56,9 @@ export class ColumnComponent implements OnInit {
         });
     }
   };
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
