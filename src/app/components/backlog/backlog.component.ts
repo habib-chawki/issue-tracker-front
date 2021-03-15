@@ -100,7 +100,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
         console.log('CREATED SPRINT: ' + JSON.stringify(sprint));
 
         this.sprint = sprint;
-        this.sprint.project = this.projectId;
+        this.sprint.projectId = this.projectId;
 
         this.willDisplaySprintBacklog = true;
       });

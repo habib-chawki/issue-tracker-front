@@ -5,7 +5,7 @@ export default interface Sprint {
   id: string;
   name: string;
   goal: string;
-  project: string;
+  projectId: string;
   backlog: Issue[];
   board: Board;
   startDate: Date;
