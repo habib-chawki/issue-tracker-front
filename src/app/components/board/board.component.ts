@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
@@ -44,14 +45,17 @@ export class BoardComponent implements OnInit, OnDestroy {
       // fetch the sprint
       this.sprintService
         .getSprint(projectId, sprintId)
-        .subscribe((fetchedSprint: Sprint) => {
-          console.log('FETCHED SPRINT: ' + JSON.stringify(fetchedSprint));
-          this.sprint = fetchedSprint;
+        .pipe(take(1))
+        .subscribe({
+          next: (fetchedSprint: Sprint) => {
+            console.log('FETCHED SPRINT: ' + JSON.stringify(fetchedSprint));
+            this.sprint = fetchedSprint;
 
-          if (this.sprint.board) {
-            this.board = this.sprint.board;
-            this.columns = this.board.columns;
-          }
+            if (this.sprint.board) {
+              this.board = this.sprint.board;
+              this.columns = this.board.columns;
+            }
+          },
         });
     });
 
