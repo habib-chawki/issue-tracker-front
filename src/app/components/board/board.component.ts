@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
@@ -60,12 +60,14 @@ export class BoardComponent implements OnInit, OnDestroy {
     });
 
     // listen for board form saved announcements
-    this.boardIntercomService.boardFormSaved$.subscribe(this.onBoardFormSaved);
+    this.boardIntercomService.boardFormSaved$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(this.onBoardFormSaved);
 
     // listen for column form saved announcements
-    this.columnIntercomService.columnFormSaved$.subscribe(
-      this.onColumnFormSaved
-    );
+    this.columnIntercomService.columnFormSaved$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(this.onColumnFormSaved);
   }
 
   onDisplayColumnForm() {
@@ -100,5 +102,8 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
   };
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
