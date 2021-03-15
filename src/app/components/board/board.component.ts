@@ -80,19 +80,23 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   // create board
   onBoardFormSaved = (boardFormValue) => {
-    this.boardService.createBoard(this.sprint.id, boardFormValue).subscribe({
-      next: (createdBoard: Board) => {
-        this.board = createdBoard;
-        console.log('CREATED BOARD: ' + JSON.stringify(this.board));
-      },
-      error: (error) => console.log('ERROR: ' + error),
-    });
+    this.boardService
+      .createBoard(this.sprint.id, boardFormValue)
+      .pipe(take(1))
+      .subscribe({
+        next: (createdBoard: Board) => {
+          this.board = createdBoard;
+          console.log('CREATED BOARD: ' + JSON.stringify(this.board));
+        },
+        error: (error) => console.log('ERROR: ' + error),
+      });
   };
 
   // create column
   onColumnFormSaved = (columnFormValue) => {
     this.columnService
       .createColumn(this.sprint.board.id, columnFormValue)
+      .pipe(take(1))
       .subscribe({
         next: (createdColumn: Column) => {
           this.columns = [...this.columns, createdColumn];
