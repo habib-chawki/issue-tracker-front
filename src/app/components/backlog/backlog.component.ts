@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
@@ -47,18 +47,20 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // get the project backlog (list of issues)
     this.projectService
       .getBacklog(this.projectId)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(take(1))
       .subscribe((response) => {
         this.issues = response;
       });
 
     // listen for issue form saved announcements
-    this.issueCommunicationService.issueFormSaved$.subscribe(this.onSaveIssue);
+    this.issueCommunicationService.issueFormSaved$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(this.onSaveIssue);
 
     // listen for sprint form saved announcements
-    this.sprintIntercomService.sprintFormSaved$.subscribe(
-      this.onDisplaySprintBacklog
-    );
+    this.sprintIntercomService.sprintFormSaved$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(this.onDisplaySprintBacklog);
   }
 
   onSaveIssue = (issue: Issue) => {
