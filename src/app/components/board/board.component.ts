@@ -95,11 +95,11 @@ export class BoardComponent implements OnInit, OnDestroy {
   // create column
   onColumnFormSaved = (columnFormValue) => {
     this.columnService
-      .createColumn(this.sprint.board.id, columnFormValue)
+      .createColumn(this.board.id, columnFormValue)
       .pipe(take(1))
       .subscribe({
         next: (createdColumn: Column) => {
-          this.board.columns = [...this.columns, createdColumn];
+          this.board.columns = [...this.board.columns, createdColumn];
           console.log('CREATED COLUMN ' + JSON.stringify(createdColumn));
         },
         error: (error) => console.log('ERROR: ' + error),
