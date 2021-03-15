@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
@@ -9,9 +11,10 @@ import { SprintService } from 'src/app/services/sprint/sprint.service';
   templateUrl: './sprint.component.html',
   styleUrls: ['./sprint.component.scss'],
 })
-export class SprintComponent implements OnInit {
-  backlog: Issue[] = [];
+export class SprintComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
 
+  backlog: Issue[] = [];
   @Input() sprint: Sprint;
 
   constructor(private sprintService: SprintService, private router: Router) {}
@@ -24,6 +27,7 @@ export class SprintComponent implements OnInit {
 
     this.sprintService
       .setSprintBacklog(this.sprint.project, this.sprint.id, issuesIds)
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((response) => {
         console.log('Number of issues updated ' + response);
       });
@@ -33,6 +37,7 @@ export class SprintComponent implements OnInit {
     // update sprint status, set it to "Active"
     this.sprintService
       .updateSprintStatus(this.sprint.project, this.sprint.id, 'Active')
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((sprint: Sprint) => {
         console.log('SPRINT WITH UPDATED STATUS: ' + JSON.stringify(sprint));
         // navigate to the board upon successful status update
@@ -41,4 +46,9 @@ export class SprintComponent implements OnInit {
         });
       });
   };
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
