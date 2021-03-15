@@ -99,7 +99,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe({
         next: (createdColumn: Column) => {
-          this.columns = [...this.columns, createdColumn];
+          this.board.columns = [...this.columns, createdColumn];
           console.log('CREATED COLUMN ' + JSON.stringify(createdColumn));
         },
         error: (error) => console.log('ERROR: ' + error),
