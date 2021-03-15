@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
-import SprintStatus from 'src/app/models/enums/sprint-status';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
@@ -17,11 +18,11 @@ import { IssueFormComponent } from '../../forms/issue-form/issue-form.component'
   templateUrl: './backlog.component.html',
   styleUrls: ['./backlog.component.scss'],
 })
-export class BacklogComponent implements OnInit {
+export class BacklogComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+
   sprint: Sprint;
-
   projectId: string;
-
   issues: Issue[] = [];
 
   willDisplaySprintBacklog: boolean = false;
@@ -44,9 +45,12 @@ export class BacklogComponent implements OnInit {
     });
 
     // get the project backlog (list of issues)
-    this.projectService.getBacklog(this.projectId).subscribe((response) => {
-      this.issues = response;
-    });
+    this.projectService
+      .getBacklog(this.projectId)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((response) => {
+        this.issues = response;
+      });
 
     // listen for issue form saved announcements
     this.issueCommunicationService.issueFormSaved$.subscribe(this.onSaveIssue);
@@ -110,4 +114,9 @@ export class BacklogComponent implements OnInit {
       queryParams: { project: this.projectId },
     });
   };
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
