@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
@@ -26,6 +27,7 @@ export class SprintsComponent implements OnInit {
       // fetch active sprints
       this.sprintService
         .getSprintsByStatus(this.projectId, SprintStatus.ACTIVE)
+        .pipe(take(1))
         .subscribe({
           next: (sprints: Sprint[]) => {
             this.activeSprints = sprints;
