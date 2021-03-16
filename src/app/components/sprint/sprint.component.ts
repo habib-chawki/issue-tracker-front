@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
@@ -18,9 +18,20 @@ export class SprintComponent implements OnInit, OnDestroy {
   backlog: Issue[] = [];
   @Input() sprint: Sprint;
 
-  constructor(private sprintService: SprintService, private router: Router) {}
+  constructor(
+    private sprintService: SprintService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // extract project id
+    this.route.queryParams.subscribe({
+      next: (queryParams) => {
+        this.sprint.projectId = queryParams.project;
+      },
+    });
+  }
 
   onSaveSprintBacklog() {
     // extract issues ids
@@ -47,7 +58,7 @@ export class SprintComponent implements OnInit, OnDestroy {
         console.log('SPRINT WITH UPDATED STATUS: ' + JSON.stringify(sprint));
         // navigate to the board upon successful status update
         this.router.navigate(['/board'], {
-          queryParams: { sprint: sprint.id, project: sprint.projectId },
+          queryParams: { project: this.sprint.projectId, sprint: sprint.id },
         });
       });
   };
