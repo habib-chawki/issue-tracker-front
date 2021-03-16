@@ -1,1 +1,3 @@
-<mat-card (dblclick)="onDisplaySprintDetails()"> {{ sprint.name }} </mat-card>
+<mat-card (dblclick)="sprint.status === 'Active' && onDisplaySprintDetails()">
+  {{ sprint.name }}
+</mat-card>
