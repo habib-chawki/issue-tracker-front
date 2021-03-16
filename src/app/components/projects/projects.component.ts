@@ -40,6 +40,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   createProject = (project) => {
     this.projectService
       .createProject(project)
+      .pipe(take(1))
       .subscribe((createdProject: Project) => {
         this.projects.push(createdProject);
       });
