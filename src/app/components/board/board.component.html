@@ -23,4 +23,6 @@
   ></app-column>
 </div>
 
-<button mat-raised-button (click)="onEndSprint()">End sprint</button>
+<button mat-raised-button *ngIf="board?.id" (click)="onEndSprint()">
+  End sprint
+</button>
