@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
+import SprintStatus from 'src/app/models/enums/sprint-status';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
@@ -113,7 +114,14 @@ export class BacklogComponent implements OnInit, OnDestroy {
   onDisplayActiveSprints = () => {
     // navigate to sprints component
     this.router.navigate(['/sprints'], {
-      queryParams: { project: this.projectId },
+      queryParams: { project: this.projectId, status: SprintStatus.ACTIVE },
+    });
+  };
+
+  onDisplayFinishedSprints = () => {
+    // navigate to sprints component
+    this.router.navigate(['/sprints'], {
+      queryParams: { project: this.projectId, status: SprintStatus.OVER },
     });
   };
 
