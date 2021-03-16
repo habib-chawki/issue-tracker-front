@@ -6,6 +6,10 @@
   Active sprints
 </button>
 
+<button mat-raised-button (click)="onDisplayFinishedSprints()">
+  Finished sprints
+</button>
+
 <div cdkDropListGroup>
   <app-sprint [sprint]="sprint" *ngIf="willDisplaySprintBacklog"></app-sprint>
   <!-- product backlog -->
