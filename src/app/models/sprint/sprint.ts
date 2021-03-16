@@ -1,4 +1,5 @@
 import Board from '../board/board';
+import SprintStatus from '../enums/sprint-status';
 import { Issue } from '../issue/issue';
 
 export default interface Sprint {
@@ -8,6 +9,7 @@ export default interface Sprint {
   projectId: string;
   backlog: Issue[];
   board: Board;
+  status: SprintStatus;
   startDate: Date;
   endDate: Date;
 }
