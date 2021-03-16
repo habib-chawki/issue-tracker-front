@@ -53,6 +53,9 @@ export class BoardComponent implements OnInit, OnDestroy {
             console.log('FETCHED SPRINT: ' + JSON.stringify(fetchedSprint));
             this.sprint = fetchedSprint;
 
+            // populate project id
+            this.sprint.projectId = projectId;
+
             if (this.sprint.board) {
               this.board = this.sprint.board;
               this.columns = this.board.columns;
@@ -109,6 +112,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   };
 
   onEndSprint = () => {
+    // update sprint status to OVER
     this.sprintService
       .updateSprintStatus(
         this.sprint.projectId,
@@ -117,10 +121,10 @@ export class BoardComponent implements OnInit, OnDestroy {
       )
       .pipe(take(1))
       .subscribe(() => {
+        console.log('SPRINT ENDED ' + JSON.stringify(this.sprint));
+        // navigate back to the backlog upon successful sprint status update
         this.router.navigate(['backlog'], {
-          queryParams: {
-            project: this.sprint.projectId,
-          },
+          queryParams: { project: this.sprint.projectId },
         });
       });
   };
