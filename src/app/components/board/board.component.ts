@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { BoardFormComponent } from 'src/app/forms/board-form/board-form.component';
 import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
+import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
 import { BoardIntercomService } from 'src/app/services/board-intercom/board-intercom.service';
 import { BoardService } from 'src/app/services/board/board.service';
@@ -32,6 +33,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     private columnService: ColumnService,
     private columnIntercomService: ColumnIntercomService,
     private sprintService: SprintService,
+    private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog
   ) {}
@@ -103,6 +105,23 @@ export class BoardComponent implements OnInit, OnDestroy {
           console.log('CREATED COLUMN ' + JSON.stringify(createdColumn));
         },
         error: (error) => console.log('ERROR: ' + error),
+      });
+  };
+
+  onEndSprint = () => {
+    this.sprintService
+      .updateSprintStatus(
+        this.sprint.projectId,
+        this.sprint.id,
+        SprintStatus.OVER
+      )
+      .pipe(take(1))
+      .subscribe(() => {
+        this.router.navigate(['backlog'], {
+          queryParams: {
+            project: this.sprint.projectId,
+          },
+        });
       });
   };
 
