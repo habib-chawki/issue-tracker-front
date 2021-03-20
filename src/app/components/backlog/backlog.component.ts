@@ -24,7 +24,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
 
   sprint: Sprint;
   projectId: string;
-  issues: Issue[] = [];
+  backlog: Issue[] = [];
 
   willDisplaySprintBacklog: boolean = false;
 
@@ -43,15 +43,17 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // extract the project id query param
     this.route.queryParams.subscribe((queryParams) => {
       this.projectId = queryParams.project;
-    });
 
-    // get the project backlog (list of issues)
-    this.projectService
-      .getBacklog(this.projectId)
-      .pipe(take(1))
-      .subscribe((response) => {
-        this.issues = response;
-      });
+      // get the project backlog (list of issues)
+      this.projectService
+        .getBacklog(this.projectId)
+        .pipe(take(1))
+        .subscribe({
+          next: (response: Issue[]) => {
+            this.backlog = response;
+          },
+        });
+    });
 
     // listen for issue form saved announcements
     this.issueCommunicationService.issueFormSaved$
@@ -74,16 +76,16 @@ export class BacklogComponent implements OnInit, OnDestroy {
       .createIssue(issue, this.projectId)
       .subscribe((createdIssue: Issue) => {
         console.log('CREATED ISSUE: ' + JSON.stringify(createdIssue));
-        this.issues.push(createdIssue);
+        this.backlog.push(createdIssue);
       });
   }
 
   updateIssue(issue: Issue) {
     this.issueService.updateIssue(issue).subscribe((updatedIssue) => {
-      const index = this.issues.findIndex(
+      const index = this.backlog.findIndex(
         (item) => item.id === updatedIssue.id
       );
-      this.issues[index] = updatedIssue;
+      this.backlog[index] = updatedIssue;
     });
   }
 

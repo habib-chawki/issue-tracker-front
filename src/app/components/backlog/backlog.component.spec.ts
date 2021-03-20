@@ -261,12 +261,12 @@ describe('Backlog', () => {
     component.createIssue(issue);
 
     // then the new issue should be added to the issues array
-    expect(component.issues).toContain(issue);
+    expect(component.backlog).toContain(issue);
   });
 
   it('should update the issue in the "issues" array when "updateIssue()" is invoked', () => {
     // given the issues array
-    component.issues = [issue, issue2];
+    component.backlog = [issue, issue2];
 
     // given the issue is updated
     const updatedIssue = {
@@ -281,8 +281,8 @@ describe('Backlog', () => {
     component.updateIssue(updatedIssue);
 
     // then the issue in the issues array should be updated
-    expect(component.issues).toContain(updatedIssue);
-    expect(component.issues).not.toContain(issue);
+    expect(component.backlog).toContain(updatedIssue);
+    expect(component.backlog).not.toContain(issue);
   });
 
   it('should invoke "createIssue()" when the issue is not already in the issues array when "onSaveIssue()" is called', () => {
@@ -298,7 +298,7 @@ describe('Backlog', () => {
 
   it('should invoke "updateIssue()" when the issue is already in the issues array when "onSaveIssue()" is called', () => {
     // given the issues array
-    component.issues = [issue, issue2];
+    component.backlog = [issue, issue2];
 
     // given the "updateIssue()" method
     spyOn(component, 'updateIssue');
