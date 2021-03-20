@@ -24,6 +24,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
 
   sprint: Sprint;
   projectId: string;
+  sprints: Sprint[];
   backlog: Issue[] = [];
 
   willDisplaySprintBacklog: boolean = false;
@@ -60,7 +61,8 @@ export class BacklogComponent implements OnInit, OnDestroy {
         .pipe(take(1))
         .subscribe({
           next: (response: Sprint[]) => {
-            console.log('INACTIVE SPRINTS: ' + JSON.stringify(response));
+            this.sprints = response;
+            console.log('INACTIVE SPRINTS: ' + JSON.stringify(this.sprints));
           },
         });
     });
