@@ -47,4 +47,15 @@ export class SprintService {
 
     return this.httpClient.get<Sprint[]>(url);
   }
+
+  updateIssueSprint(
+    projectId: string,
+    sprintId: string,
+    issueId: string,
+    newSprintId: string
+  ) {
+    const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}/issues/${issueId}`;
+
+    return this.httpClient.patch(url, { newSprintId });
+  }
 }

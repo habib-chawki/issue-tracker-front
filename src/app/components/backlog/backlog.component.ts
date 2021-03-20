@@ -152,10 +152,10 @@ export class BacklogComponent implements OnInit, OnDestroy {
       : event.previousContainer.data;
 
     if (event.previousContainer === event.container) {
-      // within the same list
       moveItemInArray(containerData, event.previousIndex, event.currentIndex);
     } else {
-      // between lists
+      // TODO: update the issue sprint
+
       transferArrayItem(
         previousContainerData,
         containerData,
