@@ -1,3 +1,8 @@
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -135,6 +140,27 @@ export class BacklogComponent implements OnInit, OnDestroy {
       queryParams: { project: this.projectId, status: SprintStatus.OVER },
     });
   };
+
+  onDrop(event: CdkDragDrop<Issue[]>) {
+    if (event.previousContainer === event.container) {
+      console.log('SAME LIST: ' + new String(event));
+      // within the same list
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      console.log('BETWEEN LISTS: ' + new String(event));
+      // between lists
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
