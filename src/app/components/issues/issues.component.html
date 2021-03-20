@@ -1,11 +1,5 @@
 <!-- display the list of draggable issues -->
-<div
-  id="drop-list"
-  class="drop-list"
-  cdkDropList
-  [cdkDropListData]="issues"
-  (cdkDropListDropped)="onDrop($event)"
->
+<div id="drop-list" class="drop-list">
   <app-issue
     *ngFor="let issue of issues"
     [issue]="issue"
