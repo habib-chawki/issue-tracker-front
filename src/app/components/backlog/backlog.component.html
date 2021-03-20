@@ -12,8 +12,20 @@
 
 <div cdkDropListGroup>
   <!-- display inactive sprints along with their backlogs  -->
-  <app-sprint *ngFor="let sprint of sprints" [sprint]="sprint"></app-sprint>
+  <app-sprint
+    *ngFor="let sprint of sprints"
+    [sprint]="sprint"
+    cdkDropList
+    [cdkDropListData]="sprint.backlog"
+    (cdkDropListDropped)="onDrop($event)"
+  ></app-sprint>
 
   <!-- product backlog -->
-  <app-issues [issues]="backlog"></app-issues>
+  <div
+    cdkDropList
+    [cdkDropListData]="backlog"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <app-issues [issues]="backlog"></app-issues>
+  </div>
 </div>
