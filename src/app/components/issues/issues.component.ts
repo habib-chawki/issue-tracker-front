@@ -1,8 +1,3 @@
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueService } from 'src/app/services/issue/issue.service';
@@ -25,25 +20,5 @@ export class IssuesComponent implements OnInit {
       const index = this.issues.indexOf(issue);
       this.issues.splice(index, 1);
     });
-  }
-
-  // handle issue drop
-  onDrop(event: CdkDragDrop<Issue[]>) {
-    if (event.previousContainer === event.container) {
-      // within the same list
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      // between lists
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
   }
 }
