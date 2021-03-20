@@ -1,6 +1,6 @@
 <!-- sprint backlog -->
-{{ sprint.name }}
-<app-issues [issues]="backlog"></app-issues>
+<div>{{ sprint.name }}</div>
+<app-issues [issues]="sprint.backlog"></app-issues>
 
 <button mat-raised-button (click)="onSaveSprintBacklog()">
   Save sprint backlog
