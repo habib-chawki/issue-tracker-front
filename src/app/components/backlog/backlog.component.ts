@@ -27,8 +27,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
   sprints: Sprint[];
   backlog: Issue[] = [];
 
-  willDisplaySprintBacklog: boolean = false;
-
   constructor(
     private issueService: IssueService,
     private projectService: ProjectService,
@@ -75,7 +73,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // listen for sprint form saved announcements
     this.sprintIntercomService.sprintFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(this.onDisplaySprintBacklog);
+      .subscribe(this.createSprint);
   }
 
   onSaveIssue = (issue: Issue) => {
@@ -106,18 +104,17 @@ export class BacklogComponent implements OnInit, OnDestroy {
     this.dialog.open(IssueFormComponent);
   };
 
-  onDisplaySprintBacklog = (sprintFormValue) => {
-    // create the sprint
+  createSprint = (sprintFormValue) => {
     this.sprintService
       .createSprint(this.projectId, sprintFormValue)
-      .subscribe((sprint: Sprint) => {
-        // set the sprint project
-        console.log('CREATED SPRINT: ' + JSON.stringify(sprint));
+      .pipe(take(1))
+      .subscribe({
+        next: (createdSprint: Sprint) => {
+          console.log('CREATED SPRINT: ' + JSON.stringify(createdSprint));
 
-        this.sprint = sprint;
-        this.sprint.projectId = this.projectId;
-
-        this.willDisplaySprintBacklog = true;
+          // add createdSprint to the list of sprints
+          this.sprints.push(createdSprint);
+        },
       });
   };
 
