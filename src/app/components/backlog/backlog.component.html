@@ -16,7 +16,7 @@
     *ngFor="let sprint of sprints"
     [sprint]="sprint"
     cdkDropList
-    [cdkDropListData]="sprint.backlog"
+    [cdkDropListData]="sprint"
     (cdkDropListDropped)="onDrop($event)"
   ></app-sprint>
 
