@@ -15,7 +15,6 @@ import { SprintService } from 'src/app/services/sprint/sprint.service';
 export class SprintComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
-  backlog: Issue[] = [];
   @Input() sprint: Sprint;
 
   constructor(
@@ -35,7 +34,7 @@ export class SprintComponent implements OnInit, OnDestroy {
 
   onSaveSprintBacklog() {
     // extract issues ids
-    const issuesIds = this.backlog.map((issue: Issue) => +issue.id);
+    const issuesIds = this.sprint.backlog.map((issue: Issue) => +issue.id);
 
     this.sprintService
       .setSprintBacklog(this.sprint.projectId, this.sprint.id, issuesIds)
