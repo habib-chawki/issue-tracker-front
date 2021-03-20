@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
 
@@ -25,7 +24,7 @@ export class SprintsComponent implements OnInit {
       this.projectId = queryParams.project;
       const status = queryParams.status;
 
-      // fetch active sprints
+      // fetch sprints by status
       this.sprintService
         .getSprintsByStatus(this.projectId, status)
         .pipe(take(1))
