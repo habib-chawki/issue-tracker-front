@@ -141,21 +141,24 @@ export class BacklogComponent implements OnInit, OnDestroy {
     });
   };
 
-  onDrop(event: CdkDragDrop<Issue[]>) {
+  onDrop(event: CdkDragDrop<any>) {
+    // extract the data container (distinguish between sprint backlog and product backlog)
+    const containerData = event.container.data.backlog
+      ? event.container.data.backlog
+      : event.container.data;
+
+    const previousContainerData = event.previousContainer.data.backlog
+      ? event.previousContainer.data.backlog
+      : event.previousContainer.data;
+
     if (event.previousContainer === event.container) {
-      console.log('SAME LIST: ' + new String(event));
       // within the same list
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      moveItemInArray(containerData, event.previousIndex, event.currentIndex);
     } else {
-      console.log('BETWEEN LISTS: ' + new String(event));
       // between lists
       transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
+        previousContainerData,
+        containerData,
         event.previousIndex,
         event.currentIndex
       );
