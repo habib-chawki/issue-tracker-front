@@ -11,7 +11,9 @@
 </button>
 
 <div cdkDropListGroup>
-  <app-sprint [sprint]="sprint" *ngIf="willDisplaySprintBacklog"></app-sprint>
+  <!-- display inactive sprints along with their backlogs  -->
+  <app-sprint *ngFor="let sprint of sprints" [sprint]="sprint"></app-sprint>
+
   <!-- product backlog -->
   <app-issues [issues]="backlog"></app-issues>
 </div>
