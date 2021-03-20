@@ -53,6 +53,16 @@ export class BacklogComponent implements OnInit, OnDestroy {
             this.backlog = response;
           },
         });
+
+      // get the list of inactive sprints
+      this.sprintService
+        .getSprintsByStatus(this.projectId, SprintStatus.INACTIVE)
+        .pipe(take(1))
+        .subscribe({
+          next: (response: Sprint[]) => {
+            console.log('INACTIVE SPRINTS: ' + JSON.stringify(response));
+          },
+        });
     });
 
     // listen for issue form saved announcements
