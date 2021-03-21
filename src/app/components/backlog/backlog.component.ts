@@ -154,14 +154,30 @@ export class BacklogComponent implements OnInit, OnDestroy {
     if (event.previousContainer === event.container) {
       moveItemInArray(containerData, event.previousIndex, event.currentIndex);
     } else {
-      // TODO: update the issue sprint
+      // update the issue sprint
+      const projectId = this.projectId;
+      const sprintId = '10';
 
-      transferArrayItem(
-        previousContainerData,
-        containerData,
-        event.previousIndex,
-        event.currentIndex
-      );
+      const issueId = event.item.data.id;
+
+      // when the sprint backlog is the container then set the new sprint id otherwise null
+      const newSprintId = event.container.data.id
+        ? event.container.data.id
+        : null;
+
+      this.sprintService
+        .updateIssueSprint(projectId, sprintId, issueId, newSprintId)
+        .subscribe({
+          next: () => {
+            console.log('UPDATED ISSUE SPRINT!');
+            transferArrayItem(
+              previousContainerData,
+              containerData,
+              event.previousIndex,
+              event.currentIndex
+            );
+          },
+        });
     }
   }
 
