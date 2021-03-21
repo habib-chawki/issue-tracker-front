@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
-import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
 
@@ -30,18 +29,6 @@ export class SprintComponent implements OnInit, OnDestroy {
         this.sprint.projectId = queryParams.project;
       },
     });
-  }
-
-  onSaveSprintBacklog() {
-    // extract issues ids
-    const issuesIds = this.sprint.backlog.map((issue: Issue) => +issue.id);
-
-    this.sprintService
-      .setSprintBacklog(this.sprint.projectId, this.sprint.id, issuesIds)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((response) => {
-        console.log('Number of issues updated ' + response);
-      });
   }
 
   onStartSprint = () => {
