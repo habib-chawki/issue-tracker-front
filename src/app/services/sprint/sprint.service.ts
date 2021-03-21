@@ -56,6 +56,6 @@ export class SprintService {
   ) {
     const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}/issues/${issueId}`;
 
-    return this.httpClient.patch(url, { newSprintId });
+    return this.httpClient.patch(url, { newSprintId: newSprintId?.toString() });
   }
 }
