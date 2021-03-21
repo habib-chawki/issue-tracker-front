@@ -156,11 +156,16 @@ export class BacklogComponent implements OnInit, OnDestroy {
     } else {
       // update the issue sprint
       const projectId = this.projectId;
-      const sprintId = '10';
-
       const issueId = event.item.data.id;
 
-      // when the sprint backlog is the container then set the new sprint id otherwise null
+      /* when the previous container is not a sprint backlog then 
+       set the sprint id to null indicating that the issue is coming from the product backlog */
+      const sprintId = event.previousContainer.data.id
+        ? event.previousContainer.data.id
+        : null;
+
+      /* when the sprint backlog is the new container then set the new sprint id
+       otherwise set it to null indicating that the issue is back to the product backlog */
       const newSprintId = event.container.data.id
         ? event.container.data.id
         : null;
