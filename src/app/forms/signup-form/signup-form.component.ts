@@ -37,9 +37,10 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   onSignup() {
     if (this.signupForm.valid) {
       this.observable = this.userService.signUp(this.signupForm.value);
-      this.subscription = this.observable.subscribe(
-        this.handleSuccessfulSignup
-      );
+      this.subscription = this.observable.subscribe({
+        next: this.handleSuccessfulSignup,
+        error: (err) => console.log('SIGNUP ERROR: ' + JSON.stringify(err)),
+      });
     }
   }
 
