@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
-import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
@@ -18,7 +17,6 @@ export class IssueFormComponent implements OnInit {
   issuePriorities = Object.values(IssuePriority);
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
-  issueResolutions = Object.values(IssueResolution);
 
   issueForm = new FormGroup({
     description: new FormControl(''),
@@ -27,8 +25,7 @@ export class IssueFormComponent implements OnInit {
     priority: new FormControl(IssuePriority.MEDIUM),
 
     type: new FormControl(IssueType.STORY),
-    status: new FormControl(IssueStatus.TODO),
-    resolution: new FormControl(IssueResolution.UNRESOLVED),
+    status: new FormControl(IssueStatus.UNRESOLVED),
 
     assignee: new FormControl(''),
 

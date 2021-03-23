@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
@@ -34,8 +33,7 @@ describe('IssueFormComponent', () => {
       .description('Issue description')
       .summary('Issue summary')
       .type(IssueType.BUG)
-      .status(IssueStatus.INPROGRESS)
-      .resolution(IssueResolution.DUPLICATE)
+      .status(IssueStatus.RESOLVED)
       .estimate(new Date())
       .build();
   });
@@ -131,18 +129,6 @@ describe('IssueFormComponent', () => {
 
     // the options should be the values of the "IssueStatus" enum
     expect(statuses).toEqual(Object.values(IssueStatus));
-  });
-
-  it('should render issue "resolution" options based on the values of the "IssueResolution" enum', () => {
-    // given the list of the "resolution" select options
-    const resolutions = [];
-
-    nativeElement
-      .querySelectorAll('select#resolution option')
-      .forEach((option) => resolutions.push(option.innerHTML.trim()));
-
-    // the options should be the values of the "IssueResolution" enum
-    expect(resolutions).toEqual(Object.values(IssueResolution));
   });
 
   it('should define a form group and form controls', () => {
