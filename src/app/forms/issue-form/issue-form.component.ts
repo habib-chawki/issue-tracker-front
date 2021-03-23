@@ -23,9 +23,7 @@ export class IssueFormComponent implements OnInit {
     summary: new FormControl(''),
 
     priority: new FormControl(IssuePriority.MEDIUM),
-
     type: new FormControl(IssueType.STORY),
-    status: new FormControl(IssueStatus.UNRESOLVED),
 
     assignee: new FormControl(''),
 
