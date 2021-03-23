@@ -1,6 +1,5 @@
 import IssueType from '../enums/issue-type';
 import IssueStatus from '../enums/issue-status';
-import IssueResolution from '../enums/issue-resolution';
 import { User } from '../user/user';
 import { Comment } from '../comment/comment';
 import IssuePriority from '../enums/issue-priority';
@@ -17,7 +16,6 @@ export interface Issue {
 
   type: IssueType;
   status: IssueStatus;
-  resolution: IssueResolution;
 
   assignee?: User;
   reporter: User;

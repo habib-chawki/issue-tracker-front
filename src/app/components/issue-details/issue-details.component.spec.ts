@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssuePriority from 'src/app/models/enums/issue-priority';
-import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
@@ -50,8 +49,7 @@ describe('IssueDetailsComponent', () => {
       summary: 'Issue summary',
       priority: IssuePriority.HIGH,
       type: IssueType.TASK,
-      status: IssueStatus.TODO,
-      resolution: IssueResolution.UNRESOLVED,
+      status: IssueStatus.UNRESOLVED,
       assignee: new UserBuilder().username('assignee@issue').build(),
       reporter: new UserBuilder().username('reporter@issue').build(),
       comments: [
@@ -146,10 +144,6 @@ describe('IssueDetailsComponent', () => {
 
     expect(nativeElement.querySelector('div#status').textContent).toEqual(
       issue.status
-    );
-
-    expect(nativeElement.querySelector('div#resolution').textContent).toEqual(
-      issue.resolution
     );
 
     expect(nativeElement.querySelector('div#assignee').textContent).toEqual(

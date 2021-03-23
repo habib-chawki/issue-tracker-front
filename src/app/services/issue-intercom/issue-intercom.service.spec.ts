@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
@@ -20,8 +19,7 @@ describe('IssueIntercomService', () => {
       .description('issue description')
       .summary('issue summary')
       .type(IssueType.STORY)
-      .status(IssueStatus.DONE)
-      .resolution(IssueResolution.DUPLICATE)
+      .status(IssueStatus.IN_PROGRESS)
       .build();
   });
 

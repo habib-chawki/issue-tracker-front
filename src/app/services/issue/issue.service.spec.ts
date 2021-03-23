@@ -7,7 +7,6 @@ import {
 import { IssueService } from './issue.service';
 import { Issue } from '../../models/issue/issue';
 import IssueType from '../../models/enums/issue-type';
-import IssueResolution from '../../models/enums/issue-resolution';
 import IssueStatus from '../../models/enums/issue-status';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
@@ -37,8 +36,7 @@ describe('IssueService', () => {
       summary: 'Issue summary',
       priority: IssuePriority.HIGH,
       type: IssueType.BUG,
-      status: IssueStatus.INPROGRESS,
-      resolution: IssueResolution.DUPLICATE,
+      status: IssueStatus.RESOLVED,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
       comments: [
@@ -60,8 +58,7 @@ describe('IssueService', () => {
       summary: 'Issue 2 summary',
       priority: IssuePriority.MEDIUM,
       type: IssueType.STORY,
-      status: IssueStatus.TODO,
-      resolution: IssueResolution.UNRESOLVED,
+      status: IssueStatus.UNRESOLVED,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
       comments: [
@@ -88,7 +85,7 @@ describe('IssueService', () => {
   it('should create a new issue', () => {
     // when the "createIssue()" method is invoked with an issue object
     // then the response should be the issue object itself
-    issueService.createIssue(issue).subscribe((response) => {
+    issueService.createIssue(issue, '10').subscribe((response) => {
       expect(response).toEqual(issue);
     });
 
@@ -106,7 +103,7 @@ describe('IssueService', () => {
     const updatedIssue = {
       ...issue,
       description: 'new updated description',
-      status: IssueStatus.DONE,
+      status: IssueStatus.IN_PROGRESS,
     };
 
     // when updateIssue() is invoked then response with the updated issue

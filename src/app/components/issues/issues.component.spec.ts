@@ -5,7 +5,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssuePriority from 'src/app/models/enums/issue-priority';
-import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
@@ -52,8 +51,7 @@ describe('IssuesComponent', () => {
       summary: 'Issue summary',
       priority: IssuePriority.LOW,
       type: IssueType.BUG,
-      status: IssueStatus.INPROGRESS,
-      resolution: IssueResolution.DUPLICATE,
+      status: IssueStatus.RESOLVED,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
       comments: [
@@ -75,8 +73,7 @@ describe('IssuesComponent', () => {
       summary: 'Issue 2 summary',
       priority: IssuePriority.HIGH,
       type: IssueType.STORY,
-      status: IssueStatus.TODO,
-      resolution: IssueResolution.UNRESOLVED,
+      status: IssueStatus.UNRESOLVED,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
       comments: [
@@ -235,19 +232,5 @@ describe('IssuesComponent', () => {
     //   component.onHideIssueDetails();
     //   expect(component.willDisplayIssueDetails).toBeFalse();
     // });
-  });
-
-  it('should invoke "onDrop()" when an "cdkDropListDropped" event is emitted', () => {
-    // given the "onDrop()" handler method
-    spyOn(component, 'onDrop');
-
-    // given the issues drop list
-    const dropList = nativeElement.querySelector('div#drop-list');
-
-    // when an "cdkDropListDropped" event is emitted
-    dropList.dispatchEvent(new Event('cdkDropListDropped'));
-
-    // then "onDrop()" should be called
-    expect(component.onDrop).toHaveBeenCalled();
   });
 });

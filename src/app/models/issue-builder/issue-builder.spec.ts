@@ -1,6 +1,5 @@
 import { CommentBuilder } from '../comment-builder/comment-builder';
 import IssuePriority from '../enums/issue-priority';
-import IssueResolution from '../enums/issue-resolution';
 import IssueStatus from '../enums/issue-status';
 import IssueType from '../enums/issue-type';
 import { Issue } from '../issue/issue';
@@ -17,8 +16,7 @@ describe('IssueBuilder', () => {
       summary: 'Summary',
       priority: IssuePriority.LOW,
       type: IssueType.STORY,
-      status: IssueStatus.INPROGRESS,
-      resolution: IssueResolution.UNRESOLVED,
+      status: IssueStatus.RESOLVED,
       assignee: null,
       reporter: null,
       comments: [
@@ -41,7 +39,6 @@ describe('IssueBuilder', () => {
       .summary(issue.summary)
       .type(issue.type)
       .status(issue.status)
-      .resolution(issue.resolution)
       .assignee(issue.assignee)
       .reporter(issue.reporter)
       .comments(issue.comments)

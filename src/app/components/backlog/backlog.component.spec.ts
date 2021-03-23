@@ -8,7 +8,6 @@ import { of } from 'rxjs';
 import { CommentBuilder } from 'src/app/models/comment-builder/comment-builder';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
-import IssueResolution from 'src/app/models/enums/issue-resolution';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 
@@ -66,8 +65,7 @@ describe('Backlog', () => {
       summary: 'Issue summary',
       priority: IssuePriority.MEDIUM,
       type: IssueType.BUG,
-      status: IssueStatus.INPROGRESS,
-      resolution: IssueResolution.DUPLICATE,
+      status: IssueStatus.RESOLVED,
       assignee: new UserBuilder().username('Me').build(),
       reporter: new UserBuilder().username('Someone').build(),
       comments: [
@@ -89,8 +87,7 @@ describe('Backlog', () => {
       summary: 'Issue 2 summary',
       priority: IssuePriority.LOW,
       type: IssueType.STORY,
-      status: IssueStatus.TODO,
-      resolution: IssueResolution.UNRESOLVED,
+      status: IssueStatus.UNRESOLVED,
       assignee: new UserBuilder().username('You').build(),
       reporter: new UserBuilder().username('Someone else').build(),
       comments: [
@@ -272,7 +269,7 @@ describe('Backlog', () => {
     const updatedIssue = {
       ...issue,
       description: 'Some new updated description',
-      status: IssueStatus.DONE,
+      status: IssueStatus.IN_PROGRESS,
     };
 
     spyOn(issueService, 'updateIssue').and.returnValue(of(updatedIssue));

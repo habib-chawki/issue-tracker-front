@@ -1,6 +1,5 @@
 import { Comment } from '../comment/comment';
 import IssuePriority from '../enums/issue-priority';
-import IssueResolution from '../enums/issue-resolution';
 import IssueStatus from '../enums/issue-status';
 import IssueType from '../enums/issue-type';
 import { Issue } from '../issue/issue';
@@ -18,7 +17,6 @@ export class IssueBuilder {
       priority: null,
       type: null,
       status: null,
-      resolution: null,
       assignee: null,
       reporter: null,
       comments: null,
@@ -62,11 +60,6 @@ export class IssueBuilder {
 
   status(status: IssueStatus): IssueBuilder {
     this._issue.status = status;
-    return this;
-  }
-
-  resolution(resolution: IssueResolution): IssueBuilder {
-    this._issue.resolution = resolution;
     return this;
   }
 
