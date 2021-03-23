@@ -12,18 +12,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label for="priority">Priority</mat-label>
-      <mat-select name="priority" formControlName="priority">
-        <mat-option
-          *ngFor="let issuePriority of issuePriorities"
-          [value]="issuePriority"
-        >
-          {{ issuePriority }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field>
       <mat-label for="type">Type</mat-label>
       <mat-select name="type" formControlName="type">
         <mat-option *ngFor="let issueType of issueTypes" [value]="issueType">
@@ -33,13 +21,13 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label for="status">Status</mat-label>
-      <mat-select id="status" formControlName="status">
+      <mat-label for="priority">Priority</mat-label>
+      <mat-select name="priority" formControlName="priority">
         <mat-option
-          *ngFor="let issueStatus of issueStatuses"
-          value="{{ issueStatus }}"
+          *ngFor="let issuePriority of issuePriorities"
+          [value]="issuePriority"
         >
-          {{ issueStatus }}
+          {{ issuePriority }}
         </mat-option>
       </mat-select>
     </mat-form-field>
