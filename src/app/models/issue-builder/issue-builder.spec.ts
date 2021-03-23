@@ -27,7 +27,7 @@ describe('IssueBuilder', () => {
       watchers: [],
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 8,
     };
   });
 
@@ -46,7 +46,7 @@ describe('IssueBuilder', () => {
       .watchers(issue.watchers)
       .creationTime(issue.creationTime)
       .updateTime(issue.updateTime)
-      .estimate(issue.estimate)
+      .estimate(issue.points)
       .build();
 
     expect(createdIssue).toEqual(issue);

@@ -24,7 +24,7 @@ export class IssueBuilder {
       watchers: null,
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 1,
     };
   }
 
@@ -95,8 +95,8 @@ export class IssueBuilder {
     return this;
   }
 
-  estimate(estimate: Date): IssueBuilder {
-    this._issue.estimate = estimate;
+  estimate(points: number): IssueBuilder {
+    this._issue.points = points;
     return this;
   }
 
