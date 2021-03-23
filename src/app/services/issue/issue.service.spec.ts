@@ -47,7 +47,7 @@ describe('IssueService', () => {
       watchers: ['jon', 'jane'],
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 4,
     };
 
     // set up another issue
@@ -70,7 +70,7 @@ describe('IssueService', () => {
       watchers: [],
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 8,
     };
   });
 

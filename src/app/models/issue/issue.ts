@@ -26,5 +26,6 @@ export interface Issue {
 
   creationTime: Date;
   updateTime: Date;
-  estimate: Date;
+
+  points: number;
 }
