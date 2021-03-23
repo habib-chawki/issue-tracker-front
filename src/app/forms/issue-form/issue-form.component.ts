@@ -27,7 +27,7 @@ export class IssueFormComponent implements OnInit {
 
     assignee: new FormControl(''),
 
-    estimate: new FormControl(''),
+    points: new FormControl(1),
   });
 
   constructor(
