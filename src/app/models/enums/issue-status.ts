@@ -1,7 +1,7 @@
 enum IssueStatus {
-  TODO = 'Todo',
-  INPROGRESS = 'In Progress',
-  DONE = 'Done',
+  UNRESOLVED = 'Unresolved',
+  IN_PROGRESS = 'In Progress',
+  RESOLVED = 'Resolved',
 }
 
 export default IssueStatus;
