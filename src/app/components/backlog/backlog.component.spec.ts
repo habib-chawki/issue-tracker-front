@@ -76,7 +76,7 @@ describe('Backlog', () => {
       watchers: ['jon', 'jane'],
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 4,
     };
 
     // set up another issue
@@ -99,7 +99,7 @@ describe('Backlog', () => {
       watchers: [],
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 21,
     };
   });
 

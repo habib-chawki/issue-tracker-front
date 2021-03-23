@@ -60,7 +60,7 @@ describe('IssueDetailsComponent', () => {
       watchers: ['jon', 'jane'],
       creationTime: new Date(),
       updateTime: new Date(),
-      estimate: new Date(),
+      points: 21,
     };
   });
 
@@ -165,10 +165,6 @@ describe('IssueDetailsComponent', () => {
 
     expect(nativeElement.querySelector('div#updated').textContent).toContain(
       issue.updateTime.toDateString()
-    );
-
-    expect(nativeElement.querySelector('div#estimate').textContent).toContain(
-      issue.estimate.toDateString()
     );
 
     // the list of watchers should be rendered
