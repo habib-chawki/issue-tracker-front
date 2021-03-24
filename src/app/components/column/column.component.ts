@@ -39,9 +39,12 @@ export class ColumnComponent implements OnInit, OnDestroy {
       this.columnService
         .updateColumnTitle(this.boardId, this.column.id, newColumnTitle)
         .subscribe({
-          next: (updatedColumnTitle: string) => {
-            this.column.title = updatedColumnTitle;
-            console.log('UPDATED COLUMN: ' + JSON.stringify(this.column));
+          next: (response) => {
+            this.column.title = response.updatedTitle;
+            console.log('UPDATED TITLE: ' + response.updatedTitle);
+          },
+          error: () => {
+            console.error('ERROR UPDATING TITLE: ' + newColumnTitle);
           },
         });
     }
