@@ -1,4 +1,8 @@
-<div id="title">{{ column.title }}</div>
+<div id="title" (dblclick)="onUpdateTitle()" *ngIf="!willUpdateColumnTitle">
+  {{ column.title }}
+</div>
+
+<input type="text" value="{{ column.title }}" *ngIf="willUpdateColumnTitle" />
 
 <div
   class="drop-list"
