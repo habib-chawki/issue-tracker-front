@@ -14,8 +14,8 @@
   <input
     type="text"
     value="{{ column.title }}"
-    (blur)="onUpdateTitle()"
-    (keydown.enter)="onUpdateTitle()"
+    (blur)="onUpdateTitle($event)"
+    (keydown.enter)="onUpdateTitle($event)"
   />
 </ng-template>
 
