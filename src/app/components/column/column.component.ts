@@ -30,8 +30,23 @@ export class ColumnComponent implements OnInit, OnDestroy {
     this.willDisplayUpdateTitleInput = true;
   }
 
-  onUpdateTitle = () => {
-    console.log('it has been blurred');
+  onUpdateTitle = (event) => {
+    // extract the new column title
+    const newColumnTitle = event.target.value.trim();
+
+    // update in case the title has been changed
+    if (newColumnTitle !== this.column.title) {
+      this.columnService
+        .updateColumnTitle(this.boardId, this.column.id, newColumnTitle)
+        .subscribe({
+          next: (updatedColumn: Column) => {
+            this.column = updatedColumn;
+            console.log('UPDATED COLUMN: ' + JSON.stringify(this.column));
+          },
+        });
+    }
+
+    this.willDisplayUpdateTitleInput = false;
   };
 
   onDrop = (event: CdkDragDrop<Column>) => {
