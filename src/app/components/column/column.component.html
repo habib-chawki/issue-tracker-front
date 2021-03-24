@@ -1,8 +1,18 @@
-<div id="title" (dblclick)="onUpdateTitle()" *ngIf="!willUpdateColumnTitle">
-  {{ column.title }}
-</div>
+<ng-container
+  *ngIf="willUpdateColumnTitle; then updateTitleInput; else title"
+></ng-container>
 
-<input type="text" value="{{ column.title }}" *ngIf="willUpdateColumnTitle" />
+<!-- rendered when the column title hasn't been double clicked -->
+<ng-template #title>
+  <div id="title" (dblclick)="onUpdateTitle()" *ngIf="!willUpdateColumnTitle">
+    {{ column.title }}
+  </div>
+</ng-template>
+
+<!-- rendered when the column title has been double clicked -->
+<ng-template #updateTitleInput>
+  <input type="text" value="{{ column.title }}" *ngIf="willUpdateColumnTitle" />
+</ng-template>
 
 <div
   class="drop-list"
