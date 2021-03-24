@@ -39,13 +39,14 @@ export class ColumnComponent implements OnInit, OnDestroy {
       this.columnService
         .updateColumnTitle(this.boardId, this.column.id, newColumnTitle)
         .subscribe({
-          next: (updatedColumn: Column) => {
-            this.column = updatedColumn;
+          next: (updatedColumnTitle: string) => {
+            this.column.title = updatedColumnTitle;
             console.log('UPDATED COLUMN: ' + JSON.stringify(this.column));
           },
         });
     }
 
+    // hide the update input, display the new title
     this.willDisplayUpdateTitleInput = false;
   };
 
