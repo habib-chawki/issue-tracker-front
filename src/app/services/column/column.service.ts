@@ -28,4 +28,14 @@ export class ColumnService {
 
     return this.httpClient.patch(url, { newColumnId: newColumnId.toString() });
   }
+
+  updateColumnTitle(
+    boardId: string,
+    columnId: string,
+    newColumnTitle: string
+  ): Observable<Column> {
+    const url = `${this.baseUrl}/${boardId}/columns/${columnId}`;
+
+    return this.httpClient.patch<Column>(url, { title: newColumnTitle });
+  }
 }
