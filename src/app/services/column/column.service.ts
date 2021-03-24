@@ -33,9 +33,11 @@ export class ColumnService {
     boardId: string,
     columnId: string,
     newColumnTitle: string
-  ): Observable<string> {
+  ): Observable<{ updatedTitle: string }> {
     const url = `${this.baseUrl}/${boardId}/columns/${columnId}`;
 
-    return this.httpClient.patch<string>(url, { title: newColumnTitle });
+    return this.httpClient.patch<{ updatedTitle: string }>(url, {
+      newColumnTitle,
+    });
   }
 }
