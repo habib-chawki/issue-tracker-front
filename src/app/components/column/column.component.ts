@@ -20,14 +20,14 @@ export class ColumnComponent implements OnInit, OnDestroy {
   @Input() column: Column;
   @Input() boardId: string;
 
-  willUpdateColumnTitle: boolean = false;
+  willDisplayUpdateTitleInput: boolean = false;
 
   constructor(private columnService: ColumnService) {}
 
   ngOnInit(): void {}
 
   onUpdateTitle = () => {
-    this.willUpdateColumnTitle = !this.willUpdateColumnTitle;
+    this.willDisplayUpdateTitleInput = !this.willDisplayUpdateTitleInput;
   };
 
   onDrop = (event: CdkDragDrop<Column>) => {

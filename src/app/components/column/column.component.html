@@ -1,17 +1,17 @@
 <ng-container
-  *ngIf="willUpdateColumnTitle; then updateTitleInput; else title"
+  *ngIf="willDisplayUpdateTitleInput; then updateTitleInput; else title"
 ></ng-container>
 
 <!-- rendered when the column title hasn't been double clicked -->
 <ng-template #title>
-  <div id="title" (dblclick)="onUpdateTitle()" *ngIf="!willUpdateColumnTitle">
+  <div id="title" (dblclick)="onUpdateTitle()">
     {{ column.title }}
   </div>
 </ng-template>
 
 <!-- rendered when the column title has been double clicked -->
 <ng-template #updateTitleInput>
-  <input type="text" value="{{ column.title }}" *ngIf="willUpdateColumnTitle" />
+  <input type="text" value="{{ column.title }}" />
 </ng-template>
 
 <div
