@@ -26,8 +26,12 @@ export class ColumnComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
+  onDisplayUpdateTitleInput() {
+    this.willDisplayUpdateTitleInput = true;
+  }
+
   onUpdateTitle = () => {
-    this.willDisplayUpdateTitleInput = !this.willDisplayUpdateTitleInput;
+    console.log('it has been blurred');
   };
 
   onDrop = (event: CdkDragDrop<Column>) => {

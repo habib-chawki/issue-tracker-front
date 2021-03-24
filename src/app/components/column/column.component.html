@@ -4,14 +4,19 @@
 
 <!-- rendered when the column title hasn't been double clicked -->
 <ng-template #title>
-  <div id="title" (dblclick)="onUpdateTitle()">
+  <div id="title" (dblclick)="onDisplayUpdateTitleInput()">
     {{ column.title }}
   </div>
 </ng-template>
 
 <!-- rendered when the column title has been double clicked -->
 <ng-template #updateTitleInput>
-  <input type="text" value="{{ column.title }}" />
+  <input
+    type="text"
+    value="{{ column.title }}"
+    (blur)="onUpdateTitle()"
+    (keydown.enter)="onUpdateTitle()"
+  />
 </ng-template>
 
 <div
