@@ -24,4 +24,10 @@ export class ProjectService {
   getBacklog(projectId: string): Observable<Issue[]> {
     return this.httpClient.get<Issue[]>(`${this.baseUrl}/${projectId}/backlog`);
   }
+
+  addUserToProject(projectId: string, userId: string) {
+    const url = `${this.baseUrl}/${projectId}/users/${userId}`;
+
+    return this.httpClient.post<void>(url, null);
+  }
 }
