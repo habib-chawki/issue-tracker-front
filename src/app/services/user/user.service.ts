@@ -7,19 +7,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  signupUrl = 'users/signup';
-  loginUrl = 'login';
+  baseUrl = '/users';
 
   constructor(private httpClient: HttpClient) {}
 
   signUp(userCredentials): Observable<HttpResponse<any>> {
-    const url = `${environment.apiUrl}/${this.signupUrl}`;
+    const url = `${environment.apiUrl}/${this.baseUrl}/signup`;
 
     return this.httpClient.post(url, userCredentials, { observe: 'response' });
   }
 
   login(userCredentials): Observable<HttpResponse<any>> {
-    const url = `${environment.apiUrl}/${this.loginUrl}`;
+    const url = `${environment.apiUrl}/login`;
     return this.httpClient.post(url, userCredentials, { observe: 'response' });
   }
 }
