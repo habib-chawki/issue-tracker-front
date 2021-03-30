@@ -24,15 +24,20 @@ export class IssueService {
     return this.httpClient.put<Issue>(`${this.baseUrl}/${issue.id}`, issue);
   }
 
-  getIssue(id: string): Observable<Issue> {
-    return this.httpClient.get<Issue>(`${this.baseUrl}/${id}`);
+  getIssue(issueId: string): Observable<Issue> {
+    return this.httpClient.get<Issue>(`${this.baseUrl}/${issueId}`);
   }
 
   getIssues(): Observable<Issue[]> {
     return this.httpClient.get<Issue[]>(this.baseUrl);
   }
 
-  deleteIssue(id: string): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
+  deleteIssue(issueId: string): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/${issueId}`);
+  }
+
+  updateIssueAssignee(issueId: string, assigneeId: string): Observable<Issue> {
+    const url = `${this.baseUrl}/${issueId}`;
+    return this.httpClient.patch<Issue>(url, { assignee: assigneeId });
   }
 }
