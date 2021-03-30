@@ -28,4 +28,10 @@ export class UserService {
       params: { page, size },
     });
   }
+
+  getUsersByAssignedProject(projectId: string): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.baseUrl, {
+      params: { project: projectId },
+    });
+  }
 }
