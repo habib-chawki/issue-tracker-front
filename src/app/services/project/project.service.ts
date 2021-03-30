@@ -30,4 +30,10 @@ export class ProjectService {
 
     return this.httpClient.post<void>(url, null);
   }
+
+  getProjectsByAssignedUser(userId: string): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(this.baseUrl, {
+      params: { user: userId },
+    });
+  }
 }
