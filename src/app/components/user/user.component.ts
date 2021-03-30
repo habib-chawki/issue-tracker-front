@@ -8,8 +8,13 @@ import { User } from 'src/app/models/user/user';
 })
 export class UserComponent implements OnInit {
   @Input() user: User;
+  @Input() projectId: string;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onInvite() {
+    // TODO: add user to project
+  }
 }
