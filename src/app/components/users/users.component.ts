@@ -36,6 +36,12 @@ export class UsersComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: User[]) => {
+          console.log(
+            'USERS LOADED: ' +
+              JSON.stringify(response) +
+              ' ===> PAGE: ' +
+              this.page
+          );
           this.users = response;
         },
       });
@@ -49,6 +55,12 @@ export class UsersComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: User[]) => {
+          console.log(
+            'USERS LOADED: ' +
+              JSON.stringify(response) +
+              ' ===> PAGE: ' +
+              this.page
+          );
           this.users = [...this.users, ...response];
         },
       });
