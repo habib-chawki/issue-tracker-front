@@ -4,4 +4,10 @@
   user="user"
 ></app-user>
 
-<button mat-raised-button (click)="onLoadMoreUsers()">Load more</button>
+<button
+  *ngIf="willDisplayLoadMore"
+  mat-raised-button
+  (click)="onLoadMoreUsers()"
+>
+  Load more
+</button>
