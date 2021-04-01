@@ -11,7 +11,9 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UsersComponent implements OnInit {
   projectId: string;
-  users: User[];
+  users: User[] = [];
+
+  willDisplayLoadMore = true;
 
   // pagination params
   page = 0;
@@ -46,13 +48,17 @@ export class UsersComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response: User[]) => {
-          console.log(
-            'USERS LOADED: ' +
-              JSON.stringify(response) +
-              ' ===> PAGE: ' +
-              this.page
-          );
-          this.users = [...this.users, ...response];
+          if (response.length > 0) {
+            console.log(
+              'USERS LOADED: ' +
+                JSON.stringify(response) +
+                ' ===> PAGE: ' +
+                this.page
+            );
+            this.users = [...this.users, ...response];
+          } else {
+            this.willDisplayLoadMore = false;
+          }
         },
       });
   }
