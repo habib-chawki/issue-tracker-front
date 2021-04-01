@@ -141,6 +141,13 @@ export class BacklogComponent implements OnInit, OnDestroy {
     });
   };
 
+  onDisplayDevs = () => {
+    // navigate to users component
+    this.router.navigate(['/devs'], {
+      queryParams: { project: this.projectId },
+    });
+  };
+
   onDrop(event: CdkDragDrop<any>) {
     // extract the data container (distinguish between sprint backlog and product backlog)
     const containerData = event.container.data.backlog
