@@ -26,4 +26,17 @@ export class UsersComponent implements OnInit {
         },
       });
   }
+
+  onLoadMoreUsers() {
+    // get the next page of users
+    this.page++;
+    this.userService
+      .getPaginatedListOfUsers(this.page, this.size)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: User[]) => {
+          this.users = [...this.users, ...response];
+        },
+      });
+  }
 }
