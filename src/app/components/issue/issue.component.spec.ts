@@ -41,7 +41,7 @@ describe('IssueComponent', () => {
     // set up the issue reporter
     reporter = new UserBuilder()
       .id('100')
-      .email('issue.reporter@email.com')
+      .fullName('issue.reporter@email.com')
       .build();
 
     // set up an issue

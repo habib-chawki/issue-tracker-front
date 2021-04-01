@@ -34,7 +34,7 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
 
     // set the comment owner
-    owner = new UserBuilder().id('100').username('comment@owner').build();
+    owner = new UserBuilder().id('100').userName('comment@owner').build();
 
     // set the comment
     comment = new CommentBuilder()
@@ -54,7 +54,7 @@ describe('CommentComponent', () => {
 
     // the owner's username should be rendered
     expect(nativeElement.querySelector('li div#owner').textContent).toContain(
-      comment.owner.username
+      comment.owner.userName
     );
 
     // the comment's content should be renderd
