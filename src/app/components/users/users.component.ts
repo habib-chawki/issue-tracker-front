@@ -31,25 +31,16 @@ export class UsersComponent implements OnInit {
     });
 
     // load the first page of users
-    this.userService
-      .getPaginatedListOfUsers(this.page, this.size)
-      .pipe(take(1))
-      .subscribe({
-        next: (response: User[]) => {
-          console.log(
-            'USERS LOADED: ' +
-              JSON.stringify(response) +
-              ' ===> PAGE: ' +
-              this.page
-          );
-          this.users = response;
-        },
-      });
+    this.loadUsers();
   }
 
   onLoadMoreUsers() {
     // load the next page of users
     this.page++;
+    this.loadUsers();
+  }
+
+  loadUsers() {
     this.userService
       .getPaginatedListOfUsers(this.page, this.size)
       .pipe(take(1))
