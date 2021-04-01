@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
 import { UserService } from 'src/app/services/user/user.service';
@@ -9,13 +10,26 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
+  projectId: string;
   users: User[];
+
+  // pagination params
   page = 0;
   size = 10;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    // extract project id query param
+    this.route.queryParams.subscribe({
+      next: (queryParams) => {
+        this.projectId = queryParams.project;
+      },
+    });
+
     // load the first page of users
     this.userService
       .getPaginatedListOfUsers(this.page, this.size)
