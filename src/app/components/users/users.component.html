@@ -1,1 +1,7 @@
+<app-user
+  *ngFor="let user of users"
+  projectId="projectId"
+  user="user"
+></app-user>
 
+<button (click)="onLoadMoreUsers()">Load more</button>
