@@ -6,8 +6,8 @@ export class UserBuilder {
   constructor() {
     this._user = {
       id: null,
-      username: null,
-      email: null,
+      userName: null,
+      fullName: null,
     };
   }
 
@@ -16,13 +16,13 @@ export class UserBuilder {
     return this;
   }
 
-  username(username: string): UserBuilder {
-    this._user.username = username;
+  userName(userName: string): UserBuilder {
+    this._user.userName = userName;
     return this;
   }
 
-  email(email: string): UserBuilder {
-    this._user.email = email;
+  fullName(fullName: string): UserBuilder {
+    this._user.fullName = fullName;
     return this;
   }
 

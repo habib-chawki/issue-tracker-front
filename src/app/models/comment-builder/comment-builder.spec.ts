@@ -10,7 +10,7 @@ describe('CommentBuilder', () => {
       id: '666',
       owner: new UserBuilder()
         .id('111')
-        .email('comment.owner@email.com')
+        .fullName('comment.owner@email.com')
         .username('comown')
         .build(),
 
