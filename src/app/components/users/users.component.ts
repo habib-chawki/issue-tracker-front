@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    // fetch users
+    // load the first page of users
     this.userService
       .getPaginatedListOfUsers(this.page, this.size)
       .pipe(take(1))
@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
   }
 
   onLoadMoreUsers() {
-    // get the next page of users
+    // load the next page of users
     this.page++;
     this.userService
       .getPaginatedListOfUsers(this.page, this.size)
