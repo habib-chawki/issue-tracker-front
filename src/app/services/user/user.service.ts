@@ -13,8 +13,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   signUp(userCredentials): Observable<HttpResponse<any>> {
-    const url = `/signup`;
-
+    const url = `${this.baseUrl}/signup`;
     return this.httpClient.post(url, userCredentials, { observe: 'response' });
   }
 
