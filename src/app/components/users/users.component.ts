@@ -62,4 +62,9 @@ export class UsersComponent implements OnInit {
         },
       });
   }
+
+  onAddUserToProject(addedUser: User) {
+    // when user is added successfully to a project, remove them from the list
+    this.users = this.users.filter((user) => addedUser.id !== user.id);
+  }
 }
