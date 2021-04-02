@@ -19,6 +19,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     fullName: new FormControl('', [
       Validators.required,
       Validators.pattern('[a-zA-Z ]*'),
+      Validators.minLength(3),
     ]),
     userName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -70,5 +71,13 @@ export class SignupFormComponent implements OnInit, OnDestroy {
 
   get password() {
     return this.signupForm.controls.password;
+  }
+
+  get fullName() {
+    return this.signupForm.controls.fullName;
+  }
+
+  get userName() {
+    return this.signupForm.controls.userName;
   }
 }
