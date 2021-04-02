@@ -2,6 +2,16 @@
   <mat-form-field>
     <mat-label>Full name</mat-label>
     <input matInput type="text" formControlName="fullName" id="full-name" />
+    <mat-error *ngIf="fullName.hasError('pattern')"
+      >Should contain letters only</mat-error
+    >
+    <mat-error *ngIf="fullName.hasError('required')"
+      >Full name is required</mat-error
+    >
+    <mat-error
+      *ngIf="fullName.hasError('minlength') && !fullName.hasError('pattern')"
+      >Should be at least 3 characters long</mat-error
+    >
   </mat-form-field>
 
   <mat-form-field>
