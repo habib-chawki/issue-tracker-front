@@ -2,6 +2,7 @@
   *ngFor="let user of users"
   [projectId]="projectId"
   [user]="user"
+  (userAddedToProject)="onAddUserToProject($event)"
 ></app-user>
 
 <button
