@@ -21,7 +21,10 @@ export class SignupFormComponent implements OnInit, OnDestroy {
       Validators.pattern('[a-zA-Z ]*'),
       Validators.minLength(3),
     ]),
-    userName: new FormControl('', [Validators.required]),
+    userName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
