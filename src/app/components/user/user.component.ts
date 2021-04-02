@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -11,6 +11,8 @@ import { ProjectService } from 'src/app/services/project/project.service';
 export class UserComponent implements OnInit {
   @Input() user: User;
   @Input() projectId: string;
+
+  @Output() userAddedToProject = new EventEmitter<User>();
 
   constructor(private projectService: ProjectService) {}
 
@@ -26,6 +28,9 @@ export class UserComponent implements OnInit {
           console.log(
             `USER ${this.user.id} added to project ${this.projectId} ==> ${response}`
           );
+
+          // communicate invitation success to parent component (users)
+          this.userAddedToProject.emit(this.user);
         },
       });
   }
