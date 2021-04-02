@@ -40,14 +40,14 @@ describe('CommentsComponent', () => {
     comment1 = new CommentBuilder()
       .id('01')
       .content('comment 1 content')
-      .owner(new UserBuilder().username('comment1@owner1').build())
+      .owner(new UserBuilder().userName('comment1@owner1').build())
       .build();
 
     // set up another comment
     comment2 = new CommentBuilder()
       .id('02')
       .content('comment 2 content')
-      .owner(new UserBuilder().username('comment2@owner2').build())
+      .owner(new UserBuilder().userName('comment2@owner2').build())
       .build();
   });
 

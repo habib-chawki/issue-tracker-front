@@ -16,8 +16,11 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   observable: Observable<HttpResponse<any>>;
 
   signupForm: FormGroup = new FormGroup({
-    fullName: new FormControl(''),
-    userName: new FormControl(''),
+    fullName: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z ]*'),
+    ]),
+    userName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
