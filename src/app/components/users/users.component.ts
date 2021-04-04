@@ -29,11 +29,11 @@ export class UsersComponent implements OnInit {
     this.route.queryParams.subscribe({
       next: (queryParams) => {
         this.projectId = queryParams.project;
+
+        // load the first page of users
+        this.loadUsers();
       },
     });
-
-    // load the first page of users
-    this.loadUsers();
   }
 
   onLoadMoreUsers() {
@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
 
   loadUsers() {
     this.userService
-      .getPaginatedListOfUsers(this.page, this.size)
+      .getUsersNotAssignedToProject(this.projectId, this.page, this.size)
       .pipe(take(1))
       .subscribe({
         next: (response: User[]) => {
