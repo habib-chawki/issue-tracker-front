@@ -52,7 +52,7 @@
         name="assignee"
         formControlName="assignee"
       >
-        <mat-option *ngFor="let assignee of assignees" [value]="assignee.id">
+        <mat-option *ngFor="let assignee of assignees" [value]="assignee">
           {{ assignee.fullName }}
         </mat-option>
       </mat-select>
