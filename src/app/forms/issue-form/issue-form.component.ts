@@ -7,6 +7,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-issue-form',
@@ -31,13 +32,14 @@ export class IssueFormComponent implements OnInit {
   });
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public initialFormValue,
-    private issueCommunicationService: IssueIntercomService
+    @Inject(MAT_DIALOG_DATA) public dialogData,
+    private issueCommunicationService: IssueIntercomService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    if (this.initialFormValue) {
-      this.issueForm.patchValue(this.initialFormValue);
+    if (this.dialogData) {
+      this.issueForm.patchValue(this.dialogData);
     }
   }
 
@@ -45,13 +47,23 @@ export class IssueFormComponent implements OnInit {
     let issue: Issue = this.issueForm.value;
 
     // add the original issue "id" if the issue is to be updated rather than created
-    if (this.initialFormValue) {
+    if (this.dialogData) {
       issue = {
-        id: this.initialFormValue.id,
+        id: this.dialogData.id,
         ...issue,
       };
     }
 
     this.issueCommunicationService.announceIssueFormSaved(issue);
+  }
+
+  onLoadAssignees() {
+    this.userService
+      .getUsersByAssignedProject(this.dialogData.projectId)
+      .subscribe({
+        next: (response) => {
+          console.log(JSON.stringify(response));
+        },
+      });
   }
 }
