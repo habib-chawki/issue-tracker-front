@@ -33,4 +33,14 @@ export class UserService {
       params: { project: projectId },
     });
   }
+
+  getUsersNotAssignedToProject(
+    excludedProject: string,
+    page: number,
+    size: number
+  ): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.baseUrl, {
+      params: { excludedProject, page: page.toString(), size: size.toString() },
+    });
+  }
 }
