@@ -20,7 +20,7 @@ export class IssueFormComponent implements OnInit {
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
 
-  assignees: User[];
+  assignees: User[] = [];
 
   issueForm = new FormGroup({
     description: new FormControl(''),
@@ -57,17 +57,20 @@ export class IssueFormComponent implements OnInit {
       };
     }
 
+    console.log('ISSUE TO BE SAVED: ' + JSON.stringify(issue));
     this.issueCommunicationService.announceIssueFormSaved(issue);
   }
 
   onLoadAssignees() {
-    this.userService
-      .getUsersByAssignedProject(this.dialogData.projectId)
-      .subscribe({
-        next: (response: User[]) => {
-          this.assignees = response;
-          console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
-        },
-      });
+    if (this.assignees.length === 0) {
+      this.userService
+        .getUsersByAssignedProject(this.dialogData.projectId)
+        .subscribe({
+          next: (response: User[]) => {
+            this.assignees = response;
+            console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
+          },
+        });
+    }
   }
 }
