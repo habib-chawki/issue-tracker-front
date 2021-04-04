@@ -6,6 +6,7 @@ import IssuePriority from 'src/app/models/enums/issue-priority';
 import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
+import { User } from 'src/app/models/user/user';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -18,6 +19,8 @@ export class IssueFormComponent implements OnInit {
   issuePriorities = Object.values(IssuePriority);
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
+
+  assignees: User[];
 
   issueForm = new FormGroup({
     description: new FormControl(''),
@@ -61,8 +64,9 @@ export class IssueFormComponent implements OnInit {
     this.userService
       .getUsersByAssignedProject(this.dialogData.projectId)
       .subscribe({
-        next: (response) => {
-          console.log(JSON.stringify(response));
+        next: (response: User[]) => {
+          this.assignees = response;
+          console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
         },
       });
   }
