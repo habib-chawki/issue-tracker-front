@@ -17,7 +17,7 @@ export interface Issue {
   type: IssueType;
   status: IssueStatus;
 
-  assignee?: User;
+  assignee: User;
   reporter: User;
 
   comments?: Comment[];
