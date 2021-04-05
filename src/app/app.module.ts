@@ -31,6 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { httpInterceptorProviders } from './interceptors/providers';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { SprintFormComponent } from './forms/sprint-form/sprint-form.component';
@@ -81,6 +83,7 @@ import { UsersComponent } from './components/users/users.component';
     MatCardModule,
     MatIconModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
