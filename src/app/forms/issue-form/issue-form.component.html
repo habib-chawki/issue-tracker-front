@@ -46,12 +46,20 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label for="assignee">Assignee</mat-label>
+      <mat-label for="assignee">Assignee </mat-label>
       <mat-select
         (focus)="onLoadAssignees()"
         name="assignee"
         formControlName="assignee"
       >
+        <mat-option *ngIf="isAssigneesListLoading"
+          ><mat-progress-spinner
+            color="primary"
+            diameter="20"
+            mode="indeterminate"
+          ></mat-progress-spinner
+        ></mat-option>
+
         <mat-option *ngFor="let assignee of assignees" [value]="assignee">
           {{ assignee.fullName }}
         </mat-option>
