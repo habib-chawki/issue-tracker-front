@@ -29,6 +29,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((response: Project[]) => {
         this.projects = response;
+        console.log('PROJECTS LOADED: ' + JSON.stringify(this.projects));
       });
 
     // listen for project form saved announcements
