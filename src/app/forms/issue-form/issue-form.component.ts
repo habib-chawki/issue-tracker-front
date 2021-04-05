@@ -21,6 +21,7 @@ export class IssueFormComponent implements OnInit {
   issueStatuses = Object.values(IssueStatus);
 
   assignees: User[] = [];
+  isAssigneesListLoading = true;
 
   issueForm = new FormGroup({
     description: new FormControl(''),
@@ -69,6 +70,7 @@ export class IssueFormComponent implements OnInit {
           next: (response: User[]) => {
             this.assignees = response;
             console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
+            this.isAssigneesListLoading = false;
           },
         });
     }
