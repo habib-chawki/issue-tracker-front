@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { ErrorService } from 'src/app/services/error/error.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -29,7 +30,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     private storageService: StorageService,
     private router: Router,
     private ngZone: NgZone,
-    private snackBar: MatSnackBar
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {}
@@ -39,12 +40,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       this.observable = this.userService.login(this.loginForm.value);
       this.subscription = this.observable.subscribe({
         next: this.handleSuccessfulLogin,
-        error: (err) =>
-          this.snackBar.open(err.error.errorMessage, 'Dismiss', {
-            duration: 6000,
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-          }),
+        error: this.errorService.handleHttpError,
       });
     }
   }
