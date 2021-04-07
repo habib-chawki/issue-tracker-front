@@ -49,12 +49,11 @@ export class SignupFormComponent implements OnInit, OnDestroy {
       this.subscription = this.observable.subscribe({
         next: this.handleSuccessfulSignup,
         error: (err) => {
-          this.snackBar.open(err.error.errorMessage, '', {
+          this.snackBar.open(err.error.errorMessage, 'Dismiss', {
             duration: 6000,
             horizontalPosition: 'center',
             verticalPosition: 'top',
           });
-          console.log('SIGNUP ERROR: ' + JSON.stringify(err.error));
         },
       });
     }
