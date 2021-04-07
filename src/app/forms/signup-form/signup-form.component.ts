@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -36,7 +37,8 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private storageService: StorageService,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -46,7 +48,14 @@ export class SignupFormComponent implements OnInit, OnDestroy {
       this.observable = this.userService.signUp(this.signupForm.value);
       this.subscription = this.observable.subscribe({
         next: this.handleSuccessfulSignup,
-        error: (err) => console.log('SIGNUP ERROR: ' + JSON.stringify(err)),
+        error: (err) => {
+          this.snackBar.open(err.error.errorMessage, '', {
+            duration: 6000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+          console.log('SIGNUP ERROR: ' + JSON.stringify(err.error));
+        },
       });
     }
   }
