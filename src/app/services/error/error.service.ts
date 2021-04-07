@@ -7,11 +7,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ErrorService {
   constructor(private snackBar: MatSnackBar) {}
 
-  handleHttpError(response) {
+  handleHttpError = (response) => {
     this.snackBar.open(response.error.errorMessage, 'Dismiss', {
       duration: 6000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
-  }
+  };
 }
