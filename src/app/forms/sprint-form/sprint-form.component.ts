@@ -8,6 +8,8 @@ import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-i
   styleUrls: ['./sprint-form.component.scss'],
 })
 export class SprintFormComponent implements OnInit {
+  sprintMinDate = new Date();
+
   sprintForm = new FormGroup({
     name: new FormControl('', Validators.required),
     goal: new FormControl('', Validators.required),
