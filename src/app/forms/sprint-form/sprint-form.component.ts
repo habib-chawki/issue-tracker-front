@@ -11,8 +11,10 @@ export class SprintFormComponent implements OnInit {
   sprintForm = new FormGroup({
     name: new FormControl('', Validators.required),
     goal: new FormControl('', Validators.required),
-    startDate: new FormControl(Date.now, Validators.required),
-    endDate: new FormControl(new Date().getDate() + 30, Validators.required),
+    dateRange: new FormGroup({
+      startDate: new FormControl(Validators.required),
+      endDate: new FormControl(Validators.required),
+    }),
   });
 
   constructor(private sprintIntercomService: SprintIntercomService) {}
