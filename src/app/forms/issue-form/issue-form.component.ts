@@ -42,9 +42,13 @@ export class IssueFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // pre populate the form in case of an update
     if (this.dialogData) {
       this.issueForm.patchValue(this.dialogData);
     }
+
+    // load the list of assignees
+    this.loadAssignees();
   }
 
   onSave() {
@@ -62,17 +66,15 @@ export class IssueFormComponent implements OnInit {
     this.issueCommunicationService.announceIssueFormSaved(issue);
   }
 
-  onLoadAssignees() {
-    if (this.assignees.length === 0) {
-      this.userService
-        .getUsersByAssignedProject(this.dialogData.projectId)
-        .subscribe({
-          next: (response: User[]) => {
-            this.assignees = response;
-            console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
-            this.isAssigneesListLoading = false;
-          },
-        });
-    }
+  loadAssignees() {
+    this.userService
+      .getUsersByAssignedProject(this.dialogData.projectId)
+      .subscribe({
+        next: (response: User[]) => {
+          this.assignees = response;
+          console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
+          this.isAssigneesListLoading = false;
+        },
+      });
   }
 }
