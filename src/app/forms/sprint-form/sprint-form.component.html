@@ -26,11 +26,13 @@
     <mat-label>Sprint date range</mat-label>
     <mat-date-range-input
       [min]="sprintMinDate"
+      [max]="sprintMaxDate"
       formGroupName="dateRange"
       [rangePicker]="rangePicker"
     >
       <input
         matStartDate
+        (dateChange)="onDateRangeChange($event)"
         formControlName="startDate"
         placeholder="Start date"
       />
