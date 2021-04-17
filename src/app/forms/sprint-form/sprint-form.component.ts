@@ -8,7 +8,9 @@ import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-i
   styleUrls: ['./sprint-form.component.scss'],
 })
 export class SprintFormComponent implements OnInit {
-  sprintMinDate = new Date();
+  SPRINT_DURATION = 30;
+  sprintMinDate: Date = new Date();
+  sprintMaxDate: Date;
 
   sprintForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -25,6 +27,16 @@ export class SprintFormComponent implements OnInit {
 
   onSave() {
     this.sprintIntercomService.announceSprintFormSaved(this.sprintForm.value);
+  }
+
+  onDateRangeChange(event) {
+    const pickedDate = new Date(event.value);
+
+    this.sprintMaxDate = new Date(
+      pickedDate.getFullYear(),
+      pickedDate.getMonth(),
+      pickedDate.getDate() + this.SPRINT_DURATION
+    );
   }
 
   get name() {
