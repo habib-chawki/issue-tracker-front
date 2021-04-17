@@ -23,13 +23,20 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label for="start-date">Start date</mat-label>
-    <input matInput type="date" id="start-date" formControlName="startDate" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label for="end-date">End date</mat-label>
-    <input matInput type="date" id="end-date" formControlName="endDate" />
+    <mat-label>Sprint date range</mat-label>
+    <mat-date-range-input formGroupName="dateRange" [rangePicker]="rangePicker">
+      <input
+        matStartDate
+        formControlName="startDate"
+        placeholder="Start date"
+      />
+      <input matEndDate formControlName="endDate" placeholder="End date" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="rangePicker"
+    ></mat-datepicker-toggle>
+    <mat-date-range-picker #rangePicker> </mat-date-range-picker>
   </mat-form-field>
 
   <button mat-raised-button mat-dialog-close type="submit">Save</button>
