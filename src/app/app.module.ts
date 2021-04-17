@@ -33,6 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { httpInterceptorProviders } from './interceptors/providers';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
@@ -86,6 +88,8 @@ import { UsersComponent } from './components/users/users.component';
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
