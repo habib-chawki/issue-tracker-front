@@ -1,33 +1,40 @@
-<button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+    <button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
 
-<button mat-raised-button (click)="onDisplaySprintForm()">Add sprint</button>
+    <button mat-raised-button (click)="onDisplaySprintForm()">
+      Add sprint
+    </button>
 
-<button mat-raised-button (click)="onDisplayActiveSprints()">
-  Active sprints
-</button>
+    <button mat-raised-button (click)="onDisplayActiveSprints()">
+      Active sprints
+    </button>
 
-<button mat-raised-button (click)="onDisplayFinishedSprints()">
-  Finished sprints
-</button>
+    <button mat-raised-button (click)="onDisplayFinishedSprints()">
+      Finished sprints
+    </button>
 
-<button mat-raised-button (click)="onDisplayDevs()">Devs</button>
+    <button mat-raised-button (click)="onDisplayDevs()">Devs</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div cdkDropListGroup>
+      <!-- display inactive sprints along with their backlogs  -->
+      <app-sprint
+        *ngFor="let sprint of sprints"
+        [sprint]="sprint"
+        cdkDropList
+        [cdkDropListData]="sprint"
+        (cdkDropListDropped)="onDrop($event)"
+      ></app-sprint>
 
-<div cdkDropListGroup>
-  <!-- display inactive sprints along with their backlogs  -->
-  <app-sprint
-    *ngFor="let sprint of sprints"
-    [sprint]="sprint"
-    cdkDropList
-    [cdkDropListData]="sprint"
-    (cdkDropListDropped)="onDrop($event)"
-  ></app-sprint>
-
-  <!-- product backlog -->
-  <div
-    cdkDropList
-    [cdkDropListData]="backlog"
-    (cdkDropListDropped)="onDrop($event)"
-  >
-    <app-issues [issues]="backlog"></app-issues>
-  </div>
-</div>
+      <!-- product backlog -->
+      <div
+        cdkDropList
+        [cdkDropListData]="backlog"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        <app-issues [issues]="backlog"></app-issues>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
