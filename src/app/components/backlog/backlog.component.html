@@ -1,12 +1,8 @@
 <mat-sidenav-container fullscreen>
   <!-- side navigation  -->
   <mat-sidenav mode="side" opened>
-    <!-- side navigation list items -->
+    <!-- list items -->
     <mat-action-list>
-      <button mat-list-item (click)="onDisplayIssueForm()">Add issue</button>
-
-      <button mat-list-item (click)="onDisplaySprintForm()">Add sprint</button>
-
       <button mat-list-item (click)="onDisplayActiveSprints()">
         Active sprints
       </button>
@@ -21,6 +17,11 @@
 
   <!-- main content -->
   <mat-sidenav-content>
+    <button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
+    <button mat-raised-button (click)="onDisplaySprintForm()">
+      Add sprint
+    </button>
+
     <div cdkDropListGroup>
       <!-- display inactive sprints along with their backlogs  -->
       <app-sprint
