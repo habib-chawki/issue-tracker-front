@@ -1,21 +1,25 @@
 <mat-sidenav-container>
+  <!-- side navigation  -->
   <mat-sidenav mode="side" opened>
-    <button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
+    <!-- side navigation list items -->
+    <mat-action-list>
+      <button mat-list-item (click)="onDisplayIssueForm()">Add issue</button>
 
-    <button mat-raised-button (click)="onDisplaySprintForm()">
-      Add sprint
-    </button>
+      <button mat-list-item (click)="onDisplaySprintForm()">Add sprint</button>
 
-    <button mat-raised-button (click)="onDisplayActiveSprints()">
-      Active sprints
-    </button>
+      <button mat-list-item (click)="onDisplayActiveSprints()">
+        Active sprints
+      </button>
 
-    <button mat-raised-button (click)="onDisplayFinishedSprints()">
-      Finished sprints
-    </button>
+      <button mat-list-item (click)="onDisplayFinishedSprints()">
+        Finished sprints
+      </button>
 
-    <button mat-raised-button (click)="onDisplayDevs()">Devs</button>
+      <button mat-list-item (click)="onDisplayDevs()">Devs</button>
+    </mat-action-list>
   </mat-sidenav>
+
+  <!-- main content -->
   <mat-sidenav-content>
     <div cdkDropListGroup>
       <!-- display inactive sprints along with their backlogs  -->
