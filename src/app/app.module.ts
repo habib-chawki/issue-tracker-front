@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { httpInterceptorProviders } from './interceptors/providers';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
@@ -92,6 +93,7 @@ import { UsersComponent } from './components/users/users.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSidenavModule,
+    MatListModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
