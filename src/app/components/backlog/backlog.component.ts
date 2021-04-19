@@ -5,7 +5,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.component';
@@ -39,7 +39,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
     private sprintIntercomService: SprintIntercomService,
     private sprintService: SprintService,
     private dialog: MatDialog,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -127,27 +126,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
 
   onDisplaySprintForm = () => {
     this.dialog.open(SprintFormComponent);
-  };
-
-  onDisplayActiveSprints = () => {
-    // navigate to sprints component
-    this.router.navigate(['/sprints'], {
-      queryParams: { project: this.projectId, status: SprintStatus.ACTIVE },
-    });
-  };
-
-  onDisplayFinishedSprints = () => {
-    // navigate to sprints component
-    this.router.navigate(['/sprints'], {
-      queryParams: { project: this.projectId, status: SprintStatus.OVER },
-    });
-  };
-
-  onDisplayDevs = () => {
-    // navigate to users component
-    this.router.navigate(['/devs'], {
-      queryParams: { project: this.projectId },
-    });
   };
 
   onDrop(event: CdkDragDrop<any>) {
