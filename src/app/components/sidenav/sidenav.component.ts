@@ -23,21 +23,21 @@ export class SidenavComponent implements OnInit {
 
   onDisplayActiveSprints = () => {
     // navigate to sprints component
-    this.router.navigate(['/sprints'], {
+    this.router.navigate(['/product/sprints'], {
       queryParams: { project: this.projectId, status: SprintStatus.ACTIVE },
     });
   };
 
   onDisplayFinishedSprints = () => {
     // navigate to sprints component
-    this.router.navigate(['/sprints'], {
+    this.router.navigate(['/product/sprints'], {
       queryParams: { project: this.projectId, status: SprintStatus.OVER },
     });
   };
 
   onDisplayDevs = () => {
     // navigate to users component
-    this.router.navigate(['/devs'], {
+    this.router.navigate(['/product/devs'], {
       queryParams: { project: this.projectId },
     });
   };
