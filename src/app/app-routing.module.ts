@@ -13,11 +13,17 @@ export const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'product', component: SidenavComponent },
-  { path: 'backlog', component: BacklogComponent },
-  { path: 'board', component: BoardComponent },
-  { path: 'sprints', component: SprintsComponent },
-  { path: 'devs', component: UsersComponent },
+  {
+    path: 'product',
+    component: SidenavComponent,
+    children: [
+      { path: 'backlog', component: BacklogComponent },
+      { path: 'board', component: BoardComponent },
+      { path: 'sprints', component: SprintsComponent },
+      { path: 'devs', component: UsersComponent },
+    ],
+  },
+
   { path: '', redirectTo: 'signup', pathMatch: 'full' },
 ];
 
