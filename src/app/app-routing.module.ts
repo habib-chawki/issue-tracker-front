@@ -7,7 +7,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { SignupFormComponent } from './forms/signup-form/signup-form.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
 import { UsersComponent } from './components/users/users.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ProductComponent } from './components/product/product.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   {
     path: 'product',
-    component: SidenavComponent,
+    component: ProductComponent,
     children: [
       { path: 'backlog', component: BacklogComponent },
       { path: 'board', component: BoardComponent },
