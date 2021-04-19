@@ -3,13 +3,28 @@
   <mat-sidenav mode="side" opened>
     <!-- list items -->
     <mat-nav-list>
-      <a mat-list-item (click)="onDisplayActiveSprints()"> Active sprints </a>
+      <a
+        mat-list-item
+        [routerLink]="['./sprints']"
+        [queryParams]="queryParams.activeSprints"
+      >
+        Active sprints
+      </a>
 
-      <a mat-list-item (click)="onDisplayFinishedSprints()">
+      <a
+        mat-list-item
+        [routerLink]="['./sprints']"
+        [queryParams]="queryParams.finishedSprints"
+      >
         Finished sprints
       </a>
 
-      <a mat-list-item (click)="onDisplayDevs()">Devs</a>
+      <a
+        mat-list-item
+        [routerLink]="['./devs']"
+        [queryParams]="queryParams.devs"
+        >Devs</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
