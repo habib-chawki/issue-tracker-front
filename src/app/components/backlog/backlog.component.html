@@ -1,45 +1,22 @@
-<mat-sidenav-container fullscreen>
-  <!-- side navigation  -->
-  <mat-sidenav mode="side" opened>
-    <!-- list items -->
-    <mat-action-list>
-      <button mat-list-item (click)="onDisplayActiveSprints()">
-        Active sprints
-      </button>
+<button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
+<button mat-raised-button (click)="onDisplaySprintForm()">Add sprint</button>
 
-      <button mat-list-item (click)="onDisplayFinishedSprints()">
-        Finished sprints
-      </button>
+<div cdkDropListGroup>
+  <!-- display inactive sprints along with their backlogs  -->
+  <app-sprint
+    *ngFor="let sprint of sprints"
+    [sprint]="sprint"
+    cdkDropList
+    [cdkDropListData]="sprint"
+    (cdkDropListDropped)="onDrop($event)"
+  ></app-sprint>
 
-      <button mat-list-item (click)="onDisplayDevs()">Devs</button>
-    </mat-action-list>
-  </mat-sidenav>
-
-  <!-- main content -->
-  <mat-sidenav-content>
-    <button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
-    <button mat-raised-button (click)="onDisplaySprintForm()">
-      Add sprint
-    </button>
-
-    <div cdkDropListGroup>
-      <!-- display inactive sprints along with their backlogs  -->
-      <app-sprint
-        *ngFor="let sprint of sprints"
-        [sprint]="sprint"
-        cdkDropList
-        [cdkDropListData]="sprint"
-        (cdkDropListDropped)="onDrop($event)"
-      ></app-sprint>
-
-      <!-- product backlog -->
-      <div
-        cdkDropList
-        [cdkDropListData]="backlog"
-        (cdkDropListDropped)="onDrop($event)"
-      >
-        <app-issues [issues]="backlog"></app-issues>
-      </div>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <!-- product backlog -->
+  <div
+    cdkDropList
+    [cdkDropListData]="backlog"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <app-issues [issues]="backlog"></app-issues>
+  </div>
+</div>
