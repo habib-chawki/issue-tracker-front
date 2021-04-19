@@ -47,6 +47,7 @@ import { SprintsComponent } from './components/sprints/sprints.component';
 import { SprintDetailsComponent } from './components/sprint-details/sprint-details.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { UsersComponent } from './components/users/users.component';
     SprintDetailsComponent,
     UserComponent,
     UsersComponent,
+    SidenavComponent,
   ],
   imports: [
     DragDropModule,
