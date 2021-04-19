@@ -1,1 +1,22 @@
-<p>sidenav works!</p>
+<mat-sidenav-container fullscreen>
+  <!-- side navigation  -->
+  <mat-sidenav mode="side" opened>
+    <!-- list items -->
+    <mat-action-list>
+      <button mat-list-item (click)="onDisplayActiveSprints()">
+        Active sprints
+      </button>
+
+      <button mat-list-item (click)="onDisplayFinishedSprints()">
+        Finished sprints
+      </button>
+
+      <button mat-list-item (click)="onDisplayDevs()">Devs</button>
+    </mat-action-list>
+  </mat-sidenav>
+
+  <!-- main content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
