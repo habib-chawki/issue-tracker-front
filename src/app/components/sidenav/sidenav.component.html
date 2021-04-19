@@ -2,17 +2,15 @@
   <!-- side navigation  -->
   <mat-sidenav mode="side" opened>
     <!-- list items -->
-    <mat-action-list>
-      <button mat-list-item (click)="onDisplayActiveSprints()">
-        Active sprints
-      </button>
+    <mat-nav-list>
+      <a mat-list-item (click)="onDisplayActiveSprints()"> Active sprints </a>
 
-      <button mat-list-item (click)="onDisplayFinishedSprints()">
+      <a mat-list-item (click)="onDisplayFinishedSprints()">
         Finished sprints
-      </button>
+      </a>
 
-      <button mat-list-item (click)="onDisplayDevs()">Devs</button>
-    </mat-action-list>
+      <a mat-list-item (click)="onDisplayDevs()">Devs</a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <!-- main content -->
