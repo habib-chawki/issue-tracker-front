@@ -8,7 +8,12 @@ import SprintStatus from 'src/app/models/enums/sprint-status';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  queryParams = { activeSprints: {}, finishedSprints: {}, devs: {} };
+  queryParams = {
+    backlog: {},
+    activeSprints: {},
+    finishedSprints: {},
+    devs: {},
+  };
 
   constructor(private route: ActivatedRoute) {}
 
@@ -18,17 +23,21 @@ export class ProductComponent implements OnInit {
         // extract the project id query param
         const project = queryParams.project;
 
+        // set up base query params containing project id
+        const baseQueryParams = { project };
+
         // set up each route's query params
         this.queryParams = {
+          backlog: baseQueryParams,
           activeSprints: {
-            project,
+            ...baseQueryParams,
             status: SprintStatus.ACTIVE,
           },
           finishedSprints: {
-            project,
+            ...baseQueryParams,
             status: SprintStatus.OVER,
           },
-          devs: { project },
+          devs: baseQueryParams,
         };
       },
     });
