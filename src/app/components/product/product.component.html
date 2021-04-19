@@ -3,6 +3,15 @@
   <mat-sidenav mode="side" opened>
     <!-- list items -->
     <mat-nav-list>
+      <!-- product backlog -->
+      <a
+        mat-list-item
+        [routerLink]="['./backlog']"
+        [queryParams]="queryParams.backlog"
+      >
+        Backlog
+      </a>
+
       <!-- active sprints route -->
       <a
         mat-list-item
