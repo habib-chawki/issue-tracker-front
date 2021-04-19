@@ -8,6 +8,12 @@ import SprintStatus from 'src/app/models/enums/sprint-status';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit {
+  queryParams = {
+    activeSprints: {},
+    finishedSprints: {},
+    devs: {},
+  };
+
   projectId: string;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -17,6 +23,18 @@ export class SidenavComponent implements OnInit {
     this.route.queryParams.subscribe({
       next: (queryParams) => {
         this.projectId = queryParams.project;
+
+        this.queryParams = {
+          activeSprints: {
+            project: this.projectId,
+            status: SprintStatus.ACTIVE,
+          },
+          finishedSprints: {
+            project: this.projectId,
+            status: SprintStatus.OVER,
+          },
+          devs: { project: this.projectId },
+        };
       },
     });
   }
