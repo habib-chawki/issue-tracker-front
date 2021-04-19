@@ -3,6 +3,7 @@
   <mat-sidenav mode="side" opened>
     <!-- list items -->
     <mat-nav-list>
+      <!-- active sprints route -->
       <a
         mat-list-item
         [routerLink]="['./sprints']"
@@ -11,6 +12,7 @@
         Active sprints
       </a>
 
+      <!-- finished sprints route -->
       <a
         mat-list-item
         [routerLink]="['./sprints']"
@@ -19,6 +21,7 @@
         Finished sprints
       </a>
 
+      <!-- list of devs route -->
       <a
         mat-list-item
         [routerLink]="['./devs']"
