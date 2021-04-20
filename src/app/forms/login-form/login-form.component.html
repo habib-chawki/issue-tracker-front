@@ -4,10 +4,7 @@
       <mat-label>Email</mat-label>
       <input matInput type="text" id="email" formControlName="email" />
 
-      <mat-error
-        *ngIf="email.touched && email.invalid && !email.hasError('required')"
-        id="email-error"
-      >
+      <mat-error *ngIf="email.invalid && !email.hasError('required')">
         Invalid email
       </mat-error>
 
@@ -18,22 +15,10 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input
-        matInput
-        type="password"
-        id="password"
-        formControlName="password"
-      />
+      <input matInput type="password" formControlName="password" />
 
-      <mat-hint>At least 5 characters long</mat-hint>
-
-      <mat-error
-        *ngIf="
-          password.touched && password.invalid && !password.hasError('required')
-        "
-        id="password-error"
-      >
-        Invalid password
+      <mat-error *ngIf="password.invalid && !password.hasError('required')">
+        Should be at least 5 characters long
       </mat-error>
 
       <mat-error *ngIf="password.hasError('required')"

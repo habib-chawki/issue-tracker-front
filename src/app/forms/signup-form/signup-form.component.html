@@ -58,7 +58,7 @@
       </button>
 
       <mat-error *ngIf="password.invalid && !password.hasError('required')">
-        At least 5 characters long
+        Should be at least 5 characters long
       </mat-error>
 
       <mat-error *ngIf="password.hasError('required')"
