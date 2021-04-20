@@ -41,7 +41,21 @@
 
     <mat-form-field appearance="outline">
       <mat-label for="password">Password</mat-label>
-      <input matInput type="password" formControlName="password" />
+      <input
+        matInput
+        [type]="willHidePassword ? 'password' : 'text'"
+        formControlName="password"
+      />
+
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="willHidePassword = !willHidePassword"
+      >
+        <mat-icon>
+          {{ willHidePassword ? "visibility_off" : "visibility" }}
+        </mat-icon>
+      </button>
 
       <mat-error *ngIf="password.invalid && !password.hasError('required')">
         At least 5 characters long

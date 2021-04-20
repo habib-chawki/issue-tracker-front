@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit, OnDestroy {
+  willHidePassword = true;
+
   subscription: Subscription;
   observable: Observable<HttpResponse<any>>;
 
