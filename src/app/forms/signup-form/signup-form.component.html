@@ -1,68 +1,75 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSignup()">
-  <mat-form-field appearance="outline">
-    <mat-label>Full name</mat-label>
-    <input matInput type="text" formControlName="fullName" id="full-name" />
-    <mat-error *ngIf="fullName.hasError('pattern')"
-      >Should contain letters only</mat-error
-    >
-    <mat-error *ngIf="fullName.hasError('required')"
-      >Full name is required</mat-error
-    >
-    <mat-error
-      *ngIf="fullName.hasError('minlength') && !fullName.hasError('pattern')"
-      >Should be at least 3 characters long</mat-error
-    >
-  </mat-form-field>
+<div class="signup-form">
+  <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+    <mat-form-field appearance="outline">
+      <mat-label>Full name</mat-label>
+      <input matInput type="text" formControlName="fullName" id="full-name" />
+      <mat-error *ngIf="fullName.hasError('pattern')"
+        >Should contain letters only</mat-error
+      >
+      <mat-error *ngIf="fullName.hasError('required')"
+        >Full name is required</mat-error
+      >
+      <mat-error
+        *ngIf="fullName.hasError('minlength') && !fullName.hasError('pattern')"
+        >Should be at least 3 characters long</mat-error
+      >
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label for="username">Username</mat-label>
-    <input matInput type="text" formControlName="userName" id="username" />
-    <mat-error *ngIf="userName.hasError('minlength')"
-      >Should be at least 3 characters long</mat-error
-    >
-    <mat-error *ngIf="userName.hasError('required')"
-      >User name is required</mat-error
-    >
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="username">Username</mat-label>
+      <input matInput type="text" formControlName="userName" id="username" />
+      <mat-error *ngIf="userName.hasError('minlength')"
+        >Should be at least 3 characters long</mat-error
+      >
+      <mat-error *ngIf="userName.hasError('required')"
+        >User name is required</mat-error
+      >
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label for="email">Email</mat-label>
-    <input matInput type="text" formControlName="email" id="email" />
+    <mat-form-field appearance="outline">
+      <mat-label for="email">Email</mat-label>
+      <input matInput type="text" formControlName="email" id="email" />
 
-    <mat-error
-      *ngIf="email.touched && email.invalid && !email.hasError('required')"
-      id="email-error"
-    >
-      Invalid email
-    </mat-error>
+      <mat-error
+        *ngIf="email.touched && email.invalid && !email.hasError('required')"
+        id="email-error"
+      >
+        Invalid email
+      </mat-error>
 
-    <mat-error *ngIf="email.hasError('required')"
-      >Email is <strong>required</strong></mat-error
-    >
-  </mat-form-field>
+      <mat-error *ngIf="email.hasError('required')"
+        >Email is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label for="password">Password</mat-label>
-    <input matInput type="password" formControlName="password" id="password" />
+    <mat-form-field appearance="outline">
+      <mat-label for="password">Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        id="password"
+      />
 
-    <mat-hint>At least 5 characters long</mat-hint>
+      <mat-hint>At least 5 characters long</mat-hint>
 
-    <mat-error
-      *ngIf="
-        password.touched && password.invalid && !password.hasError('required')
-      "
-      id="password-error"
-    >
-      Invalid password
-    </mat-error>
+      <mat-error
+        *ngIf="
+          password.touched && password.invalid && !password.hasError('required')
+        "
+        id="password-error"
+      >
+        Invalid password
+      </mat-error>
 
-    <mat-error *ngIf="password.hasError('required')"
-      >Password is <strong>required</strong></mat-error
-    >
-  </mat-form-field>
+      <mat-error *ngIf="password.hasError('required')"
+        >Password is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
 
-  <button mat-raised-button type="submit">Sign up</button>
-</form>
+    <button mat-raised-button type="submit">Sign up</button>
+  </form>
 
-<p>Already have an account ?</p>
-<a routerLink="/login">Login</a>
+  <p>Already have an account ?</p>
+  <a routerLink="/login">Login</a>
+</div>
