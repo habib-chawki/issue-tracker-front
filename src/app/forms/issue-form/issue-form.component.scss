@@ -1,0 +1,9 @@
+.issue-form {
+  width: 500px;
+  height: 550px;
+  .issue-form-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}
