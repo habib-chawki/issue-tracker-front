@@ -15,7 +15,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
-    this.router.navigate(['product'], {
+    this.router.navigate(['product', 'backlog'], {
       queryParams: { project: this.project.id },
     });
   }
