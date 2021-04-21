@@ -1,17 +1,24 @@
-<form [formGroup]="issueForm" (ngSubmit)="onSave()">
-  <mat-dialog-content>
-    <mat-form-field>
+<form class="issue-form" [formGroup]="issueForm" (ngSubmit)="onSave()">
+  <h2 mat-dialog-title>Issue</h2>
+
+  <mat-dialog-content class="issue-form-content">
+    <mat-form-field appearance="outline">
       <mat-label>Summary</mat-label>
       <input matInput type="text" id="summary" formControlName="summary" />
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label for="description">Description</mat-label>
-      <textarea matInput id="description" formControlName="description">
+      <textarea
+        matInput
+        id="description"
+        formControlName="description"
+        rows="8"
+      >
       </textarea>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label for="type">Type</mat-label>
       <mat-select name="type" formControlName="type">
         <mat-option *ngFor="let issueType of issueTypes" [value]="issueType">
@@ -20,7 +27,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label for="priority">Priority</mat-label>
       <mat-select name="priority" formControlName="priority">
         <mat-option
@@ -32,7 +39,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label for="points">Story points</mat-label>
       <mat-select name="points" formControlName="points">
         <mat-option [value]="1"> 1 </mat-option>
@@ -45,7 +52,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label for="assignee">Assignee </mat-label>
       <mat-select name="assignee" formControlName="assignee">
         <mat-option *ngIf="isAssigneesListLoading"
@@ -61,12 +68,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <mat-dialog-actions>
-      <button mat-raised-button mat-dialog-close type="submit" id="submit">
-        Save
-      </button>
-      <button mat-raised-button mat-dialog-close id="cancel">Cancel</button>
-    </mat-dialog-actions>
   </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close type="submit" id="submit">
+      Save
+    </button>
+    <button mat-raised-button mat-dialog-close id="cancel">Cancel</button>
+  </mat-dialog-actions>
 </form>
