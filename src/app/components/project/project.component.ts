@@ -15,7 +15,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
-    this.router.navigate(['sidenav'], {
+    this.router.navigate(['product'], {
       queryParams: { project: this.project.id },
     });
   }
