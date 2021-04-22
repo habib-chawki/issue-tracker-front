@@ -93,7 +93,8 @@ export class BoardComponent implements OnInit, OnDestroy {
           this.board = createdBoard;
           console.log('CREATED BOARD: ' + JSON.stringify(this.board));
         },
-        error: (error) => console.log('ERROR: ' + error),
+        error: (error) =>
+          console.log('ERROR CREATING BOARD: ' + JSON.stringify(error)),
       });
   };
 
