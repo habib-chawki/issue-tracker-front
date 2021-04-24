@@ -30,16 +30,25 @@ export class SprintFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {
-    // extract startDate and endDate
+    // extract and parse startDate and endDate
+    const startDate = moment(
+      this.sprintForm.controls.dateRange.value.startDate
+    ).format('YYYY-MM-DD');
+
+    const endDate = moment(
+      this.sprintForm.controls.dateRange.value.endDate
+    ).format('YYYY-MM-DD');
+
     const formValue = {
-      ...this.sprintForm.controls.dateRange,
       ...this.sprintForm.value,
+      startDate,
+      endDate,
     };
 
     // remove date range
     delete formValue.dateRange;
 
-    // announce form saved with form value
+    // announce form saved with the custom form value
     this.sprintIntercomService.announceSprintFormSaved(formValue);
   }
 
