@@ -34,10 +34,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { httpInterceptorProviders } from './interceptors/providers';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { SprintFormComponent } from './forms/sprint-form/sprint-form.component';
@@ -93,7 +92,7 @@ import { ProductComponent } from './components/product/product.component';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     MatSidenavModule,
     MatListModule,
   ],

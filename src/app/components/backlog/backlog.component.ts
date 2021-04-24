@@ -77,7 +77,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // listen for sprint form saved announcements
     this.sprintIntercomService.sprintFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(this.createSprint);
+      .subscribe(console.log);
   }
 
   onSaveIssue = (issue: Issue) => {
