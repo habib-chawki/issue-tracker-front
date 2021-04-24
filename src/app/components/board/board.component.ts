@@ -124,7 +124,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         console.log('SPRINT ENDED ' + JSON.stringify(this.sprint));
         // navigate back to the backlog upon successful sprint status update
-        this.router.navigate(['backlog'], {
+        this.router.navigate(['product', 'backlog'], {
           queryParams: { project: this.sprint.projectId },
         });
       });
