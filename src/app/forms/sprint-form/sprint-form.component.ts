@@ -30,19 +30,13 @@ export class SprintFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {
-    // extract and parse startDate and endDate
-    const startDate = moment(
-      this.sprintForm.controls.dateRange.value.startDate
-    ).format('YYYY-MM-DD');
-
-    const endDate = moment(
-      this.sprintForm.controls.dateRange.value.endDate
-    ).format('YYYY-MM-DD');
+    // extract startDate and endDate
+    const { startDate, endDate } = this.sprintForm.controls.dateRange.value;
 
     const formValue = {
       ...this.sprintForm.value,
-      startDate,
-      endDate,
+      startDate: this.parseDate(startDate),
+      endDate: this.parseDate(endDate),
     };
 
     // remove date range
@@ -60,6 +54,11 @@ export class SprintFormComponent implements OnInit {
       pickedDate.getMonth(),
       pickedDate.getDate() + this.SPRINT_DURATION
     );
+  }
+
+  parseDate(date) {
+    const dateFormat = 'YYYY-MM-DD';
+    return moment(date).format(dateFormat);
   }
 
   get name() {
