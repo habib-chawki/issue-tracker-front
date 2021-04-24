@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 
 @Component({
@@ -16,7 +17,10 @@ export class SprintFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     goal: new FormControl('', Validators.required),
     dateRange: new FormGroup({
-      startDate: new FormControl(Validators.required),
+      startDate: new FormControl(
+        moment().format('yyyy-MM-dd'),
+        Validators.required
+      ),
       endDate: new FormControl(Validators.required),
     }),
   });
@@ -26,7 +30,17 @@ export class SprintFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {
-    this.sprintIntercomService.announceSprintFormSaved(this.sprintForm.value);
+    // extract startDate and endDate
+    const formValue = {
+      ...this.sprintForm.controls.dateRange,
+      ...this.sprintForm.value,
+    };
+
+    // remove date range
+    delete formValue.dateRange;
+
+    // announce form saved with form value
+    this.sprintIntercomService.announceSprintFormSaved(formValue);
   }
 
   onDateRangeChange(event) {
