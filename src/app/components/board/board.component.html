@@ -15,7 +15,7 @@
 </ng-template>
 
 <!-- render board columns -->
-<div cdkDropListGroup>
+<div cdkDropListGroup class="board">
   <app-column
     *ngFor="let column of board?.columns"
     [column]="column"
