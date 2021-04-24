@@ -111,16 +111,8 @@ export class BacklogComponent implements OnInit, OnDestroy {
   };
 
   createSprint = (sprintFormValue) => {
-    // extract startDate and endDate
-    const sprint = {
-      ...sprintFormValue.dateRange,
-      ...sprintFormValue,
-    };
-
-    delete sprint.dateRange;
-
     this.sprintService
-      .createSprint(this.projectId, sprint)
+      .createSprint(this.projectId, sprintFormValue)
       .pipe(take(1))
       .subscribe({
         next: (createdSprint: Sprint) => {
