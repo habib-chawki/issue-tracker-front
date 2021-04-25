@@ -25,7 +25,6 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   sprint: Sprint;
   board: Board = {} as Board;
-  columns: Column[] = [];
 
   constructor(
     private boardService: BoardService,
@@ -56,9 +55,9 @@ export class BoardComponent implements OnInit, OnDestroy {
             // populate project id
             this.sprint.projectId = projectId;
 
+            // set the sprint board
             if (this.sprint.board) {
               this.board = this.sprint.board;
-              this.columns = this.board.columns;
             }
           },
         });
