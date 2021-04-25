@@ -1,4 +1,8 @@
 .sprint-form {
-  display: flex;
-  flex-direction: column;
+  width: 500px;
+  height: 550px;
+  .sprint-form-content {
+    display: flex;
+    flex-direction: column;
+  }
 }
