@@ -1,49 +1,54 @@
 <form class="sprint-form" [formGroup]="sprintForm" (ngSubmit)="onSave()">
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput type="text" formControlName="name" />
-    <mat-error *ngIf="name.hasError('required')"
-      >Sprint name is <strong>required</strong></mat-error
-    >
-  </mat-form-field>
+  <h2 mat-dialog-title>Sprint</h2>
 
-  <mat-form-field>
-    <mat-label>Goal summary</mat-label>
-    <textarea
-      matInput
-      formControlName="goal"
-      name="goal"
-      id="goal"
-      cols="30"
-      rows="10"
-    ></textarea>
-    <mat-error *ngIf="goal.hasError('required')"
-      >Sprint goal is <strong>required</strong></mat-error
-    >
-  </mat-form-field>
+  <mat-dialog-content class="sprint-form-content">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      <mat-error *ngIf="name.hasError('required')"
+        >Sprint name is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Sprint date range</mat-label>
-    <mat-date-range-input
-      [min]="sprintMinDate"
-      [max]="sprintMaxDate"
-      formGroupName="dateRange"
-      [rangePicker]="rangePicker"
-    >
-      <input
-        matStartDate
-        (dateChange)="onDateRangeChange($event)"
-        formControlName="startDate"
-        placeholder="Start date"
-      />
-      <input matEndDate formControlName="endDate" placeholder="End date" />
-    </mat-date-range-input>
-    <mat-datepicker-toggle
-      matSuffix
-      [for]="rangePicker"
-    ></mat-datepicker-toggle>
-    <mat-date-range-picker #rangePicker></mat-date-range-picker>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Goal summary</mat-label>
+      <textarea
+        matInput
+        formControlName="goal"
+        name="goal"
+        id="goal"
+        cols="30"
+        rows="10"
+      ></textarea>
+      <mat-error *ngIf="goal.hasError('required')"
+        >Sprint goal is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Sprint date range</mat-label>
+      <mat-date-range-input
+        [min]="sprintMinDate"
+        [max]="sprintMaxDate"
+        formGroupName="dateRange"
+        [rangePicker]="rangePicker"
+      >
+        <input
+          matStartDate
+          (dateChange)="onDateRangeChange($event)"
+          formControlName="startDate"
+          placeholder="Start date"
+        />
+        <input matEndDate formControlName="endDate" placeholder="End date" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="rangePicker"
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #rangePicker></mat-date-range-picker>
+    </mat-form-field>
+  </mat-dialog-content>
+
   <mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close type="submit">Save</button>
     <button mat-raised-button mat-dialog-close>Cancel</button>
