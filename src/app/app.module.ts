@@ -48,6 +48,7 @@ import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductComponent } from './components/product/product.component';
 import { DevComponent } from './dev/dev.component';
+import { DevsComponent } from './devs/devs.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { DevComponent } from './dev/dev.component';
     UsersComponent,
     ProductComponent,
     DevComponent,
+    DevsComponent,
   ],
   imports: [
     DragDropModule,
