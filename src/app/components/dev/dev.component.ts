@@ -1,6 +1,8 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
+import { ProjectService } from 'src/app/services/project/project.service';
 
 @Component({
   selector: 'app-dev',
@@ -13,12 +15,22 @@ export class DevComponent implements OnInit {
 
   @Output() userRemovedFromProject = new EventEmitter<User>();
 
-  constructor() {}
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {}
 
   onRemove() {
-    // emit event, announce dev removed from project
-    this.userRemovedFromProject.emit(this.dev);
+    // remove user from project
+    this.projectService
+      .removeUserFromProject(this.projectId, this.dev.id)
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => {
+          `USER ${this.dev.id} removed from project ${this.projectId} ==> ${response}`;
+
+          // emit event, announce dev removed from project
+          this.userRemovedFromProject.emit(this.dev);
+        },
+      });
   }
 }
