@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/models/user/user';
 
 @Component({
   selector: 'app-dev',
@@ -6,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dev.component.scss'],
 })
 export class DevComponent implements OnInit {
+  @Input() dev: User;
+  @Input() projectId: string;
+
+  @Output() userRemovedFromProject = new EventEmitter<User>();
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onRemove() {
-    // remove user from project
+    // emit event, announce user removed from project
+    this.userRemovedFromProject.emit(this.dev);
   }
 }
