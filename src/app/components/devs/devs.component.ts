@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user/user';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-devs',
@@ -11,12 +12,17 @@ export class DevsComponent implements OnInit {
   projectId: string;
   devs: User[];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: (queryParams) => {
         this.projectId = queryParams.project;
+
+        this.loadDevs();
       },
     });
   }
@@ -28,5 +34,11 @@ export class DevsComponent implements OnInit {
 
   loadDevs() {
     // load the list of dev team members
+    this.userService.getUsersByAssignedProject(this.projectId).subscribe({
+      next: (loadedDevs) => {
+        this.devs = loadedDevs;
+        console.log('DEV TEAM LOADED: ' + JSON.stringify(loadedDevs));
+      },
+    });
   }
 }
