@@ -36,4 +36,10 @@ export class ProjectService {
       params: { user: userId },
     });
   }
+
+  removeUserFromProject(projectId: string, userId: string) {
+    const url = `${this.baseUrl}/${projectId}/users/${userId}`;
+
+    return this.httpClient.delete<void>(url);
+  }
 }
