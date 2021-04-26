@@ -1,1 +1,6 @@
-<p>devs works!</p>
+<app-dev
+  *ngFor="let user of users"
+  [projectId]="projectId"
+  [user]="user"
+  (userRemovedFromProject)="onRemoveUserFromProject($event)"
+></app-dev>
