@@ -1,4 +1,6 @@
-<mat-card
-  ><p>{{ user.fullName }} ({{ user.userName }})</p>
-  <button mat-raised-button (click)="onInvite()">Invite</button></mat-card
+<mat-card class="user-card"
+  ><div>{{ user.fullName }} ({{ user.userName }})</div>
+  <button mat-raised-button color="primary" (click)="onInvite()">
+    Invite
+  </button></mat-card
 >
