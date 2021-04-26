@@ -18,7 +18,7 @@ export class DevComponent implements OnInit {
   ngOnInit(): void {}
 
   onRemove() {
-    // emit event, announce user removed from project
+    // emit event, announce dev removed from project
     this.userRemovedFromProject.emit(this.dev);
   }
 }
