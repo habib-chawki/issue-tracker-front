@@ -21,8 +21,9 @@ export class DevsComponent implements OnInit {
     });
   }
 
-  onRemoveUserFromProject(user: User) {
+  onRemoveDevFromProject(removedDev: User) {
     // handle remove user from project event
+    this.devs = this.devs.filter((dev) => removedDev.id !== dev.id);
   }
 
   loadDevs() {
