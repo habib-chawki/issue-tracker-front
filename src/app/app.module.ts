@@ -47,8 +47,8 @@ import { SprintDetailsComponent } from './components/sprint-details/sprint-detai
 import { UserComponent } from './components/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductComponent } from './components/product/product.component';
-import { DevComponent } from './dev/dev.component';
-import { DevsComponent } from './devs/devs.component';
+import { DevComponent } from './components/dev/dev.component';
+import { DevsComponent } from './components/devs/devs.component';
 
 @NgModule({
   declarations: [
