@@ -1,3 +1,13 @@
-<div *ngFor="let sprint of sprints">
-  <app-sprint-details [sprint]="sprint"> </app-sprint-details>
-</div>
+<ng-container
+  *ngIf="sprints?.length; then showSprints; else noSprints"
+></ng-container>
+
+<ng-template #noSprints>
+  <div>No sprints</div>
+</ng-template>
+
+<ng-template #showSprints>
+  <div *ngFor="let sprint of sprints">
+    <app-sprint-details [sprint]="sprint"> </app-sprint-details>
+  </div>
+</ng-template>
