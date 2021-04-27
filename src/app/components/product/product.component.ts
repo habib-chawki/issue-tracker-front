@@ -14,6 +14,7 @@ export class ProductComponent implements OnInit {
     finishedSprints: {},
     devs: {},
     users: {},
+    projects: {},
   };
 
   constructor(private route: ActivatedRoute) {}
@@ -40,6 +41,7 @@ export class ProductComponent implements OnInit {
           },
           devs: baseQueryParams,
           users: baseQueryParams,
+          projects: {},
         };
       },
     });
