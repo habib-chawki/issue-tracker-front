@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
     activeSprints: {},
     finishedSprints: {},
     devs: {},
+    users: {},
   };
 
   constructor(private route: ActivatedRoute) {}
@@ -38,6 +39,7 @@ export class ProductComponent implements OnInit {
             status: SprintStatus.OVER,
           },
           devs: baseQueryParams,
+          users: baseQueryParams,
         };
       },
     });
