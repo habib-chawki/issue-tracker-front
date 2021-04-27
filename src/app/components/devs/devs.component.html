@@ -1,6 +1,6 @@
 <app-dev
-  *ngFor="let user of users"
+  *ngFor="let dev of devs"
   [projectId]="projectId"
-  [user]="user"
-  (userRemovedFromProject)="onRemoveUserFromProject($event)"
+  [dev]="dev"
+  (userRemovedFromProject)="onRemoveDevFromProject($event)"
 ></app-dev>
