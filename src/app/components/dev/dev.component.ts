@@ -26,7 +26,9 @@ export class DevComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (response) => {
-          `USER ${this.dev.id} removed from project ${this.projectId} ==> ${response}`;
+          console.log(
+            `USER ${this.dev.id} removed from project ${this.projectId} ==> ${response}`
+          );
 
           // emit event, announce dev removed from project
           this.userRemovedFromProject.emit(this.dev);
