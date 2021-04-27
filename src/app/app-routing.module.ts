@@ -8,6 +8,7 @@ import { SignupFormComponent } from './forms/signup-form/signup-form.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductComponent } from './components/product/product.component';
+import { DevsComponent } from './components/devs/devs.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
@@ -20,7 +21,8 @@ export const routes: Routes = [
       { path: 'backlog', component: BacklogComponent },
       { path: 'board', component: BoardComponent },
       { path: 'sprints', component: SprintsComponent },
-      { path: 'devs', component: UsersComponent },
+      { path: 'devs', component: DevsComponent },
+      { path: 'users', component: UsersComponent },
     ],
   },
 
