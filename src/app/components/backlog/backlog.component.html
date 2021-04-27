@@ -1,5 +1,7 @@
-<button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
-<button mat-raised-button (click)="onDisplaySprintForm()">Add sprint</button>
+<nav class="actions">
+  <button mat-raised-button (click)="onDisplayIssueForm()">Add issue</button>
+  <button mat-raised-button (click)="onDisplaySprintForm()">Add sprint</button>
+</nav>
 
 <div cdkDropListGroup>
   <!-- display inactive sprints along with their backlogs  -->
@@ -12,7 +14,7 @@
   ></app-sprint>
 
   <!-- product backlog -->
-  <div>Product Backlog</div>
+  <h1>Product Backlog</h1>
   <div
     cdkDropList
     [cdkDropListData]="backlog"
