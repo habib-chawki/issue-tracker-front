@@ -30,13 +30,23 @@
         Finished sprints
       </a>
 
-      <!-- list of devs route -->
+      <!-- list of dev team members route -->
       <a
         mat-list-item
         [routerLink]="['./devs']"
         [queryParams]="queryParams.devs"
-        >Devs</a
       >
+        Dev team
+      </a>
+
+      <!-- list of other devs -->
+      <a
+        mat-list-item
+        [routerLink]="['./users']"
+        [queryParams]="queryParams.users"
+      >
+        Other Devs
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
