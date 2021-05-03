@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
@@ -24,15 +24,15 @@ export class IssueFormComponent implements OnInit {
   isAssigneesListLoading = true;
 
   issueForm = new FormGroup({
-    description: new FormControl(''),
-    summary: new FormControl(''),
+    description: new FormControl('', Validators.required),
+    summary: new FormControl('', Validators.required),
 
-    priority: new FormControl(IssuePriority.MEDIUM),
-    type: new FormControl(IssueType.STORY),
+    priority: new FormControl(IssuePriority.MEDIUM, Validators.required),
+    type: new FormControl(IssueType.STORY, Validators.required),
 
     assignee: new FormControl(''),
 
-    points: new FormControl(1),
+    points: new FormControl(1, Validators.required),
   });
 
   constructor(
@@ -86,4 +86,12 @@ export class IssueFormComponent implements OnInit {
         },
       });
   };
+
+  get description() {
+    return this.issueForm.controls.description;
+  }
+
+  get summary() {
+    return this.issueForm.controls.summary;
+  }
 }
