@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -37,6 +37,7 @@ export class IssueFormComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData,
+    private dialogRef: MatDialogRef<IssueFormComponent>,
     private issueCommunicationService: IssueIntercomService,
     private userService: UserService
   ) {}
@@ -52,18 +53,25 @@ export class IssueFormComponent implements OnInit {
   }
 
   onSave() {
-    let issue: Issue = this.issueForm.value;
+    if (this.issueForm.valid) {
+      let issue: Issue = this.issueForm.value;
 
-    // add the original issue "id" if the issue is to be updated rather than created
-    if (this.dialogData) {
-      issue = {
-        id: this.dialogData.id,
-        ...issue,
-      };
+      // add the original issue "id" if the issue is to be updated rather than created
+      if (this.dialogData) {
+        issue = {
+          id: this.dialogData.id,
+          ...issue,
+        };
+      }
+
+      console.log('ISSUE TO BE SAVED: ' + JSON.stringify(issue));
+      this.issueCommunicationService.announceIssueFormSaved(issue);
+
+      // close the dialog
+      this.dialogRef.close();
+    } else {
+      console.log('INVALID ISSUE FORM');
     }
-
-    console.log('ISSUE TO BE SAVED: ' + JSON.stringify(issue));
-    this.issueCommunicationService.announceIssueFormSaved(issue);
   }
 
   loadAssignees = () => {
