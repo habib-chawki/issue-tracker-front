@@ -67,8 +67,11 @@ export class IssueFormComponent implements OnInit {
   }
 
   loadAssignees = () => {
+    const PAGE = 0;
+    const PAGE_SIZE = 10;
+
     this.userService
-      .getUsersByAssignedProject(this.dialogData.projectId)
+      .getUsersByAssignedProject(this.dialogData.projectId, PAGE, PAGE_SIZE)
       .subscribe({
         next: (response: User[]) => {
           this.assignees = response;
@@ -77,6 +80,9 @@ export class IssueFormComponent implements OnInit {
 
           // set the project owner as default assingee
           this.issueForm.controls.assignee.setValue(this.assignees[0]);
+        },
+        error: (error) => {
+          console.log('ERROR FETCHING ASSIGNEES' + JSON.stringify(error));
         },
       });
   };
