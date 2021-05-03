@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 
@@ -25,7 +26,10 @@ export class SprintFormComponent implements OnInit {
     }),
   });
 
-  constructor(private sprintIntercomService: SprintIntercomService) {}
+  constructor(
+    private sprintIntercomService: SprintIntercomService,
+    private dialogRef: MatDialogRef<SprintFormComponent>
+  ) {}
 
   ngOnInit(): void {}
 
@@ -45,6 +49,9 @@ export class SprintFormComponent implements OnInit {
 
       // announce form saved with the custom form value
       this.sprintIntercomService.announceSprintFormSaved(formValue);
+
+      // close sprint form dialog
+      this.dialogRef.close();
     } else {
       console.log('INVALID SPRINT FORM');
     }
