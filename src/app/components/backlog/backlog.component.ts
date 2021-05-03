@@ -54,6 +54,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (response: Issue[]) => {
             this.backlog = response;
+            console.log('PRODUCT BACKLOG: ', JSON.stringify(this.backlog));
           },
         });
 
