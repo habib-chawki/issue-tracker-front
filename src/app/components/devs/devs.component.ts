@@ -13,6 +13,10 @@ export class DevsComponent implements OnInit {
   projectId: string;
   devs: User[];
 
+  // pagination params
+  page = 0;
+  size = 10;
+
   constructor(
     private route: ActivatedRoute,
     private userService: UserService
@@ -37,7 +41,7 @@ export class DevsComponent implements OnInit {
   loadDevs() {
     // load the list of dev team members
     this.userService
-      .getUsersByAssignedProject(this.projectId)
+      .getUsersByAssignedProject(this.projectId, this.page, this.size)
       .pipe(take(1))
       .subscribe({
         next: (loadedDevs) => {
