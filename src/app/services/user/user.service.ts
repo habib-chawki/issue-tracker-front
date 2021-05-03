@@ -28,9 +28,17 @@ export class UserService {
     });
   }
 
-  getUsersByAssignedProject(projectId: string): Observable<User[]> {
+  getUsersByAssignedProject(
+    projectId: string,
+    page: number,
+    size: number
+  ): Observable<User[]> {
     return this.httpClient.get<User[]>(this.baseUrl, {
-      params: { project: projectId },
+      params: {
+        project: projectId,
+        page: page.toString(),
+        size: size.toString(),
+      },
     });
   }
 
