@@ -12,14 +12,16 @@
       Display details
     </button>
 
-    <button mat-menu-item id="update" (click)="onUpdate()">
-      <mat-icon>update</mat-icon>
-      Update
-    </button>
+    <div *ngIf="canModify()">
+      <button mat-menu-item id="update" (click)="onUpdate()">
+        <mat-icon>update</mat-icon>
+        Update
+      </button>
 
-    <button mat-menu-item id="remove" (click)="onRemove()">
-      <mat-icon>delete_forever</mat-icon>
-      Remove
-    </button>
+      <button mat-menu-item id="remove" (click)="onRemove()">
+        <mat-icon>delete_forever</mat-icon>
+        Remove
+      </button>
+    </div>
   </mat-menu>
 </mat-card>
