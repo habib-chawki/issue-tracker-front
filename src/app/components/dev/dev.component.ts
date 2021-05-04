@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-dev',
@@ -15,7 +16,10 @@ export class DevComponent implements OnInit {
 
   @Output() userRemovedFromProject = new EventEmitter<User>();
 
-  constructor(private projectService: ProjectService) {}
+  constructor(
+    private projectService: ProjectService,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,5 +38,9 @@ export class DevComponent implements OnInit {
           this.userRemovedFromProject.emit(this.dev);
         },
       });
+  }
+
+  canRemove() {
+    return this.storageService.getUserIdentifier() != this.dev.id;
   }
 }
