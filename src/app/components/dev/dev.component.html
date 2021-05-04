@@ -1,6 +1,11 @@
-<mat-card class="dev-card"
-  ><div>{{ dev.fullName }} ({{ dev.userName }})</div>
-  <button mat-raised-button color="warn" (click)="onRemove()">
+<mat-card class="dev-card">
+  <div>{{ dev.fullName }} ({{ dev.userName }})</div>
+  <button
+    *ngIf="canRemove()"
+    mat-raised-button
+    color="warn"
+    (click)="onRemove()"
+  >
     Remove
-  </button></mat-card
->
+  </button>
+</mat-card>
