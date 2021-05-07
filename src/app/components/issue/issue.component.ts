@@ -38,7 +38,7 @@ export class IssueComponent implements OnInit {
     // render the update and remove buttons only when the logged-in user is the issue reporter
     return (
       this.storageService.isUserLoggedIn() &&
-      this.storageService.getUserIdentifier() === this.issue.reporter.id
+      this.storageService.getUserIdentifier() == this.issue.reporter.id
     );
   }
 }
