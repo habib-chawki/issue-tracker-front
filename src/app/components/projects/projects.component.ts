@@ -6,6 +6,7 @@ import { ProjectFormComponent } from 'src/app/forms/project-form/project-form.co
 import Project from 'src/app/models/project/project';
 import { ProjectCommunicationService } from 'src/app/services/project-intercom/project-intercom.service';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-projects',
@@ -19,13 +20,18 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   constructor(
     private projectService: ProjectService,
+    private storageService: StorageService,
     private projectCommunicationService: ProjectCommunicationService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    // given the logged-in user id
+    const loggedInUserId = this.storageService.getUserIdentifier();
+
+    // get list of projects assigned to logged-in user
     this.projectService
-      .getProjects()
+      .getProjectsByAssignedUser(loggedInUserId)
       .pipe(take(1))
       .subscribe((response: Project[]) => {
         this.projects = response;
