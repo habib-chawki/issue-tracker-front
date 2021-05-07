@@ -40,4 +40,8 @@ export class StorageService {
       ? true
       : false;
   }
+
+  removeUserDetails() {
+    localStorage.clear();
+  }
 }
