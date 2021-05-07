@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import SprintStatus from 'src/app/models/enums/sprint-status';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-product',
@@ -17,7 +18,10 @@ export class ProductComponent implements OnInit {
     projects: {},
   };
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe({
@@ -49,5 +53,6 @@ export class ProductComponent implements OnInit {
 
   onLogOut() {
     console.log('LOG OUT');
+    this.storageService.removeUserDetails();
   }
 }
