@@ -46,4 +46,8 @@ export class ProductComponent implements OnInit {
       },
     });
   }
+
+  onLogOut() {
+    console.log('LOG OUT');
+  }
 }
