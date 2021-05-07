@@ -50,6 +50,11 @@
 
       <!-- list of projects -->
       <a mat-list-item [routerLink]="['/projects']"> Projects </a>
+
+      <!-- log out -->
+      <a mat-list-item [routerLink]="['/login']" (click)="onLogOut()"
+        >Log out</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
