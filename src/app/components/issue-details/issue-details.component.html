@@ -42,21 +42,29 @@
     [issueId]="issue.id"
   ></app-comments>
 
-  <label for="watchers">Watchers: </label>
-  <div id="watchers">
-    <ul>
-      <li *ngFor="let watcher of issue.watchers">{{ watcher }}</li>
-    </ul>
+  <div>
+    <h2 for="watchers">Watchers:</h2>
+    <div id="watchers">
+      <ul>
+        <li *ngFor="let watcher of issue.watchers">{{ watcher }}</li>
+      </ul>
+    </div>
   </div>
 
-  <label for="created">Created: </label>
-  <div id="created">{{ issue.creationTime }}</div>
+  <div>
+    <h2 for="created">Created:</h2>
+    <div id="created">{{ issue.creationTime }}</div>
+  </div>
 
-  <label for="updated">Updated: </label>
-  <div id="updated">{{ issue.updateTime }}</div>
+  <div>
+    <h2 for="updated">Updated:</h2>
+    <div id="updated">{{ issue.updateTime }}</div>
+  </div>
 
-  <label for="estimate">Story points: </label>
-  <div id="estimate">{{ issue.points }}</div>
+  <div>
+    <h2 for="estimate">Story points:</h2>
+    <div id="estimate">{{ issue.points }}</div>
+  </div>
 
   <mat-dialog-actions>
     <button id="close" mat-raised-button mat-dialog-close>Close</button>
