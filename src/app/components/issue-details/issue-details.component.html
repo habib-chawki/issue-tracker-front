@@ -1,27 +1,41 @@
 <div>
-  <label for="description">Description: </label>
-  <div id="description">{{ issue.description }}</div>
+  <div>
+    <h2>Description:</h2>
+    <p id="description">{{ issue.description }}</p>
+  </div>
 
-  <label for="summary">Summary: </label>
-  <div id="summary">{{ issue.summary }}</div>
+  <div>
+    <h2>Summary:</h2>
+    <p id="summary">{{ issue.summary }}</p>
+  </div>
 
-  <label for="type">Type: </label>
-  <div id="type">{{ issue.type }}</div>
+  <div>
+    <h2>Type:</h2>
+    <p id="type">{{ issue.type }}</p>
+  </div>
 
-  <label for="status">Status: </label>
-  <div id="status">{{ issue.status }}</div>
+  <div>
+    <h2>Status:</h2>
+    <p id="status">{{ issue.status }}</p>
+  </div>
 
-  <label for="assignee">Assignee: </label>
-  <div id="assignee">{{ issue.assignee?.userName }}</div>
+  <div>
+    <h2>Assignee:</h2>
+    <p id="assignee">{{ issue.assignee?.userName }}</p>
+  </div>
 
-  <label for="reporter">Reporter: </label>
-  <div id="reporter">{{ issue.reporter?.userName }}</div>
+  <div>
+    <h2>Reporter:</h2>
+    <p id="reporter">{{ issue.reporter?.userName }}</p>
+  </div>
 
-  <label for="votes">Votes: </label>
-  <div id="votes">{{ issue.votes }}</div>
+  <div>
+    <h2>Votes:</h2>
+    <p id="votes">{{ issue.votes }}</p>
+  </div>
 
   <!-- list of comments -->
-  <label for="comments">Comments: </label>
+  <h2 for="comments">Comments:</h2>
   <app-comments
     id="comments"
     [comments]="issue.comments"
