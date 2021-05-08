@@ -10,7 +10,13 @@
 </ul>
 
 <!-- add new comment -->
-<input type="text" id="comment" #commentField />
-<button id="add-comment" (click)="onCreateComment(commentField.value)">
+<mat-form-field>
+  <input matInput type="text" id="comment" #commentField />
+</mat-form-field>
+<button
+  mat-raised-button
+  id="add-comment"
+  (click)="onCreateComment(commentField.value)"
+>
   Comment
 </button>
