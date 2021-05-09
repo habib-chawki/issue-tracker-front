@@ -106,9 +106,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
 
   // invoked when the add issue button is clicked
   onDisplayIssueForm = () => {
-    this.dialog.open(IssueFormComponent, {
-      data: { projectId: this.projectId },
-    });
+    this.dialog.open(IssueFormComponent);
   };
 
   createSprint = (sprintFormValue) => {
