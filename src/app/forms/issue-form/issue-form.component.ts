@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import IssuePriority from 'src/app/models/enums/issue-priority';
 
 import IssueStatus from 'src/app/models/enums/issue-status';
@@ -16,6 +17,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./issue-form.component.scss'],
 })
 export class IssueFormComponent implements OnInit {
+  projectId;
+
   issuePriorities = Object.values(IssuePriority);
   issueTypes = Object.values(IssueType);
   issueStatuses = Object.values(IssueStatus);
@@ -39,10 +42,18 @@ export class IssueFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public dialogData,
     private dialogRef: MatDialogRef<IssueFormComponent>,
     private issueCommunicationService: IssueIntercomService,
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    // extract project id
+    this.route.queryParams.subscribe({
+      next: (queryParams) => {
+        this.projectId = queryParams.project;
+      },
+    });
+
     // pre populate the form in case of an update
     if (this.dialogData) {
       this.issueForm.patchValue(this.dialogData);
@@ -79,7 +90,7 @@ export class IssueFormComponent implements OnInit {
     const PAGE_SIZE = 10;
 
     this.userService
-      .getUsersByAssignedProject(this.dialogData.projectId, PAGE, PAGE_SIZE)
+      .getUsersByAssignedProject(this.projectId, PAGE, PAGE_SIZE)
       .subscribe({
         next: (response: User[]) => {
           this.assignees = response;
