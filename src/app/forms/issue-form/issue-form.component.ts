@@ -97,14 +97,16 @@ export class IssueFormComponent implements OnInit {
           console.log('ASSIGNEES: ' + JSON.stringify(this.assignees));
           this.isAssigneesListLoading = false;
 
-          let assingee = this.assignees[0];
+          // set the assignee based on whether the issue is to be created or updated
+          let assignee = this.assignees[0];
 
-          // set the project owner as default assingee
           if (this.dialogData) {
-            assingee = this.dialogData.assignee.fullName;
+            assignee = this.assignees.find(
+              (user) => this.dialogData.assignee.id == user.id
+            );
           }
 
-          this.issueForm.controls.assignee.setValue(assingee);
+          this.issueForm.controls.assignee.setValue(assignee);
         },
         error: (error) => {
           console.log('ERROR FETCHING ASSIGNEES' + JSON.stringify(error));
