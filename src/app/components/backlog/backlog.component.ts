@@ -89,6 +89,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
   createIssue(issue: Issue) {
     this.issueService
       .createIssue(issue, this.projectId)
+      .pipe(take(1))
       .subscribe((createdIssue: Issue) => {
         console.log('CREATED ISSUE: ' + JSON.stringify(createdIssue));
         this.backlog.push(createdIssue);
@@ -96,12 +97,14 @@ export class BacklogComponent implements OnInit, OnDestroy {
   }
 
   updateIssue(issue: Issue) {
-    this.issueService.updateIssue(issue).subscribe((updatedIssue) => {
-      const index = this.backlog.findIndex(
-        (item) => item.id === updatedIssue.id
-      );
-      this.backlog[index] = updatedIssue;
-    });
+    this.issueService
+      .updateIssue(issue)
+      .pipe(take(1))
+      .subscribe(() => {
+        const index = this.backlog.findIndex((item) => item.id === issue.id);
+        this.backlog[index] = issue;
+        console.log('UPDATED ISSUE:' + JSON.stringify(this.backlog[index]));
+      });
   }
 
   // invoked when the add issue button is clicked
