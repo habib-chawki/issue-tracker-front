@@ -67,10 +67,10 @@ export class IssueFormComponent implements OnInit {
     if (this.issueForm.valid) {
       let issue: Issue = this.issueForm.value;
 
-      // add the original issue "id" if the issue is to be updated rather than created
+      // when the issue is to be updated, preserve its properties and replace the ones to be updated
       if (this.dialogData) {
         issue = {
-          id: this.dialogData.id,
+          ...this.dialogData,
           ...issue,
         };
       }
