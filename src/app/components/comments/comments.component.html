@@ -11,12 +11,12 @@
 
 <!-- add new comment -->
 <mat-form-field>
-  <input matInput type="text" id="comment" #commentField />
+  <input matInput type="text" id="comment" #commentInputField />
 </mat-form-field>
 <button
   mat-raised-button
   id="add-comment"
-  (click)="onCreateComment(commentField.value)"
+  (click)="onCreateComment(commentInputField.value)"
 >
   Comment
 </button>
