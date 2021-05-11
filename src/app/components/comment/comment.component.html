@@ -1,5 +1,5 @@
 <li>
-  <div id="owner">{{ comment?.owner.username }}</div>
+  <div id="owner">{{ comment?.owner.userName }}</div>
 
   <div *ngIf="!willDisplayUpdateField; else updateField" id="content">
     {{ comment?.content }}
