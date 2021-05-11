@@ -1,8 +1,12 @@
 <li>
-  <div id="owner">{{ comment?.owner.userName }}</div>
+  <div>
+    <p id="owner">
+      <strong>{{ comment?.owner.userName }}</strong>
+    </p>
 
-  <div *ngIf="!willDisplayUpdateField; else updateField" id="content">
-    {{ comment?.content }}
+    <p *ngIf="!willDisplayUpdateField; else updateField" id="content">
+      {{ comment?.content }}
+    </p>
   </div>
 
   <ng-template #updateField>
