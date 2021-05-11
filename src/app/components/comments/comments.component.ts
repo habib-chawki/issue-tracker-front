@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Comment } from 'src/app/models/comment/comment';
 import { CommentService } from 'src/app/services/comment/comment.service';
 
@@ -9,7 +10,7 @@ import { CommentService } from 'src/app/services/comment/comment.service';
   styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent implements OnInit, OnDestroy {
-  @Input() comments: Comment[];
+  @Input() comments: Comment[] = [];
   @Input() issueId: string;
 
   observable: Observable<Comment>;
@@ -20,12 +21,13 @@ export class CommentsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   onCreateComment(content: string) {
-    this.observable = this.commentService.createComment(content, this.issueId);
-    this.subscriptions.add(this.observable.subscribe(this.handleCreateComment));
-  }
-
-  handleCreateComment(response: Comment) {
-    this.comments.push(response);
+    this.commentService
+      .createComment(content, this.issueId)
+      .pipe(take(1))
+      .subscribe((response) => {
+        console.log('COMMENT CREATED: ' + JSON.stringify(response));
+        this.comments.push(response);
+      });
   }
 
   onRemoveComment(comment: Comment) {
