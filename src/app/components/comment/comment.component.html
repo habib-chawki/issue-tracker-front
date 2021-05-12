@@ -17,11 +17,21 @@
       [value]="comment.content"
     />
 
-    <button id="confirm-update" (click)="onConfirmUpdate(updatedContent.value)">
-      Save
+    <button
+      mat-icon-button
+      class="confirm-update-button"
+      (click)="onConfirmUpdate(updatedContent.value)"
+    >
+      <mat-icon>check_circle</mat-icon>
     </button>
 
-    <button id="cancel-update" (click)="onCancelUpdate()">Cancel</button>
+    <button
+      mat-icon-button
+      class="cancel-update-button"
+      (click)="onCancelUpdate()"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
   </ng-template>
 
   <!-- update / delete menu -->
