@@ -20,13 +20,19 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  onCreateComment(content: string) {
+  onCreateComment(commentInputField) {
+    // get input field value
+    const content = commentInputField.value;
+
     this.commentService
       .createComment(content, this.issueId)
       .pipe(take(1))
-      .subscribe((response) => {
-        console.log('COMMENT CREATED: ' + JSON.stringify(response));
-        this.comments.push(response);
+      .subscribe((createdComment: Comment) => {
+        console.log('COMMENT CREATED: ' + JSON.stringify(createdComment));
+        this.comments.push(createdComment);
+
+        // clear input field
+        commentInputField.value = '';
       });
   }
 
