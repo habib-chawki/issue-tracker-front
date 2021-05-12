@@ -7,25 +7,20 @@ import IssuePriority from '../enums/issue-priority';
 export interface Issue {
   id: string;
 
-  key: string;
-
   description?: string;
   summary: string;
 
   priority: IssuePriority;
-
   type: IssueType;
   status: IssueStatus;
+
+  points: number;
 
   assignee: User;
   reporter: User;
 
   comments?: Comment[];
-  votes?: number;
-  watchers?: string[];
 
   creationTime: Date;
   updateTime: Date;
-
-  points: number;
 }
