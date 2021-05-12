@@ -39,7 +39,7 @@ export class CommentComponent implements OnInit {
   canModify(): boolean {
     return (
       this.storageService.isUserLoggedIn() &&
-      this.storageService.getUserIdentifier() === this.comment.owner.id
+      this.storageService.getUserIdentifier() == this.comment.owner.id
     );
   }
 }
