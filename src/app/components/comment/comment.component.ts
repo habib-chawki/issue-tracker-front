@@ -28,8 +28,14 @@ export class CommentComponent implements OnInit {
   }
 
   onConfirmUpdate(updatedContent: string) {
-    this.comment.content = updatedContent;
-    this.commentUpdated.emit(this.comment);
+    // update only when content has been changed
+    if (this.comment.content !== updatedContent) {
+      this.comment.content = updatedContent;
+      this.commentUpdated.emit(this.comment);
+    }
+
+    // hide update input field
+    this.willDisplayUpdateField = false;
   }
 
   onCancelUpdate() {
