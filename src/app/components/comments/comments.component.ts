@@ -50,18 +50,16 @@ export class CommentsComponent implements OnInit, OnDestroy {
   }
 
   onUpdateComment(comment: Comment) {
-    this.observable = this.commentService.updateComment(
-      comment.content,
-      comment.id,
-      this.issueId
-    );
-
-    this.subscriptions.add(this.observable.subscribe(this.handleUpdateComment));
-  }
-
-  handleUpdateComment(comment: Comment) {
-    const index = this.comments.findIndex((item) => item.id === comment.id);
-    this.comments[index] = comment;
+    this.commentService
+      .updateComment(comment.content, comment.id, this.issueId)
+      .pipe(take(1))
+      .subscribe(() => {
+        const index = this.comments.findIndex(
+          (element) => element.id === comment.id
+        );
+        this.comments[index] = comment;
+        console.log('COMMENT UPDATED: ' + JSON.stringify(comment));
+      });
   }
 
   ngOnDestroy(): void {
