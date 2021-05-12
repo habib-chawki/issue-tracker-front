@@ -20,6 +20,11 @@
   </div>
 
   <div>
+    <h2 for="estimate">Story points:</h2>
+    <div id="estimate">{{ issue.points }}</div>
+  </div>
+
+  <div>
     <h2>Assignee:</h2>
     <p id="assignee">{{ issue.assignee?.userName }}</p>
   </div>
@@ -27,11 +32,6 @@
   <div>
     <h2>Reporter:</h2>
     <p id="reporter">{{ issue.reporter?.userName }}</p>
-  </div>
-
-  <div>
-    <h2>Votes:</h2>
-    <p id="votes">{{ issue.votes }}</p>
   </div>
 
   <!-- list of comments -->
@@ -43,15 +43,6 @@
   ></app-comments>
 
   <div>
-    <h2 for="watchers">Watchers:</h2>
-    <div id="watchers">
-      <ul>
-        <li *ngFor="let watcher of issue.watchers">{{ watcher }}</li>
-      </ul>
-    </div>
-  </div>
-
-  <div>
     <h2 for="created">Created:</h2>
     <div id="created">{{ issue.creationTime }}</div>
   </div>
@@ -59,11 +50,6 @@
   <div>
     <h2 for="updated">Updated:</h2>
     <div id="updated">{{ issue.updateTime }}</div>
-  </div>
-
-  <div>
-    <h2 for="estimate">Story points:</h2>
-    <div id="estimate">{{ issue.points }}</div>
   </div>
 
   <mat-dialog-actions>
