@@ -24,6 +24,17 @@
     <button id="cancel-update" (click)="onCancelUpdate()">Cancel</button>
   </ng-template>
 
-  <button *ngIf="canModify()" id="remove" (click)="onRemove()">Remove</button>
-  <button *ngIf="canModify()" id="update" (click)="onUpdate()">Update</button>
+  <!-- update / delete menu -->
+  <button *ngIf="canModify()" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item id="remove" (click)="onRemove()">
+      <mat-icon>delete_forever</mat-icon>Remove
+    </button>
+    <button mat-menu-item id="update" (click)="onUpdate()">
+      <mat-icon>update</mat-icon> Update
+    </button>
+  </mat-menu>
 </li>
