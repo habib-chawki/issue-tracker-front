@@ -17,11 +17,11 @@
 
     <mat-form-field appearance="outline">
       <mat-label for="username">Username</mat-label>
-      <input matInput type="text" formControlName="userName" id="username" />
-      <mat-error *ngIf="userName.hasError('minlength')"
+      <input matInput type="text" formControlName="username" id="username" />
+      <mat-error *ngIf="username.hasError('minlength')"
         >Should be at least 3 characters long</mat-error
       >
-      <mat-error *ngIf="userName.hasError('required')"
+      <mat-error *ngIf="username.hasError('required')"
         >User name is required</mat-error
       >
     </mat-form-field>

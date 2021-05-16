@@ -84,7 +84,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     return this.signupForm.controls.fullName;
   }
 
-  get userName() {
-    return this.signupForm.controls.userName;
+  get username() {
+    return this.signupForm.controls.username;
   }
 }
