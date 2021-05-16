@@ -4,6 +4,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
+  Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StorageService } from '../services/storage/storage.service';
@@ -12,7 +13,7 @@ import { StorageService } from '../services/storage/storage.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,6 +23,10 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.storageService.isUserLoggedIn();
+    if (this.storageService.isUserLoggedIn()) {
+      return true;
+    }
+
+    this.router.navigate(['/login']);
   }
 }
