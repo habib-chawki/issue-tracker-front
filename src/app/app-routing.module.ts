@@ -9,7 +9,7 @@ import { SprintsComponent } from './components/sprints/sprints.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductComponent } from './components/product/product.component';
 import { DevsComponent } from './components/devs/devs.component';
-import { AuthGuard } from './guards/auth-guard.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
