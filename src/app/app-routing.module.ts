@@ -9,6 +9,7 @@ import { SprintsComponent } from './components/sprints/sprints.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductComponent } from './components/product/product.component';
 import { DevsComponent } from './components/devs/devs.component';
+import { AuthGuard } from './guards/auth-guard.guard';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupFormComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   {
     path: 'product',
     component: ProductComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'backlog', component: BacklogComponent },
       { path: 'board', component: BoardComponent },
