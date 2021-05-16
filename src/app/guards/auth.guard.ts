@@ -13,7 +13,11 @@ import { StorageService } from '../services/storage/storage.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private storageService: StorageService, private router: Router) {}
+  isUserLoggedIn: boolean;
+
+  constructor(private storageService: StorageService, private router: Router) {
+    this.isUserLoggedIn = this.storageService.isUserLoggedIn();
+  }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,10 +27,30 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.storageService.isUserLoggedIn()) {
+    const url = route.url.toString();
+
+    console.log('URL  ==> ' + url);
+
+    return url === 'signup' || url == 'login'
+      ? this.activateForLoggedOutUser()
+      : this.activateForLoggedInUser();
+  }
+
+  activateForLoggedInUser(): boolean {
+    if (this.isUserLoggedIn) {
       return true;
     }
 
     this.router.navigate(['/login']);
+    return false;
+  }
+
+  activateForLoggedOutUser(): boolean {
+    if (!this.isUserLoggedIn) {
+      return true;
+    }
+
+    this.router.navigate(['/projects']);
+    return false;
   }
 }
