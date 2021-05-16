@@ -6,11 +6,14 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { StorageService } from '../services/storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  constructor(private storageService: StorageService) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -19,6 +22,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return false;
+    return this.storageService.isUserLoggedIn();
   }
 }
