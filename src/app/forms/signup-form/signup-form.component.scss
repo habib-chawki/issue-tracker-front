@@ -5,12 +5,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
 
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
-  width: 30%;
-  height: 60%;
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    width: 30%;
+  }
 }
