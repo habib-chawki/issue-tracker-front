@@ -28,7 +28,7 @@ export const routes: Routes = [
     ],
   },
 
-  { path: '', redirectTo: 'signup', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
