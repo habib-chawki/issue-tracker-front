@@ -1,5 +1,9 @@
 <div class="form">
   <mat-card>
+    <div class="icon-container">
+      <mat-icon>person_add</mat-icon>
+    </div>
+
     <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
       <mat-form-field appearance="outline">
         <mat-label>Full name</mat-label>

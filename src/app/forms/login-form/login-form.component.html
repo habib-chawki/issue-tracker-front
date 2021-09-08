@@ -1,5 +1,9 @@
 <div class="form">
   <mat-card>
+    <div class="icon-container">
+      <mat-icon>lock_open</mat-icon>
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
