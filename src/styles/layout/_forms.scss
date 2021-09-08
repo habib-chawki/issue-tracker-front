@@ -1,16 +1,16 @@
-.form-container {
+.form {
   height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
-  .form-card {
+  mat-card {
     padding: 3rem;
     width: 40%;
   }
 
-  .form {
+  form {
     display: flex;
     flex-direction: column;
     height: 100%;
