@@ -14,6 +14,7 @@
   mat-card {
     padding: 3rem;
     width: 40%;
+    border-radius: 5%;
 
     .icon-container {
       display: flex;
@@ -21,7 +22,13 @@
       margin-bottom: 3rem;
 
       mat-icon {
-        transform: scale(2.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(252, 70, 106, 0.164);
+        border-radius: 100%;
+        padding: 1.2rem;
+        transform: scale(2.3);
       }
     }
 
