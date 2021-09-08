@@ -8,22 +8,32 @@
   mat-card {
     padding: 3rem;
     width: 40%;
-  }
 
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-actions {
-    margin-top: 1rem;
-    display: flex;
-    align-items: baseline;
-
-    button {
+    .icon-container {
       display: flex;
-      flex-grow: 1;
-      margin-right: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+
+      mat-icon {
+        transform: scale(2.5);
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .form-actions {
+        margin-top: 1rem;
+        display: flex;
+        align-items: baseline;
+
+        button {
+          // display: flex;
+          flex-grow: 1;
+          margin-right: 1rem;
+        }
+      }
     }
   }
 }
