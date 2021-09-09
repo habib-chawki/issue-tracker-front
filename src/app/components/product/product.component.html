@@ -4,66 +4,15 @@
     <!-- list items -->
     <mat-nav-list class="nav-list">
       <div>
-        <!-- product backlog -->
-        <mat-list-item>
-          <mat-icon matListIcon>description</mat-icon>
+        <mat-list-item *ngFor="let navItem of navItems">
+          <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
           <a
             matLine
-            [routerLink]="['./backlog']"
+            [routerLink]="navItem.link"
             [queryParams]="queryParams.backlog"
           >
-            Backlog
+            {{ navItem.label }}
           </a>
-        </mat-list-item>
-        <!-- active sprints route -->
-
-        <mat-list-item>
-          <mat-icon matListIcon>toggle_on</mat-icon>
-          <a
-            matLine
-            [routerLink]="['./sprints']"
-            [queryParams]="queryParams.activeSprints"
-          >
-            Active sprints
-          </a>
-        </mat-list-item>
-
-        <!-- finished sprints route -->
-        <mat-list-item>
-          <mat-icon matListIcon>toggle_off</mat-icon>
-          <a
-            matLine
-            [routerLink]="['./sprints']"
-            [queryParams]="queryParams.finishedSprints"
-          >
-            Finished sprints
-          </a>
-        </mat-list-item>
-
-        <!-- list of dev team members route -->
-        <mat-list-item>
-          <mat-icon matListIcon>groups</mat-icon>
-          <a matLine [routerLink]="['./devs']" [queryParams]="queryParams.devs">
-            Dev team
-          </a>
-        </mat-list-item>
-
-        <!-- list of other devs -->
-        <mat-list-item>
-          <mat-icon matListIcon>group_add</mat-icon>
-          <a
-            matLine
-            [routerLink]="['./users']"
-            [queryParams]="queryParams.users"
-          >
-            Other Devs
-          </a>
-        </mat-list-item>
-
-        <!-- list of projects -->
-        <mat-list-item>
-          <mat-icon matListIcon>folder_special</mat-icon>
-          <a matLine [routerLink]="['/projects']"> Projects </a>
         </mat-list-item>
       </div>
 
