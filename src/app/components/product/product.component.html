@@ -28,39 +28,44 @@
       </mat-list-item>
 
       <!-- finished sprints route -->
-      <a
-        mat-list-item
-        [routerLink]="['./sprints']"
-        [queryParams]="queryParams.finishedSprints"
-      >
-        Finished sprints
-      </a>
+      <mat-list-item>
+        <mat-icon matListIcon>toggle_off</mat-icon>
+        <a
+          matLine
+          [routerLink]="['./sprints']"
+          [queryParams]="queryParams.finishedSprints"
+        >
+          Finished sprints
+        </a>
+      </mat-list-item>
 
       <!-- list of dev team members route -->
-      <a
-        mat-list-item
-        [routerLink]="['./devs']"
-        [queryParams]="queryParams.devs"
-      >
-        Dev team
-      </a>
+      <mat-list-item>
+        <mat-icon matListIcon>groups</mat-icon>
+        <a matLine [routerLink]="['./devs']" [queryParams]="queryParams.devs">
+          Dev team
+        </a>
+      </mat-list-item>
 
       <!-- list of other devs -->
-      <a
-        mat-list-item
-        [routerLink]="['./users']"
-        [queryParams]="queryParams.users"
-      >
-        Other Devs
-      </a>
+      <mat-list-item>
+        <mat-icon matListIcon>group_add</mat-icon>
+        <a matLine [routerLink]="['./users']" [queryParams]="queryParams.users">
+          Other Devs
+        </a>
+      </mat-list-item>
 
       <!-- list of projects -->
-      <a mat-list-item [routerLink]="['/projects']"> Projects </a>
+      <mat-list-item>
+        <mat-icon matListIcon>folder_special</mat-icon>
+        <a matLine [routerLink]="['/projects']"> Projects </a>
+      </mat-list-item>
 
       <!-- log out -->
-      <a mat-list-item [routerLink]="['/login']" (click)="onLogOut()"
-        >Log out</a
-      >
+      <mat-list-item>
+        <mat-icon matListIcon>logout</mat-icon>
+        <a matLine [routerLink]="['/login']" (click)="onLogOut()">Log out</a>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
