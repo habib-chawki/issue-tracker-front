@@ -13,56 +13,13 @@ export class ProductComponent implements OnInit {
     label: string;
     icon: string;
     link: string;
-    queryParams: string;
+    queryParams: {};
   }>;
-
-  queryParams = {
-    backlog: {},
-    activeSprints: {},
-    finishedSprints: {},
-    devs: {},
-    users: {},
-    projects: {},
-  };
 
   constructor(
     private route: ActivatedRoute,
     private storageService: StorageService
-  ) {
-    this.navItems = [
-      {
-        label: 'Backlog',
-        icon: 'description',
-        link: './backlog',
-        queryParams: '',
-      },
-      {
-        label: 'Active sprints',
-        icon: 'toggle_on',
-        link: './sprints',
-        queryParams: '',
-      },
-      {
-        label: 'Finished sprints',
-        icon: 'toggle_off',
-        link: './sprints',
-        queryParams: '',
-      },
-      { label: 'Dev team', icon: 'groups', link: './devs', queryParams: '' },
-      {
-        label: 'Other Devs',
-        icon: 'group_add',
-        link: './users',
-        queryParams: '',
-      },
-      {
-        label: 'Projects',
-        icon: 'folder_special',
-        link: './projects',
-        queryParams: '',
-      },
-    ];
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe({
@@ -70,24 +27,45 @@ export class ProductComponent implements OnInit {
         // extract the project id query param
         const project = queryParams.project;
 
-        // set up base query params containing project id
-        const baseQueryParams = { project };
-
-        // set up each route's query params
-        this.queryParams = {
-          backlog: baseQueryParams,
-          activeSprints: {
-            ...baseQueryParams,
-            status: SprintStatus.ACTIVE,
+        // init nav items, populate query params
+        this.navItems = [
+          {
+            label: 'Backlog',
+            icon: 'description',
+            link: './backlog',
+            queryParams: { project },
           },
-          finishedSprints: {
-            ...baseQueryParams,
-            status: SprintStatus.OVER,
+          {
+            label: 'Active sprints',
+            icon: 'toggle_on',
+            link: './sprints',
+            queryParams: { project, status: SprintStatus.ACTIVE },
           },
-          devs: baseQueryParams,
-          users: baseQueryParams,
-          projects: {},
-        };
+          {
+            label: 'Finished sprints',
+            icon: 'toggle_off',
+            link: './sprints',
+            queryParams: { project, status: SprintStatus.OVER },
+          },
+          {
+            label: 'Dev team',
+            icon: 'groups',
+            link: './devs',
+            queryParams: { project },
+          },
+          {
+            label: 'Other Devs',
+            icon: 'group_add',
+            link: './users',
+            queryParams: { project },
+          },
+          {
+            label: 'Projects',
+            icon: 'folder_special',
+            link: './projects',
+            queryParams: { project },
+          },
+        ];
       },
     });
   }
