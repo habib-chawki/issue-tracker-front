@@ -8,8 +8,8 @@
           <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
           <a
             matLine
-            [routerLink]="navItem.link"
-            [queryParams]="queryParams.backlog"
+            [routerLink]="[navItem.link]"
+            [queryParams]="navItem.queryParams"
           >
             {{ navItem.label }}
           </a>
