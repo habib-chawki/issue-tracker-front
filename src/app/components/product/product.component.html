@@ -15,13 +15,17 @@
         </a>
       </mat-list-item>
       <!-- active sprints route -->
-      <a
-        mat-list-item
-        [routerLink]="['./sprints']"
-        [queryParams]="queryParams.activeSprints"
-      >
-        Active sprints
-      </a>
+
+      <mat-list-item>
+        <mat-icon matListIcon>toggle_on</mat-icon>
+        <a
+          matLine
+          [routerLink]="['./sprints']"
+          [queryParams]="queryParams.activeSprints"
+        >
+          Active sprints
+        </a>
+      </mat-list-item>
 
       <!-- finished sprints route -->
       <a
