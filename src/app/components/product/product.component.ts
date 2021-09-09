@@ -9,39 +9,12 @@ import { StorageService } from 'src/app/services/storage/storage.service';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  navItems = [
-    {
-      label: 'Backlog',
-      icon: 'description',
-      link: './backlog',
-      queryParams: '',
-    },
-    {
-      label: 'Active sprints',
-      icon: 'toggle_on',
-      link: './sprints',
-      queryParams: '',
-    },
-    {
-      label: 'Finished sprints',
-      icon: 'toggle_off',
-      link: './sprints',
-      queryParams: '',
-    },
-    { label: 'Dev team', icon: 'groups', link: './devs', queryParams: '' },
-    {
-      label: 'Other Devs',
-      icon: 'group_add',
-      link: './users',
-      queryParams: '',
-    },
-    {
-      label: 'Projects',
-      icon: 'folder_special',
-      link: './projects',
-      queryParams: '',
-    },
-  ];
+  navItems: Array<{
+    label: string;
+    icon: string;
+    link: string;
+    queryParams: string;
+  }>;
 
   queryParams = {
     backlog: {},
@@ -55,7 +28,41 @@ export class ProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private storageService: StorageService
-  ) {}
+  ) {
+    this.navItems = [
+      {
+        label: 'Backlog',
+        icon: 'description',
+        link: './backlog',
+        queryParams: '',
+      },
+      {
+        label: 'Active sprints',
+        icon: 'toggle_on',
+        link: './sprints',
+        queryParams: '',
+      },
+      {
+        label: 'Finished sprints',
+        icon: 'toggle_off',
+        link: './sprints',
+        queryParams: '',
+      },
+      { label: 'Dev team', icon: 'groups', link: './devs', queryParams: '' },
+      {
+        label: 'Other Devs',
+        icon: 'group_add',
+        link: './users',
+        queryParams: '',
+      },
+      {
+        label: 'Projects',
+        icon: 'folder_special',
+        link: './projects',
+        queryParams: '',
+      },
+    ];
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe({
