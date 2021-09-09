@@ -13,27 +13,32 @@ export class ProductComponent implements OnInit {
     {
       label: 'Backlog',
       icon: 'description',
-      link: '/backlog',
+      link: './backlog',
       queryParams: '',
     },
     {
       label: 'Active sprints',
       icon: 'toggle_on',
-      link: '/sprints',
+      link: './sprints',
       queryParams: '',
     },
     {
       label: 'Finished sprints',
       icon: 'toggle_off',
-      link: '/sprints',
+      link: './sprints',
       queryParams: '',
     },
     { label: 'Dev team', icon: 'groups', link: './devs', queryParams: '' },
-    { label: 'Other Devs', icon: 'group_add', link: '/users', queryParams: '' },
+    {
+      label: 'Other Devs',
+      icon: 'group_add',
+      link: './users',
+      queryParams: '',
+    },
     {
       label: 'Projects',
       icon: 'folder_special',
-      link: '/projects',
+      link: './projects',
       queryParams: '',
     },
   ];
