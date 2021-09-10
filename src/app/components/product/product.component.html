@@ -4,15 +4,12 @@
     <!-- list items -->
     <mat-nav-list class="nav-list">
       <div>
-        <mat-list-item *ngFor="let navItem of navItems">
+        <mat-list-item
+          *ngFor="let navItem of navItems"
+          (click)="onNavigate(navItem)"
+        >
           <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
-          <a
-            matLine
-            [routerLink]="[navItem.link]"
-            [queryParams]="navItem.queryParams"
-          >
-            {{ navItem.label }}
-          </a>
+          <p matLine>{{ navItem.label }}</p>
         </mat-list-item>
       </div>
 
