@@ -3,7 +3,7 @@
   <button mat-button (click)="onDisplaySprintForm()">Add sprint</button>
 </mat-toolbar>
 
-<div cdkDropListGroup>
+<div cdkDropListGroup class="main-content">
   <!-- display inactive sprints along with their backlogs  -->
   <app-sprint
     *ngFor="let sprint of sprints"
