@@ -1,7 +1,9 @@
-<!-- sprint backlog -->
-<div class="header">
-  <h2>{{ sprint.name }}</h2>
-  <button mat-button (click)="onStartSprint()">Start</button>
-</div>
+<div class="main">
+  <!-- sprint backlog -->
+  <div class="header">
+    <h2>{{ sprint.name }}</h2>
+    <button mat-button (click)="onStartSprint()">Start</button>
+  </div>
 
-<app-issues [issues]="sprint.backlog"></app-issues>
+  <app-issues [issues]="sprint.backlog"></app-issues>
+</div>

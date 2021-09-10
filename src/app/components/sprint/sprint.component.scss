@@ -1,5 +1,9 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.main {
+  margin-bottom: 2rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 }
