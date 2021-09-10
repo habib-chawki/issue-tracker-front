@@ -14,9 +14,9 @@
       </div>
 
       <!-- log out -->
-      <mat-list-item>
+      <mat-list-item (click)="onLogOut()">
         <mat-icon matListIcon>logout</mat-icon>
-        <a matLine [routerLink]="['/login']" (click)="onLogOut()">Log out</a>
+        <p matLine>Log out</p>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
