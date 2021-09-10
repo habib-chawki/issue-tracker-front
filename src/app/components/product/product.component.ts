@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private storageService: StorageService
   ) {}
 
@@ -32,41 +33,48 @@ export class ProductComponent implements OnInit {
           {
             label: 'Backlog',
             icon: 'description',
-            link: './backlog',
+            link: 'backlog',
             queryParams: { project },
           },
           {
             label: 'Active sprints',
             icon: 'toggle_on',
-            link: './sprints',
+            link: 'sprints',
             queryParams: { project, status: SprintStatus.ACTIVE },
           },
           {
             label: 'Finished sprints',
             icon: 'toggle_off',
-            link: './sprints',
+            link: 'sprints',
             queryParams: { project, status: SprintStatus.OVER },
           },
           {
             label: 'Dev team',
             icon: 'groups',
-            link: './devs',
+            link: 'devs',
             queryParams: { project },
           },
           {
             label: 'Other Devs',
             icon: 'group_add',
-            link: './users',
+            link: 'users',
             queryParams: { project },
           },
           {
             label: 'Projects',
             icon: 'folder_special',
-            link: './projects',
+            link: 'projects',
             queryParams: { project },
           },
         ];
       },
+    });
+  }
+
+  onNavigate(navListItem) {
+    this.router.navigate([navListItem.link], {
+      queryParams: navListItem.queryParams,
+      relativeTo: this.route,
     });
   }
 
