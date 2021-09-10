@@ -2,7 +2,14 @@
   <!-- sprint backlog -->
   <div class="header">
     <h2>{{ sprint.name }}</h2>
-    <button mat-button (click)="onStartSprint()">Start</button>
+    <button
+      mat-button
+      matTooltip="Start sprint"
+      [matTooltipShowDelay]="200"
+      (click)="onStartSprint()"
+    >
+      <mat-icon>play_circle_outline</mat-icon>
+    </button>
   </div>
 
   <app-issues [issues]="sprint.backlog"></app-issues>
