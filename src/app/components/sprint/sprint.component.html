@@ -1,7 +1,7 @@
 <!-- sprint backlog -->
-<div>
-  {{ sprint.name }}
-  <button mat-raised-button (click)="onStartSprint()">Start</button>
+<div class="header">
+  <h2>{{ sprint.name }}</h2>
+  <button mat-button (click)="onStartSprint()">Start</button>
 </div>
 
 <app-issues [issues]="sprint.backlog"></app-issues>
