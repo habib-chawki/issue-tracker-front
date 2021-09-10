@@ -1,27 +1,32 @@
-<mat-card (dblclick)="onDisplayDetails()">
-  <div id="type">{{ issue.type }}</div>
-  <div id="summary">{{ issue.summary }}</div>
+<mat-card class="card" (dblclick)="onDisplayDetails()">
+  <!-- issue details -->
+  <div>
+    <p id="type">{{ issue.type }}</p>
+    <p id="summary">{{ issue.summary }}</p>
+  </div>
 
+  <!-- actions menu button -->
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
+</mat-card>
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onDisplayDetails()">
-      <mat-icon>preview</mat-icon>
-      Display details
+<!-- update/delete issue actions menu -->
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onDisplayDetails()">
+    <mat-icon>preview</mat-icon>
+    Display details
+  </button>
+
+  <div *ngIf="canModify()">
+    <button mat-menu-item id="update" (click)="onUpdate()">
+      <mat-icon>update</mat-icon>
+      Update
     </button>
 
-    <div *ngIf="canModify()">
-      <button mat-menu-item id="update" (click)="onUpdate()">
-        <mat-icon>update</mat-icon>
-        Update
-      </button>
-
-      <button mat-menu-item id="remove" (click)="onRemove()">
-        <mat-icon>delete_forever</mat-icon>
-        Remove
-      </button>
-    </div>
-  </mat-menu>
-</mat-card>
+    <button mat-menu-item id="remove" (click)="onRemove()">
+      <mat-icon>delete_forever</mat-icon>
+      Remove
+    </button>
+  </div>
+</mat-menu>
