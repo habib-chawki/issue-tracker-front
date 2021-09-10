@@ -24,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 // components
 import { IssueComponent } from './components/issue/issue.component';
@@ -102,6 +103,7 @@ import { ColumnFormComponent } from './forms/column-form/column-form.component';
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
+    MatTooltipModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
