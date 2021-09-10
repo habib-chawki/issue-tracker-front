@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit {
   }
 
   onLogOut() {
-    console.log('LOG OUT');
     this.storageService.removeUserDetails();
+    this.router.navigateByUrl('/login');
   }
 }
