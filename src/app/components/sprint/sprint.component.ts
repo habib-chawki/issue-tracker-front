@@ -48,6 +48,10 @@ export class SprintComponent implements OnInit, OnDestroy {
       });
   };
 
+  onRemoveSprint() {
+    //TODO: remove sprint
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
