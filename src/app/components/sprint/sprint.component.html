@@ -3,13 +3,17 @@
   <div class="header">
     <h2>{{ sprint.name }}</h2>
     <button
-      [disabled]="sprint.backlog.length === 0"
       mat-button
       matTooltip="Start sprint"
       [matTooltipShowDelay]="200"
       (click)="onStartSprint()"
+      [disabled]="sprint.backlog.length === 0"
     >
       <mat-icon>play_circle_outline</mat-icon>
+    </button>
+
+    <button mat-button matTooltip="Delete sprint" [matTooltipShowDelay]="200">
+      <mat-icon>highlight_off</mat-icon>
     </button>
   </div>
 
