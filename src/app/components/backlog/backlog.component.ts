@@ -54,7 +54,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (response: Issue[]) => {
             this.backlog = response;
-            console.log('PRODUCT BACKLOG: ', JSON.stringify(this.backlog));
           },
         });
 
@@ -65,7 +64,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (response: Sprint[]) => {
             this.sprints = response;
-            console.log('INACTIVE SPRINTS: ' + JSON.stringify(this.sprints));
           },
         });
     });
@@ -91,7 +89,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
       .createIssue(issue, this.projectId)
       .pipe(take(1))
       .subscribe((createdIssue: Issue) => {
-        console.log('CREATED ISSUE: ' + JSON.stringify(createdIssue));
         this.backlog.push(createdIssue);
       });
   }
@@ -103,7 +100,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         const index = this.backlog.findIndex((item) => item.id === issue.id);
         this.backlog[index] = issue;
-        console.log('UPDATED ISSUE:' + JSON.stringify(this.backlog[index]));
       });
   }
 
@@ -118,8 +114,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe({
         next: (createdSprint: Sprint) => {
-          console.log('CREATED SPRINT: ' + JSON.stringify(createdSprint));
-
           // add createdSprint to the list of sprints
           this.sprints.push(createdSprint);
         },
@@ -163,7 +157,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
         .updateIssueSprint(projectId, sprintId, issueId, newSprintId)
         .subscribe({
           next: () => {
-            console.log('UPDATED ISSUE SPRINT!');
             transferArrayItem(
               previousContainerData,
               containerData,
