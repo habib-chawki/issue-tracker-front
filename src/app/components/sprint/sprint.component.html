@@ -3,6 +3,7 @@
   <div class="header">
     <h2>{{ sprint.name }}</h2>
     <button
+      [disabled]="sprint.backlog.length === 0"
       mat-button
       matTooltip="Start sprint"
       [matTooltipShowDelay]="200"

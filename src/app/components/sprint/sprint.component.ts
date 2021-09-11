@@ -41,7 +41,6 @@ export class SprintComponent implements OnInit, OnDestroy {
       )
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((sprint: Sprint) => {
-        console.log('SPRINT WITH UPDATED STATUS: ' + JSON.stringify(sprint));
         // navigate to the board upon successful status update
         this.router.navigate(['product', 'board'], {
           queryParams: { project: this.sprint.projectId, sprint: sprint.id },
