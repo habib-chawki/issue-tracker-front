@@ -1,1 +1,6 @@
 @use '~src/styles/layout/forms';
+
+.login-btn {
+  display: flex;
+  justify-content: center;
+}
