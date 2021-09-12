@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit, OnDestroy {
+  // handle spinner display
+  loading = false;
   willHidePassword = true;
 
   subscription: Subscription;
@@ -47,6 +49,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
 
   onSignup() {
     if (this.signupForm.valid) {
+      this.loading = true;
       this.observable = this.userService.signUp(this.signupForm.value);
       this.subscription = this.observable.subscribe({
         next: this.handleSuccessfulSignup,
