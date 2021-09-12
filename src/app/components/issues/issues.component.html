@@ -1,6 +1,7 @@
 <!-- display the list of draggable issues -->
 <div class="drop-list">
   <app-issue
+    class="issue-card"
     *ngFor="let issue of issues"
     [issue]="issue"
     (issueRemoved)="onRemoveIssue($event)"
