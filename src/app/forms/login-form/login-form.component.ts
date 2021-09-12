@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit, OnDestroy {
+  // control spinner display
+  loading = false;
   willHidePassword = true;
 
   subscription: Subscription;
@@ -38,6 +40,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   onLogin() {
     if (this.loginForm.valid) {
+      this.loading = true;
       this.observable = this.userService.login(this.loginForm.value);
       this.subscription = this.observable.subscribe({
         next: this.handleSuccessfulLogin,
