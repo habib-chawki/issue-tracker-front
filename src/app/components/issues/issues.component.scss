@@ -1,9 +1,21 @@
 .drop-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border: dashed 2px #ccc;
   min-height: 110px;
   background: white;
   border-radius: 4px;
   overflow: hidden;
+}
+
+.fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: rgb(121, 121, 121);
 }
 
 .cdk-drag-preview {
