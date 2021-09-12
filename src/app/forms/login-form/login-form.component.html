@@ -46,7 +46,10 @@
       </mat-form-field>
 
       <div class="form-actions">
-        <button mat-stroked-button type="submit">Login</button>
+        <button class="login-btn" mat-stroked-button type="submit">
+          <span *ngIf="!loading">Login</span>
+          <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
+        </button>
         <p>Don't have an account ? <a routerLink="/signup">Sign up</a></p>
       </div>
     </form>
