@@ -1,11 +1,14 @@
 <!-- display the list of draggable issues -->
 <div class="drop-list">
   <app-issue
-    class="issue"
     *ngFor="let issue of issues"
     [issue]="issue"
     (issueRemoved)="onRemoveIssue($event)"
     cdkDrag
     [cdkDragData]="issue"
   ></app-issue>
+
+  <div *ngIf="issues.length === 0" class="fallback">
+    Drag and drop issues <mat-icon>arrow_downward</mat-icon>
+  </div>
 </div>
