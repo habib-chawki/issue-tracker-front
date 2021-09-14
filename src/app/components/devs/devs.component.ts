@@ -10,12 +10,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./devs.component.scss'],
 })
 export class DevsComponent implements OnInit {
-  projectId: string;
   devs: User[];
-
-  // pagination params
-  page = 0;
-  size = 10;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +21,7 @@ export class DevsComponent implements OnInit {
     // extract project id and load dev team
     this.route.queryParams.subscribe({
       next: (queryParams) => {
-        this.projectId = queryParams.project;
-
-        this.loadDevs();
+        this.loadDevs(queryParams.project);
       },
     });
   }
@@ -38,10 +31,10 @@ export class DevsComponent implements OnInit {
     this.devs = this.devs.filter((dev) => removedDev.id !== dev.id);
   }
 
-  loadDevs() {
-    // load the list of dev team members
+  loadDevs(projectId) {
+    // load the list of dev team members by project id
     this.userService
-      .getUsersByAssignedProject(this.projectId, this.page, this.size)
+      .getUsersByAssignedProject(projectId)
       .pipe(take(1))
       .subscribe({
         next: (loadedDevs) => {
