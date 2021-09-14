@@ -11,6 +11,7 @@ import { SprintService } from 'src/app/services/sprint/sprint.service';
 })
 export class SprintsComponent implements OnInit {
   sprints: Sprint[];
+  status: string;
   projectId: string;
 
   constructor(
@@ -22,16 +23,15 @@ export class SprintsComponent implements OnInit {
     // extract the project id and sprint status query params
     this.route.queryParams.subscribe((queryParams) => {
       this.projectId = queryParams.project;
-      const status = queryParams.status;
+      this.status = queryParams.status;
 
       // fetch sprints by status
       this.sprintService
-        .getSprintsByStatus(this.projectId, status)
+        .getSprintsByStatus(this.projectId, this.status)
         .pipe(take(1))
         .subscribe({
           next: (sprints: Sprint[]) => {
             this.sprints = sprints;
-            console.log('SPRINTS: ' + JSON.stringify(this.sprints));
           },
         });
     });
