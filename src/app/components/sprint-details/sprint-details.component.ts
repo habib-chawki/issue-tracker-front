@@ -20,7 +20,7 @@ export class SprintDetailsComponent implements OnInit {
     });
   }
 
-  onDisplaySprintDetails = () => {
+  onDisplaySprintBoard = () => {
     // navigate to board component
     this.router.navigate(['product', 'board'], {
       queryParams: { project: this.projectId, sprint: this.sprint.id },
