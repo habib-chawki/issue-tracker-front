@@ -10,4 +10,10 @@
     </mat-panel-description>
   </mat-expansion-panel-header>
   <p>{{ sprint.goal }}</p>
+  <button
+    mat-button
+    (click)="sprint.status === 'Active' && onDisplaySprintBoard()"
+  >
+    Go to board <mat-icon>arrow_right_alt</mat-icon>
+  </button>
 </mat-expansion-panel>
