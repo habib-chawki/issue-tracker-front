@@ -30,8 +30,8 @@ export class UserService {
 
   getUsersByAssignedProject(
     projectId: string,
-    page: number,
-    size: number
+    page: number = 0,
+    size: number = 10
   ): Observable<User[]> {
     return this.httpClient.get<User[]>(this.baseUrl, {
       params: {
