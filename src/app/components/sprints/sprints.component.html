@@ -5,7 +5,10 @@
 <ng-template #noSprints>
   <div class="fallback">
     <mat-icon>warning_amber</mat-icon>
-    <h1>No sprints</h1>
+    <h1>
+      There are currently no
+      {{ status.toLowerCase() === "active" ? "active" : "finished" }} sprints
+    </h1>
   </div>
 </ng-template>
 
