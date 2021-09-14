@@ -1,6 +1,8 @@
-<app-dev
-  *ngFor="let dev of devs"
-  [projectId]="projectId"
-  [dev]="dev"
-  (userRemovedFromProject)="onRemoveDevFromProject($event)"
-></app-dev>
+<div class="dev-list">
+  <app-dev
+    *ngFor="let dev of devs"
+    [projectId]="projectId"
+    [dev]="dev"
+    (userRemovedFromProject)="onRemoveDevFromProject($event)"
+  ></app-dev>
+</div>
