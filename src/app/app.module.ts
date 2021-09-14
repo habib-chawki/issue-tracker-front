@@ -25,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // components
 import { IssueComponent } from './components/issue/issue.component';
@@ -104,6 +105,7 @@ import { ColumnFormComponent } from './forms/column-form/column-form.component';
     MatListModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatExpansionModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
