@@ -1,13 +1,7 @@
-.drop-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@use "~src/styles/components/drop-list" as dl;
 
-  border: dashed 2px #ccc;
-  min-height: 110px;
-  background: white;
-  border-radius: 4px;
+.drop-list {
+  @include dl.drop-list;
   overflow: hidden;
 }
 
