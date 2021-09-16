@@ -16,17 +16,17 @@
 <!-- rendered when the board has already been created -->
 <ng-template #createColumn>
   <button mat-raised-button (click)="onDisplayColumnForm()">Add column</button>
+
+  <!-- render board columns -->
+  <div cdkDropListGroup class="board">
+    <app-column
+      *ngFor="let column of board?.columns"
+      [column]="column"
+      [boardId]="board?.id"
+    ></app-column>
+  </div>
+
+  <button mat-raised-button *ngIf="board?.id" (click)="onEndSprint()">
+    End sprint
+  </button>
 </ng-template>
-
-<!-- render board columns -->
-<div cdkDropListGroup class="board">
-  <app-column
-    *ngFor="let column of board?.columns"
-    [column]="column"
-    [boardId]="board?.id"
-  ></app-column>
-</div>
-
-<button mat-raised-button *ngIf="board?.id" (click)="onEndSprint()">
-  End sprint
-</button>
