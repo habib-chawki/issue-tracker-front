@@ -1,34 +1,36 @@
-<ng-container
-  *ngIf="willDisplayUpdateTitleInput; then updateTitleInput; else title"
-></ng-container>
+<div class="main">
+  <ng-container
+    *ngIf="willDisplayUpdateTitleInput; then updateTitleInput; else title"
+  ></ng-container>
 
-<!-- rendered when the column title hasn't been double clicked -->
-<ng-template #title>
-  <div id="title" (dblclick)="onDisplayUpdateTitleInput()">
-    {{ column.title }}
+  <!-- rendered when the column title hasn't been double clicked -->
+  <ng-template #title>
+    <div id="title" (dblclick)="onDisplayUpdateTitleInput()">
+      {{ column.title }}
+    </div>
+  </ng-template>
+
+  <!-- rendered when the column title has been double clicked -->
+  <ng-template #updateTitleInput>
+    <input
+      type="text"
+      value="{{ column.title }}"
+      (blur)="onUpdateTitle($event)"
+      (keydown.enter)="onUpdateTitle($event)"
+    />
+  </ng-template>
+
+  <div
+    class="drop-list"
+    cdkDropList
+    [cdkDropListData]="column"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <app-issue
+      *ngFor="let issue of column.issues"
+      [issue]="issue"
+      cdkDrag
+      [cdkDragData]="issue"
+    ></app-issue>
   </div>
-</ng-template>
-
-<!-- rendered when the column title has been double clicked -->
-<ng-template #updateTitleInput>
-  <input
-    type="text"
-    value="{{ column.title }}"
-    (blur)="onUpdateTitle($event)"
-    (keydown.enter)="onUpdateTitle($event)"
-  />
-</ng-template>
-
-<div
-  class="drop-list"
-  cdkDropList
-  [cdkDropListData]="column"
-  (cdkDropListDropped)="onDrop($event)"
->
-  <app-issue
-    *ngFor="let issue of column.issues"
-    [issue]="issue"
-    cdkDrag
-    [cdkDragData]="issue"
-  ></app-issue>
 </div>
