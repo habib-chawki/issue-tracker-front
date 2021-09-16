@@ -2,6 +2,7 @@
 
 .drop-list {
   @include dl.drop-list;
+
   height: 100%;
   margin: 0.5rem;
   min-width: 160px;
