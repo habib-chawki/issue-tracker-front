@@ -1,11 +1,7 @@
-.toolbar {
-  position: sticky;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
+@use "~src/styles/layout/_toolbar";
 
 .board {
+  padding: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

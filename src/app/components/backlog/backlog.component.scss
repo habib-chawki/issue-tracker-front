@@ -1,9 +1,4 @@
-.toolbar {
-  position: sticky;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
+@use "~src/styles/layout/_toolbar";
 
 .main-content {
   padding: 2rem;
