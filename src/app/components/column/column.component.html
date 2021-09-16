@@ -26,6 +26,7 @@
   (cdkDropListDropped)="onDrop($event)"
 >
   <app-issue
+    class="issue-card"
     *ngFor="let issue of column.issues"
     [issue]="issue"
     cdkDrag
