@@ -4,9 +4,15 @@
 
 <!-- rendered when the board hasn't been created yet -->
 <ng-template #createBoard>
-  <button mat-raised-button (click)="onDisplayBoardForm()">
-    Create scrum board
-  </button>
+  <div class="add-board-btn">
+    <button
+      mat-raised-button
+      (click)="onDisplayBoardForm()"
+      class="main-content"
+    >
+      <div><span>Create scrum board</span><mat-icon>add_box</mat-icon></div>
+    </button>
+  </div>
 </ng-template>
 
 <!-- rendered when the board has already been created -->
