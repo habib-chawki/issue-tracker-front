@@ -1,6 +1,5 @@
+@use "~src/styles/components/drop-list" as dl;
+
 .drop-list {
-  border: dotted 2px;
-  margin: 10px;
-  min-height: 300px;
-  min-width: 200px;
+  @include dl.drop-list;
 }
