@@ -1,11 +1,11 @@
 @use "~src/styles/layout/_toolbar";
 
 .board {
-  height: 70%;
-  background-color: red;
+  height: 85%;
   padding: 3rem;
+
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   overflow: auto;
 }
 
