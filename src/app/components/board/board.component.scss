@@ -3,3 +3,19 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.add-board-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  button {
+    width: 50%;
+
+    .main-content {
+      display: flex;
+      width: 50%;
+    }
+  }
+}
