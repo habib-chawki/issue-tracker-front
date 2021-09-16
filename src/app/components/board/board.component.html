@@ -5,12 +5,10 @@
 <!-- rendered when the board hasn't been created yet -->
 <ng-template #createBoard>
   <div class="add-board-btn">
-    <button
-      mat-raised-button
-      (click)="onDisplayBoardForm()"
-      class="main-content"
-    >
-      <div><span>Create scrum board</span><mat-icon>add_box</mat-icon></div>
+    <button mat-raised-button (click)="onDisplayBoardForm()">
+      <div class="main-content">
+        <span>Create scrum board</span><mat-icon>add_circle</mat-icon>
+      </div>
     </button>
   </div>
 </ng-template>
