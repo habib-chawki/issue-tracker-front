@@ -1,3 +1,10 @@
+.toolbar {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .board {
   display: flex;
   flex-direction: row;
