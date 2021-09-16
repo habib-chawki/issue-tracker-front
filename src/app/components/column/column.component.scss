@@ -1,11 +1,8 @@
 @use "~src/styles/components/drop-list" as dl;
 
-.main {
+.drop-list {
+  @include dl.drop-list;
   height: 100%;
-  background-color: blue;
-
-  .drop-list {
-    @include dl.drop-list;
-    height: 100%;
-  }
+  margin: 0.5rem;
+  min-width: 160px;
 }
