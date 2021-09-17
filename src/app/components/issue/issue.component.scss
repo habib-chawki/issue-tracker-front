@@ -1,14 +1,17 @@
-.issue-card {
+%layout {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.issue-card {
+  @extend %layout;
+
   justify-content: space-between;
   cursor: move;
 
   .issue-details {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @extend %layout;
 
     span {
       margin-left: 1rem;
