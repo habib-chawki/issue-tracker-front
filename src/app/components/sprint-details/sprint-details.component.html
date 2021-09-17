@@ -9,7 +9,8 @@
     <p>{{ sprint.goal }}</p>
     <button
       mat-button
-      (click)="sprint.status === 'Active' && onDisplaySprintBoard()"
+      *ngIf="sprint.status === 'Active'"
+      (click)="onDisplaySprintBoard()"
     >
       Go to board <mat-icon>arrow_right_alt</mat-icon>
     </button>
