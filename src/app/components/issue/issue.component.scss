@@ -5,7 +5,15 @@
   align-items: baseline;
   cursor: move;
 
-  .priority {
+  .high-priority {
+    color: red;
+  }
+
+  .medium-priority {
     color: orange;
+  }
+
+  .low-priority {
+    color: green;
   }
 }
