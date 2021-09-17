@@ -1,9 +1,15 @@
 <mat-card class="issue-card" (dblclick)="onDisplayDetails()">
   <!-- issue details -->
   <div>
-    <mat-icon [class]="{ 'high-priority': issue.priority == 'High' }"
-      >circle</mat-icon
+    <mat-icon
+      [class]="{
+        'high-priority': issue.priority == 'High',
+        'medium-priority': issue.priority == 'Medium',
+        'low-priority': issue.priority == 'Low'
+      }"
     >
+      circle
+    </mat-icon>
     <span>{{ issue.summary }}</span>
   </div>
 
