@@ -1,7 +1,7 @@
-@use "~src/styles/components/drop-list" as dl;
+@use "~src/styles/components/drop-list";
 
 .drop-list {
-  @include dl.drop-list;
+  @extend %drop-list-layout;
 
   .fallback {
     width: 100%;
