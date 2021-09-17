@@ -1,19 +1,29 @@
 .issue-card {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  align-items: baseline;
   cursor: move;
 
-  .high-priority {
-    color: red;
-  }
+  .issue-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-  .medium-priority {
-    color: orange;
-  }
+    span {
+      margin-left: 1rem;
+    }
 
-  .low-priority {
-    color: green;
+    .high-priority {
+      color: red;
+    }
+
+    .medium-priority {
+      color: orange;
+    }
+
+    .low-priority {
+      color: green;
+    }
   }
 }
