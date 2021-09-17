@@ -1,8 +1,10 @@
 <mat-card class="issue-card" (dblclick)="onDisplayDetails()">
   <!-- issue details -->
   <div>
-    <mat-icon class="priority">circle</mat-icon>
-    <p>{{ issue.summary }}</p>
+    <mat-icon [class]="{ 'high-priority': issue.priority == 'High' }"
+      >circle</mat-icon
+    >
+    <span>{{ issue.summary }}</span>
   </div>
 
   <!-- actions menu button -->
