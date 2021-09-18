@@ -1,17 +1,19 @@
 @use "~src/styles/components/drop-list";
 
 .main {
-  background-color: blue;
+  min-width: 15rem;
+  max-width: 15rem;
+
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   margin: 0.5rem;
 
   .drop-list {
     @extend %drop-list-layout;
 
-    height: 90%;
-    min-width: 15rem;
-    max-width: 15rem;
-
+    flex-grow: 1;
     overflow: auto;
 
     .issue-card {
@@ -27,9 +29,7 @@
     font-weight: 900;
     cursor: pointer;
 
-    // white-space: nowrap;
-    // text-overflow: ellipsis;
-    // overflow: hidden;
-    background-color: red;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
