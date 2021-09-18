@@ -14,7 +14,10 @@
         <span>Create scrum board</span><mat-icon>add_circle</mat-icon>
       </div>
     </button>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar
+      *ngIf="loadProgress"
+      mode="indeterminate"
+    ></mat-progress-bar>
   </div>
 </ng-template>
 
