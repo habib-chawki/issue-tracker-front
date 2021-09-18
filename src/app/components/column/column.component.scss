@@ -1,8 +1,10 @@
 @use "~src/styles/components/drop-list";
 
+$width: 15rem;
+
 .main {
-  min-width: 15rem;
-  max-width: 15rem;
+  min-width: $width;
+  max-width: $width;
 
   display: flex;
   flex-direction: column;
