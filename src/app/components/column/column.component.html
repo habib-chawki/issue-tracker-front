@@ -2,13 +2,6 @@
   *ngIf="willDisplayUpdateTitleInput; then updateTitleInput; else title"
 ></ng-container>
 
-<!-- rendered when the column title hasn't been double clicked -->
-<ng-template #title>
-  <div (dblclick)="onDisplayUpdateTitleInput()">
-    {{ column.title }}
-  </div>
-</ng-template>
-
 <!-- rendered when the column title has been double clicked -->
 <ng-template #updateTitleInput>
   <input
@@ -17,6 +10,13 @@
     (blur)="onUpdateTitle($event)"
     (keydown.enter)="onUpdateTitle($event)"
   />
+</ng-template>
+
+<!-- rendered when the column title hasn't been double clicked -->
+<ng-template #title>
+  <h3 (dblclick)="onDisplayUpdateTitleInput()" class="column-title">
+    {{ column.title }}
+  </h3>
 </ng-template>
 
 <div
