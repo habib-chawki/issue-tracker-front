@@ -64,18 +64,26 @@ export class ColumnComponent implements OnInit, OnDestroy {
       const issueId = event.item.data.id;
       const newColumnId = event.container.data.id;
 
+      // eagerly transfer issues between columns
+      transferArrayItem(
+        event.previousContainer.data.issues,
+        event.container.data.issues,
+        event.previousIndex,
+        event.currentIndex
+      );
+
       // update the issue column
       this.columnService
         .updateIssueColumn(boardId, columnId, issueId, newColumnId)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe({
-          next: () => {
-            // drag issues between columns
+          error: () => {
+            // transfer issue back to column
             transferArrayItem(
-              event.previousContainer.data.issues,
               event.container.data.issues,
-              event.previousIndex,
-              event.currentIndex
+              event.previousContainer.data.issues,
+              event.currentIndex,
+              event.previousIndex
             );
           },
         });
