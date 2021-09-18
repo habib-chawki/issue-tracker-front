@@ -23,12 +23,15 @@ import { ColumnFormComponent } from '../../forms/column-form/column-form.compone
 export class BoardComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
+  // handle progress bar
+  loadProgress: boolean = false;
+
   sprint: Sprint;
   board: Board = {} as Board;
 
   constructor(
     private boardService: BoardService,
-    private boardIntercomService: BoardIntercomService,
+    private boardSharedService: BoardIntercomService,
     private columnService: ColumnService,
     private columnIntercomService: ColumnIntercomService,
     private sprintService: SprintService,
@@ -49,7 +52,6 @@ export class BoardComponent implements OnInit, OnDestroy {
         .pipe(take(1))
         .subscribe({
           next: (fetchedSprint: Sprint) => {
-            console.log('FETCHED SPRINT: ' + JSON.stringify(fetchedSprint));
             this.sprint = fetchedSprint;
 
             // populate project id
@@ -64,7 +66,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     });
 
     // listen for board form saved announcements
-    this.boardIntercomService.boardFormSaved$
+    this.boardSharedService.boardFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(this.onBoardFormSaved);
 
@@ -84,6 +86,9 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   // create board
   onBoardFormSaved = (boardFormValue) => {
+    // display progress bar while board is being created
+    this.loadProgress = true;
+
     this.boardService
       .createBoard(this.sprint.id, boardFormValue)
       .pipe(take(1))
