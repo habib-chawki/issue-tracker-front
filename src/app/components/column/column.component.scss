@@ -1,29 +1,35 @@
 @use "~src/styles/components/drop-list";
 
-$margin: 0.5rem;
-
-.drop-list {
-  @extend %drop-list-layout;
-
+.main {
+  background-color: blue;
   height: 100%;
-  margin: $margin;
+  margin: 0.5rem;
 
-  min-width: 15rem;
-  max-width: 15rem;
+  .drop-list {
+    @extend %drop-list-layout;
 
-  overflow: auto;
+    height: 90%;
+    min-width: 15rem;
+    max-width: 15rem;
 
-  .issue-card {
-    width: 100%;
+    overflow: auto;
+
+    .issue-card {
+      width: 100%;
+    }
   }
-}
 
-.column-title {
-  margin: $margin;
+  .column-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
-  display: flex;
-  justify-content: center;
+    font-weight: 900;
+    cursor: pointer;
 
-  font-weight: 900;
-  cursor: pointer;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
+    // overflow: hidden;
+    background-color: red;
+  }
 }
