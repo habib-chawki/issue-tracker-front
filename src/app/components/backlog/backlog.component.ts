@@ -142,19 +142,19 @@ export class BacklogComponent implements OnInit, OnDestroy {
       const issueId = event.item.data.id;
 
       /* when the previous container is not a sprint backlog then 
-       set the sprint id to null indicating that the issue is coming from the product backlog */
-      const sprintId = event.previousContainer.data.id
+       set the old sprint id to null indicating that the issue is coming from the product backlog */
+      const oldSprintId = event.previousContainer.data.id
         ? event.previousContainer.data.id
         : null;
 
-      /* when the sprint backlog is the new container then set the new sprint id
-       otherwise set it to null indicating that the issue is back to the product backlog */
+      /* when the sprint backlog is the new container, then set the new sprint id.
+       Otherwise, set it to null indicating that the issue is to be put back in the product backlog */
       const newSprintId = event.container.data.id
         ? event.container.data.id
         : null;
 
       this.sprintService
-        .updateIssueSprint(projectId, sprintId, issueId, newSprintId)
+        .updateIssueSprint(projectId, oldSprintId, issueId, newSprintId)
         .subscribe({
           next: () => {
             transferArrayItem(
