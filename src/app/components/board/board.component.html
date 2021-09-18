@@ -16,8 +16,12 @@
 <!-- rendered when the board has already been created -->
 <ng-template #createColumn>
   <mat-toolbar class="toolbar">
-    <button mat-button (click)="onDisplayColumnForm()">Add column</button>
-    <button mat-button (click)="onEndSprint()">End sprint</button>
+    <button mat-button (click)="onDisplayColumnForm()">
+      <mat-icon>add_circle_outline</mat-icon> Add column
+    </button>
+    <button mat-button (click)="onEndSprint()">
+      <mat-icon>check_circle_outline</mat-icon> End sprint
+    </button>
   </mat-toolbar>
 
   <!-- render board columns -->
