@@ -1,10 +1,12 @@
 @use "~src/styles/components/drop-list";
 
+$margin: 0.5rem;
+
 .drop-list {
   @extend %drop-list-layout;
 
   height: 100%;
-  margin: 0.5rem;
+  margin: $margin;
 
   min-width: 15rem;
   max-width: 15rem;
@@ -14,4 +16,8 @@
   .issue-card {
     width: 100%;
   }
+}
+
+.column-title {
+  margin: $margin;
 }
