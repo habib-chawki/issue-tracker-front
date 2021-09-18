@@ -5,11 +5,16 @@
 <!-- rendered when the board hasn't been created yet -->
 <ng-template #createBoard>
   <div class="add-board-btn">
-    <button mat-raised-button (click)="onDisplayBoardForm()">
+    <button
+      mat-raised-button
+      (click)="onDisplayBoardForm()"
+      [disabled]="loadProgress"
+    >
       <div class="main-content">
         <span>Create scrum board</span><mat-icon>add_circle</mat-icon>
       </div>
     </button>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 </ng-template>
 
