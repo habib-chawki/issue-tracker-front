@@ -41,11 +41,8 @@ export class ColumnComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (response) => {
             this.column.title = response.updatedTitle;
-            console.log('UPDATED TITLE: ' + response.updatedTitle);
           },
-          error: () => {
-            console.error('ERROR UPDATING TITLE: ' + newColumnTitle);
-          },
+          error: () => {},
         });
     }
 
@@ -81,7 +78,6 @@ export class ColumnComponent implements OnInit, OnDestroy {
               event.currentIndex
             );
           },
-          error: (error) => console.log('ERROR: ' + JSON.stringify(error)),
         });
     }
   };
