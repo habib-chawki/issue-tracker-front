@@ -1,10 +1,1 @@
-form {
-  display: flex;
-  flex-direction: column;
-  width: 30rem;
-
-  mat-dialog-actions {
-    display: flex;
-    justify-content: flex-end;
-  }
-}
+@use '~src/styles/layout/dialog';
