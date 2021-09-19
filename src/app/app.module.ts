@@ -27,6 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
 
 // components
 import { IssueComponent } from './components/issue/issue.component';
@@ -108,6 +109,7 @@ import { ColumnFormComponent } from './forms/column-form/column-form.component';
     MatTooltipModule,
     MatExpansionModule,
     MatProgressBarModule,
+    MatDividerModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
