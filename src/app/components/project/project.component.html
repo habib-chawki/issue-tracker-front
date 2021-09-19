@@ -1,1 +1,4 @@
-<button mat-list-item (click)="onClick()">{{ project.name }}</button>
+<mat-list-item (click)="onClick()">
+  <mat-icon mat-list-icon>folder</mat-icon>
+  <div mat-line>{{ project.name }}</div>
+</mat-list-item>
