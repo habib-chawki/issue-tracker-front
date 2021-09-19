@@ -3,7 +3,7 @@ form {
   flex-direction: column;
   width: 30rem;
 
-  .action-buttons {
+  mat-dialog-actions {
     display: flex;
     justify-content: flex-end;
   }
