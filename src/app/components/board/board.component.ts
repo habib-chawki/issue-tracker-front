@@ -95,10 +95,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (createdBoard: Board) => {
           this.board = createdBoard;
-          console.log('CREATED BOARD: ' + JSON.stringify(this.board));
         },
-        error: (error) =>
-          console.log('ERROR CREATING BOARD: ' + JSON.stringify(error)),
       });
   };
 
@@ -110,9 +107,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (createdColumn: Column) => {
           this.board.columns = [...this.board.columns, createdColumn];
-          console.log('CREATED COLUMN ' + JSON.stringify(createdColumn));
         },
-        error: (error) => console.log('ERROR: ' + error),
       });
   };
 
@@ -126,7 +121,6 @@ export class BoardComponent implements OnInit, OnDestroy {
       )
       .pipe(take(1))
       .subscribe(() => {
-        console.log('SPRINT ENDED ' + JSON.stringify(this.sprint));
         // navigate back to the backlog upon successful sprint status update
         this.router.navigate(['product', 'backlog'], {
           queryParams: { project: this.sprint.projectId },

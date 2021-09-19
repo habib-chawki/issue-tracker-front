@@ -17,8 +17,15 @@ export class ColumnFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {
-    this.columnCommunicationService.announceColumnFormSaved(
-      this.columnForm.value
-    );
+    // announce column form saved with valid title
+    if (this.columnForm.value.title.trim()) {
+      this.columnCommunicationService.announceColumnFormSaved(
+        this.columnForm.value
+      );
+    }
+  }
+
+  get title() {
+    return this.columnForm.controls.title;
   }
 }
