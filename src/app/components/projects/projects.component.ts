@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   constructor(
     private projectService: ProjectService,
     private storageService: StorageService,
-    private projectCommunicationService: ProjectCommunicationService,
+    private projectSharedService: ProjectCommunicationService,
     private dialog: MatDialog
   ) {}
 
@@ -35,11 +35,10 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((response: Project[]) => {
         this.projects = response;
-        console.log('PROJECTS LOADED: ' + JSON.stringify(this.projects));
       });
 
     // listen for project form saved announcements
-    this.projectCommunicationService.projectFormSaved$
+    this.projectSharedService.projectFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(this.createProject);
   }
