@@ -1,7 +1,6 @@
 <app-project *ngFor="let project of projects" [project]="project">
 </app-project>
 
-<div>Create new project</div>
-<button (click)="onAddProject()" mat-mini-fab>
+<button mat-fab matTooltip="Add new project" (click)="onAddProject()">
   <mat-icon>add</mat-icon>
 </button>
