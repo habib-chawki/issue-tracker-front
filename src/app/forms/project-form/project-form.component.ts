@@ -17,7 +17,12 @@ export class ProjectFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSave() {
-    this.projectSharedService.announceProjectFormSaved(this.projectForm.value);
+    // announce project form saved only when project name is valid
+    if (this.projectForm.value.name.trim()) {
+      this.projectSharedService.announceProjectFormSaved(
+        this.projectForm.value
+      );
+    }
   }
 
   get name() {
