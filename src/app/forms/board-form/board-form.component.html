@@ -1,7 +1,10 @@
 <form [formGroup]="boardForm" (ngSubmit)="onSave()">
-  <mat-form-field>
-    <mat-label for="name">Name</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Board name</mat-label>
     <input matInput id="name" type="text" formControlName="name" />
+    <mat-error *ngIf="name.hasError('required')"
+      >Name is <strong>required</strong></mat-error
+    >
   </mat-form-field>
 
   <mat-dialog-actions>
