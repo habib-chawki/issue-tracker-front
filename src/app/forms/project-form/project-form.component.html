@@ -1,5 +1,5 @@
 <form [formGroup]="projectForm" (ngSubmit)="onSave()">
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Project name</mat-label>
     <input matInput id="name" type="text" formControlName="name" />
     <mat-error
@@ -11,6 +11,14 @@
     >
   </mat-form-field>
 
-  <button mat-raised-button mat-dialog-close type="submit">Save</button>
-  <button mat-raised-button mat-dialog-close>Close</button>
+  <div class="action-buttons">
+    <button mat-button mat-dialog-close type="submit">
+      Save
+      <mat-icon class="material-icons-outlined">save</mat-icon>
+    </button>
+    <button mat-button mat-dialog-close>
+      Cancel
+      <mat-icon class="material-icons-outlined">cancel</mat-icon>
+    </button>
+  </div>
 </form>
