@@ -12,11 +12,15 @@ export class BoardFormComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
   });
 
-  constructor(private boardIntercomService: BoardIntercomService) {}
+  constructor(private boardSharedService: BoardIntercomService) {}
 
   ngOnInit(): void {}
 
   onSave() {
-    this.boardIntercomService.announceBoardFormSaved(this.boardForm.value);
+    this.boardSharedService.announceBoardFormSaved(this.boardForm.value);
+  }
+
+  get name() {
+    return this.boardForm.controls.name;
   }
 }

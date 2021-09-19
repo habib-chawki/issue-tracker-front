@@ -12,16 +12,12 @@ export class ProjectFormComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
   });
 
-  constructor(
-    private projectCommunicationService: ProjectCommunicationService
-  ) {}
+  constructor(private projectSharedService: ProjectCommunicationService) {}
 
   ngOnInit(): void {}
 
   onSave() {
-    this.projectCommunicationService.announceProjectFormSaved(
-      this.projectForm.value
-    );
+    this.projectSharedService.announceProjectFormSaved(this.projectForm.value);
   }
 
   get name() {
