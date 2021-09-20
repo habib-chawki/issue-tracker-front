@@ -30,9 +30,9 @@ export class ColumnComponent implements OnInit, OnDestroy {
     this.willDisplayUpdateTitleInput = isDisplayed;
   }
 
-  onUpdateTitle = (event) => {
+  onUpdateTitle = (inputValue) => {
     // extract the new column title
-    const newColumnTitle = event.target.value.trim();
+    const newColumnTitle = inputValue.trim();
 
     // update in case the title has been changed
     if (newColumnTitle !== this.column.title) {
