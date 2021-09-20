@@ -39,14 +39,6 @@
     <p id="reporter">{{ issue.reporter?.userName }}</p>
   </div>
 
-  <!-- list of comments -->
-  <h2 for="comments">Comments:</h2>
-  <app-comments
-    id="comments"
-    [comments]="issue.comments"
-    [issueId]="issue.id"
-  ></app-comments>
-
   <div>
     <h2 for="created">Created:</h2>
     <div id="created">{{ issue.creationTime }}</div>
@@ -57,7 +49,11 @@
     <div id="updated">{{ issue.updateTime }}</div>
   </div>
 
-  <mat-dialog-actions>
-    <button id="close" mat-raised-button mat-dialog-close>Close</button>
-  </mat-dialog-actions>
+  <!-- list of comments -->
+  <h2 for="comments">Comments:</h2>
+  <app-comments
+    id="comments"
+    [comments]="issue.comments"
+    [issueId]="issue.id"
+  ></app-comments>
 </div>
