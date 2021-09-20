@@ -12,28 +12,20 @@
   </div>
 
   <ng-template #updateField>
-    <input
-      #updatedContent
-      type="text"
-      id="update-field"
-      [value]="comment.content"
-    />
+    <div class="update-container">
+      <input #updateContentInput type="text" [value]="comment.content" />
 
-    <button
-      mat-icon-button
-      class="confirm-update-button"
-      (click)="onConfirmUpdate(updatedContent.value)"
-    >
-      <mat-icon>check_circle</mat-icon>
-    </button>
+      <button
+        mat-icon-button
+        (click)="onConfirmUpdate(updateContentInput.value)"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
 
-    <button
-      mat-icon-button
-      class="cancel-update-button"
-      (click)="onCancelUpdate()"
-    >
-      <mat-icon>cancel</mat-icon>
-    </button>
+      <button mat-icon-button (click)="onCancelUpdate()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </ng-template>
 
   <!-- update / delete menu -->
