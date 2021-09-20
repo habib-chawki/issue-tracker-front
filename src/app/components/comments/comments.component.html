@@ -1,4 +1,6 @@
 <!-- list of comments -->
+<mat-divider></mat-divider>
+
 <mat-list>
   <div mat-subheader>Comments:</div>
 
@@ -20,7 +22,8 @@
     placeholder="Comment ..."
     #commentInputField
   />
+
+  <button mat-button matSuffix (click)="onCreateComment(commentInputField)">
+    <mat-icon class="material-icons-outlined">create</mat-icon>
+  </button>
 </mat-form-field>
-<button mat-button matSuffix (click)="onCreateComment(commentInputField)">
-  <mat-icon class="material-icons-outlined">create</mat-icon>
-</button>
