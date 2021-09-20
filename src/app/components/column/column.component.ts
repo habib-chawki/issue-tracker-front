@@ -26,8 +26,8 @@ export class ColumnComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  onDisplayUpdateTitleInput() {
-    this.willDisplayUpdateTitleInput = true;
+  onDisplayUpdateTitleInput(isDisplayed: boolean) {
+    this.willDisplayUpdateTitleInput = isDisplayed;
   }
 
   onUpdateTitle = (event) => {
