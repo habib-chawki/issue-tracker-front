@@ -21,6 +21,7 @@
     id="comment"
     placeholder="Comment ..."
     #commentInputField
+    (keyup.enter)="onCreateComment($event.target)"
   />
 
   <button mat-button matSuffix (click)="onCreateComment(commentInputField)">
