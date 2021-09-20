@@ -8,14 +8,24 @@
     <input
       type="text"
       value="{{ column.title }}"
-      (blur)="onUpdateTitle($event)"
-      (keydown.enter)="onUpdateTitle($event)"
+      (blur)="onDisplayUpdateTitleInput(false)"
+      (keydown.enter)="onUpdateTitle($event.target.value)"
+      autofocus
+      #updateInput
     />
+
+    <button mat-icon-button (click)="onUpdateTitle(updateInput.value)">
+      <mat-icon>check</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="onDisplayUpdateTitleInput(false)">
+      <mat-icon>close</mat-icon>
+    </button>
   </ng-template>
 
   <!-- rendered when the column title hasn't been double clicked -->
   <ng-template #title>
-    <h3 (dblclick)="onDisplayUpdateTitleInput()" class="column-title">
+    <h3 (click)="onDisplayUpdateTitleInput(true)" class="column-title">
       {{ column.title }}
     </h3>
   </ng-template>
