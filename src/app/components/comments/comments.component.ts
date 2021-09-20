@@ -22,18 +22,19 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
   onCreateComment(commentInputField) {
     // get input field value
-    const content = commentInputField.value;
+    const content = commentInputField.value.trim();
 
-    this.commentService
-      .createComment(content, this.issueId)
-      .pipe(take(1))
-      .subscribe((createdComment: Comment) => {
-        console.log('COMMENT CREATED: ' + JSON.stringify(createdComment));
-        this.comments.push(createdComment);
+    if (content) {
+      this.commentService
+        .createComment(content, this.issueId)
+        .pipe(take(1))
+        .subscribe((createdComment: Comment) => {
+          this.comments.push(createdComment);
 
-        // clear input field
-        commentInputField.value = '';
-      });
+          // clear input field
+          commentInputField.value = '';
+        });
+    }
   }
 
   onRemoveComment(comment: Comment) {
@@ -45,7 +46,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
           (element) => element.id === comment.id
         );
         this.comments.splice(index, 1);
-        console.log('COMMENT REMOVED: ' + JSON.stringify(comment));
       });
   }
 
@@ -58,7 +58,6 @@ export class CommentsComponent implements OnInit, OnDestroy {
           (element) => element.id === comment.id
         );
         this.comments[index] = comment;
-        console.log('COMMENT UPDATED: ' + JSON.stringify(comment));
       });
   }
 
