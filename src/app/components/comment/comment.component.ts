@@ -29,7 +29,7 @@ export class CommentComponent implements OnInit {
 
   onConfirmUpdate(updatedContent: string) {
     // update only when content has been changed
-    if (this.comment.content !== updatedContent) {
+    if (this.comment.content !== updatedContent.trim()) {
       this.comment.content = updatedContent;
       this.commentUpdated.emit(this.comment);
     }
