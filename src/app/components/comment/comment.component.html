@@ -1,12 +1,16 @@
-<li>
-  <div>
-    <p id="owner">
+<mat-list-item>
+  <div mat-line>
+    <div mat-line>
       <strong>{{ comment?.owner.userName }}</strong>
-    </p>
+    </div>
 
-    <p *ngIf="!willDisplayUpdateField; else updateField" id="content">
+    <div
+      mat-line
+      *ngIf="!willDisplayUpdateField; else updateField"
+      id="content"
+    >
       {{ comment?.content }}
-    </p>
+    </div>
   </div>
 
   <ng-template #updateField>
@@ -47,4 +51,4 @@
       <mat-icon>update</mat-icon> Update
     </button>
   </mat-menu>
-</li>
+</mat-list-item>

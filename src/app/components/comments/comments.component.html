@@ -1,5 +1,7 @@
 <!-- list of comments -->
-<ul>
+<mat-list>
+  <div mat-subheader>Comments:</div>
+
   <app-comment
     *ngFor="let comment of comments"
     [comment]="comment"
@@ -7,7 +9,7 @@
     (commentUpdated)="onUpdateComment($event)"
   >
   </app-comment>
-</ul>
+</mat-list>
 
 <!-- add new comment -->
 <mat-form-field>
