@@ -13,12 +13,14 @@
 
 <!-- add new comment -->
 <mat-form-field>
-  <input matInput type="text" id="comment" #commentInputField />
+  <input
+    matInput
+    type="text"
+    id="comment"
+    placeholder="Comment ..."
+    #commentInputField
+  />
 </mat-form-field>
-<button
-  mat-raised-button
-  id="add-comment"
-  (click)="onCreateComment(commentInputField)"
->
-  Comment
+<button mat-button matSuffix (click)="onCreateComment(commentInputField)">
+  <mat-icon class="material-icons-outlined">create</mat-icon>
 </button>
