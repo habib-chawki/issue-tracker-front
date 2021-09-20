@@ -1,9 +1,13 @@
-<mat-action-list>
-  <div mat-subheader>Projects</div>
+<ng-container *ngIf="projects.length; then projectsList"></ng-container>
 
-  <app-project *ngFor="let project of projects" [project]="project">
-  </app-project>
-</mat-action-list>
+<ng-template #projectsList>
+  <mat-action-list>
+    <div mat-subheader>Projects</div>
+
+    <app-project *ngFor="let project of projects" [project]="project">
+    </app-project>
+  </mat-action-list>
+</ng-template>
 
 <button
   mat-fab
