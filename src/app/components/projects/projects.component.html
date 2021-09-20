@@ -1,4 +1,7 @@
-<ng-container *ngIf="projects.length; then projectsList"></ng-container>
+<!-- display either the list of projects or a fallback element -->
+<ng-container
+  *ngIf="projects.length; then projectsList; else fallback"
+></ng-container>
 
 <ng-template #projectsList>
   <mat-action-list>
@@ -7,6 +10,10 @@
     <app-project *ngFor="let project of projects" [project]="project">
     </app-project>
   </mat-action-list>
+</ng-template>
+
+<ng-template #fallback>
+  <h1 class="fallback">There are currently no projects</h1>
 </ng-template>
 
 <button
