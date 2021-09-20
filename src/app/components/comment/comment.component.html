@@ -1,16 +1,14 @@
 <mat-list-item>
-  <div mat-line>
-    <div mat-line>
-      <strong>{{ comment?.owner.userName }}</strong>
-    </div>
+  <mat-icon class="material-icons-outlined" mat-list-icon
+    >account_circle</mat-icon
+  >
 
-    <div
-      mat-line
-      *ngIf="!willDisplayUpdateField; else updateField"
-      id="content"
-    >
-      {{ comment?.content }}
-    </div>
+  <div mat-line>
+    <strong>{{ comment?.owner.userName }}</strong>
+  </div>
+
+  <div mat-line *ngIf="!willDisplayUpdateField; else updateField" id="content">
+    {{ comment?.content }}
   </div>
 
   <ng-template #updateField>
