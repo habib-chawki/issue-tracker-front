@@ -1,62 +1,64 @@
 <div class="details">
   <div>
-    <h2>Description:</h2>
-    <p id="description">{{ issue.description }}</p>
-  </div>
+    <div>
+      <h2>Description:</h2>
+      <p id="description">{{ issue.description }}</p>
+    </div>
 
-  <div>
-    <h2>Summary:</h2>
-    <p id="summary">{{ issue.summary }}</p>
-  </div>
+    <div>
+      <h2>Summary:</h2>
+      <p id="summary">{{ issue.summary }}</p>
+    </div>
 
-  <table>
-    <tr>
-      <th>Type</th>
-      <th>Status</th>
-      <th>Priority</th>
-      <th>Story points</th>
-      <th>Creation date</th>
-      <th>Reporter</th>
-      <th>Assignee</th>
-    </tr>
-    <tr>
-      <td>
-        <div class="container">
-          <ng-container [ngSwitch]="issue.type">
-            <mat-icon *ngSwitchCase="'Story'" matTooltip="Story"
-              >auto_stories</mat-icon
-            >
-            <mat-icon *ngSwitchCase="'Bug'" matTooltip="Bug"
-              >bug_report</mat-icon
-            >
-            <mat-icon *ngSwitchDefault matTooltip="Task">task</mat-icon>
-          </ng-container>
-        </div>
-      </td>
-      <td>{{ issue.status }}</td>
-      <td>
-        <div class="container">
-          <ng-container [ngSwitch]="issue.priority">
-            <mat-icon matTooltip="High" *ngSwitchCase="'High'"
-              >keyboard_double_arrow_up</mat-icon
-            >
-            <mat-icon matTooltip="Low" *ngSwitchCase="'Low'"
-              >keyboard_double_arrow_down</mat-icon
-            >
-            <mat-icon *ngSwitchDefault matTooltip="Medium"
-              >keyboard_double_arrow_right</mat-icon
-            >
-          </ng-container>
-        </div>
-      </td>
-      <td>
-        <span class="points">{{ issue.points }}</span>
-      </td>
-      <td>{{ issue.creationTime | date }}</td>
-      <td>{{ issue.reporter?.userName }}</td>
-      <td>{{ issue.assignee?.userName }}</td>
-    </tr>
-  </table>
+    <table>
+      <tr>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Story points</th>
+        <th>Creation date</th>
+        <th>Reporter</th>
+        <th>Assignee</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="container">
+            <ng-container [ngSwitch]="issue.type">
+              <mat-icon *ngSwitchCase="'Story'" matTooltip="Story"
+                >auto_stories</mat-icon
+              >
+              <mat-icon *ngSwitchCase="'Bug'" matTooltip="Bug"
+                >bug_report</mat-icon
+              >
+              <mat-icon *ngSwitchDefault matTooltip="Task">task</mat-icon>
+            </ng-container>
+          </div>
+        </td>
+        <td>{{ issue.status }}</td>
+        <td>
+          <div class="container">
+            <ng-container [ngSwitch]="issue.priority">
+              <mat-icon matTooltip="High" *ngSwitchCase="'High'"
+                >keyboard_double_arrow_up</mat-icon
+              >
+              <mat-icon matTooltip="Low" *ngSwitchCase="'Low'"
+                >keyboard_double_arrow_down</mat-icon
+              >
+              <mat-icon *ngSwitchDefault matTooltip="Medium"
+                >keyboard_double_arrow_right</mat-icon
+              >
+            </ng-container>
+          </div>
+        </td>
+        <td>
+          <span class="points">{{ issue.points }}</span>
+        </td>
+        <td>{{ issue.creationTime | date }}</td>
+        <td>{{ issue.reporter?.userName }}</td>
+        <td>{{ issue.assignee?.userName }}</td>
+      </tr>
+    </table>
+  </div>
 
   <!-- list of comments -->
   <app-comments

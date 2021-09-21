@@ -2,7 +2,11 @@ $border: 1px solid rgb(141, 141, 141);
 
 .details {
   width: 50rem;
-  height: 85vh;
+  height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   table {
     width: 100%;
