@@ -1,22 +1,26 @@
 <div class="details">
   <div>
     <div>
-      <h2>Description:</h2>
-      <p id="description">{{ issue.description }}</p>
-    </div>
-
-    <div>
       <h2>Summary:</h2>
       <p id="summary">{{ issue.summary }}</p>
     </div>
 
+    <div>
+      <h2>Description:</h2>
+      <p id="description">{{ issue.description }}</p>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div>
     <table>
       <tr>
         <th>Type</th>
         <th>Status</th>
         <th>Priority</th>
-        <th>Story points</th>
-        <th>Creation date</th>
+        <th>Points</th>
+        <th>Created</th>
         <th>Reporter</th>
         <th>Assignee</th>
       </tr>
@@ -59,6 +63,8 @@
       </tr>
     </table>
   </div>
+
+  <mat-divider></mat-divider>
 
   <!-- list of comments -->
   <app-comments
