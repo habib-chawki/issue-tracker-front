@@ -16,6 +16,8 @@
       <th>Priority</th>
       <th>Story points</th>
       <th>Creation date</th>
+      <th>Reporter</th>
+      <th>Assignee</th>
     </tr>
     <tr>
       <td>
@@ -51,18 +53,10 @@
         <span class="points">{{ issue.points }}</span>
       </td>
       <td>{{ issue.creationTime | date }}</td>
+      <td>{{ issue.reporter?.userName }}</td>
+      <td>{{ issue.assignee?.userName }}</td>
     </tr>
   </table>
-
-  <div>
-    <h2>Assignee:</h2>
-    <p id="assignee">{{ issue.assignee?.userName }}</p>
-  </div>
-
-  <div>
-    <h2>Reporter:</h2>
-    <p id="reporter">{{ issue.reporter?.userName }}</p>
-  </div>
 
   <!-- list of comments -->
   <app-comments
