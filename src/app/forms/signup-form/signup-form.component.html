@@ -12,7 +12,7 @@
           >Should contain letters only</mat-error
         >
         <mat-error *ngIf="fullName.hasError('required')"
-          >Full name is required</mat-error
+          >Full name is <strong>required</strong></mat-error
         >
         <mat-error
           *ngIf="
@@ -29,7 +29,7 @@
           >Should be at least 3 characters long</mat-error
         >
         <mat-error *ngIf="username.hasError('required')"
-          >User name is required</mat-error
+          >User name is <strong>required</strong></mat-error
         >
       </mat-form-field>
 
@@ -38,7 +38,7 @@
         <input matInput type="text" formControlName="email" id="email" />
 
         <mat-error *ngIf="email.invalid && !email.hasError('required')">
-          Invalid email
+          <strong>Invalid</strong> email
         </mat-error>
 
         <mat-error *ngIf="email.hasError('required')"

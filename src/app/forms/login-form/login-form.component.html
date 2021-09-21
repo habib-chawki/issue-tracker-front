@@ -10,7 +10,7 @@
         <input matInput type="text" id="email" formControlName="email" />
 
         <mat-error *ngIf="email.invalid && !email.hasError('required')">
-          Invalid email
+          <strong>Invalid</strong> email
         </mat-error>
 
         <mat-error *ngIf="email.hasError('required')"
