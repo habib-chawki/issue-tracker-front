@@ -1,7 +1,5 @@
 <!-- list of comments -->
-<mat-divider></mat-divider>
-
-<mat-list>
+<mat-list *ngIf="comments.length">
   <div mat-subheader>Comments:</div>
 
   <app-comment
