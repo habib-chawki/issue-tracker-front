@@ -3,6 +3,7 @@ $border: 1px solid rgb(141, 141, 141);
 .details {
   width: 60rem;
   height: 70vh;
+  padding: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -26,8 +27,8 @@ $border: 1px solid rgb(141, 141, 141);
     }
 
     .points {
-      padding: 0.3rem;
-      border-radius: 30%;
+      padding: 0.3rem 0.4rem;
+      border-radius: 20%;
       background-color: rgba(0, 0, 0, 0.85);
       color: white;
       font-weight: 900;
