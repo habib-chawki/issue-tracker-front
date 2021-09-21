@@ -19,7 +19,15 @@
     <tr>
       <td>{{ issue.type }}</td>
       <td>{{ issue.status }}</td>
-      <td>{{ issue.priority }}</td>
+      <td>
+        <ng-container [ngSwitch]="issue.priority">
+          <mat-icon *ngSwitchCase="'High'">keyboard_double_arrow_up</mat-icon>
+          <mat-icon *ngSwitchCase="'Low'">keyboard_double_arrow_down</mat-icon>
+          <mat-icon *ngSwitchDefault>keyboard_double_arrow_right</mat-icon>
+        </ng-container>
+
+        {{ issue.priority }}
+      </td>
       <td>{{ issue.points }}</td>
     </tr>
   </table>
