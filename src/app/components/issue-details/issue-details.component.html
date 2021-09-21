@@ -9,25 +9,20 @@
     <p id="summary">{{ issue.summary }}</p>
   </div>
 
-  <div>
-    <h2>Type:</h2>
-    <p id="type">{{ issue.type }}</p>
-  </div>
-
-  <div>
-    <h2>Status:</h2>
-    <p id="status">{{ issue.status }}</p>
-  </div>
-
-  <div>
-    <h2>Priority:</h2>
-    <p id="status">{{ issue.priority }}</p>
-  </div>
-
-  <div>
-    <h2 for="estimate">Story points:</h2>
-    <div id="estimate">{{ issue.points }}</div>
-  </div>
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Story points</th>
+    </tr>
+    <tr>
+      <td>{{ issue.type }}</td>
+      <td>{{ issue.status }}</td>
+      <td>{{ issue.priority }}</td>
+      <td>{{ issue.points }}</td>
+    </tr>
+  </table>
 
   <div>
     <h2>Assignee:</h2>
