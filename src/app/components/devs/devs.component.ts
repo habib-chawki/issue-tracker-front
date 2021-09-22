@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class DevsComponent implements OnInit {
   devs: User[];
+  projectId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +22,8 @@ export class DevsComponent implements OnInit {
     // extract project id and load dev team
     this.route.queryParams.subscribe({
       next: (queryParams) => {
-        this.loadDevs(queryParams.project);
+        this.projectId = queryParams.project;
+        this.loadDevs(this.projectId);
       },
     });
   }
@@ -39,7 +41,6 @@ export class DevsComponent implements OnInit {
       .subscribe({
         next: (loadedDevs) => {
           this.devs = loadedDevs;
-          console.log('DEV TEAM LOADED: ' + JSON.stringify(loadedDevs));
         },
       });
   }
