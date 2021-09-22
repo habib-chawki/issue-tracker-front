@@ -5,7 +5,15 @@
 
   margin-bottom: 1.5rem;
 
-  .dev-name {
-    font-weight: 600;
+  .owner {
+    display: flex;
+
+    mat-icon {
+      margin-right: 1rem;
+    }
+
+    .name {
+      font-weight: 600;
+    }
   }
 }
