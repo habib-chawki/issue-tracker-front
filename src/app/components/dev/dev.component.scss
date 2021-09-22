@@ -1,7 +1,11 @@
 .dev-card {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  padding: 50px, 10px;
+  align-items: baseline;
+
+  margin-bottom: 1.5rem;
+
+  .dev-name {
+    font-weight: 600;
+  }
 }
