@@ -1,20 +1,8 @@
-.dev-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+@use "~src/styles/layout/dev-card";
 
-  margin-bottom: 1.5rem;
-
-  .owner {
-    mat-icon {
-      margin-right: 1rem;
-      vertical-align: text-bottom;
-    }
-
-    .name {
-      display: inline;
-      font-size: medium;
-      font-weight: 600;
-    }
+.owner {
+  mat-icon {
+    margin-right: 1rem;
+    vertical-align: text-bottom;
   }
 }

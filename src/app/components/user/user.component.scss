@@ -1,13 +1,1 @@
-.user-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-
-  margin-bottom: 1.5rem;
-
-  .user-name {
-    display: inline;
-    font-weight: 600;
-    font-size: medium;
-  }
-}
+@use "~src/styles/layout/dev-card";
