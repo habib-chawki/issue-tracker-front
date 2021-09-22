@@ -16,12 +16,17 @@ export class DevComponent implements OnInit {
 
   @Output() userRemovedFromProject = new EventEmitter<User>();
 
+  isOwner: boolean;
+
   constructor(
     private projectService: ProjectService,
     private storageService: StorageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // determine whether user is owner (can remove other devs from project)
+    this.isOwner = this.storageService.getUserIdentifier() == this.dev.id;
+  }
 
   onRemove() {
     // remove user from project
@@ -34,9 +39,5 @@ export class DevComponent implements OnInit {
           this.userRemovedFromProject.emit(this.dev);
         },
       });
-  }
-
-  canRemove() {
-    return this.storageService.getUserIdentifier() != this.dev.id;
   }
 }
