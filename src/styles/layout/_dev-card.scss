@@ -1,0 +1,13 @@
+.dev-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  margin-bottom: 1.5rem;
+
+  .name {
+    display: inline;
+    font-weight: 600;
+    font-size: medium;
+  }
+}
