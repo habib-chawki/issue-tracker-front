@@ -1,5 +1,14 @@
 <mat-card class="dev-card">
-  <h3 class="dev-name">{{ dev.fullName }} ({{ dev.userName }})</h3>
+  <div class="owner">
+    <mat-icon
+      *ngIf="isOwner"
+      matTooltip="Project owner"
+      fontSet="material-icons-outlined"
+      >engineering</mat-icon
+    >
+    <h3 class="name">{{ dev.fullName }} ({{ dev.userName }})</h3>
+  </div>
+
   <button
     *ngIf="!isOwner"
     matTooltip="Remove from project"
