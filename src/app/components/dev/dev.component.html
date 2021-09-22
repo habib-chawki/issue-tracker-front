@@ -1,6 +1,11 @@
 <mat-card class="dev-card">
   <h3 class="dev-name">{{ dev.fullName }} ({{ dev.userName }})</h3>
-  <button *ngIf="!isOwner" mat-raised-button color="warn" (click)="onRemove()">
-    Remove
+  <button
+    *ngIf="!isOwner"
+    matTooltip="Remove from project"
+    mat-button
+    (click)="onRemove()"
+  >
+    <mat-icon fontSet="material-icons-outlined">person_remove_alt_1</mat-icon>
   </button>
 </mat-card>
