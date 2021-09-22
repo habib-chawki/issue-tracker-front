@@ -1,14 +1,16 @@
-<app-user
-  *ngFor="let user of users"
-  [projectId]="projectId"
-  [user]="user"
-  (userAddedToProject)="onAddUserToProject($event)"
-></app-user>
+<div class="main">
+  <app-user
+    *ngFor="let user of users"
+    [projectId]="projectId"
+    [user]="user"
+    (userAddedToProject)="onAddUserToProject($event)"
+  ></app-user>
 
-<button
-  *ngIf="willDisplayLoadMore"
-  mat-raised-button
-  (click)="onLoadMoreUsers()"
->
-  Load more
-</button>
+  <button
+    *ngIf="willDisplayLoadMore"
+    mat-raised-button
+    (click)="onLoadMoreUsers()"
+  >
+    Load more
+  </button>
+</div>
