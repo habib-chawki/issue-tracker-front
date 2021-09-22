@@ -8,9 +8,11 @@
 
   <button
     *ngIf="willDisplayLoadMore"
-    mat-raised-button
     (click)="onLoadMoreUsers()"
+    matTooltip="Load more users"
+    mat-fab
+    color="basic"
   >
-    Load more
+    <mat-icon class="material-icons-outlined">autorenew</mat-icon>
   </button>
 </div>
