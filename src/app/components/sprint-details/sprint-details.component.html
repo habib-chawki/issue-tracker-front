@@ -10,7 +10,6 @@
     <!-- expansion panel main content -->
     <table>
       <tr>
-        <th>Name</th>
         <th>Issues</th>
         <th>Status</th>
         <th>Start date</th>
@@ -18,7 +17,6 @@
       </tr>
 
       <tr>
-        <td>{{ sprint.name }}</td>
         <td>{{ sprint.backlog.length }}</td>
         <td>{{ sprint.status }}</td>
         <td>{{ sprint.startDate | date }}</td>
@@ -27,11 +25,11 @@
     </table>
 
     <button
-      mat-button
+      mat-raised-button
       *ngIf="sprint.status === 'Active'"
       (click)="onDisplaySprintBoard()"
     >
-      Go to board <mat-icon>arrow_right_alt</mat-icon>
+      Go to board <mat-icon>assignment</mat-icon>
     </button>
   </mat-expansion-panel>
 </div>
