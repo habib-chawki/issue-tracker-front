@@ -1,4 +1,4 @@
-$border: 1px solid rgb(141, 141, 141);
+@use "~src/styles/components/details-table";
 
 .details {
   width: 60rem;
@@ -10,21 +10,7 @@ $border: 1px solid rgb(141, 141, 141);
   justify-content: space-between;
 
   table {
-    width: 100%;
-    font-size: 120%;
-    text-align: center;
-
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-
-    td,
-    th {
-      padding: 0.5rem;
-    }
-
-    th {
-      border-bottom: $border;
-    }
+    @extend %details-table;
 
     .points {
       padding: 0.3rem 0.4rem;

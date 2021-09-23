@@ -1,4 +1,4 @@
-$border: 1px solid rgb(141, 141, 141);
+@use "~src/styles/components/details-table";
 
 .main {
   margin: 3rem;
@@ -9,21 +9,7 @@ $border: 1px solid rgb(141, 141, 141);
   }
 
   table {
-    width: 100%;
-    font-size: 120%;
-    text-align: center;
-
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-
-    td,
-    th {
-      padding: 0.5rem;
-    }
-
-    th {
-      border-bottom: $border;
-    }
+    @extend %details-table;
   }
 
   button {
