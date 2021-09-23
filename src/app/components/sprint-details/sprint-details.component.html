@@ -21,8 +21,8 @@
         <td>{{ sprint.name }}</td>
         <td>{{ sprint.backlog.length }}</td>
         <td>{{ sprint.status }}</td>
-        <td>{{ sprint.startDate }}</td>
-        <td>{{ sprint.endDate }}</td>
+        <td>{{ sprint.startDate | date }}</td>
+        <td>{{ sprint.endDate | date }}</td>
       </tr>
     </table>
 

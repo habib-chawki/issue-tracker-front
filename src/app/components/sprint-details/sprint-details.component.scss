@@ -1,3 +1,23 @@
+$border: 1px solid rgb(141, 141, 141);
+
 .main {
-  margin: 1.5rem;
+  padding: 2rem;
+
+  table {
+    width: 100%;
+    font-size: 120%;
+    text-align: center;
+
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+
+    td,
+    th {
+      padding: 0.5rem;
+    }
+
+    th {
+      border-bottom: $border;
+    }
+  }
 }
