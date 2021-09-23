@@ -18,7 +18,22 @@
 
       <tr>
         <td>{{ sprint.backlog.length }}</td>
-        <td>{{ sprint.status }}</td>
+        <td>
+          <ng-container [ngSwitch]="sprint.status">
+            <mat-icon
+              fontSet="material-icons-outlined"
+              matTooltip="Active"
+              *ngSwitchCase="'Active'"
+              >pending</mat-icon
+            >
+            <mat-icon matTooltip="Over" *ngSwitchCase="'Over'"
+              >task_alt</mat-icon
+            >
+            <mat-icon *ngSwitchDefault matTooltip="Inactive"
+              >disabled_by_default</mat-icon
+            >
+          </ng-container>
+        </td>
         <td>{{ sprint.startDate | date }}</td>
         <td>{{ sprint.endDate | date }}</td>
       </tr>
