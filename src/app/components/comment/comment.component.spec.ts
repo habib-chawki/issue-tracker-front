@@ -34,7 +34,7 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
 
     // set the comment owner
-    owner = new UserBuilder().id('100').userName('comment@owner').build();
+    owner = new UserBuilder().id('100').username('comment@owner').build();
 
     // set the comment
     comment = new CommentBuilder()
@@ -54,7 +54,7 @@ describe('CommentComponent', () => {
 
     // the owner's username should be rendered
     expect(nativeElement.querySelector('li div#owner').textContent).toContain(
-      comment.owner.userName
+      comment.owner.username
     );
 
     // the comment's content should be renderd
@@ -131,9 +131,8 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
 
     // given the remove button
-    const removeButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#remove'
-    );
+    const removeButton: HTMLButtonElement =
+      nativeElement.querySelector('button#remove');
 
     // when the button is clicked
     removeButton.click();
@@ -180,9 +179,8 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
 
     // given the update button
-    const updateButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#update'
-    );
+    const updateButton: HTMLButtonElement =
+      nativeElement.querySelector('button#update');
 
     // when the button is clicked
     updateButton.click();
@@ -208,8 +206,9 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
 
     // when the update field is rendered
-    const updateField = fixture.debugElement.query(By.css('input#update-field'))
-      .nativeElement;
+    const updateField = fixture.debugElement.query(
+      By.css('input#update-field')
+    ).nativeElement;
 
     // then its value should be the comment content
     expect(updateField.value).toContain(comment.content);
@@ -284,8 +283,9 @@ describe('CommentComponent', () => {
     const updatedContent = 'New and improved comment content';
 
     // given the new comment content is inputted
-    const updateField = fixture.debugElement.query(By.css('input#update-field'))
-      .nativeElement;
+    const updateField = fixture.debugElement.query(
+      By.css('input#update-field')
+    ).nativeElement;
     updateField.value = updatedContent;
 
     // when the save button is clicked

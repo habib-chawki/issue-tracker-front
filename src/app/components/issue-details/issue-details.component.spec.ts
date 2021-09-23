@@ -50,8 +50,8 @@ describe('IssueDetailsComponent', () => {
       priority: IssuePriority.HIGH,
       type: IssueType.TASK,
       status: IssueStatus.UNRESOLVED,
-      assignee: new UserBuilder().userName('assignee@issue').build(),
-      reporter: new UserBuilder().userName('reporter@issue').build(),
+      assignee: new UserBuilder().username('assignee@issue').build(),
+      reporter: new UserBuilder().username('reporter@issue').build(),
       comments: [
         new CommentBuilder().content('comment1').owner('jon doe').build(),
         new CommentBuilder().content('comment2').owner('jane doe').build(),
@@ -147,11 +147,11 @@ describe('IssueDetailsComponent', () => {
     );
 
     expect(nativeElement.querySelector('div#assignee').textContent).toEqual(
-      issue.assignee.userName
+      issue.assignee.username
     );
 
     expect(nativeElement.querySelector('div#reporter').textContent).toEqual(
-      issue.reporter.userName
+      issue.reporter.username
     );
 
     expect(nativeElement.querySelector('div#votes').textContent).toContain(

@@ -11,7 +11,7 @@ describe('CommentBuilder', () => {
       owner: new UserBuilder()
         .id('111')
         .fullName('comment.owner@email.com')
-        .userName('comown')
+        .username('comown')
         .build(),
 
       content: 'comment content !',

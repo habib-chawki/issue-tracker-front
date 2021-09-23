@@ -52,8 +52,8 @@ describe('IssuesComponent', () => {
       priority: IssuePriority.LOW,
       type: IssueType.BUG,
       status: IssueStatus.RESOLVED,
-      assignee: new UserBuilder().userName('Me').build(),
-      reporter: new UserBuilder().userName('Someone').build(),
+      assignee: new UserBuilder().username('Me').build(),
+      reporter: new UserBuilder().username('Someone').build(),
       comments: [
         new CommentBuilder().content('comment1').owner('jon doe').build(),
         new CommentBuilder().content('comment2').owner('jane doe').build(),
@@ -74,8 +74,8 @@ describe('IssuesComponent', () => {
       priority: IssuePriority.HIGH,
       type: IssueType.STORY,
       status: IssueStatus.UNRESOLVED,
-      assignee: new UserBuilder().userName('You').build(),
-      reporter: new UserBuilder().userName('Someone else').build(),
+      assignee: new UserBuilder().username('You').build(),
+      reporter: new UserBuilder().username('Someone else').build(),
       comments: [
         new CommentBuilder().content('comment1').owner('jon doe').build(),
         new CommentBuilder().content('comment2').owner('jane doe').build(),

@@ -6,7 +6,7 @@ export class UserBuilder {
   constructor() {
     this._user = {
       id: null,
-      userName: null,
+      username: null,
       fullName: null,
     };
   }
@@ -16,8 +16,8 @@ export class UserBuilder {
     return this;
   }
 
-  userName(userName: string): UserBuilder {
-    this._user.userName = userName;
+  username(userName: string): UserBuilder {
+    this._user.username = userName;
     return this;
   }
 

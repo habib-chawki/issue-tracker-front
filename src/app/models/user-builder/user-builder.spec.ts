@@ -7,7 +7,7 @@ describe('UserBuilder', () => {
   beforeEach(() => {
     user = {
       id: '10',
-      userName: 'JonnyDoeDoe',
+      username: 'JonnyDoeDoe',
       fullName: 'jon.doe@email.com',
     };
   });
@@ -16,7 +16,7 @@ describe('UserBuilder', () => {
     const createdUser = new UserBuilder()
       .id(user.id)
       .fullName(user.fullName)
-      .userName(user.userName)
+      .username(user.username)
       .build();
 
     expect(createdUser).toEqual(user);
