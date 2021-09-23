@@ -49,8 +49,8 @@
           <span class="points">{{ issue.points }}</span>
         </td>
         <td>{{ issue.creationTime | date }}</td>
-        <td>{{ issue.reporter?.username }}</td>
-        <td>{{ issue.assignee?.username }}</td>
+        <td>@{{ issue.reporter?.username }}</td>
+        <td>@{{ issue.assignee?.username }}</td>
       </tr>
     </table>
   </div>
