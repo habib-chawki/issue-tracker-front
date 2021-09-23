@@ -3,10 +3,29 @@
     <mat-expansion-panel-header>
       <mat-panel-title> {{ sprint.name }} </mat-panel-title>
       <mat-panel-description>
-        issues: {{ sprint.backlog.length }}
+        {{ sprint.goal }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{ sprint.goal }}</p>
+
+    <!-- expansion panel main content -->
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Issues</th>
+        <th>Status</th>
+        <th>Start date</th>
+        <th>End date</th>
+      </tr>
+
+      <tr>
+        <td>{{ sprint.name }}</td>
+        <td>{{ sprint.backlog.length }}</td>
+        <td>{{ sprint.status }}</td>
+        <td>{{ sprint.startDate }}</td>
+        <td>{{ sprint.endDate }}</td>
+      </tr>
+    </table>
+
     <button
       mat-button
       *ngIf="sprint.status === 'Active'"
