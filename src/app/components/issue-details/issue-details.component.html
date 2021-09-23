@@ -17,33 +17,29 @@
       </tr>
       <tr>
         <td>
-          <div class="container">
-            <ng-container [ngSwitch]="issue.type">
-              <mat-icon *ngSwitchCase="'Story'" matTooltip="Story"
-                >auto_stories</mat-icon
-              >
-              <mat-icon *ngSwitchCase="'Bug'" matTooltip="Bug"
-                >bug_report</mat-icon
-              >
-              <mat-icon *ngSwitchDefault matTooltip="Task">task</mat-icon>
-            </ng-container>
-          </div>
+          <ng-container [ngSwitch]="issue.type">
+            <mat-icon *ngSwitchCase="'Story'" matTooltip="Story"
+              >auto_stories</mat-icon
+            >
+            <mat-icon *ngSwitchCase="'Bug'" matTooltip="Bug"
+              >bug_report</mat-icon
+            >
+            <mat-icon *ngSwitchDefault matTooltip="Task">task</mat-icon>
+          </ng-container>
         </td>
         <td>{{ issue.status }}</td>
         <td>
-          <div class="container">
-            <ng-container [ngSwitch]="issue.priority">
-              <mat-icon matTooltip="High" *ngSwitchCase="'High'"
-                >keyboard_double_arrow_up</mat-icon
-              >
-              <mat-icon matTooltip="Low" *ngSwitchCase="'Low'"
-                >keyboard_double_arrow_down</mat-icon
-              >
-              <mat-icon *ngSwitchDefault matTooltip="Medium"
-                >keyboard_double_arrow_right</mat-icon
-              >
-            </ng-container>
-          </div>
+          <ng-container [ngSwitch]="issue.priority">
+            <mat-icon matTooltip="High" *ngSwitchCase="'High'"
+              >keyboard_double_arrow_up</mat-icon
+            >
+            <mat-icon matTooltip="Low" *ngSwitchCase="'Low'"
+              >keyboard_double_arrow_down</mat-icon
+            >
+            <mat-icon *ngSwitchDefault matTooltip="Medium"
+              >keyboard_double_arrow_right</mat-icon
+            >
+          </ng-container>
         </td>
         <td>
           <span class="points">{{ issue.points }}</span>
