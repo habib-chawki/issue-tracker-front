@@ -3,6 +3,11 @@ $border: 1px solid rgb(141, 141, 141);
 .main {
   padding: 2rem;
 
+  mat-panel-title {
+    font-weight: 600;
+    font-size: medium;
+  }
+
   table {
     width: 100%;
     font-size: 120%;
