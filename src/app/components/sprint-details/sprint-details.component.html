@@ -25,11 +25,13 @@
     </table>
 
     <button
-      mat-raised-button
+      mat-fab
       *ngIf="sprint.status === 'Active'"
+      matTooltip="Go to board"
       (click)="onDisplaySprintBoard()"
+      color="basic"
     >
-      Go to board <mat-icon>assignment</mat-icon>
+      <mat-icon class="material-icons-outlined">assignment</mat-icon>
     </button>
   </mat-expansion-panel>
 </div>
