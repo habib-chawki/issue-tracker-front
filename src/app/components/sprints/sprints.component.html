@@ -13,7 +13,8 @@
 </ng-template>
 
 <ng-template #showSprints>
-  <div *ngFor="let sprint of sprints">
-    <app-sprint-details [sprint]="sprint"> </app-sprint-details>
-  </div>
+  <mat-accordion>
+    <app-sprint-details *ngFor="let sprint of sprints" [sprint]="sprint">
+    </app-sprint-details>
+  </mat-accordion>
 </ng-template>
