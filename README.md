@@ -2,7 +2,7 @@
 
 Issue tracking system for **Agile** development with **Scrum**
 
-## Key features
+# Key features
 
 - User **signup** and **login**
 - Project **collaboration**
@@ -14,10 +14,24 @@ Issue tracking system for **Agile** development with **Scrum**
 - Create **sprints** and **increments**
 - Use **scrum boards** and keep track of work progress
 
-## Installation
+# Installation
 
 ```javascript
 npm install
 ```
 
-## Usage
+# Usage
+
+## Signup and Login
+
+## Projects
+
+## Issues
+
+## Product backlog
+
+## Sprints
+
+## Scrum board
+
+## Development teams
