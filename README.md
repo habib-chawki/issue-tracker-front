@@ -4,15 +4,15 @@ Issue tracking system for **Agile** development with **Scrum**
 
 ## Key features
 
-- Sign users up and log users in
+- Enable user **signup** and **login**
 - Project **collaboration**
 - Set up **development teams**
 - Build and manage **product backlogs**
-  - create issues, features, bugs & tasks
-  - add story points and estimation
+  - create issues, features & bugs
+  - assign story points and formulate estimates
   - order and prioritize items
 - Create **sprints** and **increments**
-- Keep track of work progress with **scrum boards**
+- Use **scrum boards** and keep track of work progress
 
 ## Installation
 
