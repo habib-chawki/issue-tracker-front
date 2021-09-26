@@ -1,12 +1,16 @@
 # Its4aDev
 
-Issue tracking system for agile development with **Scrum**
+Issue tracking system for **Agile** development with **Scrum**
 
 ## Features
 
 - User login / signup
-- Issues creation
-- Drag and drop
+- Collaboration
+- Projects
+- Product backlog
+- Sprints
+- Scrum boards with drag and drop functionality
+- Add, remove & update user stories (issues, bugs & tasks)
 
 ## Installation
 
