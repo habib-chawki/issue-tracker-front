@@ -42,6 +42,8 @@ As a user, I can create issues, so that I can track individual pieces of work th
 
 ## Product backlog
 
+As a user, I can manage a prioritized list of issues, so that the development team can improve the product.
+
 ## Sprints
 
 ## Scrum board
