@@ -26,6 +26,8 @@ npm install
 
 ## Projects
 
+As a team, we can create new projects, so that we can coordinate the development of a product.
+
 ## Issues
 
 ## Product backlog
