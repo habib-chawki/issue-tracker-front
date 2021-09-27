@@ -48,6 +48,8 @@ As a user, I can manage a prioritized list of issues, so that the development te
 
 ## Scrum board
 
+As a user, I can create boards for my sprints organized into columns.
+
 ## Development teams
 
 As a user, I can manage my project's development team, by adding or removing members.
