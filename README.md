@@ -24,9 +24,11 @@ npm install
 
 ## Signup and Login
 
+As a user, i can sign up by providing my full name, email address, a globally unique username and a password.
+
 ## Projects
 
-As a team, we can create new projects, so that we can coordinate the development of a product.
+As a team, we can create projects, so that we can coordinate the development of a product.
 
 ## Issues
 
