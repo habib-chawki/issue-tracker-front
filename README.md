@@ -24,7 +24,11 @@ npm install
 
 ## Signup and Login
 
+### Signup
+
 As a user, I can sign up by providing my full name, email address, a globally unique username and a password.
+
+### Login
 
 As a user, I can log in with the credentials I provided during signup, including my email and password.
 
@@ -33,6 +37,8 @@ As a user, I can log in with the credentials I provided during signup, including
 As a team, we can create projects, so that we can coordinate the development of a product.
 
 ## Issues
+
+As a user, I can create issues, so that I can track individual pieces of work that must be completed.
 
 ## Product backlog
 
