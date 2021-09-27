@@ -50,7 +50,11 @@ As a user, I can manage a prioritized list of issues, so that the development te
 
 As a user, I can create sprints by specifying their start and end dates as well as their goal.
 
-### Launch:
+### Manage backlog:
+
+As a user, I can identify the items to be added to fill the sprint backlog, by dragging them from the product backlog.
+
+### Start:
 
 As a user, I can start a sprint after having selected the necessary set of items from the product backlog.
 
