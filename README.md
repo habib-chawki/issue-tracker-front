@@ -46,6 +46,8 @@ As a user, I can manage a prioritized list of issues, so that the development te
 
 ## Sprints
 
+As a user, I can create sprints by specifying their start and end dates as well as their goal.
+
 ## Scrum board
 
 As a user, I can create boards for my sprints organized into columns.
