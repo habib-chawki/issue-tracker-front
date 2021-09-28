@@ -78,6 +78,10 @@ As a user, I can move issues between columns by dragging them, which changes the
 
 As a user, I can end a sprint, so that all the uncompleted issues are put back into the product backlog, to be included in another sprint.
 
+### Display details
+
+As a user, I can display the details of the currently active, as well as the previously completed sprints.
+
 ## Development teams
 
 As a user, I can manage my project's development team, by adding or removing members.
