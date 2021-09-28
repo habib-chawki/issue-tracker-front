@@ -46,6 +46,10 @@ As a user, I can create issues, so that I can track individual pieces of work th
 
 As a user, I can update an issue's properties such as its description, summary, priority, type, points and assignee.
 
+### Details
+
+As a user, I can display the details of a particular issue.
+
 ### Remove
 
 As a user, I can remove issues from the product backlog.
