@@ -62,6 +62,10 @@ As a user, I can start a sprint after having selected the necessary set of items
 
 As a user, I can create boards for my sprints organized into columns.
 
+## Columns:
+
+As a user, I can move issues between columns by dragging them, so that their status will change.
+
 ## Development teams
 
 As a user, I can manage my project's development team, by adding or removing members.
