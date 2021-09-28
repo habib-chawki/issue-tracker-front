@@ -44,17 +44,17 @@ As a user, I can create issues, so that I can track individual pieces of work th
 
 As a user, I can manage a prioritized list of issues, so that the development team can improve the product.
 
-## Sprints
+## Sprint backlog
 
-### Create:
+### Create
 
-As a user, I can create sprints by specifying their start and end dates as well as their goal.
+As a user, I can create a sprint backlog by specifying a sprint's start and end dates as well as its goal.
 
-### Manage backlog:
+### Manage
 
 As a user, I can identify the items to be added to fill the sprint backlog, by dragging them from the product backlog.
 
-### Start:
+### Start
 
 As a user, I can start a sprint after having selected the necessary set of items from the product backlog.
 
@@ -64,17 +64,19 @@ As a user, I can create boards for my sprints organized into columns.
 
 ## Columns
 
-### Add:
+### Add
 
 As a user, I can add new columns to the scrum board.
 
-### Update:
+### Update
 
 As a user, I can update a column's title.
 
-### Utilization:
+### Utilization
 
 As a user, I can move issues between columns by dragging them, which changes their status.
+
+## End sprint
 
 ## Development teams
 
