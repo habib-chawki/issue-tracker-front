@@ -56,7 +56,7 @@ As a user, I can identify the items to be added to fill the sprint backlog, by d
 
 ### Start
 
-As a user, I can start a sprint after having selected the necessary set of items to be completed, from the product backlog.
+As a user, I can start a sprint after having selected the necessary set of items to be completed.
 
 ## Scrum board
 
@@ -72,7 +72,9 @@ As a user, I can add a new column to the Scrum board, in addition to updating it
 
 As a user, I can move issues between columns by dragging them, which changes their status.
 
-## End sprint
+## Sprints
+
+### Complete a sprint
 
 ## Development teams
 
