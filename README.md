@@ -68,6 +68,10 @@ As a user, I can create boards for my sprints organized into columns.
 
 As a user, I can move issues between columns by dragging them, which changes their status.
 
+### Add:
+
+As a user, I can add new columns to the scrum board.
+
 ### Update:
 
 As a user, I can update a column's title.
