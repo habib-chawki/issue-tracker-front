@@ -64,7 +64,13 @@ As a user, I can create boards for my sprints organized into columns.
 
 ## Columns:
 
-As a user, I can move issues between columns by dragging them, so that their status will change.
+### Utilization:
+
+As a user, I can move issues between columns by dragging them, in order to change their status.
+
+### Update:
+
+As a user, I can update a column's title.
 
 ## Development teams
 
