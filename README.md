@@ -42,7 +42,11 @@ As a user, I can create projects, so that we as a team can coordinate the develo
 
 As a user, I can create issues, so that I can track individual pieces of work that must be completed.
 
-### Manage
+### Update
+
+As a user, I can update an issue's properties such as its description, summary, priority, type, points and assignee.
+
+### Remove
 
 ### Comments
 
