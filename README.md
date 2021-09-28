@@ -12,7 +12,7 @@ Issue tracking system for **Agile** development with **Scrum**
   - assign story points and formulate estimates
   - order and prioritize items
 - Create **sprints** and **increments**
-- Use **scrum boards** and keep track of work progress
+- Use **Scrum boards** and keep track of work progress
 
 # Installation
 
@@ -64,13 +64,9 @@ As a user, I can create boards for my sprints organized into columns.
 
 ## Columns
 
-### Add
+### Manage
 
-As a user, I can add new columns to the scrum board.
-
-### Update
-
-As a user, I can update a column's title.
+As a user, I can add a new column to the Scrum board, in addition to updating its title.
 
 ### Utilization
 
