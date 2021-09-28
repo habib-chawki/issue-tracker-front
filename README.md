@@ -88,7 +88,7 @@ As a user, I can add a new column to the Scrum board, in addition to updating it
 
 ### Utilization
 
-As a user, I can move issues between columns by dragging them, which changes their status.
+As a user, I can move issues between columns by dragging them, so that their status can change.
 
 ## Sprints
 
