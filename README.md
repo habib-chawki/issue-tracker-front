@@ -62,11 +62,11 @@ As a user, I can start a sprint after having selected the necessary set of items
 
 As a user, I can create boards for my sprints organized into columns.
 
-## Columns:
+## Columns
 
 ### Utilization:
 
-As a user, I can move issues between columns by dragging them, in order to change their status.
+As a user, I can move issues between columns by dragging them, which changes their status.
 
 ### Update:
 
