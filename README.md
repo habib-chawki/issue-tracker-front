@@ -48,6 +48,8 @@ As a user, I can update an issue's properties such as its description, summary, 
 
 ### Remove
 
+As a user, I can remove issues from the product backlog.
+
 ### Comments
 
 ## Product backlog
