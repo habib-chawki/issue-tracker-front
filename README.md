@@ -50,7 +50,9 @@ As a user, I can update an issue's properties such as its description, summary, 
 
 As a user, I can remove issues from the product backlog.
 
-### Comments
+## Comments
+
+As a user, I can manage comments on a specific issue.
 
 ## Product backlog
 
