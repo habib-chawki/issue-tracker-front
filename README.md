@@ -11,7 +11,7 @@ Issue tracking system for **Agile** development with **Scrum**
   - create user stories, issues, bugs and tasks
   - assign story points and formulate estimates
   - order and prioritize items
-- Create **sprints** and **increments**
+- Create **sprints** and manage increments
 - Use **Scrum boards** and keep track of work progress
 
 # Installation
@@ -38,7 +38,13 @@ As a user, I can create projects, so that we as a team can coordinate the develo
 
 ## Issues
 
+### Create
+
 As a user, I can create issues, so that I can track individual pieces of work that must be completed.
+
+### Manage
+
+### Comments
 
 ## Product backlog
 
