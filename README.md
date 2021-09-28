@@ -34,7 +34,7 @@ As a user, I can log in with the credentials I provided during signup, including
 
 ## Projects
 
-As a team, we can create projects, so that we can coordinate the development of a product.
+As a user, I can create projects, so that we as a team can coordinate the development of a product.
 
 ## Issues
 
@@ -56,7 +56,7 @@ As a user, I can identify the items to be added to fill the sprint backlog, by d
 
 ### Start
 
-As a user, I can start a sprint after having selected the necessary set of items from the product backlog.
+As a user, I can start a sprint after having selected the necessary set of items to be completed, from the product backlog.
 
 ## Scrum board
 
