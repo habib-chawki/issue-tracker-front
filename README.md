@@ -35,6 +35,8 @@ As a user, I can sign up by providing my full name, email address, a globally un
 
 As a user, I can log in with the credentials I provided during signup, including my email and password.
 
+![Login](/src/assets/gifs/login.gif)
+
 ## Projects
 
 As a user, I can create projects, so that we as a team can coordinate the development of a product.
