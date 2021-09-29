@@ -39,6 +39,8 @@ As a user, I can log in with the credentials I provided during signup, including
 
 As a user, I can create projects, so that we as a team can coordinate the development of a product.
 
+![Signup validation](/src/assets/gifs/project.gif)
+
 ## Issues
 
 ### Create
