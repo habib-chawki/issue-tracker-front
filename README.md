@@ -29,7 +29,7 @@ npm install
 As a user, I can sign up by providing my full name, email address, a globally unique username and a password.
 
 ![Signup validation](/src/assets/gifs/signupValidation.gif)
-![Signup validation](/src/assets/gifs/signup.gif)
+![Signup](/src/assets/gifs/signup.gif)
 
 ### Login
 
@@ -39,7 +39,7 @@ As a user, I can log in with the credentials I provided during signup, including
 
 As a user, I can create projects, so that we as a team can coordinate the development of a product.
 
-![Signup validation](/src/assets/gifs/project.gif)
+![Create new project](/src/assets/gifs/project.gif)
 
 ## Issues
 
@@ -47,13 +47,13 @@ As a user, I can create projects, so that we as a team can coordinate the develo
 
 As a user, I can create issues, so that I can track individual pieces of work that must be completed.
 
-![Signup validation](/src/assets/gifs/createIssue.gif)
+![Create new issue](/src/assets/gifs/createIssue.gif)
 
 ### Update
 
 As a user, I can update an issue's properties, including description, summary, priority, type, points and assignee.
 
-![Signup validation](/src/assets/gifs/updateIssue.gif)
+![Update issue](/src/assets/gifs/updateIssue.gif)
 
 ### Details
 
