@@ -65,6 +65,8 @@ As a user, I can display the details of a particular issue.
 
 As a user, I can remove issues from the product backlog.
 
+![Remove issue](/src/assets/gifs/removeIssue.gif)
+
 ## Comments
 
 As a user, I can manage comments on a specific issue.
