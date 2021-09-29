@@ -71,6 +71,8 @@ As a user, I can remove issues from the product backlog.
 
 As a user, I can manage comments on a specific issue.
 
+![Add comment](/src/assets/gifs/addComment.gif)
+
 ## Product backlog
 
 As a user, I can manage a prioritized list of issues, so that the development team can improve the product.
