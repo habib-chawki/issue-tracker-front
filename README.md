@@ -59,6 +59,8 @@ As a user, I can update an issue's properties, including description, summary, p
 
 As a user, I can display the details of a particular issue.
 
+![Display issue details](/src/assets/gifs/issueDetails.gif)
+
 ### Remove
 
 As a user, I can remove issues from the product backlog.
