@@ -53,6 +53,8 @@ As a user, I can create issues, so that I can track individual pieces of work th
 
 As a user, I can update an issue's properties, including description, summary, priority, type, points and assignee.
 
+![Signup validation](/src/assets/gifs/updateIssue.gif)
+
 ### Details
 
 As a user, I can display the details of a particular issue.
