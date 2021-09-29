@@ -28,7 +28,7 @@ npm install
 
 As a user, I can sign up by providing my full name, email address, a globally unique username and a password.
 
-![Signup validation](/src/assets/gifs/signup.gif)
+![Signup validation](/src/assets/gifs/signupValidation.gif)
 
 ### Login
 
