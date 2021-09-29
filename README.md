@@ -44,7 +44,7 @@ As a user, I can create issues, so that I can track individual pieces of work th
 
 ### Update
 
-As a user, I can update an issue's properties such as its description, summary, priority, type, points and assignee.
+As a user, I can update an issue's properties, including description, summary, priority, type, points and assignee.
 
 ### Details
 
@@ -94,7 +94,7 @@ As a user, I can move issues between columns by dragging them, so that their sta
 
 ### Complete a sprint
 
-As a user, I can end a sprint, so that all the uncompleted issues are put back into the product backlog, to be included in another sprint.
+As a user, I can end a sprint, so that all the uncompleted issues are moved back into the product backlog.
 
 ### Display details
 
