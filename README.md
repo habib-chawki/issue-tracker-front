@@ -47,6 +47,8 @@ As a user, I can create projects, so that we as a team can coordinate the develo
 
 As a user, I can create issues, so that I can track individual pieces of work that must be completed.
 
+![Signup validation](/src/assets/gifs/createIssue.gif)
+
 ### Update
 
 As a user, I can update an issue's properties, including description, summary, priority, type, points and assignee.
