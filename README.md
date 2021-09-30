@@ -133,6 +133,8 @@ As a user, I can end a sprint, so that all the uncompleted issues are moved back
 
 As a user, I can display the details of the currently active, as well as the previously completed sprints.
 
+![Display active sprint details](/src/assets/gifs/displayActiveSprint.gif)
+
 ## Development teams
 
 As a user, I can manage my project's development team, by adding or removing members.
