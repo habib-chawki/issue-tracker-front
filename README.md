@@ -79,6 +79,8 @@ As a user, I can manage comments on a specific issue.
 
 As a user, I can manage a prioritized list of issues, so that the development team can improve the product.
 
+![Product backlog](/src/assets/gifs/productBacklog.gif)
+
 ## Sprint backlog
 
 ### Create
