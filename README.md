@@ -99,6 +99,8 @@ As a user, I can identify the items to be added to fill the sprint backlog, by d
 
 As a user, I can start a sprint after having selected the necessary set of items to be completed.
 
+![Start sprint](/src/assets/gifs/startSprint.gif)
+
 ## Scrum board
 
 As a user, I can create boards for my sprints organized into columns.
