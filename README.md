@@ -140,3 +140,7 @@ As a user, I can display the details of the currently active, as well as the pre
 ## Development teams
 
 As a user, I can manage my project's development team, by adding or removing members.
+
+## Logout
+
+As a user, I can log out from the system.
