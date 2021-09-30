@@ -87,6 +87,8 @@ As a user, I can manage a prioritized list of issues, so that the development te
 
 As a user, I can create a sprint backlog by specifying a sprint's start and end dates as well as its goal.
 
+![Create sprint backlog](/src/assets/gifs/createSprintBacklog.gif)
+
 ### Manage
 
 As a user, I can identify the items to be added to fill the sprint backlog, by dragging them from the product backlog.
