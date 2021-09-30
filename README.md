@@ -40,7 +40,7 @@ As a user, I can log in with the credentials I provided during signup, including
 
 As a user, I can create projects, so that we as a team can coordinate the development of a product.
 
-![Create new project](/src/assets/gifs/project.gif)
+![Create new project](/src/assets/gifs/createProject.gif)
 
 ## Issues
 
@@ -134,6 +134,8 @@ As a user, I can end a sprint, so that all the uncompleted issues are moved back
 As a user, I can display the details of the currently active, as well as the previously completed sprints.
 
 ![Display active sprint details](/src/assets/gifs/displayActiveSprint.gif)
+
+![Display finished sprints details](/src/assets/gifs/displayFinishedSprints.gif)
 
 ## Development teams
 
