@@ -127,6 +127,8 @@ As a user, I can move issues between columns by dragging them, so that their sta
 
 As a user, I can end a sprint, so that all the uncompleted issues are moved back into the product backlog.
 
+![Complete sprint](/src/assets/gifs/endSprint.gif)
+
 ### Display details
 
 As a user, I can display the details of the currently active, as well as the previously completed sprints.
