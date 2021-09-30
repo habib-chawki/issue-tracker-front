@@ -141,6 +141,8 @@ As a user, I can display the details of the currently active, as well as the pre
 
 As a user, I can manage my project's development team, by adding or removing members.
 
+![Teams](/src/assets/gifs/teams.gif)
+
 ## Logout
 
 As a user, I can log out from the system.
