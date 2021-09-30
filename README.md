@@ -144,3 +144,5 @@ As a user, I can manage my project's development team, by adding or removing mem
 ## Logout
 
 As a user, I can log out from the system.
+
+![Logout](/src/assets/gifs/logout.gif)
