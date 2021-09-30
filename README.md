@@ -93,6 +93,8 @@ As a user, I can create a sprint backlog by specifying a sprint's start and end 
 
 As a user, I can identify the items to be added to fill the sprint backlog, by dragging them from the product backlog.
 
+![Manage sprint backlog](/src/assets/gifs/manageSprintBacklog.gif)
+
 ### Start
 
 As a user, I can start a sprint after having selected the necessary set of items to be completed.
