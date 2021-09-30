@@ -119,6 +119,8 @@ As a user, I can add a new column to the Scrum board, in addition to updating it
 
 As a user, I can move issues between columns by dragging them, so that their status can change.
 
+![Use board columns](/src/assets/gifs/useColumns.gif)
+
 ## Sprints
 
 ### Complete a sprint
