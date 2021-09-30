@@ -105,6 +105,8 @@ As a user, I can start a sprint after having selected the necessary set of items
 
 As a user, I can create boards for my sprints organized into columns.
 
+![Create scrum board](/src/assets/gifs/createScrumBoard.gif)
+
 ## Columns
 
 ### Manage
