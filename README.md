@@ -34,6 +34,12 @@ Install dependencies
 npm install
 ```
 
+Run live development server
+
+```
+npm start
+```
+
 # Usage
 
 ## Signup and Login
