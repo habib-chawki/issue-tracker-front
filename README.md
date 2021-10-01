@@ -16,8 +16,10 @@ Issue tracking system for **Agile** development with **Scrum**
 
 # Installation
 
-```javascript
-npm install
+Clone the repository
+
+```
+git clone https://github.com/habib-chawki/issue-tracker-front.git
 ```
 
 # Usage
