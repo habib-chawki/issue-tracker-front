@@ -40,6 +40,8 @@ Run live development server
 npm start
 ```
 
+Open the browser on http://localhost:4200/
+
 # Usage
 
 ## Signup and Login
