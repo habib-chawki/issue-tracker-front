@@ -28,6 +28,12 @@ Change the current working directory
 cd issue-tracker-front/
 ```
 
+Install dependencies
+
+```
+npm install
+```
+
 # Usage
 
 ## Signup and Login
