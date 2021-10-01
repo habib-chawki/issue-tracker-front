@@ -16,6 +16,13 @@ Issue tracking system for **Agile** development with **Scrum**
 
 # Installation
 
+## Requirements
+
+- [Node.js](https://nodejs.org/)
+- [Back-End server](https://github.com/habib-chawki/issue-tracker-back.git) should be up and running
+
+## Guide
+
 Clone the repository
 
 ```
