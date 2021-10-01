@@ -22,6 +22,12 @@ Clone the repository
 git clone https://github.com/habib-chawki/issue-tracker-front.git
 ```
 
+Change the current working directory
+
+```
+cd issue-tracker-front/
+```
+
 # Usage
 
 ## Signup and Login
