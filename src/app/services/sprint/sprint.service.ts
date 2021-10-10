@@ -60,9 +60,9 @@ export class SprintService {
     return this.httpClient.patch(url, body);
   }
 
-  deleteSprint(projectId: string, sprintId: string) {
+  deleteSprint(projectId: string, sprintId: string): Observable<void> {
     const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}`;
 
-    this.httpClient.delete(url);
+    return this.httpClient.delete<void>(url);
   }
 }
