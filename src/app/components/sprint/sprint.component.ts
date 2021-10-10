@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
+import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class SprintComponent implements OnInit, OnDestroy {
 
   constructor(
     private sprintService: SprintService,
+    private sprintSharedService: SprintSharedService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -49,7 +51,8 @@ export class SprintComponent implements OnInit, OnDestroy {
   };
 
   onRemoveSprint() {
-    // remove sprint
+    // announce sprint removed
+    this.sprintSharedService.announceSprintRemoved(this.sprint);
   }
 
   ngOnDestroy(): void {
