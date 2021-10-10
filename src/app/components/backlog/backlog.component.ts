@@ -27,7 +27,6 @@ import { IssueFormComponent } from '../../forms/issue-form/issue-form.component'
 export class BacklogComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
-  sprint: Sprint;
   projectId: string;
   sprints: Sprint[];
   backlog: Issue[] = [];
@@ -36,7 +35,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     private issueService: IssueService,
     private projectService: ProjectService,
     private issueSharedService: IssueIntercomService,
-    private sprintIntercomService: SprintSharedService,
+    private sprintSharedService: SprintSharedService,
     private sprintService: SprintService,
     private dialog: MatDialog,
     private route: ActivatedRoute
@@ -71,10 +70,10 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // listen for issue form saved announcements
     this.issueSharedService.issueFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(this.onSaveIssue);
+      .subscribe({ next: this.onSaveIssue });
 
     // listen for sprint form saved announcements
-    this.sprintIntercomService.sprintFormSaved$
+    this.sprintSharedService.sprintFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({ next: this.createSprint });
   }
@@ -90,6 +89,21 @@ export class BacklogComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((createdIssue: Issue) => {
         this.backlog.push(createdIssue);
+      });
+  }
+
+  deleteSprint(sprintToDelete: Sprint) {
+    this.sprintService
+      .deleteSprint(sprintToDelete.projectId, sprintToDelete.id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: () => {
+          // remove sprint backlog
+          this.sprints = this.sprints.filter(
+            (sprint) => sprint.id !== sprintToDelete.id
+          );
+        },
+        error: () => {},
       });
   }
 
