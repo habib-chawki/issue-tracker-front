@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import Column from 'src/app/models/column/column';
 
-import { ColumnIntercomService } from './column-intercom.service';
+import { ColumnSharedService } from './column-intercom.service';
 
 describe('ColumnIntercomService', () => {
-  let service: ColumnIntercomService;
+  let service: ColumnSharedService;
 
   let column: Column;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ColumnIntercomService);
+    service = TestBed.inject(ColumnSharedService);
   });
 
   beforeEach(() => {

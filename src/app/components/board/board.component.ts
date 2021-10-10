@@ -10,7 +10,7 @@ import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
 import { BoardSharedService } from 'src/app/services/board-intercom/board-intercom.service';
 import { BoardService } from 'src/app/services/board/board.service';
-import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
+import { ColumnSharedService } from 'src/app/services/column-intercom/column-intercom.service';
 import { ColumnService } from 'src/app/services/column/column.service';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
 import { ColumnFormComponent } from '../../forms/column-form/column-form.component';
@@ -33,7 +33,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     private boardService: BoardService,
     private boardSharedService: BoardSharedService,
     private columnService: ColumnService,
-    private columnIntercomService: ColumnIntercomService,
+    private columnSharedService: ColumnSharedService,
     private sprintService: SprintService,
     private router: Router,
     private route: ActivatedRoute,
@@ -71,7 +71,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       .subscribe(this.onBoardFormSaved);
 
     // listen for column form saved announcements
-    this.columnIntercomService.columnFormSaved$
+    this.columnSharedService.columnFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(this.onColumnFormSaved);
   }
