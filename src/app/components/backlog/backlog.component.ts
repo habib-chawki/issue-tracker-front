@@ -12,11 +12,11 @@ import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.compo
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
-import { IssueSharedService } from 'src/app/services/issue-intercom/issue-intercom.service';
-import { IssueService } from 'src/app/services/issue/issue.service';
-import { ProjectService } from 'src/app/services/project/project.service';
-import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
-import { SprintService } from 'src/app/services/sprint/sprint.service';
+import { IssueSharedService } from 'src/app/services/shared/issue/issue-shared.service';
+import { SprintSharedService } from 'src/app/services/shared/sprint/sprint-shared.service';
+import { IssueService } from 'src/app/services/api/issue/issue.service';
+import { ProjectService } from 'src/app/services/api/project/project.service';
+import { SprintService } from 'src/app/services/api/sprint/sprint.service';
 import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 
 @Component({

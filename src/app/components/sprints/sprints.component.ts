@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import Sprint from 'src/app/models/sprint/sprint';
-import { SprintService } from 'src/app/services/sprint/sprint.service';
+import { SprintService } from 'src/app/services/api/sprint/sprint.service';
 
 @Component({
   selector: 'app-sprints',

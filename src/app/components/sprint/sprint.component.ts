@@ -6,13 +6,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { ActivatedRoute, Event, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
-import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
-import { SprintService } from 'src/app/services/sprint/sprint.service';
+import { SprintSharedService } from 'src/app/services/shared/sprint/sprint-shared.service';
+import { SprintService } from 'src/app/services/api/sprint/sprint.service';
 
 @Component({
   selector: 'app-sprint',

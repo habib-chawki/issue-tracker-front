@@ -8,11 +8,11 @@ import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
-import { BoardSharedService } from 'src/app/services/board-intercom/board-intercom.service';
-import { BoardService } from 'src/app/services/board/board.service';
-import { ColumnSharedService } from 'src/app/services/column-intercom/column-intercom.service';
-import { ColumnService } from 'src/app/services/column/column.service';
-import { SprintService } from 'src/app/services/sprint/sprint.service';
+import { BoardSharedService } from 'src/app/services/shared/board/board-shared.service';
+import { ColumnSharedService } from 'src/app/services/shared/column/column-shared.service';
+import { BoardService } from 'src/app/services/api/board/board.service';
+import { ColumnService } from 'src/app/services/api/column/column.service';
+import { SprintService } from 'src/app/services/api/sprint/sprint.service';
 import { ColumnFormComponent } from '../../forms/column-form/column-form.component';
 
 @Component({
