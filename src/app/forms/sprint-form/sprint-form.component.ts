@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
-import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
+import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 
 @Component({
   selector: 'app-sprint-form',
@@ -27,7 +27,7 @@ export class SprintFormComponent implements OnInit {
   });
 
   constructor(
-    private sprintIntercomService: SprintIntercomService,
+    private sprintSharedService: SprintSharedService,
     private dialogRef: MatDialogRef<SprintFormComponent>
   ) {}
 
@@ -48,7 +48,7 @@ export class SprintFormComponent implements OnInit {
       delete formValue.dateRange;
 
       // announce form saved with the custom form value
-      this.sprintIntercomService.announceSprintFormSaved(formValue);
+      this.sprintSharedService.announceSprintFormSaved(formValue);
 
       // close sprint form dialog
       this.dialogRef.close();
