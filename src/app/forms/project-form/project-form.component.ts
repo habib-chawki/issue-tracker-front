@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProjectSharedService } from 'src/app/services/shared/project-intercom/project-intercom.service';
+import { ProjectSharedService } from 'src/app/services/shared/project/project-shared.service';
 
 @Component({
   selector: 'app-project-form',

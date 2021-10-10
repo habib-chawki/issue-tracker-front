@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BoardSharedService } from './board-intercom.service';
+import { BoardSharedService } from './board-shared.service';
 
 describe('BoardIntercomService', () => {
   let service: BoardSharedService;

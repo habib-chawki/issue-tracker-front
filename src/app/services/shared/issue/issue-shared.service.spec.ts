@@ -4,7 +4,7 @@ import IssueType from 'src/app/models/enums/issue-type';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 
-import { IssueSharedService } from './issue-intercom.service';
+import { IssueSharedService } from './issue-shared.service';
 
 describe('IssueIntercomService', () => {
   let service: IssueSharedService;

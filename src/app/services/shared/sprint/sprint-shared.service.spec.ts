@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SprintSharedService } from './sprint-intercom.service';
+import { SprintSharedService } from './sprint-shared.service';
 
 describe('SprintIntercomService', () => {
   let service: SprintSharedService;
