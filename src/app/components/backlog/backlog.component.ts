@@ -97,6 +97,9 @@ export class BacklogComponent implements OnInit, OnDestroy {
     this.sprints = this.sprints.filter(
       (sprint) => sprint.id !== sprintToDelete.id
     );
+
+    // move sprint issues back to the product backlog
+    this.backlog = [...sprintToDelete.backlog, ...this.backlog];
   }
 
   updateIssue(issue: Issue) {
