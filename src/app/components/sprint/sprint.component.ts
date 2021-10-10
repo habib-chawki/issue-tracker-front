@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
@@ -49,7 +49,11 @@ export class SprintComponent implements OnInit, OnDestroy {
   };
 
   onRemoveSprint() {
-    //TODO: remove sprint
+    // remove sprint
+    this.sprintService
+      .deleteSprint(this.sprint.projectId, this.sprint.id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({ next: () => {}, error: () => {} });
   }
 
   ngOnDestroy(): void {

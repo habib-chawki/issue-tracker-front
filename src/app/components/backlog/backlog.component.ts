@@ -15,7 +15,7 @@ import Sprint from 'src/app/models/sprint/sprint';
 import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 import { ProjectService } from 'src/app/services/project/project.service';
-import { SprintIntercomService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
+import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
 import { SprintService } from 'src/app/services/sprint/sprint.service';
 import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
 
@@ -36,7 +36,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     private issueService: IssueService,
     private projectService: ProjectService,
     private issueSharedService: IssueIntercomService,
-    private sprintIntercomService: SprintIntercomService,
+    private sprintIntercomService: SprintSharedService,
     private sprintService: SprintService,
     private dialog: MatDialog,
     private route: ActivatedRoute
@@ -76,7 +76,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // listen for sprint form saved announcements
     this.sprintIntercomService.sprintFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(this.createSprint);
+      .subscribe({ next: this.createSprint });
   }
 
   onSaveIssue = (issue: Issue) => {
