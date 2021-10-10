@@ -4,15 +4,15 @@ import IssueType from 'src/app/models/enums/issue-type';
 import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 
-import { IssueIntercomService } from './issue-intercom.service';
+import { IssueSharedService } from './issue-intercom.service';
 
 describe('IssueIntercomService', () => {
-  let service: IssueIntercomService;
+  let service: IssueSharedService;
   let issue: Issue;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IssueIntercomService);
+    service = TestBed.inject(IssueSharedService);
 
     issue = new IssueBuilder()
       .id('500')

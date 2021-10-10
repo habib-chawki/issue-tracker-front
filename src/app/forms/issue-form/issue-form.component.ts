@@ -8,7 +8,7 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { User } from 'src/app/models/user/user';
-import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
+import { IssueSharedService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class IssueFormComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData,
     private dialogRef: MatDialogRef<IssueFormComponent>,
-    private issueCommunicationService: IssueIntercomService,
+    private issueSharedService: IssueSharedService,
     private userService: UserService,
     private route: ActivatedRoute
   ) {}
@@ -76,7 +76,7 @@ export class IssueFormComponent implements OnInit {
       }
 
       console.log('ISSUE TO BE SAVED: ' + JSON.stringify(issue));
-      this.issueCommunicationService.announceIssueFormSaved(issue);
+      this.issueSharedService.announceIssueFormSaved(issue);
 
       // close the dialog
       this.dialogRef.close();

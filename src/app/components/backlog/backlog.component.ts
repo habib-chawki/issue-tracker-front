@@ -12,7 +12,7 @@ import { SprintFormComponent } from 'src/app/forms/sprint-form/sprint-form.compo
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import { Issue } from 'src/app/models/issue/issue';
 import Sprint from 'src/app/models/sprint/sprint';
-import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
+import { IssueSharedService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
@@ -34,7 +34,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
   constructor(
     private issueService: IssueService,
     private projectService: ProjectService,
-    private issueSharedService: IssueIntercomService,
+    private issueSharedService: IssueSharedService,
     private sprintSharedService: SprintSharedService,
     private sprintService: SprintService,
     private dialog: MatDialog,

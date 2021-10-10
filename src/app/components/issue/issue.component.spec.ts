@@ -6,7 +6,7 @@ import { IssueBuilder } from 'src/app/models/issue-builder/issue-builder';
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
 import { User } from 'src/app/models/user/user';
-import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
+import { IssueSharedService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 import { IssueComponent } from './issue.component';
@@ -20,7 +20,7 @@ describe('IssueComponent', () => {
   let reporter: User;
 
   let storageService: StorageService;
-  let issueCommunicationService: IssueIntercomService;
+  let issueCommunicationService: IssueSharedService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,7 +36,7 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     storageService = TestBed.inject(StorageService);
-    issueCommunicationService = TestBed.inject(IssueIntercomService);
+    issueCommunicationService = TestBed.inject(IssueSharedService);
 
     // set up the issue reporter
     reporter = new UserBuilder()
@@ -174,9 +174,8 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     // given the remove issue button
-    const removeButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#remove'
-    );
+    const removeButton: HTMLButtonElement =
+      nativeElement.querySelector('button#remove');
 
     // when the button is clicked
     removeButton.click();
@@ -240,9 +239,8 @@ describe('IssueComponent', () => {
     fixture.detectChanges();
 
     // given the update button
-    const updateButton: HTMLButtonElement = nativeElement.querySelector(
-      'button#update'
-    );
+    const updateButton: HTMLButtonElement =
+      nativeElement.querySelector('button#update');
 
     // when the button is clicked
     updateButton.click();

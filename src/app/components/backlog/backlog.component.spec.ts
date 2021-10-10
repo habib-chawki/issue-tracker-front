@@ -13,7 +13,7 @@ import IssueType from 'src/app/models/enums/issue-type';
 
 import { Issue } from 'src/app/models/issue/issue';
 import { UserBuilder } from 'src/app/models/user-builder/user-builder';
-import { IssueIntercomService } from 'src/app/services/issue-intercom/issue-intercom.service';
+import { IssueSharedService } from 'src/app/services/issue-intercom/issue-intercom.service';
 import { IssueService } from 'src/app/services/issue/issue.service';
 
 import { IssueFormComponent } from '../../forms/issue-form/issue-form.component';
@@ -26,7 +26,7 @@ describe('Backlog', () => {
   let nativeElement: HTMLElement;
 
   let issueService: IssueService;
-  let issueCommunicationService: IssueIntercomService;
+  let issueCommunicationService: IssueSharedService;
 
   let issue: Issue, issue2: Issue;
 
@@ -53,7 +53,7 @@ describe('Backlog', () => {
     fixture.detectChanges();
 
     issueService = TestBed.inject(IssueService);
-    issueCommunicationService = TestBed.inject(IssueIntercomService);
+    issueCommunicationService = TestBed.inject(IssueSharedService);
 
     dialog = TestBed.inject(MatDialog);
 
