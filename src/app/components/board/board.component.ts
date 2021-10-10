@@ -8,7 +8,7 @@ import Board from 'src/app/models/board/board';
 import Column from 'src/app/models/column/column';
 import SprintStatus from 'src/app/models/enums/sprint-status';
 import Sprint from 'src/app/models/sprint/sprint';
-import { BoardIntercomService } from 'src/app/services/board-intercom/board-intercom.service';
+import { BoardSharedService } from 'src/app/services/board-intercom/board-intercom.service';
 import { BoardService } from 'src/app/services/board/board.service';
 import { ColumnIntercomService } from 'src/app/services/column-intercom/column-intercom.service';
 import { ColumnService } from 'src/app/services/column/column.service';
@@ -31,7 +31,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   constructor(
     private boardService: BoardService,
-    private boardSharedService: BoardIntercomService,
+    private boardSharedService: BoardSharedService,
     private columnService: ColumnService,
     private columnIntercomService: ColumnIntercomService,
     private sprintService: SprintService,

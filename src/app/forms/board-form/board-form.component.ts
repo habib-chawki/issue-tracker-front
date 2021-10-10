@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BoardIntercomService } from 'src/app/services/board-intercom/board-intercom.service';
+import { BoardSharedService } from 'src/app/services/board-intercom/board-intercom.service';
 
 @Component({
   selector: 'app-board-form',
@@ -12,7 +12,7 @@ export class BoardFormComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
   });
 
-  constructor(private boardSharedService: BoardIntercomService) {}
+  constructor(private boardSharedService: BoardSharedService) {}
 
   ngOnInit(): void {}
 

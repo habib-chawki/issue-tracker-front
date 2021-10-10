@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BoardIntercomService } from './board-intercom.service';
+import { BoardSharedService } from './board-intercom.service';
 
 describe('BoardIntercomService', () => {
-  let service: BoardIntercomService;
+  let service: BoardSharedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BoardIntercomService);
+    service = TestBed.inject(BoardSharedService);
   });
 
   it('should be created', () => {

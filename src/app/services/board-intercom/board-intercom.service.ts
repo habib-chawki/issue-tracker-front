@@ -5,7 +5,7 @@ import Board from 'src/app/models/board/board';
 @Injectable({
   providedIn: 'root',
 })
-export class BoardIntercomService {
+export class BoardSharedService {
   boardFormSaved$ = new Subject<Board>();
 
   constructor() {}
