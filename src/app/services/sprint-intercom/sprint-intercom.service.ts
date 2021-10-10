@@ -7,7 +7,7 @@ import Sprint from 'src/app/models/sprint/sprint';
 })
 export class SprintSharedService {
   sprintFormSaved$ = new Subject<Sprint>();
-  sprintDeleted$ = new Subject<Sprint>();
+  sprintRemoved$ = new Subject<Sprint>();
 
   constructor() {}
 
@@ -15,7 +15,7 @@ export class SprintSharedService {
     this.sprintFormSaved$.next(sprintForm);
   }
 
-  announceSprintDeleted(sprintToDelete: Sprint) {
-    this.sprintDeleted$.next(sprintToDelete);
+  announceSprintRemoved(sprintToRemove: Sprint) {
+    this.sprintRemoved$.next(sprintToRemove);
   }
 }
