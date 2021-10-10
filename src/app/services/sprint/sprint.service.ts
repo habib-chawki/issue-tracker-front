@@ -59,4 +59,10 @@ export class SprintService {
 
     return this.httpClient.patch(url, body);
   }
+
+  deleteSprint(projectId: string, sprintId: string) {
+    const url = `${this.baseUrl}/${projectId}/sprints/${sprintId}`;
+
+    this.httpClient.delete(url);
+  }
 }
