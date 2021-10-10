@@ -76,6 +76,11 @@ export class BacklogComponent implements OnInit, OnDestroy {
     this.sprintSharedService.sprintFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({ next: this.createSprint });
+
+    // listen for sprint removed announcements
+    this.sprintSharedService.sprintRemoved$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({ next: this.deleteSprint });
   }
 
   onSaveIssue = (issue: Issue) => {
@@ -103,7 +108,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
             (sprint) => sprint.id !== sprintToDelete.id
           );
         },
-        error: () => {},
       });
   }
 
