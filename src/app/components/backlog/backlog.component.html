@@ -12,6 +12,7 @@
       cdkDropList
       [cdkDropListData]="sprint"
       (cdkDropListDropped)="onDrop($event)"
+      (sprintRemoved)="onRemoveSprint($event)"
     ></app-sprint>
   </div>
 
