@@ -76,11 +76,6 @@ export class BacklogComponent implements OnInit, OnDestroy {
     this.sprintSharedService.sprintFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({ next: this.createSprint });
-
-    // listen for sprint removed announcements
-    this.sprintSharedService.sprintRemoved$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({ next: this.removeSprint });
   }
 
   onSaveIssue = (issue: Issue) => {
@@ -97,12 +92,11 @@ export class BacklogComponent implements OnInit, OnDestroy {
       });
   }
 
-  removeSprint(sprintToDelete: Sprint) {
+  onRemoveSprint(sprintToDelete: Sprint) {
     // remove sprint backlog
-    console.log('SPRINTS ===< ', this.sprints);
-    // this.sprints = this.sprints.filter(
-    //   (sprint) => sprint.id !== sprintToDelete.id
-    // );
+    this.sprints = this.sprints.filter(
+      (sprint) => sprint.id !== sprintToDelete.id
+    );
   }
 
   updateIssue(issue: Issue) {
