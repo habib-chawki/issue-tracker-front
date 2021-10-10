@@ -1,5 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { ActivatedRoute, Event, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import SprintStatus from 'src/app/models/enums/sprint-status';
@@ -16,6 +23,7 @@ export class SprintComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   @Input() sprint: Sprint;
+  @Output() sprintRemoved = new EventEmitter();
 
   constructor(
     private sprintService: SprintService,
@@ -57,7 +65,7 @@ export class SprintComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           // announce sprint removed
-          this.sprintSharedService.announceSprintRemoved(this.sprint);
+          this.sprintRemoved.emit(this.sprint);
         },
       });
   }
