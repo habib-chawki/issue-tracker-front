@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { ProjectFormComponent } from 'src/app/forms/project-form/project-form.component';
 import Project from 'src/app/models/project/project';
-import { ProjectCommunicationService } from 'src/app/services/project-intercom/project-intercom.service';
+import { ProjectSharedService } from 'src/app/services/project-intercom/project-intercom.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   constructor(
     private projectService: ProjectService,
     private storageService: StorageService,
-    private projectSharedService: ProjectCommunicationService,
+    private projectSharedService: ProjectSharedService,
     private dialog: MatDialog
   ) {}
 

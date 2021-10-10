@@ -5,7 +5,7 @@ import Project from 'src/app/models/project/project';
 @Injectable({
   providedIn: 'root',
 })
-export class ProjectCommunicationService {
+export class ProjectSharedService {
   projectFormSaved$ = new Subject<Project>();
 
   constructor() {}
