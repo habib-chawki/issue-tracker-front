@@ -51,8 +51,15 @@ export class SprintComponent implements OnInit, OnDestroy {
   };
 
   onRemoveSprint() {
-    // announce sprint removed
-    this.sprintSharedService.announceSprintRemoved(this.sprint);
+    this.sprintService
+      .deleteSprint(this.sprint.projectId, this.sprint.id)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          // announce sprint removed
+          this.sprintSharedService.announceSprintRemoved(this.sprint);
+        },
+      });
   }
 
   ngOnDestroy(): void {

@@ -80,7 +80,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     // listen for sprint removed announcements
     this.sprintSharedService.sprintRemoved$
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({ next: this.deleteSprint });
+      .subscribe({ next: this.removeSprint });
   }
 
   onSaveIssue = (issue: Issue) => {
@@ -97,18 +97,12 @@ export class BacklogComponent implements OnInit, OnDestroy {
       });
   }
 
-  deleteSprint(sprintToDelete: Sprint) {
-    this.sprintService
-      .deleteSprint(sprintToDelete.projectId, sprintToDelete.id)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({
-        next: () => {
-          // remove sprint backlog
-          this.sprints = this.sprints.filter(
-            (sprint) => sprint.id !== sprintToDelete.id
-          );
-        },
-      });
+  removeSprint(sprintToDelete: Sprint) {
+    // remove sprint backlog
+    console.log('SPRINTS ===< ', this.sprints);
+    // this.sprints = this.sprints.filter(
+    //   (sprint) => sprint.id !== sprintToDelete.id
+    // );
   }
 
   updateIssue(issue: Issue) {
