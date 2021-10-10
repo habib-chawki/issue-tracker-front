@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ColumnSharedService } from 'src/app/services/column-intercom/column-intercom.service';
+import { ColumnSharedService } from 'src/app/services/shared/column/column-shared.service';
 
 @Component({
   selector: 'app-column-form',

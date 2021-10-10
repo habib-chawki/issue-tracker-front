@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
-import { ProjectService } from 'src/app/services/project/project.service';
+import { ProjectService } from 'src/app/services/api/project/project.service';
 
 @Component({
   selector: 'app-user',

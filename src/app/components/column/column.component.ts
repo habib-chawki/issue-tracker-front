@@ -7,7 +7,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import Column from 'src/app/models/column/column';
-import { ColumnService } from 'src/app/services/column/column.service';
+import { ColumnService } from 'src/app/services/api/column/column.service';
 
 @Component({
   selector: 'app-column',

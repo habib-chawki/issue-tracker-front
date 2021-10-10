@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
-import { SprintSharedService } from 'src/app/services/sprint-intercom/sprint-intercom.service';
+import { SprintSharedService } from 'src/app/services/shared/sprint/sprint-shared.service';
 
 @Component({
   selector: 'app-sprint-form',

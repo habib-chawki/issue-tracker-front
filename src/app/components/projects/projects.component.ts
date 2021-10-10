@@ -5,7 +5,7 @@ import { take, takeUntil } from 'rxjs/operators';
 import { ProjectFormComponent } from 'src/app/forms/project-form/project-form.component';
 import Project from 'src/app/models/project/project';
 import { ProjectSharedService } from 'src/app/services/shared/project/project-shared.service';
-import { ProjectService } from 'src/app/services/project/project.service';
+import { ProjectService } from 'src/app/services/api/project/project.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({

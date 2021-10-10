@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/services/api/user/user.service';
 
 @Component({
   selector: 'app-users',

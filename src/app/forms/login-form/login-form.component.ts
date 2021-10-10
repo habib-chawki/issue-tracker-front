@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ErrorService } from 'src/app/services/error/error.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/services/api/user/user.service';
 
 @Component({
   selector: 'app-login-form',

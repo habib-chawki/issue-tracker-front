@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user';
-import { ProjectService } from 'src/app/services/project/project.service';
+import { ProjectService } from 'src/app/services/api/project/project.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({

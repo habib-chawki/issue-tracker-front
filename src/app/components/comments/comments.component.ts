@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Comment } from 'src/app/models/comment/comment';
-import { CommentService } from 'src/app/services/comment/comment.service';
+import { CommentService } from 'src/app/services/api/comment/comment.service';
 
 @Component({
   selector: 'app-comments',

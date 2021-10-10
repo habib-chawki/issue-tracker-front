@@ -8,8 +8,8 @@ import IssueStatus from 'src/app/models/enums/issue-status';
 import IssueType from 'src/app/models/enums/issue-type';
 import { Issue } from 'src/app/models/issue/issue';
 import { User } from 'src/app/models/user/user';
-import { IssueSharedService } from 'src/app/services/issue-intercom/issue-intercom.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { IssueSharedService } from 'src/app/services/shared/issue/issue-shared.service';
+import { UserService } from 'src/app/services/api/user/user.service';
 
 @Component({
   selector: 'app-issue-form',
