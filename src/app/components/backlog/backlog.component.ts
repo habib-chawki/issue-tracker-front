@@ -35,7 +35,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
   constructor(
     private issueService: IssueService,
     private projectService: ProjectService,
-    private issueCommunicationService: IssueIntercomService,
+    private issueSharedService: IssueIntercomService,
     private sprintIntercomService: SprintIntercomService,
     private sprintService: SprintService,
     private dialog: MatDialog,
@@ -69,7 +69,7 @@ export class BacklogComponent implements OnInit, OnDestroy {
     });
 
     // listen for issue form saved announcements
-    this.issueCommunicationService.issueFormSaved$
+    this.issueSharedService.issueFormSaved$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(this.onSaveIssue);
 
